@@ -23,12 +23,11 @@ jobs:
 
       - name: Restore tested source bundle
         run: |
-          cat source_bundle.part* > /tmp/source_bundle.b64
-          base64 -d /tmp/source_bundle.b64 > /tmp/source_bundle.tar.gz
-          tar -xzf /tmp/source_bundle.tar.gz
-          rm /tmp/source_bundle.b64 /tmp/source_bundle.tar.gz
+          tar -xzf source_bundle.tar.gz
           test -f lab/pipeline.py
           test -f tests/test_lab.py
+          echo 'source_bundle_sha256=0ea2b4833a5144c3fa7c99e37bc930dd93f85a67fd17ce0f1d2ee7b9fe845939'
+          echo '0ea2b4833a5144c3fa7c99e37bc930dd93f85a67fd17ce0f1d2ee7b9fe845939  source_bundle.tar.gz' | sha256sum -c -
 
       - uses: actions/setup-python@v5
         with:
