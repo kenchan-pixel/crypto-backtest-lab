@@ -21,13 +21,65 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Restore tested source bundle
+      - name: Restore verified source bundle
         run: |
-          tar -xzf source_bundle.tar.gz
+          cat source_bundle.part* > /tmp/source_bundle.b64
+          base64 -d /tmp/source_bundle.b64 > /tmp/source_bundle.tar.gz
+          echo '0ea2b4833a5144c3fa7c99e37bc930dd93f85a67fd17ce0f1d2ee7b9fe845939  /tmp/source_bundle.tar.gz' | sha256sum -c -
+          tar -xzf /tmp/source_bundle.tar.gz
           test -f lab/pipeline.py
           test -f tests/test_lab.py
-          echo 'source_bundle_sha256=0ea2b4833a5144c3fa7c99e37bc930dd93f85a67fd17ce0f1d2ee7b9fe845939'
-          echo '0ea2b4833a5144c3fa7c99e37bc930dd93f85a67fd17ce0f1d2ee7b9fe845939  source_bundle.tar.gz' | sha256sum -c -
+
+      - name: Apply audited Binance legacy close-time parser fix
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('lab/data.py')
+          s=p.read_text()
+          old='''    is_us = opened >= 100_000_000_000_000
+              close_us = np.where(closed >= 100_000_000_000_000, closed, closed * 1000)
+              open_us = np.where(is_us, opened, opened * 1000)
+              if np.any(open_us % 60_000_000 != 0):
+                  raise ValueError("Open timestamps are not exactly on minute boundaries")
+              durations = close_us - open_us
+              if np.any(~np.isin(durations, [59_999_000, 59_999_999])):
+                  raise ValueError("Unexpected candle duration / mixed timestamp unit error")
+          '''
+          new='''    is_us = opened >= 100_000_000_000_000
+              close_is_us = closed >= 100_000_000_000_000
+              if np.any(is_us != close_is_us):
+                  raise ValueError("Mixed timestamp units within a candle row")
+              close_us = np.where(close_is_us, closed, closed * 1000)
+              open_us = np.where(is_us, opened, opened * 1000)
+              if np.any(open_us % 60_000_000 != 0):
+                  raise ValueError("Open timestamps are not exactly on minute boundaries")
+              durations = close_us - open_us
+              standard = np.isin(durations, [59_999_000, 59_999_999])
+              legacy_close_metadata = (~standard) & (~is_us) & (durations < 59_999_000)
+              if np.any((~standard) & (~legacy_close_metadata)):
+                  raise ValueError("Unexpected candle duration / mixed timestamp unit error")
+          '''
+          if old not in s:
+              raise SystemExit('Expected timestamp parser block not found; stop rather than patching unknown code')
+          s=s.replace(old,new)
+          old_meta='''    meta = {"raw_rows": len(raw), "millisecond_rows": int((~is_us).sum()),
+                      "microsecond_rows": int(is_us.sum()),
+                      "source_unsorted": bool(not frame.index.is_monotonic_increasing)}
+          '''
+          new_meta='''    anomalous = np.flatnonzero(legacy_close_metadata)
+              samples = [{"row": int(i), "open_time_raw": int(opened[i]),
+                          "close_time_raw": int(closed[i]), "duration_us": int(durations[i])}
+                         for i in anomalous[:10]]
+              meta = {"raw_rows": len(raw), "millisecond_rows": int((~is_us).sum()),
+                      "microsecond_rows": int(is_us.sum()),
+                      "nonstandard_close_time_rows": int(legacy_close_metadata.sum()),
+                      "nonstandard_close_time_samples": samples,
+                      "source_unsorted": bool(not frame.index.is_monotonic_increasing)}
+          '''
+          if old_meta not in s:
+              raise SystemExit('Expected parser metadata block not found')
+          p.write_text(s.replace(old_meta,new_meta))
+          PY
 
       - uses: actions/setup-python@v5
         with:
@@ -37,7 +89,23 @@ jobs:
         run: python -m pip install --upgrade pip && python -m pip install -r requirements.txt
 
       - name: Unit and causal-timing tests
-        run: python -m pytest -q
+        run: |
+          python -m pytest -q
+          python - <<'PY'
+          import pandas as pd
+          from lab.data import normalise
+          legacy=[1613014800000,100,101,99,100,10,1613014854773,1000,4,5,500,0]
+          frame,meta=normalise(pd.DataFrame([legacy]))
+          assert len(frame)==1 and meta['nonstandard_close_time_rows']==1
+          mixed=legacy.copy(); mixed[0]*=1000
+          try:
+              normalise(pd.DataFrame([mixed]))
+          except ValueError as e:
+              assert 'Mixed timestamp units' in str(e)
+          else:
+              raise AssertionError('mixed timestamp units must fail closed')
+          print('legacy close-time audit smoke test passed')
+          PY
 
       - name: Run frozen full backtest on official Binance archives
         run: |
@@ -49,21 +117,33 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import json
-          states=[]
+          good=[]
           for p in Path('reports').glob('*/execution_status.json'):
               s=json.loads(p.read_text())
-              states.append((p,s))
-          good=[(p,s) for p,s in states if s.get('full_backtest_executed') is True]
+              if s.get('full_backtest_executed') is True:
+                  good.append((p,s))
           if not good:
               raise SystemExit('No completed real-data backtest flag found')
           print(good[-1][0])
           PY
 
-      - name: Execute results notebook
+      - name: Build and execute results notebook
         run: |
-          python -m jupyter nbconvert --to notebook --execute notebooks/results_report.ipynb \
-            --output executed_results_report.ipynb --output-dir artifacts \
-            --ExecutePreprocessor.timeout=900
+          mkdir -p artifacts
+          python - <<'PY'
+          from pathlib import Path
+          import nbformat as nbf
+          nb=nbf.v4.new_notebook()
+          nb.cells=[
+            nbf.v4.new_markdown_cell('# Crypto 8 Rules Backtest — Executed Results\n\nGenerated only after the real-data completion gate passes.'),
+            nbf.v4.new_code_cell("from pathlib import Path\nimport json, pandas as pd\nfrom IPython.display import display\nfrom lab.plots import render_report\ngood=[]\nfor p in Path('reports').glob('*/execution_status.json'):\n    s=json.loads(p.read_text())\n    if s.get('full_backtest_executed') is True: good.append((p.parent,s))\nfolder,state=good[-1]\nprint(folder)\ndisplay(state)"),
+            nbf.v4.new_code_cell("verdicts=pd.read_csv(folder/'rule_verdicts.csv')\ncomparison=pd.read_csv(folder/'strategy_comparison.csv')\ndisplay(verdicts)\ndisplay(comparison[['rule','symbol','sample_size','win_rate','average_return','median_return','profit_factor','net_return','max_drawdown','oos_result','status','reason']])"),
+            nbf.v4.new_code_cell("annual=pd.read_csv(folder/'annual_fixed_rule_results.csv')\ninfer=pd.read_csv(folder/'oos_inference.csv')\ndisplay(annual)\ndisplay(infer)"),
+            nbf.v4.new_code_cell("paths=render_report(folder,show=False)\nprint('charts:', *paths, sep='\\n')")
+          ]
+          nbf.write(nb,'artifacts/executed_results_report.ipynb')
+          PY
+          python -m jupyter nbconvert --to notebook --execute artifacts/executed_results_report.ipynb --inplace --ExecutePreprocessor.timeout=900
 
       - name: Package final small outputs
         if: always()
