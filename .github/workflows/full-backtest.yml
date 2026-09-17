@@ -2,10 +2,6 @@ name: Full Binance 8-rule backtest
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/full-backtest.yml'
 
 permissions:
   contents: read
@@ -144,7 +140,8 @@ jobs:
           ]
           nbf.write(nb,'executed_results_report.ipynb')
           PY
-          PYTHONPATH="$GITHUB_WORKSPACE" python -m jupyter nbconvert --to notebook --execute executed_results_report.ipynb --inplace --ExecutePreprocessor.timeout=900\n          mv executed_results_report.ipynb artifacts/
+          PYTHONPATH="$GITHUB_WORKSPACE" python -m jupyter nbconvert --to notebook --execute executed_results_report.ipynb --inplace --ExecutePreprocessor.timeout=900
+          mv executed_results_report.ipynb artifacts/
 
       - name: Package final small outputs
         if: always()
