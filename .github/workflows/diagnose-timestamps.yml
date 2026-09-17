@@ -13,25 +13,75 @@ permissions:
 jobs:
   diagnose:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Inspect official archive timestamp units
+      - name: Scan all official archives used by the frozen study
         run: |
           python - <<'PY'
-          import csv, io, urllib.request, zipfile
-          base='https://data.binance.vision/data/spot/monthly/klines'
+          import csv, io, urllib.request, zipfile, concurrent.futures, collections, datetime as dt
+
+          BASE='https://data.binance.vision/data/spot'
+          months=[]
+          y,m=2020,12
+          while (y,m) <= (2026,8):
+              months.append(f'{y}-{m:02d}')
+              m += 1
+              if m==13: y,m=y+1,1
+          days=[f'2026-09-{d:02d}' for d in range(1,15)]
+          jobs=[]
           for sym in ('BTCUSDT','ETHUSDT'):
-            for month in ('2024-12','2025-01','2026-08'):
-              name=f'{sym}-1m-{month}.zip'
-              url=f'{base}/{sym}/1m/{name}'
-              print('\n',sym,month,url)
-              raw=urllib.request.urlopen(url,timeout=60).read()
+              for date in months:
+                  name=f'{sym}-1m-{date}.zip'
+                  jobs.append((sym,date,name,f'{BASE}/monthly/klines/{sym}/1m/{name}'))
+              for date in days:
+                  name=f'{sym}-1m-{date}.zip'
+                  jobs.append((sym,date,name,f'{BASE}/daily/klines/{sym}/1m/{name}'))
+
+          def fetch(job):
+              sym,date,name,url=job
+              req=urllib.request.Request(url,headers={'User-Agent':'CryptoBacktestLab timestamp audit'})
+              with urllib.request.urlopen(req,timeout=60) as r: raw=r.read()
+              anomalies=[]; cats=collections.Counter(); rows=0
               with zipfile.ZipFile(io.BytesIO(raw)) as z:
-                rows=list(csv.reader(io.TextIOWrapper(z.open(z.namelist()[0]),encoding='utf-8')))[:5]
-              for r in rows:
-                o=int(r[0]); c=int(r[6]); print(o,c,'digits',len(r[0]),len(r[6]),'raw_duration',c-o)
+                  members=[x for x in z.namelist() if x.lower().endswith('.csv')]
+                  if len(members)!=1: return (name,0,{},[('member_count',len(members))])
+                  with io.TextIOWrapper(z.open(members[0]),encoding='utf-8',newline='') as f:
+                      for i,row in enumerate(csv.reader(f),start=1):
+                          if len(row)!=12:
+                              anomalies.append((i,'columns',len(row),row[:7])); continue
+                          o=int(row[0]); c=int(row[6]); rows+=1
+                          ous=o if o>=100_000_000_000_000 else o*1000
+                          cus=c if c>=100_000_000_000_000 else c*1000
+                          dur=cus-ous
+                          cats[(len(row[0]),len(row[6]),dur)] += 1
+                          if ous % 60_000_000 != 0 or dur not in (59_999_000,59_999_999):
+                              if len(anomalies)<25:
+                                  anomalies.append((i,'timestamp',o,c,len(row[0]),len(row[6]),dur,ous%60_000_000))
+              return name,rows,cats,anomalies
+
+          totals=collections.Counter(); bad=[]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
+              futs={ex.submit(fetch,j):j for j in jobs}
+              for fut in concurrent.futures.as_completed(futs):
+                  j=futs[fut]
+                  try:
+                      name,rows,cats,anom=fut.result()
+                      totals.update(cats)
+                      if anom: bad.append((name,rows,anom,cats))
+                      print('SCANNED',name,'rows',rows,'anomalies',len(anom),flush=True)
+                  except Exception as e:
+                      bad.append((j[2],0,[('download_or_parse',type(e).__name__,str(e))],{}))
+                      print('ERROR',j[2],type(e).__name__,e,flush=True)
+          print('\n=== DURATION CATEGORIES ===')
+          for key,n in sorted(totals.items(),key=lambda kv:(kv[0][0],kv[0][2])):
+              print(key,n)
+          print('\n=== BAD ARCHIVES ===',len(bad))
+          for item in sorted(bad):
+              print(item)
+          if not bad:
+              print('NO ANOMALIES FOUND')
           PY
