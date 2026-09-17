@@ -142,9 +142,9 @@ jobs:
             nbf.v4.new_code_cell("annual=pd.read_csv(folder/'annual_fixed_rule_results.csv')\ninfer=pd.read_csv(folder/'oos_inference.csv')\ndisplay(annual)\ndisplay(infer)"),
             nbf.v4.new_code_cell("paths=render_report(folder,show=False)\nprint('charts:', *paths, sep='\\n')")
           ]
-          nbf.write(nb,'artifacts/executed_results_report.ipynb')
+          nbf.write(nb,'executed_results_report.ipynb')
           PY
-          python -m jupyter nbconvert --to notebook --execute artifacts/executed_results_report.ipynb --inplace --ExecutePreprocessor.timeout=900
+          PYTHONPATH="$GITHUB_WORKSPACE" python -m jupyter nbconvert --to notebook --execute executed_results_report.ipynb --inplace --ExecutePreprocessor.timeout=900\n          mv executed_results_report.ipynb artifacts/
 
       - name: Package final small outputs
         if: always()
