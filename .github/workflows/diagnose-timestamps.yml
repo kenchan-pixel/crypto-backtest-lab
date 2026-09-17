@@ -1,0 +1,37 @@
+name: Diagnose Binance archive timestamps
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/diagnose-timestamps.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Inspect official archive timestamp units
+        run: |
+          python - <<'PY'
+          import csv, io, urllib.request, zipfile
+          base='https://data.binance.vision/data/spot/monthly/klines'
+          for sym in ('BTCUSDT','ETHUSDT'):
+            for month in ('2024-12','2025-01','2026-08'):
+              name=f'{sym}-1m-{month}.zip'
+              url=f'{base}/{sym}/1m/{name}'
+              print('\n',sym,month,url)
+              raw=urllib.request.urlopen(url,timeout=60).read()
+              with zipfile.ZipFile(io.BytesIO(raw)) as z:
+                rows=list(csv.reader(io.TextIOWrapper(z.open(z.namelist()[0]),encoding='utf-8')))[:5]
+              for r in rows:
+                o=int(r[0]); c=int(r[6]); print(o,c,'digits',len(r[0]),len(r[6]),'raw_duration',c-o)
+          PY
