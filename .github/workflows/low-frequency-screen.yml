@@ -1,0 +1,56 @@
+name: Low-frequency crypto candidate screen
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/low-frequency-screen-20260918']
+    paths: ['.github/workflows/low-frequency-screen.yml']
+permissions:
+  contents: read
+concurrency:
+  group: low-frequency-screen-20260918
+  cancel-in-progress: false
+jobs:
+  research:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned research dependencies
+        run: python -m pip install -r screen/requirements.txt
+      - name: Unit and causal-timing tests
+        run: python -m pytest -q screen/test_screen.py
+      - name: Run frozen candidate screen on official minute archives
+        run: |
+          set -euo pipefail
+          mkdir -p screen_outputs
+          python -u -m screen.study 2>&1 | tee screen_outputs/run.log
+      - name: Package source and verify output size
+        if: always()
+        run: |
+          mkdir -p screen_outputs/reproducible_source
+          cp -r screen screen_outputs/reproducible_source/
+          python -m pip freeze > screen_outputs/environment.txt
+          python - <<'PY'
+          from pathlib import Path
+          size=sum(p.stat().st_size for p in Path('screen_outputs').rglob('*') if p.is_file())
+          print('Artifact bytes:',size)
+          if size>50*1024*1024: raise SystemExit('Output budget exceeded; no large upload')
+          PY
+      - name: Upload audited screen outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: low-frequency-screen-20260918
+          path: screen_outputs/
+          retention-days: 3
+          compression-level: 6
+          if-no-files-found: error
