@@ -1,0 +1,21 @@
+# Post-2024 volatility research — freeze 2026-09-18
+
+## Changed question and fixed boundaries
+Ken asks whether a focus on the market from 2024 onwards can reveal a trading edge. Interpret this round as 2024-01-01 through 2026-09-14 Hong Kong time, with special emphasis on results after 2024. The original maxims, low-frequency screen and discovery studies are untouched. Spot BTCUSDT and ETHUSDT, no leverage, shorting, wallet, live order or paid service. The goal remains persistent net performance, not an arbitrarily profitable backtest.
+
+## Information separation
+First inspect ONLY 2024 and preceding indicator warmup from the previous checksum-verified hourly feature export. Do not read 2025/2026 conditional results until the small candidate set is written. Use 2025 as validation and 2026-01-01 through 2026-09-14 as later audit. All data have previously been used by this research project; these are chronological historical partitions, NOT untouched out-of-sample or forward evidence. No inference can erase prior selection. No repeated tuning after the later audit.
+
+## Exploration budget and features
+Finite table: normalized four-hour return shock, relative 24-hour BTC/ETH return gap, seven-day breakout, and 24-hour deviation from volume-weighted average. Conditions are split by 30-day price direction and 24h/7d realized-volatility ratio (below 0.8, 0.8–1.2, above 1.2). Four-hour shock cuts are -2,-1,0,1,2 historical hourly-volatility units; relative-gap cuts -2% and +2%; breakouts above zero; VWAP deviation cuts +/-1%. Explore 12/24/48-hour forward returns after exact fee/slippage. Report all cells, counts, mean/median, and quarterly support, not only winners. Overlapping event returns are not portfolio performance. At most THREE data-derived primary rules will be frozen after this table; pre-existing ETH D4 is a fixed comparator, not a newly discovered rule.
+
+## Backtesting / controls
+Reuse audited discovery/data.py and discovery/engine.py unmodified, with module date constants overridden only to recent data plus required past warmup. Signals use only completed hourly bars; fill no earlier than the following minute open, exact round-trip fees/slippage, one position per independent account, no overlapping positions or future-data-dependent entry veto. Primary costs per side: 0.10% fee + 0.05% adverse slippage. Stress: 0.15% + 0.15%; zero-cost diagnostic. No future minute imputation. Fixed duration exits; no retrospectively optimized stops or targets.
+
+2024, 2025, 2026 and 2025–2026 combined independently reset. Controls: cash, buy-and-hold, same holding period with unconditional hourly opportunities, and 31 within-year date-shift controls with fixed seeds. Small symmetric sensitivity: threshold factors 0.75/1/1.25 and duration factors 0.75/1/1.25; all outputs retained, no best-cell selection. Base maximum drawdown from observed minute opens/closes, sensitivity from daily marks if labelled. Trade count, win rate, mean/median net trade return, cash-PnL profit factor, net compounded return, exposure, missing-data/delayed-order counters required.
+
+## Statistical evidence
+Main exploratory test family is 3 primary rules x 2 assets x 4 controls on 2026 = 24 one-sided mean daily log-growth comparisons, with 4,999 circular-block bootstraps, 7-day blocks, seed 20260918; Holm correction uses the full 24 slots even for unestimable rules. 28-day blocks are diagnostic and may be underpowered in the short audit. Cash-PnL versus return-sum PF conventions must not be confused. Counterfactual omission of the best trade is a concentration diagnostic, not a modified strategy. 2025 results must be shown even if 2026 is positive. Fewer than 30 audit trades, a loss under stress, fragile nearby parameters or missing-data exposure prevent a strong reliability label. Even a pass is a provisional research finding, not a live authorization. Positive absolute return, outperforming a risky benchmark, and lower exposure are different claims.
+
+## Reproducibility
+Retain source URLs, official checksums, input artifact/hash provenance, timestamp and gap audits, full exploration table, frozen candidate JSON, runnable scripts, tests, all result CSVs and an executed notebook. Use a separate research branch/PR, no merge or scheduled trading. Source documentation: https://github.com/binance/binance-public-data .
