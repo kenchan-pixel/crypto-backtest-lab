@@ -1,0 +1,13 @@
+{
+  "phase1_run_id": "35299437603",
+  "phase1_commit": "e3dd359f683376fcc48aa03091ad98f03c9e439d",
+  "phase1_artifact_sha256": "37bbe02a5e7b53af21abc231f613471e05d8a2fb2ba189f37073fa7d5d57130a",
+  "training_end_exclusive": "2024-01-01T00:00:00+08:00",
+  "explored_cells": 510,
+  "candidates": [
+    {"id":"D1","name":"放量急跌後反彈","hold_hours":72,"conditions":[["shock4","le",-2.0],["volume_ratio","ge",2.0]],"role":"Primary on both coins"},
+    {"id":"D2","name":"放量突破七日高位","hold_hours":72,"conditions":[["breakout7","gt",0.0],["volume_ratio","ge",2.0]],"role":"Primary on both coins"},
+    {"id":"D3","name":"波動擴張後持有一天","hold_hours":24,"conditions":[["vol_ratio","ge",1.2]],"role":"Primary on both coins; rounded common training Q80 threshold"},
+    {"id":"D4","name":"升勢中落後另一幣後補升","hold_hours":24,"conditions":[["relative24","le",-0.02],["other_r24","ge",0.02],["r720","gt",0.0]],"role":"ETH primary; BTC mirrored negative control, predeclared from training asymmetry"}
+  ]
+}

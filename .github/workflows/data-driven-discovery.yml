@@ -25,13 +25,13 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -r discovery/requirements.txt
-      - name: Unit and causal feature tests
-        run: python -m pytest -q discovery/test_discovery.py
-      - name: Explore training data only
+      - name: Unit, cost and causal timing tests
+        run: python -m pytest -q discovery/
+      - name: Test frozen data-derived hypotheses
         run: |
           set -euo pipefail
           mkdir -p discovery_outputs
-          python -u -m discovery.explore 2>&1 | tee discovery_outputs/run.log
+          python -u -m discovery.study 2>&1 | tee discovery_outputs/run.log
       - name: Package source and size check
         if: always()
         run: |
@@ -48,7 +48,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: data-driven-discovery-phase1
+          name: data-driven-discovery-phase2
           path: discovery_outputs/
           retention-days: 3
           compression-level: 6
