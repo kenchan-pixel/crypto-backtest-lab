@@ -1,0 +1,55 @@
+name: Post-2024 volatility research
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/post2024-volatility-20260918']
+    paths: ['.github/workflows/post2024-volatility.yml']
+permissions:
+  contents: read
+concurrency:
+  group: post2024-volatility-20260918
+  cancel-in-progress: false
+jobs:
+  research:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r discovery/requirements.txt
+      - name: Causal feature and account tests
+        run: python -m pytest -q discovery/ recent/test_recent.py
+      - name: Run frozen post-2024 hypotheses
+        run: |
+          set -euo pipefail
+          mkdir -p recent_outputs
+          python -u -m recent.study 2>&1 | tee recent_outputs/run.log
+      - name: Package source and verify size
+        if: always()
+        run: |
+          mkdir -p recent_outputs/reproducible_source
+          cp -r discovery recent recent_outputs/reproducible_source/
+          python -m pip freeze > recent_outputs/environment.txt
+          python - <<'PY'
+          from pathlib import Path
+          size=sum(p.stat().st_size for p in Path('recent_outputs').rglob('*') if p.is_file())
+          print('Output bytes',size)
+          if size>40*1024*1024: raise SystemExit('Output size limit')
+          PY
+      - name: Upload actual research outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: post2024-volatility-research
+          path: recent_outputs/
+          retention-days: 3
+          compression-level: 6
+          if-no-files-found: error
