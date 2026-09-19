@@ -1,0 +1,47 @@
+name: Derivatives incremental information research
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/derivatives-increment-20260919']
+    paths: ['derivatives/**', '.github/workflows/derivatives-increment.yml']
+permissions:
+  contents: read
+concurrency:
+  group: derivatives-increment-20260919
+  cancel-in-progress: false
+jobs:
+  collect:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install pandas==2.2.3 numpy==2.2.6 requests==2.32.3 lxml==5.4.0
+      - name: Collect real public derivatives data
+        run: |
+          set -euo pipefail
+          mkdir -p derivative_inputs
+          python -u derivatives/collect.py 2>&1 | tee derivative_inputs/collection.log
+      - name: Verify artifact size and include source
+        if: always()
+        run: |
+          mkdir -p derivative_inputs/source
+          cp derivatives/collect.py derivatives/PROTOCOL.md derivative_inputs/source/
+          python - <<'PY'
+          from pathlib import Path
+          size=sum(p.stat().st_size for p in Path('derivative_inputs').rglob('*') if p.is_file())
+          print('total_bytes',size)
+          if size>45*1024*1024: raise SystemExit('Artifact budget exceeded')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: derivatives-real-inputs-20260919
+          path: derivative_inputs/
+          retention-days: 3
+          compression-level: 6
