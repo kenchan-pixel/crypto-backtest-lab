@@ -1,0 +1,269 @@
+{
+  "info": {
+    "indicator_code": "30771865",
+    "describe": "The unemployment rate is a core gauge of labor-market conditions, defined as the percentage of the labor force that is unemployed during the reporting period. The data are compiled and published by the Bureau of Labor Statistics (BLS) through the monthly Current Population Survey. The indicator is seasonally adjusted, removing the effects of holidays, weather changes, and other seasonal factors so that month-to-month readings are comparable and better reflect the labor market's genuine trend. As an absolute level, the data directly present the current unemployment rate rather than its change from the prior period. The unemployment rate is one of the important references for the Federal Reserve in setting monetary policy and a key signal markets use to gauge economic conditions; a falling rate typically foreshadows expansion, while a rising rate may stir recession fears, with significant effects on equities, bonds, and the U.S. dollar.",
+    "country": "US",
+    "name": "United States, Unemployment, Rate",
+    "importance": 3,
+    "periodicity": "month"
+  },
+  "data": [
+    {
+      "period": "2026-08-01",
+      "release_at": "2026-09-04T12:30:00Z",
+      "actual_value": "4.1",
+      "previous_value": "4.1",
+      "forecast_value": "4.1",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-07-01",
+      "release_at": "2026-08-07T12:30:00Z",
+      "actual_value": "4.1",
+      "previous_value": "4.2",
+      "forecast_value": "4.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-06-01",
+      "release_at": "2026-07-02T12:30:00Z",
+      "actual_value": "4.2",
+      "previous_value": "4.3",
+      "forecast_value": "4.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-05-01",
+      "release_at": "2026-06-05T12:30:00Z",
+      "actual_value": "4.3",
+      "previous_value": "4.3",
+      "forecast_value": "4.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-04-01",
+      "release_at": "2026-05-08T12:30:00Z",
+      "actual_value": "4.3",
+      "previous_value": "4.3",
+      "forecast_value": "4.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-03-01",
+      "release_at": "2026-04-03T12:30:00Z",
+      "actual_value": "4.3",
+      "previous_value": "4.4",
+      "forecast_value": "4.4",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-02-01",
+      "release_at": "2026-03-06T13:30:00Z",
+      "actual_value": "4.4",
+      "previous_value": "4.3",
+      "forecast_value": "4.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-01-01",
+      "release_at": "2026-02-11T13:30:00Z",
+      "actual_value": "4.3",
+      "previous_value": "4.4",
+      "forecast_value": "4.4",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-12-01",
+      "release_at": "2026-01-09T13:30:00Z",
+      "actual_value": "4.4",
+      "previous_value": "4.6",
+      "forecast_value": "4.5",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-11-01",
+      "release_at": "2025-12-16T13:30:00Z",
+      "actual_value": "4.6",
+      "previous_value": "4.4",
+      "forecast_value": "4.4",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-09-01",
+      "release_at": "2025-11-20T13:30:00Z",
+      "actual_value": "4.4",
+      "previous_value": "4.3",
+      "forecast_value": "4.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-08-01",
+      "release_at": "2025-09-05T12:30:00Z",
+      "actual_value": "4.3",
+      "previous_value": "4.2",
+      "forecast_value": "4.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-07-01",
+      "release_at": "2025-08-01T12:30:00Z",
+      "actual_value": "4.2",
+      "previous_value": "4.1",
+      "forecast_value": "4.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-06-01",
+      "release_at": "2025-07-03T12:30:00Z",
+      "actual_value": "4.1",
+      "previous_value": "4.2",
+      "forecast_value": "4.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-05-01",
+      "release_at": "2025-06-06T12:30:00Z",
+      "actual_value": "4.2",
+      "previous_value": "4.2",
+      "forecast_value": "4.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-04-01",
+      "release_at": "2025-05-02T12:30:00Z",
+      "actual_value": "4.2",
+      "previous_value": "4.2",
+      "forecast_value": "4.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-03-01",
+      "release_at": "2025-04-04T12:30:00Z",
+      "actual_value": "4.2",
+      "previous_value": "4.1",
+      "forecast_value": "4.1",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-02-01",
+      "release_at": "2025-03-07T13:30:00Z",
+      "actual_value": "4.1",
+      "previous_value": "4",
+      "forecast_value": "4",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-01-01",
+      "release_at": "2025-02-07T13:30:00Z",
+      "actual_value": "4",
+      "previous_value": "4.1",
+      "forecast_value": "4.1",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-12-01",
+      "release_at": "2025-01-10T13:30:00Z",
+      "actual_value": "4.1",
+      "previous_value": "4.2",
+      "forecast_value": "4.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-11-01",
+      "release_at": "2024-12-06T13:30:00Z",
+      "actual_value": "4.2",
+      "previous_value": "4.1",
+      "forecast_value": "4.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-10-01",
+      "release_at": "2024-11-01T12:30:00Z",
+      "actual_value": "4.1",
+      "previous_value": "4.1",
+      "forecast_value": "4.1",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-09-01",
+      "release_at": "2024-10-04T12:30:00Z",
+      "actual_value": "4.1",
+      "previous_value": "4.2",
+      "forecast_value": "4.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-08-01",
+      "release_at": "2024-09-06T12:30:00Z",
+      "actual_value": "4.2",
+      "previous_value": "4.3",
+      "forecast_value": "4.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-07-01",
+      "release_at": "2024-08-02T12:30:00Z",
+      "actual_value": "4.3",
+      "previous_value": "4.1",
+      "forecast_value": "4.1",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-06-01",
+      "release_at": "2024-07-05T12:30:00Z",
+      "actual_value": "4.1",
+      "previous_value": "4",
+      "forecast_value": "4",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-05-01",
+      "release_at": "2024-06-07T12:30:00Z",
+      "actual_value": "4",
+      "previous_value": "3.9",
+      "forecast_value": "3.9",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-04-01",
+      "release_at": "2024-05-03T12:30:00Z",
+      "actual_value": "3.9",
+      "previous_value": "3.8",
+      "forecast_value": "3.8",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-03-01",
+      "release_at": "2024-04-05T12:30:00Z",
+      "actual_value": "3.8",
+      "previous_value": "3.9",
+      "forecast_value": "3.9",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-02-01",
+      "release_at": "2024-03-08T13:30:00Z",
+      "actual_value": "3.9",
+      "previous_value": "3.7",
+      "forecast_value": "3.7",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-01-01",
+      "release_at": "2024-02-02T13:30:00Z",
+      "actual_value": "3.7",
+      "previous_value": "3.7",
+      "forecast_value": "3.8",
+      "unit": "Percent"
+    },
+    {
+      "period": "2023-12-01",
+      "release_at": "2024-01-05T13:30:00Z",
+      "actual_value": "3.7",
+      "previous_value": "3.7",
+      "forecast_value": "3.8",
+      "unit": "Percent"
+    }
+  ],
+  "count": 32
+}
