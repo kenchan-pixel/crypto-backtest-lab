@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import pytest
 from macrostudy.features import build_macro
 
 def sample_events():
@@ -14,7 +15,7 @@ def test_half_hour_release_first_next_hour():
     x,_,_=build_macro(idx,sample_events(),0)
     assert x.loc[idx[0],'cpi_yoy_active']==0
     assert x.loc[idx[1],'cpi_yoy_active']==1
-    assert x.loc[idx[1],'cpi_yoy_surprise_raw']==.1
+    assert x.loc[idx[1],'cpi_yoy_surprise_raw']==pytest.approx(.1)
 
 def test_exact_hour_release_still_waits_one_hour():
     idx=pd.date_range('2024-02-10T13:00:00Z',periods=3,freq='h')
@@ -36,7 +37,6 @@ def test_expiry_and_no_backfill():
     idx=pd.date_range('2024-01-09T12:00:00Z',periods=50,freq='h')
     x,_,_=build_macro(idx,sample_events(),0,active_hours=24)
     assert x.iloc[0].filter(like='_active').sum()==0
-    # 24 hours after first available hour is expired.
     target=pd.Timestamp('2024-01-11T13:00:00Z')
     assert x.loc[target,'cpi_yoy_active']==0
 
