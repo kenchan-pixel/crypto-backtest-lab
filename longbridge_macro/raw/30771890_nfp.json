@@ -1,0 +1,277 @@
+{
+  "info": {
+    "indicator_code": "30771890",
+    "describe": "Nonfarm payrolls refers to the total number of employed persons in industries other than US agriculture; it is compiled and released by the US Bureau of Labor Statistics through a monthly corporate payroll survey and is a core indicator measuring the scale of the labor market. The data are seasonally adjusted, removing the disturbance that cyclical factors such as holidays and weather changes exert on the number of employed persons and making data across months comparable. The current statistical measure presents an absolute level, that is, the actual total employment at a particular point in time, reflecting the overall scale of the labor market. Nonfarm-payroll data are regarded as a barometer of the health of the US economy, carrying important reference value for the direction of Federal Reserve monetary policy — persistent expansion in the number of employed persons often foreshadows a strong economy and may drive rate-hike expectations, while the reverse may trigger easing expectations, and the market usually reacts relatively sensitively.",
+    "country": "US",
+    "name": "United States, Employment, Nonfarm payroll, total, Absolute change",
+    "importance": 3,
+    "periodicity": "month"
+  },
+  "data": [
+    {
+      "period": "2026-08-01",
+      "release_at": "2026-09-04T12:30:00Z",
+      "actual_value": "162",
+      "previous_value": "-23",
+      "forecast_value": "56",
+      "unit": "Person"
+    },
+    {
+      "period": "2026-07-01",
+      "release_at": "2026-08-07T12:30:00Z",
+      "actual_value": "-23",
+      "previous_value": "57",
+      "forecast_value": "80",
+      "unit": "Person"
+    },
+    {
+      "period": "2026-06-01",
+      "release_at": "2026-07-02T12:30:00Z",
+      "actual_value": "57",
+      "previous_value": "172",
+      "forecast_value": "110",
+      "unit": "Person"
+    },
+    {
+      "period": "2026-05-01",
+      "release_at": "2026-06-05T12:30:00Z",
+      "actual_value": "172",
+      "previous_value": "115",
+      "forecast_value": "85",
+      "unit": "Person"
+    },
+    {
+      "period": "2026-04-01",
+      "release_at": "2026-05-08T12:30:00Z",
+      "actual_value": "115",
+      "previous_value": "178",
+      "forecast_value": "62",
+      "unit": "Person"
+    },
+    {
+      "period": "2026-03-01",
+      "release_at": "2026-04-03T12:30:00Z",
+      "actual_value": "178",
+      "previous_value": "-92",
+      "forecast_value": "60",
+      "unit": "Person"
+    },
+    {
+      "period": "2026-02-01",
+      "release_at": "2026-03-06T13:30:00Z",
+      "actual_value": "-92",
+      "previous_value": "130",
+      "forecast_value": "59",
+      "unit": "Person"
+    },
+    {
+      "period": "2026-01-01",
+      "release_at": "2026-02-11T13:30:00Z",
+      "actual_value": "130",
+      "previous_value": "50",
+      "forecast_value": "70",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-12-01",
+      "release_at": "2026-01-09T13:30:00Z",
+      "actual_value": "50",
+      "previous_value": "64",
+      "forecast_value": "60",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-11-01",
+      "release_at": "2025-12-16T13:30:00Z",
+      "actual_value": "64",
+      "previous_value": "119",
+      "forecast_value": "50",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-10-01",
+      "release_at": "2025-12-16T12:30:00Z",
+      "actual_value": "-105",
+      "previous_value": "119",
+      "forecast_value": "-15",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-09-01",
+      "release_at": "2025-11-20T13:30:00Z",
+      "actual_value": "119",
+      "previous_value": "22",
+      "forecast_value": "50",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-08-01",
+      "release_at": "2025-09-05T12:30:00Z",
+      "actual_value": "22",
+      "previous_value": "73",
+      "forecast_value": "75",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-07-01",
+      "release_at": "2025-08-01T12:30:00Z",
+      "actual_value": "73",
+      "previous_value": "147",
+      "forecast_value": "110",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-06-01",
+      "release_at": "2025-07-03T12:30:00Z",
+      "actual_value": "147",
+      "previous_value": "139",
+      "forecast_value": "110",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-05-01",
+      "release_at": "2025-06-06T12:30:00Z",
+      "actual_value": "139",
+      "previous_value": "177",
+      "forecast_value": "130",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-04-01",
+      "release_at": "2025-05-02T12:30:00Z",
+      "actual_value": "177",
+      "previous_value": "228",
+      "forecast_value": "130",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-03-01",
+      "release_at": "2025-04-04T12:30:00Z",
+      "actual_value": "228",
+      "previous_value": "151",
+      "forecast_value": "135",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-02-01",
+      "release_at": "2025-03-07T13:30:00Z",
+      "actual_value": "151",
+      "previous_value": "143",
+      "forecast_value": "160",
+      "unit": "Person"
+    },
+    {
+      "period": "2025-01-01",
+      "release_at": "2025-02-07T13:30:00Z",
+      "actual_value": "143",
+      "previous_value": "256",
+      "forecast_value": "170",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-12-01",
+      "release_at": "2025-01-10T13:30:00Z",
+      "actual_value": "256",
+      "previous_value": "227",
+      "forecast_value": "160",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-11-01",
+      "release_at": "2024-12-06T13:30:00Z",
+      "actual_value": "227",
+      "previous_value": "12",
+      "forecast_value": "200",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-10-01",
+      "release_at": "2024-11-01T12:30:00Z",
+      "actual_value": "12",
+      "previous_value": "254",
+      "forecast_value": "113",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-09-01",
+      "release_at": "2024-10-04T12:30:00Z",
+      "actual_value": "254",
+      "previous_value": "142",
+      "forecast_value": "140",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-08-01",
+      "release_at": "2024-09-06T12:30:00Z",
+      "actual_value": "142",
+      "previous_value": "114",
+      "forecast_value": "160",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-07-01",
+      "release_at": "2024-08-02T12:30:00Z",
+      "actual_value": "114",
+      "previous_value": "206",
+      "forecast_value": "175",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-06-01",
+      "release_at": "2024-07-05T12:30:00Z",
+      "actual_value": "206",
+      "previous_value": "272",
+      "forecast_value": "190",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-05-01",
+      "release_at": "2024-06-07T12:30:00Z",
+      "actual_value": "272",
+      "previous_value": "175",
+      "forecast_value": "185",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-04-01",
+      "release_at": "2024-05-03T12:30:00Z",
+      "actual_value": "175",
+      "previous_value": "303",
+      "forecast_value": "243",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-03-01",
+      "release_at": "2024-04-05T12:30:00Z",
+      "actual_value": "303",
+      "previous_value": "275",
+      "forecast_value": "200",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-02-01",
+      "release_at": "2024-03-08T13:30:00Z",
+      "actual_value": "275",
+      "previous_value": "353",
+      "forecast_value": "200",
+      "unit": "Person"
+    },
+    {
+      "period": "2024-01-01",
+      "release_at": "2024-02-02T13:30:00Z",
+      "actual_value": "353",
+      "previous_value": "216",
+      "forecast_value": "180",
+      "unit": "Person"
+    },
+    {
+      "period": "2023-12-01",
+      "release_at": "2024-01-05T13:30:00Z",
+      "actual_value": "216",
+      "previous_value": "199",
+      "forecast_value": "170",
+      "unit": "Person"
+    }
+  ],
+  "count": 33
+}
