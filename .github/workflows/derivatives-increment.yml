@@ -1,0 +1,63 @@
+name: Derivatives incremental information research
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/derivatives-increment-20260919']
+    paths: ['derivatives/**', '.github/workflows/derivatives-increment.yml']
+permissions:
+  contents: read
+concurrency:
+  group: derivatives-increment-20260919
+  cancel-in-progress: false
+jobs:
+  research:
+    if: github.event.repository.private == false && github.repository == 'kenchan-pixel/crypto-backtest-lab'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      actions: read
+      contents: write
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r derivatives/requirements.txt
+      - name: Unit, bootstrap and causal timing tests
+        run: |
+          set -euo pipefail
+          mkdir -p verification
+          python -m pytest -q derivatives/test_increment.py multifactor/test_research.py | tee verification/unit_tests.txt
+      - name: Restore exact inputs and supplemental funding
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m derivatives.prepare
+      - name: Execute unchanged research and bound results notebook
+        run: |
+          set -euo pipefail
+          python -u -m derivatives.ci_run | tee verification/model_run.log
+          python -m derivatives.verify | tee verification/independent_checks.txt
+      - name: Package complete reproducible evidence
+        run: python -m derivatives.package
+      - name: Archive research in immutable prerelease
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m derivatives.publish
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: derivatives-research-complete-20260919
+          path: |
+            delivery/
+            verification/
+          retention-days: 3
+          compression-level: 0
