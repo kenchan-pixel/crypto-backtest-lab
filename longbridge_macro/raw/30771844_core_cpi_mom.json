@@ -1,0 +1,261 @@
+{
+  "info": {
+    "indicator_code": "30771844",
+    "describe": "The core Consumer Price Index (core CPI) is an inflation gauge calculated by removing food and energy prices on the basis of the headline CPI. Because food and energy prices fluctuate considerably and are disturbed by short-term factors, the core CPI can more stably reflect the intrinsic trend of prices. This indicator is seasonally adjusted, removing the disturbance of seasonal factors such as holidays and weather and making data across months more comparable. The month-on-month measure gauges the magnitude of the change in this month's core CPI relative to the previous month, helping to capture the short-term direction of change in inflationary pressure in a timely way. This indicator is one of the important references for the Federal Reserve in setting monetary policy, and the market watches its trajectory closely to judge the possible future path of rate hikes or cuts, with a notable influence on bond yields and the dollar exchange rate.",
+    "country": "US",
+    "name": "United States, CPI, All items less food and energy, Chg P/P",
+    "importance": 3,
+    "periodicity": "month"
+  },
+  "data": [
+    {
+      "period": "2026-08-01",
+      "release_at": "2026-09-11T12:30:00Z",
+      "actual_value": "0.3",
+      "previous_value": "0.2",
+      "forecast_value": "0.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-07-01",
+      "release_at": "2026-08-12T12:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0",
+      "forecast_value": "0.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-06-01",
+      "release_at": "2026-07-14T12:30:00Z",
+      "actual_value": "0",
+      "previous_value": "0.2",
+      "forecast_value": "0.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-05-01",
+      "release_at": "2026-06-10T12:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0.4",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-04-01",
+      "release_at": "2026-05-12T12:30:00Z",
+      "actual_value": "0.4",
+      "previous_value": "0.2",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-03-01",
+      "release_at": "2026-04-10T12:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0.2",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-02-01",
+      "release_at": "2026-03-11T12:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0.3",
+      "forecast_value": "0.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-01-01",
+      "release_at": "2026-02-13T13:30:00Z",
+      "actual_value": "0.3",
+      "previous_value": "0.2",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-12-01",
+      "release_at": "2026-01-13T13:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0.2",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-09-01",
+      "release_at": "2025-10-24T12:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0.3",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-08-01",
+      "release_at": "2025-09-11T12:30:00Z",
+      "actual_value": "0.3",
+      "previous_value": "0.3",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-07-01",
+      "release_at": "2025-08-12T12:30:00Z",
+      "actual_value": "0.3",
+      "previous_value": "0.2",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-06-01",
+      "release_at": "2025-07-15T12:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0.1",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-05-01",
+      "release_at": "2025-06-11T12:30:00Z",
+      "actual_value": "0.1",
+      "previous_value": "0.2",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-04-01",
+      "release_at": "2025-05-13T12:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0.1",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-03-01",
+      "release_at": "2025-04-10T12:30:00Z",
+      "actual_value": "0.1",
+      "previous_value": "0.2",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-02-01",
+      "release_at": "2025-03-12T12:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0.4",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-01-01",
+      "release_at": "2025-02-12T13:30:00Z",
+      "actual_value": "0.4",
+      "previous_value": "0.2",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-12-01",
+      "release_at": "2025-01-15T13:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0.3",
+      "forecast_value": "0.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-11-01",
+      "release_at": "2024-12-11T13:30:00Z",
+      "actual_value": "0.3",
+      "previous_value": "0.3",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-10-01",
+      "release_at": "2024-11-13T13:30:00Z",
+      "actual_value": "0.3",
+      "previous_value": "0.3",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-09-01",
+      "release_at": "2024-10-10T12:30:00Z",
+      "actual_value": "0.3",
+      "previous_value": "0.3",
+      "forecast_value": "0.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-08-01",
+      "release_at": "2024-09-11T12:30:00Z",
+      "actual_value": "0.3",
+      "previous_value": "0.2",
+      "forecast_value": "0.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-07-01",
+      "release_at": "2024-08-14T12:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0.1",
+      "forecast_value": "0.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-06-01",
+      "release_at": "2024-07-11T12:30:00Z",
+      "actual_value": "0.1",
+      "previous_value": "0.2",
+      "forecast_value": "0.2",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-05-01",
+      "release_at": "2024-06-12T12:30:00Z",
+      "actual_value": "0.2",
+      "previous_value": "0.3",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-04-01",
+      "release_at": "2024-05-15T12:30:00Z",
+      "actual_value": "0.3",
+      "previous_value": "0.4",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-03-01",
+      "release_at": "2024-04-10T12:30:00Z",
+      "actual_value": "0.4",
+      "previous_value": "0.4",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-02-01",
+      "release_at": "2024-03-12T12:30:00Z",
+      "actual_value": "0.4",
+      "previous_value": "0.4",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-01-01",
+      "release_at": "2024-02-13T13:30:00Z",
+      "actual_value": "0.4",
+      "previous_value": "0.3",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    },
+    {
+      "period": "2023-12-01",
+      "release_at": "2024-01-11T13:30:00Z",
+      "actual_value": "0.3",
+      "previous_value": "0.3",
+      "forecast_value": "0.3",
+      "unit": "Percent"
+    }
+  ],
+  "count": 31
+}
