@@ -1,0 +1,181 @@
+{
+  "info": {
+    "indicator_code": "30771885",
+    "describe": "The federal funds target range is the band for the overnight lending rate set by the Federal Open Market Committee (FOMC) of the Federal Reserve through its monetary-policy decisions, representing the Fed's core tool for steering monetary policy. The data are a not-seasonally-adjusted absolute level that directly reflects the policy-rate setting after each meeting, usually expressed as an upper and lower bound (for example, 4.25 to 4.50 percent), with no year-on-year or month-on-month conversion required. The federal funds rate is one of the most closely watched policy rates in global financial markets; its movements directly affect bank lending costs, bond yields, equity valuations, and exchange rates, with far-reaching transmission to consumption, investment, and inflation, making it a core reference for investors gauging the Fed's policy stance and market liquidity conditions.",
+    "country": "US",
+    "name": "United States, Policy Rates, Fed Funds Target Rate",
+    "importance": 3,
+    "periodicity": "day"
+  },
+  "data": [
+    {
+      "period": "2026-07-30",
+      "release_at": "2026-07-29T18:00:00Z",
+      "actual_value": "3.625",
+      "previous_value": "3.625",
+      "forecast_value": "3.625",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-06-18",
+      "release_at": "2026-06-17T18:00:00Z",
+      "actual_value": "3.625",
+      "previous_value": "3.625",
+      "forecast_value": "3.625",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-04-30",
+      "release_at": "2026-04-29T18:00:00Z",
+      "actual_value": "3.625",
+      "previous_value": "3.625",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-03-19",
+      "release_at": "2026-03-18T18:00:00Z",
+      "actual_value": "3.625",
+      "previous_value": "3.625",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2026-01-29",
+      "release_at": "2026-01-28T19:00:00Z",
+      "actual_value": "3.625",
+      "previous_value": "3.625",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-12-11",
+      "release_at": "2025-12-10T19:00:00Z",
+      "actual_value": "3.625",
+      "previous_value": "3.875",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-10-30",
+      "release_at": "2025-10-29T18:00:00Z",
+      "actual_value": "3.875",
+      "previous_value": "4.125",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-09-18",
+      "release_at": "2025-09-17T18:00:00Z",
+      "actual_value": "4.125",
+      "previous_value": "4.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-07-31",
+      "release_at": "2025-07-30T18:00:00Z",
+      "actual_value": "4.375",
+      "previous_value": "4.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-06-20",
+      "release_at": "2025-06-18T18:00:00Z",
+      "actual_value": "4.375",
+      "previous_value": "4.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-05-08",
+      "release_at": "2025-05-07T18:00:00Z",
+      "actual_value": "4.375",
+      "previous_value": "4.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-03-20",
+      "release_at": "2025-03-19T18:00:00Z",
+      "actual_value": "4.375",
+      "previous_value": "4.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2025-01-30",
+      "release_at": "2025-01-29T19:00:00Z",
+      "actual_value": "4.375",
+      "previous_value": "4.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-12-19",
+      "release_at": "2024-12-18T19:00:00Z",
+      "actual_value": "4.375",
+      "previous_value": "4.625",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-11-08",
+      "release_at": "2024-11-07T19:00:00Z",
+      "actual_value": "4.625",
+      "previous_value": "4.875",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-09-19",
+      "release_at": "2024-09-18T18:00:00Z",
+      "actual_value": "4.875",
+      "previous_value": "5.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-08-01",
+      "release_at": "2024-07-31T18:00:00Z",
+      "actual_value": "5.375",
+      "previous_value": "5.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-06-13",
+      "release_at": "2024-06-12T18:00:00Z",
+      "actual_value": "5.375",
+      "previous_value": "5.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-05-02",
+      "release_at": "2024-05-01T18:00:00Z",
+      "actual_value": "5.375",
+      "previous_value": "5.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-03-21",
+      "release_at": "2024-03-20T18:00:00Z",
+      "actual_value": "5.375",
+      "previous_value": "5.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    },
+    {
+      "period": "2024-02-01",
+      "release_at": "2024-01-31T19:00:00Z",
+      "actual_value": "5.375",
+      "previous_value": "5.375",
+      "forecast_value": "",
+      "unit": "Percent"
+    }
+  ],
+  "count": 21
+}
