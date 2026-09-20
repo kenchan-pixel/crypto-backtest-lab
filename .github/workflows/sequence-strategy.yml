@@ -1,0 +1,58 @@
+name: Sequence Strategy Discovery
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/sequence-strategy-20260920']
+    paths: ['sequence_strategy/**', '.github/workflows/sequence-strategy.yml']
+permissions:
+  contents: read
+concurrency:
+  group: sequence-strategy-20260920
+  cancel-in-progress: false
+jobs:
+  research:
+    if: github.event.repository.private == false && github.repository == 'kenchan-pixel/crypto-backtest-lab'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned dependencies
+        run: python -m pip install -r derivatives/requirements.txt
+      - name: Unit and inherited causal tests
+        run: python -m pytest -q sequence_strategy/test_sequence.py event_regime/test_event_regime.py derivatives/test_increment.py multifactor/test_research.py
+      - name: Restore exact durable market inputs
+        run: python -m macrostudy.prepare
+      - name: Rebuild Event + Regime Dataset v1
+        run: python -u -m event_regime.build
+      - name: Run frozen sequence discovery
+        run: python -u -m sequence_strategy.study
+      - name: Verify outputs
+        run: |
+          python - <<'PY'
+          import json,pandas as pd
+          from pathlib import Path
+          p=Path('sequence_outputs')
+          s=json.loads((p/'execution_status.json').read_text())
+          e=pd.read_csv(p/'all_rule_evidence.csv')
+          assert s['completed'] and s['sequence_rows']>1000
+          assert len(e)>0 and set(e.year)>= {2024,2025,2026}
+          assert (p/'research_candidates.json').exists()
+          print(json.dumps(s,indent=2))
+          print(pd.read_json(p/'selected_rules.json'))
+          print('Candidates',json.loads((p/'research_candidates.json').read_text()))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sequence-strategy-research-20260920
+          path: sequence_outputs/
+          retention-days: 14
+          compression-level: 6
