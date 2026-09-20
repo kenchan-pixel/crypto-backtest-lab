@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-20T23:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-20T23:00:00+08:00",
+  "query": "Bitcoin ETF",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit": 30,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across prior raw_news snapshots; content identity checked for same-id duplicates",
+    "note": "raw.text contains only genuinely newly seen search hits for this query from this collection run; field values are preserved from the search result."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299535911\",\"title\":\"九月是比特币表现最差的月份，但目前已上涨 2.7%。这对第四季度有何启示\",\"excerpt\":\"下跌则成为了一个警示故事。投资者现在正在关注 ETF 资金流动，以判断这一趋势是否预示着强劲的第四季度\",\"source_name\":\"MSN\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299535911.md\"}]"
+  }
+}
