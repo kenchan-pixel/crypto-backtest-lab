@@ -170,26 +170,32 @@ def describe_rule(df,mask,direction):
 def cluster_test(df,mask,direction,reps=1999,block_days=7):
     obs,*_=matched_lift(df,mask,direction)
     if not np.isfinite(obs):return {'p':1.,'ci_low':None,'ci_high':None,'limited':True,'clusters':0}
-    t=pd.DatetimeIndex(df.catalyst_hkt)
-    start=t.min().floor('D')
-    block=((t-start)//pd.Timedelta(days=block_days)).astype(int)
-    unique=np.unique(block)
-    supporting=len(np.unique(block[mask]))
+    target=(df.target.to_numpy()==direction).astype(float)
+    strata=(df.quarter.astype(str)+'|'+df.catalyst_family.astype(str)).to_numpy()
+    codes,levels=pd.factorize(strata,sort=True);S=len(levels)
+    count=np.bincount(codes,minlength=S)
+    ns=np.bincount(codes,weights=mask,minlength=S);nc=count-ns
+    eligible=(nc>=20)&(ns>0)
+    if not eligible.any():return {'p':1.,'ci_low':None,'ci_high':None,'limited':True,'clusters':0}
+    t=pd.DatetimeIndex(df.catalyst_hkt);start=t.min().floor('D')
+    blocks=np.asarray((t-start)//pd.Timedelta(days=block_days),dtype=int)
+    supporting=len(np.unique(blocks[mask]))
     if supporting<10:return {'p':1.,'ci_low':None,'ci_high':None,'limited':True,'clusters':supporting}
-    rng=np.random.default_rng(SEED);boot=[]
-    for _ in range(reps):
-        sampled=rng.choice(unique,size=len(unique),replace=True)
-        pieces=[]
-        for b in sampled:
-            z=df.loc[block==b].copy()
-            z['_origmask']=mask[block==b]
-            pieces.append(z)
-        x=pd.concat(pieces,ignore_index=True);m=x.pop('_origmask').to_numpy(bool)
-        v,*_=matched_lift(x,m,direction)
-        if np.isfinite(v):boot.append(v)
+    unique=np.unique(blocks);mapping={b:i for i,b in enumerate(unique)}
+    bi=np.array([mapping[b] for b in blocks],dtype=int);W=len(unique)
+    flat=bi*S+codes
+    arrays=[np.bincount(flat,weights=z,minlength=W*S).reshape(W,S)[:,eligible] for z in
+            [mask.astype(float),mask*target,(~mask).astype(float),(~mask)*target]]
+    rng=np.random.default_rng(SEED)
+    weights=rng.multinomial(W,np.full(W,1/W),size=reps)
+    n_s,y_s,n_c,y_c=[weights@a for a in arrays]
+    valid=n_c>0;used=n_s*valid;den=used.sum(axis=1)
+    ctr=np.divide(y_c,n_c,out=np.zeros_like(y_c),where=n_c>0)
+    boot=np.divide((y_s*valid).sum(axis=1)-(used*ctr).sum(axis=1),den,
+                   out=np.full(reps,np.nan),where=den>0)
+    boot=boot[np.isfinite(boot)]
     if len(boot)<reps*.9:return {'p':1.,'ci_low':None,'ci_high':None,'limited':True,'clusters':supporting}
-    boot=np.asarray(boot);lo,hi=np.quantile(boot,[.025,.975])
-    # one-sided p for lift <= 0, centered empirical approximation.
+    lo,hi=np.quantile(boot,[.025,.975])
     p=float((1+np.sum(boot<=0))/(len(boot)+1))
     return {'p':p,'ci_low':float(lo),'ci_high':float(hi),'limited':False,'clusters':supporting,'bootstrap_replicates':len(boot)}
 
