@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: sequence-strategy-20260920
+  group: sequence-strategy-fast-20260920
   cancel-in-progress: false
 jobs:
   research:
