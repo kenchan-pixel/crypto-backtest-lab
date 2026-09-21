@@ -1,0 +1,33 @@
+{
+  "schema": "eth-paper-v1",
+  "created_at": "2026-09-21T15:10:17.239453+00:00",
+  "status": "COMMISSIONING",
+  "research_authorized": true,
+  "execution_ready": false,
+  "performance_started_at": null,
+  "live_orders_allowed": false,
+  "model_sha256": "08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe",
+  "gates": {
+    "model_identity": true,
+    "live_feature_parity": false,
+    "source_freshness": false,
+    "accounting_tests": true,
+    "initial_decisions": false
+  },
+  "accounts": {
+    "AI_WEEKLY": {"initial_virtual_usdt": 10000.0, "cash": 10000.0, "eth": 0.0, "open": null, "realized_pnl": 0.0, "trades": 0},
+    "SIMPLE_WEEKLY": {"initial_virtual_usdt": 10000.0, "cash": 10000.0, "eth": 0.0, "open": null, "realized_pnl": 0.0, "trades": 0},
+    "HALF": {"initial_virtual_usdt": 10000.0, "cash": 10000.0, "eth": 0.0, "open": null, "realized_pnl": 0.0, "trades": 0}
+  },
+  "parent_busy_until": null,
+  "processed_events": {},
+  "ledger": [],
+  "decision": null,
+  "commissioning_evidence": {"model_run_id": 35616440026, "data_probe_run_id": 35614673357, "unit_tests_passed": 14, "historical_feature_value_checks": 1869},
+  "pending": [
+    "Full live market/derivative/macro collection and complete parent-opportunity replay parity",
+    "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
+    "Initial real AI and simple weekly decisions committed and effective"
+  ],
+  "classification": "User-approved prospective research experiment; old historical paper gate remains failed. Not an investable strategy or live trading."
+}
