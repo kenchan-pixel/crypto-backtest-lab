@@ -1,0 +1,60 @@
+name: ETH forward live-source contract
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths:
+      - '.github/workflows/eth-forward-source-contract.yml'
+      - 'forward_paper/live_sources.py'
+      - 'forward_paper/test_live_sources.py'
+      - 'forward_paper/inputs/live_derivative_schema_probe_20260921.json'
+permissions:
+  contents: read
+concurrency:
+  group: eth-forward-live-source-contract
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.repository == 'kenchan-pixel/crypto-backtest-lab' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install bounded validation dependencies
+        run: python -m pip install pandas==2.2.3 pytest==9.0.2
+      - name: Validate actual connected-source sample contract
+        run: |
+          set -euo pipefail
+          python -m pytest -q forward_paper/test_live_sources.py
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('forward_paper/inputs/live_derivative_schema_probe_20260921.json')
+          obj=json.loads(p.read_text())
+          assert obj['symbol']=='ETHUSDT'
+          assert obj['frozen_archive_contract']['native_metrics_cadence']=='5m'
+          assert obj['not_yet_proven']
+          digest=hashlib.sha256(p.read_bytes()).hexdigest()
+          receipt={
+            'schema':'eth-forward-source-contract-receipt-v1',
+            'connected_probe_sha256':digest,
+            'source_contract_tests_passed':True,
+            'forward_execution_ready':False,
+            'paper_trades_executed':0,
+            'does_not_promote_source_freshness_gate':True,
+            'commit':__import__('os').environ['GITHUB_SHA'],
+            'run_id':__import__('os').environ['GITHUB_RUN_ID']
+          }
+          Path('source_contract_receipt.json').write_text(json.dumps(receipt,indent=2))
+          print(json.dumps(receipt,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eth-forward-live-source-contract
+          path: source_contract_receipt.json
+          retention-days: 14
