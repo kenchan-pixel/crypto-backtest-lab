@@ -31,13 +31,18 @@ def _ts_ms(value, name: str = "timestamp") -> int:
     return x
 
 
-def _validate_series(rows: Iterable[dict], symbol: str, *, timestamp_key: str = "timestamp") -> list[dict]:
+def _validate_series(
+    rows: Iterable[dict], symbol: str, *, timestamp_key: str = "timestamp", require_symbol: bool = True
+) -> list[dict]:
     rows = [dict(r) for r in rows]
     if not rows:
         raise ValueError("Empty source series")
     seen = []
     for r in rows:
-        if r.get("symbol") != symbol:
+        if require_symbol:
+            if r.get("symbol") != symbol:
+                raise ValueError("Symbol mismatch")
+        elif "symbol" in r and r.get("symbol") != symbol:
             raise ValueError("Symbol mismatch")
         seen.append(_ts_ms(r[timestamp_key], timestamp_key))
     if seen != sorted(seen) or len(set(seen)) != len(seen):
@@ -60,13 +65,14 @@ def normalize_metric_bundle(
     The old archive contains 5-minute `metrics` rows. A 1h endpoint is therefore
     not accepted as a substitute even if it exposes similarly named values.
     Only timestamps present in every required family are emitted; missing rows are
-    not forward-filled here.
+    not forward-filled here. The taker endpoint omits symbol in its response, so
+    its symbol identity comes from the explicit request context supplied here.
     """
     if period != "5m":
         raise ValueError("Frozen source contract requires native 5m metric observations")
 
-    def indexed(rows, mapping):
-        rows = _validate_series(rows, symbol)
+    def indexed(rows, mapping, *, require_symbol=True):
+        rows = _validate_series(rows, symbol, require_symbol=require_symbol)
         out = {}
         for r in rows:
             t = _ts_ms(r["timestamp"])
@@ -85,7 +91,7 @@ def normalize_metric_bundle(
     ta = indexed(top_accounts, {"longShortRatio": "count_toptrader_long_short_ratio"})
     tp = indexed(top_positions, {"longShortRatio": "sum_toptrader_long_short_ratio"})
     aa = indexed(all_accounts, {"longShortRatio": "count_long_short_ratio"})
-    tk = indexed(taker, {"buySellRatio": "sum_taker_long_short_vol_ratio"})
+    tk = indexed(taker, {"buySellRatio": "sum_taker_long_short_vol_ratio"}, require_symbol=False)
 
     common = sorted(set(oi) & set(ta) & set(tp) & set(aa) & set(tk))
     if not common:
