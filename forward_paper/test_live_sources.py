@@ -1,5 +1,7 @@
 import pytest
-from forward_paper.live_sources import normalize_metric_bundle, normalize_funding_history
+from forward_paper.live_sources import (
+ normalize_metric_bundle, normalize_funding_history, normalize_spot_klines, normalize_spot_pair
+)
 
 SYMBOL='ETHUSDT'
 OI=[
@@ -37,6 +39,15 @@ FUND=[
 def bundle(**overrides):
  args=dict(symbol=SYMBOL,period='5m',open_interest=OI,top_accounts=TA,top_positions=TP,all_accounts=AA,taker=TK)
  args.update(overrides);return normalize_metric_bundle(**args)
+
+def kline(open_ms, close='100', *, high='101', low='99', symbol_scale=1.):
+ # Binance spot kline shape. Fields not used by the forward contract stay realistic placeholders.
+ o=100*symbol_scale;c=float(close)*symbol_scale;h=float(high)*symbol_scale;l=float(low)*symbol_scale
+ return [open_ms,str(o),str(h),str(l),str(c),'10',open_ms+3_600_000-1,'1000',123,'5','500','0']
+
+def spot_rows(scale=1.):
+ base=1_790_000_000_000 - (1_790_000_000_000 % 3_600_000)
+ return [kline(base+i*3_600_000,symbol_scale=scale) for i in range(4)]
 
 def test_current_public_samples_map_to_archive_contract():
  f=bundle()
@@ -87,3 +98,40 @@ def test_funding_keeps_actual_settlement_jitter_and_infers_interval():
 def test_funding_negative_rate_is_valid():
  f=normalize_funding_history(SYMBOL,[{'symbol':SYMBOL,'fundingTime':1789977600004,'fundingRate':'-0.00001'}])
  assert f.iloc[0].last_funding_rate<0
+
+def test_spot_current_hour_is_excluded_and_indexed_at_completed_hour_end():
+ rows=spot_rows(); third_end=rows[2][6]+1
+ # Observe 30 minutes into fourth bar: first three are complete; fourth remains partial.
+ obs=third_end+30*60*1000
+ f=normalize_spot_klines('ETHUSDT',rows,pd_ms(obs),min_completed_hours=3)
+ assert len(f)==3
+ assert int(f.index[-1].value//1_000_000)==third_end
+ assert f.attrs['partial_rows_excluded']==1
+ assert 'execution_open' not in f.columns
+
+def test_spot_stale_latest_completed_hour_fails_closed():
+ rows=spot_rows(); observed=rows[-1][6]+1+3*3_600_000
+ with pytest.raises(ValueError,match='stale'):
+  normalize_spot_klines('ETHUSDT',rows,pd_ms(observed),min_completed_hours=4)
+
+def test_spot_missing_hour_is_not_filled():
+ rows=spot_rows();del rows[1]
+ with pytest.raises(ValueError,match='Missing completed'):
+  normalize_spot_klines('ETHUSDT',rows,pd_ms(rows[-1][6]+1+10_000),max_age_minutes=90,min_completed_hours=3)
+
+def test_spot_bad_ohlc_is_rejected_even_if_partial():
+ rows=spot_rows();rows[-1]=kline(rows[-1][0],high='98',low='99')
+ with pytest.raises(ValueError,match='OHLC'):
+  normalize_spot_klines('ETHUSDT',rows,pd_ms(rows[-2][6]+1+30*60*1000),min_completed_hours=3)
+
+def test_eth_btc_pair_requires_exact_same_completed_hours():
+ eth=spot_rows();btc=spot_rows(500.)
+ observed=eth[2][6]+1+30*60*1000
+ e,b=normalize_spot_pair(eth,btc,pd_ms(observed),min_completed_hours=3)
+ assert e.index.equals(b.index) and len(e)==3
+ btc[1][0]+=3_600_000;btc[1][6]+=3_600_000
+ with pytest.raises(ValueError):normalize_spot_pair(eth,btc,pd_ms(observed),min_completed_hours=3)
+
+def pd_ms(ms):
+ import pandas as pd
+ return pd.to_datetime(ms,unit='ms',utc=True).isoformat()
