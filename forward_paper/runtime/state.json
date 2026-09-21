@@ -51,10 +51,19 @@
     "derivative_freshness_repeat_common_age_minutes": 9.77018735,
     "derivative_freshness_repeat_funding_age_minutes": 149.77015401666668,
     "derivative_freshness_repeat_gap_minutes": 71.93278735,
-    "derivative_freshness_repeat_receipt": "forward_paper/receipts/derivative_freshness_repeat_20260922.json"
+    "derivative_freshness_repeat_receipt": "forward_paper/receipts/derivative_freshness_repeat_20260922.json",
+    "macro_first_seen_run_id": 35644401900,
+    "macro_first_seen_tests_passed": 9,
+    "macro_capture_sha256": "fbabc3aac1a0ff899d72e29c769bbd8119b9512ee8d591fdfa73ba2b32cf48bb",
+    "macro_first_seen_at_utc": "2026-09-21T19:18:43.656843+00:00",
+    "macro_published_rows_seen": 6,
+    "macro_empty_indicators": ["core_pce_yoy"],
+    "macro_forward_eligible_events": 0,
+    "macro_late_bootstrap_events": 6,
+    "macro_first_seen_receipt": "forward_paper/receipts/macro_first_seen_20260922.json"
   },
   "pending": [
-    "Capture macro first-seen timestamps with actual observation time and complete parent-opportunity replay parity; two independent causal derivative freshness snapshots passed but source_freshness remains false",
+    "Macro first-seen causal capture is validated with no backdated catalysts; complete parent-opportunity replay parity remains pending, and source_freshness remains false until the full live input/opportunity semantics are validated",
     "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
     "Initial real AI and simple weekly decisions committed and effective"
   ],
