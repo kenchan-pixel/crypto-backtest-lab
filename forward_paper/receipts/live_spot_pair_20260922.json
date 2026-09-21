@@ -1,0 +1,49 @@
+{
+  "schema": "eth-forward-live-spot-pair-receipt-v1",
+  "verified_hkt_date": "2026-09-22",
+  "source": "Binance public read-only spot klines via data-api.binance.vision",
+  "workflow_run_id": 35627284360,
+  "workflow_job_id": 106424640166,
+  "verified_commit": "cf778975a08845c36e50dc8af9f97741af52adf7",
+  "workflow_conclusion": "success",
+  "source_contract_tests_passed": 14,
+  "spot_symbols": ["ETHUSDT", "BTCUSDT"],
+  "spot_response_sha256": {
+    "ETHUSDT": "ce7f3d523501a554d05d530426e740ff3b290160db8c8fd41cc14423f9bca7a9",
+    "BTCUSDT": "0f1a75e1e119339abeab1b746ea0d2474884b7ed546bc8986eacfddec8f740fa"
+  },
+  "completed_aligned_hours": 999,
+  "latest_complete_utc": "2026-09-21T16:00:00+00:00",
+  "observed_at_utc": "2026-09-21T16:42:35.694907+00:00",
+  "latest_complete_age_minutes": {
+    "ETHUSDT": 42.5949,
+    "BTCUSDT": 42.5949
+  },
+  "partial_current_hour_rows_excluded": {
+    "ETHUSDT": 1,
+    "BTCUSDT": 1
+  },
+  "eth_30d_return_observation": 0.1428387739018624,
+  "contract_guards_verified": [
+    "current forming hour excluded",
+    "completed hours continuous rather than forward-filled",
+    "ETH/BTC completed-hour indexes exactly aligned",
+    "stale latest completed hour rejected",
+    "invalid OHLC rejected",
+    "future execution_open not synthesized"
+  ],
+  "artifact": {
+    "id": 10651864035,
+    "zip_sha256": "650889b7535be07359b9bfca154ae951eb1bad143bcb290793aa5fa941aa8bff"
+  },
+  "forward_execution_ready": false,
+  "paper_trades_executed": 0,
+  "source_freshness_gate_promoted": false,
+  "performance_started_at": null,
+  "remaining_before_source_freshness_gate": [
+    "continuous derivative freshness",
+    "macro first-seen capture",
+    "complete opportunity-stream parity"
+  ],
+  "note": "The positive 30-day ETH observation is preserved as source evidence only. It is not an initial SIMPLE_WEEKLY decision and does not arm any account."
+}
