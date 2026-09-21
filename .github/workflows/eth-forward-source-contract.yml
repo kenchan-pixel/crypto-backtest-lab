@@ -27,28 +27,54 @@ jobs:
           python-version: '3.13'
       - name: Install bounded validation dependencies
         run: python -m pip install pandas==2.2.3 pytest==9.0.2
-      - name: Validate actual connected-source sample contract
+      - name: Validate source contracts and fresh read-only spot pair
         run: |
           set -euo pipefail
           python -m pytest -q forward_paper/test_live_sources.py
           python - <<'PY'
-          import hashlib,json
+          import datetime,hashlib,json,urllib.request,os
           from pathlib import Path
+          from forward_paper.live_sources import normalize_spot_pair
+
           p=Path('forward_paper/inputs/live_derivative_schema_probe_20260921.json')
-          obj=json.loads(p.read_text())
-          assert obj['symbol']=='ETHUSDT'
-          assert obj['frozen_archive_contract']['native_metrics_cadence']=='5m'
-          assert obj['not_yet_proven']
-          digest=hashlib.sha256(p.read_bytes()).hexdigest()
+          derivative=json.loads(p.read_text())
+          assert derivative['symbol']=='ETHUSDT'
+          assert derivative['frozen_archive_contract']['native_metrics_cadence']=='5m'
+          assert derivative['not_yet_proven']
+
+          raw={};decoded={}
+          for symbol in ['ETHUSDT','BTCUSDT']:
+            url=f'https://data-api.binance.vision/api/v3/klines?symbol={symbol}&interval=1h&limit=1000'
+            req=urllib.request.Request(url,headers={'User-Agent':'crypto-backtest-lab-forward-paper/1'})
+            with urllib.request.urlopen(req,timeout=30) as r:
+              body=r.read();status=r.status
+            assert status==200
+            raw[symbol]=body
+            decoded[symbol]=json.loads(body)
+          observed=datetime.datetime.now(datetime.timezone.utc)
+          eth,btc=normalize_spot_pair(decoded['ETHUSDT'],decoded['BTCUSDT'],observed,min_completed_hours=721)
+          assert eth.index.equals(btc.index)
+          ret30=float(eth.close.iloc[-1]/eth.close.iloc[-721]-1)
           receipt={
-            'schema':'eth-forward-source-contract-receipt-v1',
-            'connected_probe_sha256':digest,
+            'schema':'eth-forward-source-contract-receipt-v2',
+            'derivative_connected_probe_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),
             'source_contract_tests_passed':True,
+            'live_spot_pair_checked':True,
+            'spot_symbols':['ETHUSDT','BTCUSDT'],
+            'spot_response_sha256':{s:hashlib.sha256(raw[s]).hexdigest() for s in raw},
+            'completed_aligned_hours':len(eth),
+            'latest_complete_utc':eth.index[-1].isoformat(),
+            'eth_latest_complete_age_minutes':eth.attrs['latest_complete_age_minutes'],
+            'btc_latest_complete_age_minutes':btc.attrs['latest_complete_age_minutes'],
+            'partial_rows_excluded':{'ETHUSDT':eth.attrs['partial_rows_excluded'],'BTCUSDT':btc.attrs['partial_rows_excluded']},
+            'eth_30d_return_observation':ret30,
+            'observed_at_utc':observed.isoformat(),
             'forward_execution_ready':False,
             'paper_trades_executed':0,
             'does_not_promote_source_freshness_gate':True,
-            'commit':__import__('os').environ['GITHUB_SHA'],
-            'run_id':__import__('os').environ['GITHUB_RUN_ID']
+            'remaining_before_source_freshness_gate':['continuous derivative freshness','macro first-seen capture','complete opportunity-stream parity'],
+            'commit':os.environ['GITHUB_SHA'],
+            'run_id':os.environ['GITHUB_RUN_ID']
           }
           Path('source_contract_receipt.json').write_text(json.dumps(receipt,indent=2))
           print(json.dumps(receipt,indent=2))
