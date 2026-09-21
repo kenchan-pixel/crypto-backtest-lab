@@ -69,10 +69,32 @@
     "historical_opportunity_executed_counts": {"2025": 45, "2026": 26},
     "historical_opportunity_eligible_confirmation_hours": 23622,
     "historical_opportunity_hours_without_threshold_signal": 23478,
-    "historical_opportunity_replay_receipt": "forward_paper/receipts/opportunity_replay_parity_20260922.json"
+    "historical_opportunity_replay_receipt": "forward_paper/receipts/opportunity_replay_parity_20260922.json",
+    "live_pipeline_direct_actions_attempt": {
+      "workflow_run_id": 35658458936,
+      "focused_tests_passed_each_attempt": 33,
+      "attempts": [
+        {"job_id": 106527747244, "azure_region": "eastus", "snapshot_result": "blocked_http_451_fapi"},
+        {"job_id": 106529334867, "azure_region": "centralus", "snapshot_result": "blocked_http_451_fapi"}
+      ],
+      "receipt": "forward_paper/receipts/live_pipeline_access_block_20260922.json"
+    },
+    "connected_binance_read_probe": {
+      "observed_after_reads_utc": "2026-09-21T21:47:11.845447+00:00",
+      "native_5m_families_read": ["open_interest", "top_trader_accounts", "top_trader_positions", "global_accounts", "taker_buy_sell"],
+      "funding_rows": 100,
+      "latest_open_interest_utc": "2026-09-21T21:40:00+00:00",
+      "latest_top_positions_utc": "2026-09-21T21:40:00+00:00",
+      "latest_taker_utc": "2026-09-21T21:35:00+00:00",
+      "latest_funding_utc": "2026-09-21T16:00:00.002000+00:00",
+      "read_only": true,
+      "persisted_for_runtime": false,
+      "orders_or_account_data_requested": false
+    }
   },
   "pending": [
-    "Historical complete parent-opportunity replay parity is now verified without using future outcome columns; live source-to-feature/opportunity integration still needs end-to-end parity on current causal inputs, so live_feature_parity and source_freshness remain false",
+    "Replace region-fragile direct GitHub Actions fapi fetch with an immutable connected-Binance read-only snapshot persisted to GitHub; no proxy/restriction bypass",
+    "Run deterministic current live source-to-feature-to-opportunity receipt on that persisted snapshot, then an independent second snapshot before promoting live_feature_parity/source_freshness",
     "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
     "Initial real AI and simple weekly decisions committed and effective"
   ],
