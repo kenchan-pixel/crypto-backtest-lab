@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-21T15:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+  "query": "Bitcoin",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit_requested": 20,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across all prior event_regime/raw_news snapshots; content identity secondary check",
+    "note": "raw.text contains only genuinely newly seen search hits from this run; field values are preserved from Longbridge search output. first_seen_at_hkt is conservatively rounded forward to 15:00 HKT and is never backdated."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299602032\",\"title\":\"由于比特币代币的价格保持在超过 81,000 美元的高位，比特币 ETF 转为正面\",\"excerpt\":\"美国现货比特币 ETF 在周四和周五录得 5.93 亿美元的资金流入，扭转了之前的资金流出，并推动比特币价格超过 81,000 美元。这一激增是在美国证券交易委...\",\"source_name\":\"Money Control\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299602032.md\"},{\"id\":\"299597562\",\"title\":\"Strategy (MSTR) 随着比特币上涨 16%，它是否仍然被高估 23%？\",\"excerpt\":\"Strategy (MSTR) 的股票在比特币反弹和华盛顿有利的监管发展后上涨了 16%。尽管近期势头强劲，但该股票年初至今仍下跌 2.1%，一年内下跌 55....\",\"source_name\":\"Simplywall\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299597562.md\"},{\"id\":\"299601303\",\"title\":\"Michael Saylor 表示，‘再多一点橙色’：Strategy 在暂停三周后是否会报告 BTC 的购买情况？\",\"excerpt\":\"Strategy Inc. 的董事长迈克尔·塞勒暗示在暂停三周后可能会进行新的比特币购买，他在 X 上发布了 “再来一点橙色”。该公司从 6 月底到 8 月初暂...\",\"source_name\":\"benzinga_article\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299601303.md\"},{\"id\":\"299588791\",\"title\":\"比特币仍然维持在接近 8 万美元的水平，随着获利回吐的增加，多头能否继续坚守？\",\"excerpt\":\"比特币交易价格接近 80,400 美元，买家正在吸收卖压，提高支撑水平。虽然 71% 的供应处于盈利状态，限制了立即的大规模清算，但韩国溢价指数已转为负值，表明...\",\"source_name\":\"Amb Crypto\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299588791.md\"},{\"id\":\"299588776\",\"title\":\"在 9 月 14 日至 18 日这一周，比特币现货 ETF 录得 621 万美元的净流入\",\"excerpt\":\"比特币现货 ETF 在 9 月 14 日至 18 日的一周内录得净流入 621 万美元。贝莱德的 IBIT 以 1.21 亿美元的周流入额领先，而 ARK 与 ...\",\"source_name\":\"CoinLive\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299588776.md\"},{\"id\":\"299590414\",\"title\":\"比特币触及 82,000 美元，以太坊、XRP 和狗狗币也在 SEC 推动代币化的背景下上涨：分析师确认这一主要加密货币的'突破'\",\"excerpt\":\"加密货币在 9 月 20 日反弹，比特币触及 82,000 美元，以太坊超过 2,700 美元，这得益于美国证券交易委员会（SEC）对代币化股票的倡议。全球加密...\",\"source_name\":\"benzinga_article\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299590414.md\"}]"
+  }
+}
