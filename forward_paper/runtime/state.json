@@ -31,10 +31,15 @@
     "live_derivative_source_contract_run_id": 35620468468,
     "live_derivative_source_contract_tests_passed": 9,
     "live_derivative_probe_sha256": "d40405d74334489ec5020e7315504d0237797ff2726a6edc78a793120622c194",
-    "live_derivative_source_contract_receipt": "forward_paper/receipts/live_source_contract_20260921.json"
+    "live_derivative_source_contract_receipt": "forward_paper/receipts/live_source_contract_20260921.json",
+    "live_spot_pair_run_id": 35627284360,
+    "live_spot_pair_tests_passed": 14,
+    "live_spot_pair_completed_aligned_hours": 999,
+    "live_spot_pair_latest_complete_utc": "2026-09-21T16:00:00+00:00",
+    "live_spot_pair_receipt": "forward_paper/receipts/live_spot_pair_20260922.json"
   },
   "pending": [
-    "Continuous live spot/BTC-peer/derivative/macro collection plus complete parent-opportunity replay parity; derivative 5m schema mapping is verified but source_freshness remains false",
+    "Continuous derivative freshness, macro first-seen capture and complete parent-opportunity replay parity; native 5m derivative schema and causal aligned ETH/BTC completed-hour spot contracts are verified, but source_freshness remains false",
     "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
     "Initial real AI and simple weekly decisions committed and effective"
   ],
