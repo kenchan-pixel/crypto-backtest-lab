@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-21T11:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T11:00:00+08:00",
+  "query": "Ethereum",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit_requested": 20,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across all prior event_regime/raw_news snapshots; content identity secondary check",
+    "note": "raw.text contains only genuinely newly seen search hits from this run; field values are preserved from Longbridge search output. first_seen_at_hkt is conservatively rounded forward to 11:00 HKT and is never backdated."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299578742\",\"title\":\"AI 趋势 | 以太坊基金会的 AMA 揭示了抗量子计算的迁移路线图\",\"excerpt\":\"以太坊基金会在一次问答中表示，它已经制定了量子抗性迁移的路线图，目标是在 2029 年前使 Layer 1 具备量子抗性。根据 PANews 的报道，基金会还表...\",\"source_name\":\"CoinLive\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299578742.md\"},{\"id\":\"299574187\",\"title\":\"以太坊（ETH）在 24 小时内上涨 2.83%，价格突破 2700 USDT\",\"excerpt\":\"根据币安市场数据，截至2026年9月21日00:47（UTC），以太坊已突破 2,700 USDT 的基准，目前交易价格为 2,702.120117 USDT，...\",\"source_name\":\"CoinLive\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299574187.md\"},{\"id\":\"299571418\",\"title\":\"以太坊（ETHUSD）在 9 月 21 日上涨 1.70%：链上数据和市场情绪揭示了什么？\",\"excerpt\":\"以太坊在 9 月 21 日上涨 1.70%，达到$2,676.81，主要受到重新流入现货 ETF 和由于低交易所余额和高质押率导致的结构性供应紧缩的推动。技术指...\",\"source_name\":\"TradingKey\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299571418.md\"}]"
+  }
+}
