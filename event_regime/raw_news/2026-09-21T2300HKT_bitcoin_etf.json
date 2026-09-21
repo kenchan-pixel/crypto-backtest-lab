@@ -1,0 +1,20 @@
+{
+  "first_seen_at_hkt": "2026-09-21T23:00:00+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "raw_new_hits": [
+    {"id":"299657311","title":"由于大规模空头挤压清除了关键阻力位，比特币价格达到 86,000 美元","excerpt":"所识别的关键阻力区，使长期持有者和美国现货比特币 ETF 重新回到盈利状态。尽管此次反弹是由衍生品平仓和","source_name":"Crypto Briefing","time":"2026-09-21T14:41:34Z","url":"https://longbridge.com/news/299657311.md"},
+    {"id":"299647122","title":"为什么比特币今天上涨？这是 45 周以来首次收盘高于其 50 周均线","excerpt":"10%，但年初至今仍下跌 3%，ETF 资金流入不足以维持动能","source_name":"MSN","time":"2026-09-21T13:10:56Z","url":"https://longbridge.com/news/299647122.md"},
+    {"id":"299645706","title":"IncomeSTKd 1x Bitcoin & 1x Gold Premium ETF 宣布每周派发 0.05 美元的股息","excerpt":"IncomeSTKd 1x Bitcoin & 1x Gold Premium ETF 宣布每周派发","source_name":"businessinsider","time":"2026-09-21T12:59:59Z","url":"https://longbridge.com/news/299645706.md"},
+    {"id":"299645686","title":"IncomeSTKd 1x US Stks & 1x Bitcn Prm ETF 宣布每周派发 0.07 美元的股息","excerpt":"& 1x Bitcoin Premium ETF 宣布每周派发","source_name":"businessinsider","time":"2026-09-21T12:59:59Z","url":"https://longbridge.com/news/299645686.md"}
+  ],
+  "provenance": {
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-21T19:01:00+08:00",
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description/excerpt + source identity",
+    "timestamp_policy": "provider timestamps are evidence only; first_seen_at_hkt is conservative and never backdated",
+    "historical_completeness_claimed": false
+  }
+}
