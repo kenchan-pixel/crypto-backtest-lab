@@ -43,10 +43,18 @@
     "derivative_freshness_latest_common_utc": "2026-09-21T17:10:00+00:00",
     "derivative_freshness_common_age_minutes": 7.8374,
     "derivative_funding_age_minutes": 77.83736666666667,
-    "derivative_freshness_receipt": "forward_paper/receipts/derivative_freshness_20260922.json"
+    "derivative_freshness_receipt": "forward_paper/receipts/derivative_freshness_20260922.json",
+    "derivative_freshness_repeat_run_id": 35638909662,
+    "derivative_freshness_repeat_tests_passed": 20,
+    "derivative_freshness_repeat_input_sha256": "8d4a6eddaecdee9a56b8e737b3d396bd346fc55fcd81b1b7b1f6f17f930a6bcd",
+    "derivative_freshness_repeat_latest_common_utc": "2026-09-21T18:20:00+00:00",
+    "derivative_freshness_repeat_common_age_minutes": 9.77018735,
+    "derivative_freshness_repeat_funding_age_minutes": 149.77015401666668,
+    "derivative_freshness_repeat_gap_minutes": 71.93278735,
+    "derivative_freshness_repeat_receipt": "forward_paper/receipts/derivative_freshness_repeat_20260922.json"
   },
   "pending": [
-    "Repeat derivative freshness on a later independent collection, capture macro first-seen timestamps, and complete parent-opportunity replay parity; first causal derivative freshness snapshot passed but source_freshness remains false",
+    "Capture macro first-seen timestamps with actual observation time and complete parent-opportunity replay parity; two independent causal derivative freshness snapshots passed but source_freshness remains false",
     "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
     "Initial real AI and simple weekly decisions committed and effective"
   ],
