@@ -107,10 +107,25 @@
       "read_only": true,
       "orders_or_account_data_requested": false,
       "scope": "first immutable connected-source persistence route validation only; compact snapshot is not sufficient for the live feature/opportunity gate"
+    },
+    "connected_binance_full_native_tail": {
+      "manifest_path": "forward_paper/inputs/connected_binance_full_20260922T072853HKT/manifest.json",
+      "manifest_git_blob_sha1": "c0c925c7c9833d806d9d87736736271f6eb75a64",
+      "conservative_first_seen_at_utc": "2026-09-21T23:42:43Z",
+      "bridge_start_utc": "2026-09-20T23:45:00Z",
+      "bridge_end_utc": "2026-09-21T23:15:00Z",
+      "native_5m_rows_per_metric_family": 283,
+      "metric_families": ["open_interest", "top_trader_accounts", "top_trader_positions", "global_accounts", "taker_buy_sell"],
+      "funding_rows": 100,
+      "archive_overlap_expected_rows": 3,
+      "archive_overlap_value_check_completed": false,
+      "read_only": true,
+      "orders_or_account_data_requested": false,
+      "gate_promotion": false
     }
   },
   "pending": [
-    "Collect and persist a full connected-Binance read-only live tail sufficient to bridge verified archive warmup, then run deterministic current source-to-feature-to-opportunity receipt",
+    "Consume persisted connected Binance full native tail, validate checksum-bound archive overlap and source freshness, and produce the first current causal source-to-feature-to-opportunity receipt",
     "Require an independently timed second full connected snapshot/pipeline receipt before promoting live_feature_parity or source_freshness",
     "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
     "Initial real AI and simple weekly decisions committed and effective"
