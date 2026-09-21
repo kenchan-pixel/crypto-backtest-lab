@@ -6,8 +6,11 @@ on:
     paths:
       - '.github/workflows/eth-forward-source-contract.yml'
       - 'forward_paper/live_sources.py'
+      - 'forward_paper/freshness.py'
       - 'forward_paper/test_live_sources.py'
+      - 'forward_paper/test_freshness.py'
       - 'forward_paper/inputs/live_derivative_schema_probe_20260921.json'
+      - 'forward_paper/inputs/derivative_freshness_probe_20260922T0117HKT.json'
 permissions:
   contents: read
 concurrency:
@@ -27,20 +30,30 @@ jobs:
           python-version: '3.13'
       - name: Install bounded validation dependencies
         run: python -m pip install pandas==2.2.3 pytest==9.0.2
-      - name: Validate source contracts and fresh read-only spot pair
+      - name: Validate source contracts, derivative freshness and fresh read-only spot pair
         run: |
           set -euo pipefail
-          python -m pytest -q forward_paper/test_live_sources.py
+          python -m pytest -q forward_paper/test_live_sources.py forward_paper/test_freshness.py
           python - <<'PY'
           import datetime,hashlib,json,urllib.request,os
           from pathlib import Path
           from forward_paper.live_sources import normalize_spot_pair
+          from forward_paper.freshness import validate_derivative_freshness
 
-          p=Path('forward_paper/inputs/live_derivative_schema_probe_20260921.json')
-          derivative=json.loads(p.read_text())
-          assert derivative['symbol']=='ETHUSDT'
-          assert derivative['frozen_archive_contract']['native_metrics_cadence']=='5m'
-          assert derivative['not_yet_proven']
+          contract_path=Path('forward_paper/inputs/live_derivative_schema_probe_20260921.json')
+          derivative_contract=json.loads(contract_path.read_text())
+          assert derivative_contract['symbol']=='ETHUSDT'
+          assert derivative_contract['frozen_archive_contract']['native_metrics_cadence']=='5m'
+          assert derivative_contract['not_yet_proven']
+
+          freshness_path=Path('forward_paper/inputs/derivative_freshness_probe_20260922T0117HKT.json')
+          freshness_probe=json.loads(freshness_path.read_text())
+          derivative_freshness=validate_derivative_freshness(
+            symbol=freshness_probe['symbol'],observed_at=freshness_probe['observed_at_utc'],
+            open_interest=freshness_probe['open_interest'],top_accounts=freshness_probe['top_accounts'],
+            top_positions=freshness_probe['top_positions'],all_accounts=freshness_probe['all_accounts'],
+            taker=freshness_probe['taker'],funding=freshness_probe['funding'])
+          assert derivative_freshness['fresh'] is True
 
           raw={};decoded={}
           for symbol in ['ETHUSDT','BTCUSDT']:
@@ -56,9 +69,11 @@ jobs:
           assert eth.index.equals(btc.index)
           ret30=float(eth.close.iloc[-1]/eth.close.iloc[-721]-1)
           receipt={
-            'schema':'eth-forward-source-contract-receipt-v2',
-            'derivative_connected_probe_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),
+            'schema':'eth-forward-source-contract-receipt-v3',
+            'derivative_connected_probe_sha256':hashlib.sha256(contract_path.read_bytes()).hexdigest(),
+            'derivative_freshness_probe_sha256':hashlib.sha256(freshness_path.read_bytes()).hexdigest(),
             'source_contract_tests_passed':True,
+            'derivative_freshness_snapshot':derivative_freshness,
             'live_spot_pair_checked':True,
             'spot_symbols':['ETHUSDT','BTCUSDT'],
             'spot_response_sha256':{s:hashlib.sha256(raw[s]).hexdigest() for s in raw},
@@ -72,7 +87,7 @@ jobs:
             'forward_execution_ready':False,
             'paper_trades_executed':0,
             'does_not_promote_source_freshness_gate':True,
-            'remaining_before_source_freshness_gate':['continuous derivative freshness','macro first-seen capture','complete opportunity-stream parity'],
+            'remaining_before_source_freshness_gate':['repeat derivative freshness on a later independent collection','macro first-seen capture','complete opportunity-stream parity'],
             'commit':os.environ['GITHUB_SHA'],
             'run_id':os.environ['GITHUB_RUN_ID']
           }
