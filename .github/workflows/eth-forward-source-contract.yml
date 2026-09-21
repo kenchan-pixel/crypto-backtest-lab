@@ -10,7 +10,7 @@ on:
       - 'forward_paper/test_live_sources.py'
       - 'forward_paper/test_freshness.py'
       - 'forward_paper/inputs/live_derivative_schema_probe_20260921.json'
-      - 'forward_paper/inputs/derivative_freshness_probe_20260922T0117HKT.json'
+      - 'forward_paper/inputs/derivative_freshness_probe_*.json'
 permissions:
   contents: read
 concurrency:
@@ -46,7 +46,9 @@ jobs:
           assert derivative_contract['frozen_archive_contract']['native_metrics_cadence']=='5m'
           assert derivative_contract['not_yet_proven']
 
-          freshness_path=Path('forward_paper/inputs/derivative_freshness_probe_20260922T0117HKT.json')
+          freshness_paths=sorted(Path('forward_paper/inputs').glob('derivative_freshness_probe_*.json'))
+          assert freshness_paths, 'No derivative freshness probe found'
+          freshness_path=freshness_paths[-1]
           freshness_probe=json.loads(freshness_path.read_text())
           derivative_freshness=validate_derivative_freshness(
             symbol=freshness_probe['symbol'],observed_at=freshness_probe['observed_at_utc'],
@@ -54,6 +56,17 @@ jobs:
             top_positions=freshness_probe['top_positions'],all_accounts=freshness_probe['all_accounts'],
             taker=freshness_probe['taker'],funding=freshness_probe['funding'])
           assert derivative_freshness['fresh'] is True
+
+          independent_repeat=False
+          repeat_gap_minutes=None
+          if len(freshness_paths)>=2:
+            previous=json.loads(freshness_paths[-2].read_text())
+            current_time=datetime.datetime.fromisoformat(freshness_probe['observed_at_utc'].replace('Z','+00:00'))
+            previous_time=datetime.datetime.fromisoformat(previous['observed_at_utc'].replace('Z','+00:00'))
+            repeat_gap_minutes=(current_time-previous_time).total_seconds()/60
+            assert repeat_gap_minutes>=45, 'Freshness repeats must be independently separated in time'
+            assert freshness_probe['raw_sample_sha256']!=previous['raw_sample_sha256'], 'Repeated snapshot must contain independently collected raw evidence'
+            independent_repeat=True
 
           raw={};decoded={}
           for symbol in ['ETHUSDT','BTCUSDT']:
@@ -69,11 +82,15 @@ jobs:
           assert eth.index.equals(btc.index)
           ret30=float(eth.close.iloc[-1]/eth.close.iloc[-721]-1)
           receipt={
-            'schema':'eth-forward-source-contract-receipt-v3',
+            'schema':'eth-forward-source-contract-receipt-v4',
             'derivative_connected_probe_sha256':hashlib.sha256(contract_path.read_bytes()).hexdigest(),
+            'derivative_freshness_probe_path':str(freshness_path),
             'derivative_freshness_probe_sha256':hashlib.sha256(freshness_path.read_bytes()).hexdigest(),
             'source_contract_tests_passed':True,
             'derivative_freshness_snapshot':derivative_freshness,
+            'independent_derivative_repeat_verified':independent_repeat,
+            'repeat_gap_minutes':repeat_gap_minutes,
+            'freshness_probe_count':len(freshness_paths),
             'live_spot_pair_checked':True,
             'spot_symbols':['ETHUSDT','BTCUSDT'],
             'spot_response_sha256':{s:hashlib.sha256(raw[s]).hexdigest() for s in raw},
@@ -87,7 +104,7 @@ jobs:
             'forward_execution_ready':False,
             'paper_trades_executed':0,
             'does_not_promote_source_freshness_gate':True,
-            'remaining_before_source_freshness_gate':['repeat derivative freshness on a later independent collection','macro first-seen capture','complete opportunity-stream parity'],
+            'remaining_before_source_freshness_gate':['macro first-seen capture','complete opportunity-stream parity'],
             'commit':os.environ['GITHUB_SHA'],
             'run_id':os.environ['GITHUB_RUN_ID']
           }
