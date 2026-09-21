@@ -22,10 +22,11 @@ AA=[
  {'symbol':SYMBOL,'longShortRatio':'2.3300','timestamp':1790004300000},
  {'symbol':SYMBOL,'longShortRatio':'2.3234','timestamp':1790004600000},
 ]
+# Binance taker-volume response does not include symbol; symbol is fixed by request context.
 TK=[
- {'buySellRatio':'0.8327','symbol':SYMBOL,'timestamp':1790003700000},
- {'buySellRatio':'0.5631','symbol':SYMBOL,'timestamp':1790004000000},
- {'buySellRatio':'0.6106','symbol':SYMBOL,'timestamp':1790004300000},
+ {'buySellRatio':'0.8327','sellVol':'10425.1030','buyVol':'8681.3340','timestamp':1790003700000},
+ {'buySellRatio':'0.5631','sellVol':'19233.7360','buyVol':'10829.8560','timestamp':1790004000000},
+ {'buySellRatio':'0.6106','sellVol':'16869.0590','buyVol':'10299.6010','timestamp':1790004300000},
 ]
 FUND=[
  {'symbol':SYMBOL,'fundingTime':1789920000000,'fundingRate':'0.00003468'},
@@ -54,7 +55,7 @@ def test_one_hour_endpoint_cannot_silently_replace_archive_5m_metrics():
 
 def test_missing_family_is_not_imputed():
  with pytest.raises(ValueError,match='No exact common'):
-  bundle(taker=[{'buySellRatio':'1','symbol':SYMBOL,'timestamp':1790004900000}])
+  bundle(taker=[{'buySellRatio':'1','timestamp':1790004900000}])
 
 def test_non_aligned_metric_timestamp_is_rejected():
  bad=[dict(OI[0],timestamp=1790004000001)]
@@ -65,6 +66,11 @@ def test_symbol_conflict_is_rejected():
  bad=[dict(x,symbol='BTCUSDT') for x in TA]
  with pytest.raises(ValueError,match='Symbol mismatch'):
   bundle(top_accounts=bad)
+
+def test_taker_explicit_wrong_symbol_is_rejected_if_present():
+ bad=[dict(TK[1],symbol='BTCUSDT')]
+ with pytest.raises(ValueError,match='Symbol mismatch'):
+  bundle(taker=bad)
 
 def test_duplicate_or_out_of_order_source_is_rejected():
  bad=[OI[1],OI[0]]
