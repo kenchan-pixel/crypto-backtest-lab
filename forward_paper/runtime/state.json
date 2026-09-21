@@ -36,10 +36,17 @@
     "live_spot_pair_tests_passed": 14,
     "live_spot_pair_completed_aligned_hours": 999,
     "live_spot_pair_latest_complete_utc": "2026-09-21T16:00:00+00:00",
-    "live_spot_pair_receipt": "forward_paper/receipts/live_spot_pair_20260922.json"
+    "live_spot_pair_receipt": "forward_paper/receipts/live_spot_pair_20260922.json",
+    "derivative_freshness_run_id": 35631404279,
+    "derivative_freshness_tests_passed": 20,
+    "derivative_freshness_input_sha256": "d766e51b17804f929e75417e6a70f72a93a9544af5a8a0baf19bdf4dddeab729",
+    "derivative_freshness_latest_common_utc": "2026-09-21T17:10:00+00:00",
+    "derivative_freshness_common_age_minutes": 7.8374,
+    "derivative_funding_age_minutes": 77.83736666666667,
+    "derivative_freshness_receipt": "forward_paper/receipts/derivative_freshness_20260922.json"
   },
   "pending": [
-    "Continuous derivative freshness, macro first-seen capture and complete parent-opportunity replay parity; native 5m derivative schema and causal aligned ETH/BTC completed-hour spot contracts are verified, but source_freshness remains false",
+    "Repeat derivative freshness on a later independent collection, capture macro first-seen timestamps, and complete parent-opportunity replay parity; first causal derivative freshness snapshot passed but source_freshness remains false",
     "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
     "Initial real AI and simple weekly decisions committed and effective"
   ],
