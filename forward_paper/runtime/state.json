@@ -23,9 +23,18 @@
   "processed_events": {},
   "ledger": [],
   "decision": null,
-  "commissioning_evidence": {"model_run_id": 35616440026, "data_probe_run_id": 35614673357, "unit_tests_passed": 14, "historical_feature_value_checks": 1869},
+  "commissioning_evidence": {
+    "model_run_id": 35616440026,
+    "data_probe_run_id": 35614673357,
+    "unit_tests_passed": 14,
+    "historical_feature_value_checks": 1869,
+    "live_derivative_source_contract_run_id": 35620468468,
+    "live_derivative_source_contract_tests_passed": 9,
+    "live_derivative_probe_sha256": "d40405d74334489ec5020e7315504d0237797ff2726a6edc78a793120622c194",
+    "live_derivative_source_contract_receipt": "forward_paper/receipts/live_source_contract_20260921.json"
+  },
   "pending": [
-    "Full live market/derivative/macro collection and complete parent-opportunity replay parity",
+    "Continuous live spot/BTC-peer/derivative/macro collection plus complete parent-opportunity replay parity; derivative 5m schema mapping is verified but source_freshness remains false",
     "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
     "Initial real AI and simple weekly decisions committed and effective"
   ],
