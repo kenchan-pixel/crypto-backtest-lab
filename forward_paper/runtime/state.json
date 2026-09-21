@@ -60,10 +60,19 @@
     "macro_empty_indicators": ["core_pce_yoy"],
     "macro_forward_eligible_events": 0,
     "macro_late_bootstrap_events": 6,
-    "macro_first_seen_receipt": "forward_paper/receipts/macro_first_seen_20260922.json"
+    "macro_first_seen_receipt": "forward_paper/receipts/macro_first_seen_20260922.json",
+    "historical_opportunity_replay_run_id": 35652530113,
+    "historical_opportunity_replay_tests_passed": 18,
+    "historical_opportunity_sequence_rows": 1869,
+    "historical_opportunity_catalyst_mismatches": 0,
+    "historical_opportunity_signal_counts": {"2025": 54, "2026": 34},
+    "historical_opportunity_executed_counts": {"2025": 45, "2026": 26},
+    "historical_opportunity_eligible_confirmation_hours": 23622,
+    "historical_opportunity_hours_without_threshold_signal": 23478,
+    "historical_opportunity_replay_receipt": "forward_paper/receipts/opportunity_replay_parity_20260922.json"
   },
   "pending": [
-    "Macro first-seen causal capture is validated with no backdated catalysts; complete parent-opportunity replay parity remains pending, and source_freshness remains false until the full live input/opportunity semantics are validated",
+    "Historical complete parent-opportunity replay parity is now verified without using future outcome columns; live source-to-feature/opportunity integration still needs end-to-end parity on current causal inputs, so live_feature_parity and source_freshness remain false",
     "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
     "Initial real AI and simple weekly decisions committed and effective"
   ],
