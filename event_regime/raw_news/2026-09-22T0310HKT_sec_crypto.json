@@ -1,0 +1,13 @@
+{
+  "first_seen_at_hkt": "2026-09-22T03:10:00+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "historical_news_completeness_claimed": false,
+  "timestamp_policy": "Search timestamps are provider metadata; 1970/equivalent placeholders are unusable. first_seen_at_hkt is never backdated from published_at.",
+  "new_search_hits": [
+    {"id":"299666127","title":"Coinbase 因加密货币法规上涨","excerpt":"Coinbase 股票大幅上涨，因为新的 SEC 和 CFTC 框架推动了代币化股票和受监管的加密产品的发展","source_name":"MSN","time":"2026-09-21T16:34:56Z","url":"https://longbridge.com/news/299666127.md"},
+    {"id":"299661685","title":"Circle盘中急涨 受比特币突破8.5万美元带动","excerpt":"Circle盘中上涨；比特币突破8.5万美元，SEC创新豁免规则提振加密板块情绪。","source_name":"美股行情速递","time":"2026-09-21T15:49:05Z","url":"https://longbridge.com/news/299661685.md"},
+    {"id":"299658666","title":"CLARITY 法案未通过，但 ‘加密货币尚未错失其关键时刻’","excerpt":"参议院未推进CLARITY法案；报道讨论现有SEC与CFTC监管框架下行业继续发展的观点。","source_name":"Amb Crypto","time":"2026-09-21T15:04:56Z","url":"https://longbridge.com/news/299658666.md"}
+  ]
+}
