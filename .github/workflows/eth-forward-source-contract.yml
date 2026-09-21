@@ -9,8 +9,10 @@ on:
       - 'forward_paper/freshness.py'
       - 'forward_paper/test_live_sources.py'
       - 'forward_paper/test_freshness.py'
+      - 'forward_paper/test_connected_snapshot.py'
       - 'forward_paper/inputs/live_derivative_schema_probe_20260921.json'
       - 'forward_paper/inputs/derivative_freshness_probe_*.json'
+      - 'forward_paper/inputs/connected_binance_snapshot_*.json'
 permissions:
   contents: read
 concurrency:
@@ -33,7 +35,7 @@ jobs:
       - name: Validate source contracts, derivative freshness and fresh read-only spot pair
         run: |
           set -euo pipefail
-          python -m pytest -q forward_paper/test_live_sources.py forward_paper/test_freshness.py
+          python -m pytest -q forward_paper/test_live_sources.py forward_paper/test_freshness.py forward_paper/test_connected_snapshot.py
           python - <<'PY'
           import datetime,hashlib,json,urllib.request,os
           from pathlib import Path
@@ -104,15 +106,53 @@ jobs:
             'forward_execution_ready':False,
             'paper_trades_executed':0,
             'does_not_promote_source_freshness_gate':True,
-            'remaining_before_source_freshness_gate':['macro first-seen capture','complete opportunity-stream parity'],
+            'remaining_before_source_freshness_gate':['complete current connected-snapshot live pipeline receipt and independent repeat'],
             'commit':os.environ['GITHUB_SHA'],
             'run_id':os.environ['GITHUB_RUN_ID']
           }
           Path('source_contract_receipt.json').write_text(json.dumps(receipt,indent=2))
           print(json.dumps(receipt,indent=2))
           PY
+      - name: Verify persisted connected Binance snapshot route
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          from forward_paper.live_sources import normalize_metric_bundle,normalize_funding_history
+          from forward_paper.freshness import validate_derivative_freshness
+          paths=sorted(Path('forward_paper/inputs').glob('connected_binance_snapshot_*.json'))
+          assert paths,'No persisted connected Binance snapshot'
+          p=paths[-1];s=json.loads(p.read_text())
+          metric=normalize_metric_bundle(symbol=s['symbol'],period=s['period'],open_interest=s['open_interest'],
+            top_accounts=s['top_accounts'],top_positions=s['top_positions'],all_accounts=s['all_accounts'],taker=s['taker'])
+          funding=normalize_funding_history(s['symbol'],s['funding'])
+          fresh=validate_derivative_freshness(symbol=s['symbol'],observed_at=s['observed_after_reads_utc'],
+            open_interest=s['open_interest'],top_accounts=s['top_accounts'],top_positions=s['top_positions'],
+            all_accounts=s['all_accounts'],taker=s['taker'],funding=s['funding'])
+          assert fresh['fresh'] is True
+          receipt={
+            'schema':'eth-connected-binance-persistence-receipt-v1',
+            'status':'FIRST_IMMUTABLE_CONNECTED_SNAPSHOT_VALIDATED',
+            'snapshot_path':str(p),'snapshot_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),
+            'snapshot_observed_after_reads_utc':s['observed_after_reads_utc'],
+            'normalized_common_metric_rows':len(metric),'normalized_funding_rows':len(funding),
+            'latest_common_metric_utc':fresh['latest_common_metric_utc'],
+            'common_metric_age_minutes_at_capture':fresh['common_metric_age_minutes'],
+            'latest_funding_utc':fresh['latest_funding_utc'],
+            'funding_age_minutes_at_capture':fresh['funding_age_minutes'],
+            'read_only_source':True,'order_or_account_endpoints_used':False,
+            'gate_promotions':[], 'execution_ready':False,'performance_started':False,'paper_trades_created':0,
+            'next_required':'Collect a full connected read-only live tail sufficient to bridge verified archive warmup and run deterministic source-to-feature-to-opportunity receipt; later require an independently timed repeat before gate promotion.',
+            'commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID']
+          }
+          Path('connected_snapshot_receipt.json').write_text(json.dumps(receipt,indent=2))
+          print(json.dumps(receipt,indent=2))
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: eth-forward-live-source-contract
-          path: source_contract_receipt.json
+          path: |
+            source_contract_receipt.json
+            connected_snapshot_receipt.json
           retention-days: 14
