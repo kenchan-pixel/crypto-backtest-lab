@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-21T15:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+  "query": "Bitcoin ETF",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit_requested": 20,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across all prior event_regime/raw_news snapshots; content identity secondary check",
+    "note": "raw.text contains only genuinely newly seen search hits from this run; field values are preserved from Longbridge search output. first_seen_at_hkt is conservatively rounded forward to 15:00 HKT and is never backdated."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299602032\",\"title\":\"由于比特币代币的价格保持在超过 81,000 美元的高位，比特币 ETF 转为正面\",\"excerpt\":\"美国现货比特币 ETF 在周四和周五录得 5.93 亿美元的\",\"source_name\":\"Money Control\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299602032.md\"},{\"id\":\"299588776\",\"title\":\"在 9 月 14 日至 18 日这一周，比特币现货 ETF 录得 621 万美元的净流入\",\"excerpt\":\"比特币现货 ETF 在 9 月 14 日至 18 日的一周内录得净流入\",\"source_name\":\"CoinLive\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299588776.md\"}]"
+  }
+}
