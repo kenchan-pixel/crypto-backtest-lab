@@ -90,11 +90,28 @@
       "read_only": true,
       "persisted_for_runtime": false,
       "orders_or_account_data_requested": false
+    },
+    "connected_binance_immutable_snapshot": {
+      "path": "forward_paper/inputs/connected_binance_snapshot_20260922T061935HKT.json",
+      "git_blob_sha": "99d6916928223f568b0d0258b1908094dc54c383",
+      "sha256": "21b9ef3cddfcb96cc292475ae36a1c8ec5027bf72d66293e08d35a3f54db0056",
+      "observed_after_reads_utc": "2026-09-21T22:19:35.205372+00:00",
+      "latest_common_metric_utc": "2026-09-21T22:10:00+00:00",
+      "common_metric_age_minutes_at_capture": 9.5867562,
+      "latest_funding_utc": "2026-09-21T16:00:00.002000+00:00",
+      "funding_age_minutes_at_capture": 379.58672286666666,
+      "normalized_common_metric_rows": 2,
+      "normalized_funding_rows": 5,
+      "validation_run_id": 35662300853,
+      "source_contract_tests_passed": 24,
+      "read_only": true,
+      "orders_or_account_data_requested": false,
+      "scope": "first immutable connected-source persistence route validation only; compact snapshot is not sufficient for the live feature/opportunity gate"
     }
   },
   "pending": [
-    "Replace region-fragile direct GitHub Actions fapi fetch with an immutable connected-Binance read-only snapshot persisted to GitHub; no proxy/restriction bypass",
-    "Run deterministic current live source-to-feature-to-opportunity receipt on that persisted snapshot, then an independent second snapshot before promoting live_feature_parity/source_freshness",
+    "Collect and persist a full connected-Binance read-only live tail sufficient to bridge verified archive warmup, then run deterministic current source-to-feature-to-opportunity receipt",
+    "Require an independently timed second full connected snapshot/pipeline receipt before promoting live_feature_parity or source_freshness",
     "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
     "Initial real AI and simple weekly decisions committed and effective"
   ],
