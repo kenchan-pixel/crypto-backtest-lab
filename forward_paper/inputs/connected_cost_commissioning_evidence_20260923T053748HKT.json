@@ -1,0 +1,15 @@
+{
+  "schema": "eth-paper-cost-commissioning-public-evidence-v1",
+  "source": "Binance connected public read-only market-data tool",
+  "tool_operation": "USD-M futures ETHUSDT public symbol price ticker",
+  "ticker": {
+    "symbol": "ETHUSDT",
+    "price": "2749.13",
+    "exchange_time_ms": 1790113068639,
+    "exchange_time_utc": "2026-09-22T21:37:48.639000+00:00",
+    "exchange_time_hkt": "2026-09-23T05:37:48.639000+08:00"
+  },
+  "read_only": true,
+  "orders_or_account_data_requested": false,
+  "scope": "engineering price anchor for isolated BASE/STRESS cost-sidecar commissioning only; not a frozen-model signal, parent opportunity, fill, exit, paper trade, account balance or performance observation"
+}
