@@ -1,0 +1,57 @@
+{
+  "first_seen_at_hkt": "2026-09-23T07:00:43+08:00",
+  "provider": "Longbridge",
+  "tool": "news_detail",
+  "capture_mode": "structured_detail_fields",
+  "note": "Provider-returned stable id, title, description, URL, author/source and published_at are preserved as retrieved. Full article bodies are not archived here; no chronology is inferred from published_at.",
+  "articles": [
+    {
+      "id": "299818483",
+      "title": "尽管以太坊价格上涨，贝莱德以太坊ETF买入速度一周内放缓三分之一",
+      "description": "尽管以太坊价格上涨，贝莱德以太坊 ETF 的买入速度正在放缓发生了什么",
+      "url": "https://longbridge.com/news/299818483",
+      "author": {"member_id":"6060","name":"Investinglive"},
+      "published_at": "2026-09-22T22:26:54Z"
+    },
+    {
+      "id": "299806834",
+      "title": "比特币、以太坊持平，XRP、狗狗币因10亿美元ETF资金流入上涨：“真实资本正在回归”",
+      "description": "随着美国现货比特币 ETF 吸引近 10 亿美元净流入，彰显机构需求复苏，比特币坚守 86,000 美元上方。以太坊也录得显著资金流入。交易员预计比特币可能先上探至 89,000 美元，随后再回测 80,000 美元，将回调视为买入机会。XRP 和狗狗币等其他资产上涨，分析师指出，在经历数月的疲软后，“真实资本正在回归” 加密市场",
+      "url": "https://longbridge.com/news/299806834",
+      "author": {"member_id":"36","name":"benzinga_article"},
+      "published_at": "2026-09-22T19:27:25Z"
+    },
+    {
+      "id": "299812042",
+      "title": "今日比特币价格：在9.99亿美元比特币ETF资金流入抵消美联储加息和《CLARITY法案》失败的影响后，BTC/USD如何触及86,000美元？",
+      "description": "9 月 21 日，比特币飙升至 86,000 美元，尽管面临美联储加息和《CLARITY 法案》未能通过的预期，市场表现依然强劲。此次上涨得益于美国比特币 ETF 获得 9.99 亿美元的资金流入，以及分析师认为市场已消化负面消息的观点。美国证券交易委员会（SEC）对立法空白的建设性回应进一步提振了市场情绪，以太坊和 Sui 也随之上涨",
+      "url": "https://longbridge.com/news/299812042",
+      "author": {"member_id":"5840","name":"economictimes"},
+      "published_at": "2026-09-22T20:51:56Z"
+    },
+    {
+      "id": "299814010",
+      "title": "CFTC主席塞利格表示市场必须为“大规模代币化”做好准备",
+      "description": "美国商品期货交易委员会（CFTC）主席迈克尔·塞利格表示，金融市场必须为由区块链和人工智能驱动的 “大规模代币化” 做好准备。他强调，特朗普政府致力于通过创新、竞争和适度监管来维持美国市场的领导地位。尽管参议院的加密货币立法陷入停滞，CFTC 正在探索全天候交易和稳定币的采用，而美国证券交易委员会（SEC）则发布了针对链上股票交易的创新豁免",
+      "url": "https://longbridge.com/news/299814010",
+      "author": {"member_id":"5980","name":"The Block"},
+      "published_at": "2026-09-22T21:08:20Z"
+    },
+    {
+      "id": "299810205",
+      "title": "《清晰法案》在参议院陷入僵局后，美国监管机构加紧制定加密货币规则手册",
+      "description": "随着《清晰法案》在参议院陷入僵局，美国联邦监管机构正加速制定加密货币规则，以填补监管空白。美国证券交易委员会（SEC）扩大了其代币化股票框架，而商品期货交易委员会（CFTC）则提交了一项提案供白宫审查。行业领袖和官员强调，需要明确的指导方针来促进投资并与传统金融融合，与此同时，各州也反对联邦政府对其反欺诈权力的优先适用",
+      "url": "https://longbridge.com/news/299810205",
+      "author": {"member_id":"124","name":"CNBC"},
+      "published_at": "2026-09-22T20:30:56Z"
+    },
+    {
+      "id": "299809915",
+      "title": "美 SEC 正在推进加密资产托管规则，相关提案已提交白宫管理和预算办公室审查",
+      "description": "美国 SEC 加密工作组首席法律顾问 Taylor Lindman 表示，SEC 正推进加密资产托管规则，相关提案已提交白宫管理和预算办公室审查。该规则旨在明确经纪自营商持有非证券类加密资产及投资顾问存放客户资产的要求。此前 SEC 曾尝试制定托管规则但被放弃，现任领导层支持加密发展，并已通过员工声明提供过渡性指导。",
+      "url": "https://longbridge.com/news/299809915",
+      "author": {"member_id":"5905","name":"金色财经"},
+      "published_at": "2026-09-22T20:28:56Z"
+    }
+  ]
+}
