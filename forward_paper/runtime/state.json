@@ -122,11 +122,38 @@
       "read_only": true,
       "orders_or_account_data_requested": false,
       "gate_promotion": false
+    },
+    "fresh_connected_extension": {
+      "manifest_path": "forward_paper/inputs/connected_binance_fresh_20260922T080126HKT/manifest.json",
+      "conservative_first_seen_at_utc": "2026-09-22T00:01:26.073897Z",
+      "latest_common_5m_utc": "2026-09-21T23:55:00Z",
+      "common_5m_age_minutes": 6.4346,
+      "latest_funding_utc": "2026-09-22T00:00:00Z",
+      "funding_age_minutes": 1.4346,
+      "freshness_itself_passed": true,
+      "base_overlap_minimum_rows_per_5m_family": 16,
+      "focused_tests_passed": 28,
+      "pipeline_run_id": 35670553747,
+      "pipeline_result": "blocked_archive_live_value_mismatch",
+      "paper_trades_created": 0,
+      "gate_promotion": false
+    },
+    "archive_live_overlap_diagnostic": {
+      "receipt": "forward_paper/receipts/archive_live_overlap_mismatch_20260922.json",
+      "run_id": 35670710452,
+      "job_id": 106566293454,
+      "archive_sha256": "54c07ed33c80ad47618d0e79faab937fa0e018a24c6c1e9eb1dff852bf5ad0d6",
+      "mismatch_cells": 18,
+      "pattern": "checksum daily archive values are consistent with a one-5m-bucket timestamp semantic offset versus connected endpoint timestamps; ratio endpoints also expose lower precision than archive",
+      "status": "semantic_mapping_hypothesis_requires_broader_verification",
+      "paper_trades_created": 0,
+      "gate_promotion": false
     }
   },
   "pending": [
-    "Consume persisted connected Binance full native tail, validate checksum-bound archive overlap and source freshness, and produce the first current causal source-to-feature-to-opportunity receipt",
-    "Require an independently timed second full connected snapshot/pipeline receipt before promoting live_feature_parity or source_freshness",
+    "Verify Binance daily metrics archive create_time versus connected endpoint timestamp semantics over multiple overlapping rows/days; preserve raw values and do not assume the observed one-bucket offset until broader validation passes",
+    "Define and test precision-aware source-contract comparison for rounded ratio endpoints while retaining exact comparison where source precision permits, especially open-interest fields",
+    "Rerun the first fresh current causal source-to-feature-to-opportunity receipt only after the source semantic mapping is verified; keep source_freshness/live_feature_parity false until a later independently timed second receipt also passes",
     "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
     "Initial real AI and simple weekly decisions committed and effective"
   ],
