@@ -1,0 +1,28 @@
+{
+  "first_seen_at_hkt": "2026-09-23T07:00:43+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "299818483",
+      "title": "尽管以太坊价格上涨，贝莱德以太坊ETF买入速度一周内放缓三分之一",
+      "excerpt": "尽管以太坊价格上涨，贝莱德以太坊ETF的买入速度正在放缓发生了什么",
+      "source_name": "Investinglive",
+      "time": "2026-09-22T22:26:54Z",
+      "url": "https://longbridge.com/news/299818483.md"
+    },
+    {
+      "id": "299806834",
+      "title": "比特币、以太坊持平，XRP、狗狗币因10亿美元ETF资金流入上涨：“真实资本正在回归”",
+      "excerpt": "随着美国现货比特币ETF吸引近10亿美元净流入，彰显机构需求复苏，比特币坚守86,000美元上方。以太坊也录得显著资金流入。交易员预计比特币可能先上探至89,000美元，随后再回测80,000美元，将回调视为买入机会。XRP和狗狗币等其他资产上涨，分析师指出，在经历数月的疲软后，“真实资本正在回归”加密市场",
+      "source_name": "benzinga_article",
+      "time": "2026-09-22T19:27:25Z",
+      "url": "https://longbridge.com/news/299806834.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
