@@ -1,7 +1,7 @@
 """Bounded commissioning diagnostic for Binance ratio-source semantics.
 
 This module compares checksum-verified Binance daily metrics archives with the
-existing immutable connected public read-only native-5m tail.  It does not
+existing immutable connected public read-only native-5m tail. It does not
 create paper fills, change raw source values, promote readiness gates, or call
 order/account endpoints.
 """
@@ -22,18 +22,22 @@ from .persisted_pipeline import load_snapshot
 OFFSETS_MINUTES = (-10, -5, 0, 5, 10)
 FAMILIES = {
     "top_accounts": {
+        "raw_key": "top_accounts",
         "archive_col": "count_toptrader_long_short_ratio",
         "raw_field": "longShortRatio",
     },
     "top_positions": {
+        "raw_key": "top_positions",
         "archive_col": "sum_toptrader_long_short_ratio",
         "raw_field": "longShortRatio",
     },
     "global_accounts": {
+        "raw_key": "all_accounts",
         "archive_col": "count_long_short_ratio",
         "raw_field": "longShortRatio",
     },
     "taker": {
+        "raw_key": "taker",
         "archive_col": "sum_taker_long_short_vol_ratio",
         "raw_field": "buySellRatio",
     },
@@ -146,8 +150,8 @@ def diagnose(base_dir: str) -> dict:
 
     all_connected_times = [
         pd.to_datetime(int(row["timestamp"]), unit="ms", utc=True)
-        for family in FAMILIES
-        for row in raw[family]
+        for spec in FAMILIES.values()
+        for row in raw[spec["raw_key"]]
     ]
     min_connected = min(all_connected_times)
     max_connected = max(all_connected_times)
@@ -168,7 +172,7 @@ def diagnose(base_dir: str) -> dict:
 
     family_results = {}
     for family, spec in FAMILIES.items():
-        rows = raw[family]
+        rows = raw[spec["raw_key"]]
         transforms = list(_transforms(family, rows[0]).keys())
         candidates = {}
         for transform in transforms:
@@ -180,6 +184,7 @@ def diagnose(base_dir: str) -> dict:
         best_key, best_score = max(candidates.items(), key=_candidate_sort_key)
         runner_up = sorted(candidates.items(), key=_candidate_sort_key, reverse=True)[1]
         family_results[family] = {
+            "raw_key": spec["raw_key"],
             "archive_column": spec["archive_col"],
             "connected_rows": len(rows),
             "candidate_offsets_minutes_archive_to_connected": list(OFFSETS_MINUTES),
