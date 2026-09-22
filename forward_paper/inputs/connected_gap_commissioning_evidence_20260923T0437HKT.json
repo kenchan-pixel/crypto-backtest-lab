@@ -1,0 +1,25 @@
+{
+  "schema": "eth-paper-gap-commissioning-public-evidence-v1",
+  "source": "Binance connected public read-only market-data tool",
+  "symbol": "ETHUSDT",
+  "orders_or_account_data_requested": false,
+  "ticker": {
+    "tool_operation": "get_futures_usds_symbol_price_ticker",
+    "price": "2753.77",
+    "exchange_time_ms": 1790109452323,
+    "exchange_time_utc": "2026-09-22T20:37:32.323000+00:00"
+  },
+  "five_minute_klines": {
+    "tool_operation": "get_futures_usds_kline_candlestick_data",
+    "interval": "5m",
+    "requested_limit": 2,
+    "rows": [
+      [1790109000000, "2755.99", "2755.99", "2750.96", "2753.64", "7296.392", 1790109299999, "20085162.07955", 10038, "3393.145", "9339806.31566", "0"],
+      [1790109300000, "2753.64", "2754.65", "2753.10", "2753.77", "2046.185", 1790109599999, "5634660.27942", 3228, "1330.031", "3662678.28341", "0"]
+    ],
+    "latest_completed_row_open_utc": "2026-09-22T20:30:00+00:00",
+    "latest_completed_row_close_utc": "2026-09-22T20:34:59.999000+00:00",
+    "second_row_was_not_relied_on_as_completed": true
+  },
+  "scope": "Commissioning evidence only for explicit gap-event persistence tests. No signal, fill, trade, account, wallet, balance or order action is represented by this file."
+}
