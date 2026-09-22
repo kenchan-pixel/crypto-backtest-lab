@@ -1,0 +1,96 @@
+{
+  "first_seen_at_hkt": "2026-09-22T10:58:06+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-22T07:05:47+08:00",
+    "searched_queries": [
+      {"query":"Bitcoin","new_search_hits":2},
+      {"query":"Ethereum","new_search_hits":1},
+      {"query":"Bitcoin ETF","new_search_hits":2},
+      {"query":"SEC crypto","new_search_hits":0}
+    ],
+    "dedupe_result_unique_articles": 4,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source content identity",
+    "cross_query_duplicate_ids": ["299697341"],
+    "content_identity_duplicates_removed": [],
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable and never used for chronology; none of the 4 newly saved articles used a placeholder timestamp",
+    "first_seen_policy": "2026-09-22T10:58:06+08:00 is a conservative observation timestamp recorded after search/detail collection; published_at is never used to backdate first_seen_at_hkt",
+    "historical_news_completeness_claimed": false,
+    "trading_actions": "none"
+  },
+  "new_articles": [
+    {
+      "id":"299697341",
+      "matched_queries":["Bitcoin","Bitcoin ETF"],
+      "first_seen_at_hkt":"2026-09-22T10:58:06+08:00",
+      "published_at_utc":"2026-09-22T01:11:09Z",
+      "source":"TradingKey",
+      "timestamp_quality":"verified_detail",
+      "detail_evidence": {
+        "id":"299697341",
+        "title":"比特币（BTCUSD）在 9 月 22 日下跌 1.27%：原因分析",
+        "description":"比特币在 9 月 22 日下跌了 1.27%，至 85,870 美元，原因是近期高位后的战术性获利了结和衍生品杠杆的解除。影响因素包括机构 ETF 资金流入的暂停、美国国债收益率上升导致的宏观流动性紧张，以及关于数字资产市场 CLARITY 法案的监管停滞。尽管 ETF 出现大量资金流出和美联储的鹰派前景，结构性需求仍然受到企业财 treasury 购买和积极的监管发展所支撑",
+        "url":"https://longbridge.com/news/299697341",
+        "author":{"member_id":"6041","name":"TradingKey"},
+        "published_at":"2026-09-22T01:11:09Z",
+        "tickers":["GBTC.US","IBIT.US","BITB.US","FBTC.US","ARKB.US","BITO.US","BRRR.US","BTCO.US","BTCW.US","HODL.US","EZBC.US","3008.HK","3042.HK","3430.HK","BTCE.DE","BTCHKD.HAS","BTCUSD.HAS","BTCUSD.OSL"]
+      }
+    },
+    {
+      "id":"299694805",
+      "matched_queries":["Bitcoin"],
+      "first_seen_at_hkt":"2026-09-22T10:58:06+08:00",
+      "published_at_utc":"2026-09-22T00:32:56Z",
+      "source":"MSN",
+      "timestamp_quality":"verified_detail",
+      "detail_evidence": {
+        "id":"299694805",
+        "title":"为什么 Strategy 股票今天大涨",
+        "description":"比特币正在上涨",
+        "body":"Bitcoin is rallying.",
+        "url":"https://longbridge.com/news/299694805",
+        "author":{"member_id":"5922","name":"MSN"},
+        "published_at":"2026-09-22T00:32:56Z",
+        "tickers":["MSTR.US","GBTC.US","ARKB.US","IBIT.US","BITB.US","FBTC.US","BITO.US","BRRR.US","BTCO.US","BTCW.US","HODL.US","EZBC.US","IMST.US","MSDD.US","MSOO.US","MSST.US","MST.US","MSTP.US","MSTU.US","MSTW.US","MSTX.US","MSTY.US","MSTZ.US","MTYY.US","SMST.US","WNTR.US","3008.HK","3042.HK","3430.HK","7799.HK","9399.HK","BTCE.DE","BTCHKD.HAS","BTCUSD.HAS","BTCUSD.OSL"]
+      }
+    },
+    {
+      "id":"299697120",
+      "matched_queries":["Ethereum"],
+      "first_seen_at_hkt":"2026-09-22T10:58:06+08:00",
+      "published_at_utc":"2026-09-22T01:07:09Z",
+      "source":"TradingKey",
+      "timestamp_quality":"verified_detail",
+      "detail_evidence": {
+        "id":"299697120",
+        "title":"以太坊（ETHUSD）在 9 月 22 日下跌 1.53%：有哪些风险因素？",
+        "description":"以太坊（ETHUSD）在 9 月 22 日下跌 1.53%，至$2,739.37，原因是经过一轮反弹后出现获利了结、高杠杆平仓，以及现货 ETF 流出超过 1.4 亿美元。美国立法停滞带来的监管不确定性和近期去中心化金融（DeFi）安全漏洞进一步施压价格。尽管技术指标显示出超买状态的混合信号，但结构性基本面依然稳定，尽管活动有所放缓",
+        "url":"https://longbridge.com/news/299697120",
+        "author":{"member_id":"6041","name":"TradingKey"},
+        "published_at":"2026-09-22T01:07:09Z",
+        "tickers":["ETHE.US","CETH.US","ETHW.US","FETH.US","ETHA.US","ETHHKD.HAS","ETHUSD.OSL","ETHUSD.HAS"]
+      }
+    },
+    {
+      "id":"299691696",
+      "matched_queries":["Bitcoin ETF"],
+      "first_seen_at_hkt":"2026-09-22T10:58:06+08:00",
+      "published_at_utc":"2026-09-21T23:30:00Z",
+      "source":"NewsBTC",
+      "timestamp_quality":"verified_detail",
+      "detail_evidence": {
+        "id":"299691696",
+        "title":"Strive 新增 1,355 个比特币，公司财务储备总量达到 26,355 个 BTC",
+        "description":"Strive 在 9 月 21 日的 SEC 文件中披露以约 79,475 美元的平均价格购买了 1,355 个比特币。这次收购将其企业比特币库从 25,000 个增加到 26,355 个。文件明确指出，这些持有的比特币在 Strive 自己的资产负债表上，与第三方客户资产或 ETF 持有的比特币区分开来，使该公司成为活跃的上市公司比特币积累者之一",
+        "url":"https://longbridge.com/news/299691696",
+        "author":{"member_id":"5978","name":"NewsBTC"},
+        "published_at":"2026-09-21T23:30:00Z",
+        "tickers":["SATA.US","GBTC.US","BITB.US","FBTC.US","EZBC.US","BTCO.US","ARKB.US","BTCW.US","HODL.US","BRRR.US","IBIT.US","BITO.US","3008.HK","3042.HK","3430.HK","BTCE.DE","BITI.US","YBIT.US","SBIT.US","BTFX.US","BTCZ.US","BTCL.US","BITX.US","BITU.US"]
+      }
+    }
+  ]
+}
