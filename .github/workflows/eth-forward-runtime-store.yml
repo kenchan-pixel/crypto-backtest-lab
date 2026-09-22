@@ -13,9 +13,12 @@ on:
       - 'forward_paper/test_runtime_gaps.py'
       - 'forward_paper/runtime_costs.py'
       - 'forward_paper/test_runtime_costs.py'
+      - 'forward_paper/runtime_integration.py'
+      - 'forward_paper/test_runtime_integration.py'
       - 'forward_paper/inputs/connected_eth_quote_pair_20260923T034451HKT.json'
       - 'forward_paper/inputs/connected_gap_commissioning_evidence_20260923T0437HKT.json'
       - 'forward_paper/inputs/connected_cost_commissioning_evidence_20260923T053748HKT.json'
+      - 'forward_paper/inputs/connected_runtime_integration_evidence_20260923T061715HKT.json'
 permissions:
   contents: read
 concurrency:
@@ -73,6 +76,14 @@ jobs:
             --public-evidence forward_paper/inputs/connected_cost_commissioning_evidence_20260923T053748HKT.json \
             --work-dir forward_validation/runtime_cost_probe \
             --out forward_validation/runtime_cost_receipt.json | tee forward_validation/runtime_cost.log
+      - name: Exercise atomic runtime sidecar wiring on isolated copies
+        run: |
+          set -euo pipefail
+          python -m forward_paper.runtime_integration \
+            --state forward_paper/runtime/state.json \
+            --public-evidence forward_paper/inputs/connected_runtime_integration_evidence_20260923T061715HKT.json \
+            --work-dir forward_validation/runtime_integration_probe \
+            --out forward_validation/runtime_integration_receipt.json | tee forward_validation/runtime_integration.log
       - name: Enforce commissioning boundary
         run: |
           python - <<'PY'
@@ -81,6 +92,7 @@ jobs:
           cyc=json.load(open('forward_validation/runtime_cycle_receipt.json'))
           gap=json.load(open('forward_validation/runtime_gap_receipt.json'))
           cost=json.load(open('forward_validation/runtime_cost_receipt.json'))
+          integ=json.load(open('forward_validation/runtime_integration_receipt.json'))
           assert cas['passed'] is True and all(cas['checks'].values())
           assert cas['actual_runtime_state_mutated'] is False
           assert cas['paper_trades_created']==0 and cas['real_orders_created']==0
@@ -116,7 +128,19 @@ jobs:
           assert cost['cost_contract']['STRESS']=={'fee_per_side':0.0015,'slippage_per_side':0.0015}
           assert cost['ai_budget_contract']['assumed_usdt_per_review_at_10000_start']=={'0pct':0.0,'0.01pct':1.0,'0.05pct':5.0}
           assert cost['gate_effect'].startswith('none;')
-          print('Runtime persistence/order/gap/cost semantics commissioned on isolated fixtures; real runtime remains idle and unarmed.')
+          assert integ['passed'] is True and all(integ['checks'].values())
+          assert integ['actual_runtime_state_mutated'] is False
+          assert integ['actual_runtime_paper_trades_created']==0
+          assert integ['real_orders_created']==0
+          assert integ['order_account_endpoints_used'] is False
+          assert integ['engineering_fixture']['forward_opportunity_claimed'] is False
+          assert integ['engineering_fixture']['forward_trade_claimed'] is False
+          assert integ['engineering_fixture']['genuine_weekly_decision_claimed'] is False
+          assert integ['source_runtime']['status']=='COMMISSIONING'
+          assert integ['source_runtime']['execution_ready'] is False
+          assert integ['source_runtime']['performance_started_at'] is None
+          assert integ['gate_effect'].startswith('none;')
+          print('Runtime persistence/order/gap/cost/integration semantics commissioned on isolated fixtures; real runtime remains idle and unarmed.')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
