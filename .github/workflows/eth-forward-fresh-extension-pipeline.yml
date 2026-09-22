@@ -35,24 +35,25 @@ jobs:
           set -euo pipefail
           mkdir -p forward_validation
           python -m pytest -q forward_paper | tee forward_validation/tests.txt
-      - name: Run integration-only causal source-to-opportunity validation
+      - name: Run qualifying current causal source-to-opportunity validation
         run: |
           set -euo pipefail
           python -m forward_paper.persisted_extension_pipeline \
-            --base-dir forward_paper/inputs/connected_binance_full_20260922T072853HKT \
-            --fresh-dir forward_paper/inputs/connected_binance_fresh_20260922T080126HKT \
+            --base-dir forward_paper/inputs/connected_binance_fresh_20260923T003050HKT \
+            --fresh-dir forward_paper/inputs/connected_binance_fresh_20260923T004308HKT \
             --macro-capture forward_paper/inputs/macro_first_seen_20260922T031843HKT.json \
+            --qualifying-current \
             --out forward_validation/fresh_extension_receipt.json | tee forward_validation/pipeline.log
-      - name: Enforce integration-only commissioning boundary
+      - name: Enforce qualifying Receipt 1 commissioning boundary
         run: |
           python - <<'PY'
           import json
           r=json.load(open('forward_validation/fresh_extension_receipt.json'))
           c=r['live_parity_contract']
-          assert r['passed'] is True and r['qualifying_current_receipt'] is False
+          assert r['passed'] is True and r['qualifying_current_receipt'] is True
           assert r['paper_trades_created']==0 and r['performance_started'] is False
           assert r['order_account_endpoints_used'] is False and r['raw_source_values_rewritten'] is False
-          assert r['gate_effect'].startswith('Integration validation only')
+          assert r['gate_effect'].startswith('Receipt 1 of 2')
           assert r['derivative_freshness']['fresh'] is True
           assert all(r['derivative_feature_non_null_at_cut'].values())
           assert all(v>=16 for k,v in r['base_fresh_exact_overlap_rows'].items() if k!='funding')
@@ -63,11 +64,11 @@ jobs:
           assert c['taker_value_semantics_resolved'] is False
           assert c['taker_live_values_quarantined_from_decision_matrix'] is True
           assert c['raw_values_rewritten'] is False
-          print('Persisted pipeline integration validated; this old immutable extension is not counted as Receipt 1 and no gates are promoted.')
+          print('Qualifying current Receipt 1 validated; no readiness gates are promoted and no paper performance starts.')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: eth-forward-fresh-extension-commissioning
+          name: eth-forward-fresh-extension-qualifying-receipt-1
           path: forward_validation/
           retention-days: 14
