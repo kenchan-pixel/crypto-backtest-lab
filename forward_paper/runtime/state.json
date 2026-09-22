@@ -9,8 +9,8 @@
   "model_sha256": "08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe",
   "gates": {
     "model_identity": true,
-    "live_feature_parity": false,
-    "source_freshness": false,
+    "live_feature_parity": true,
+    "source_freshness": true,
     "accounting_tests": true,
     "initial_decisions": false
   },
@@ -165,14 +165,46 @@
       "semantic_mapping_promoted": false,
       "paper_trades_created": 0,
       "gate_promotion": false
+    },
+    "qualifying_current_receipt_1": {
+      "receipt": "forward_paper/receipts/qualifying_current_receipt_1_20260923T004308HKT.json",
+      "actions_run_id": 35757863375,
+      "tests_passed": 81,
+      "status": "passed",
+      "gate_effect": "first of two qualifying current observations only"
+    },
+    "qualifying_current_receipt_2": {
+      "receipt": "forward_paper/receipts/qualifying_current_receipt_2_20260923T013124HKT.json",
+      "actions_run_id": 35761800850,
+      "actions_job_id": 106861390025,
+      "tests_passed": 82,
+      "artifact_sha256": "f70e95f75d68299365f33678094ea0461522e3e0b7132b06d81be339ed938b5f",
+      "fresh_first_seen_at_utc": "2026-09-22T17:31:24.810779+00:00",
+      "latest_common_metric_utc": "2026-09-22T17:20:00+00:00",
+      "common_metric_age_minutes": 11.413512983333334,
+      "funding_age_minutes": 91.41351298333333,
+      "archive_live_overlap_rows": 31,
+      "current_cut_candidate_count": 0,
+      "recent_24h_candidate_count": 2,
+      "recent_24h_threshold_count": 0,
+      "status": "passed"
+    },
+    "current_data_parity_gate_status": {
+      "promoted_after_two_independently_timed_qualifying_receipts": true,
+      "source_freshness": true,
+      "live_feature_parity": true,
+      "execution_ready": false,
+      "performance_started": false,
+      "paper_trades_created": 0,
+      "taker_value_semantics_resolved": false,
+      "taker_live_values_quarantined_from_frozen_decision_matrix": true
     }
   },
   "pending": [
-    "Retry the multi-day archive/connected semantic validator only after Binance publishes the 2026-09-21 daily ETHUSDT metrics archive; the 2026-09-22 01:28:35Z request returned HTTP 404, so the prior +5 minute mapping remains a hypothesis",
-    "After multi-day validation passes, define/apply the precision-aware source contract without rewriting raw values: tight comparison for open-interest fields and only evidence-supported rounding tolerance for ratio endpoints",
-    "Rerun the first fresh current causal source-to-feature-to-opportunity receipt only after the source semantic mapping is verified; keep source_freshness/live_feature_parity false until a later independently timed second receipt also passes",
-    "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
-    "Initial real AI and simple weekly decisions committed and effective"
+    "Commission durable idempotent persistent runtime/fill integration with compare-and-swap writes, service-due-exits-first ordering, actual later quote evidence, and base/stress cost sidecars; do not create backdated fills",
+    "Validate runtime restart/idempotency and late/missing fill/data-gap logging on the three common-parent paper arms while performance_started_at remains null",
+    "At the first eligible Monday after 08:00 Asia/Hong_Kong, commit genuine initial AI weekly allocation and simple weekly ETH30d-direction control from a fresh evidence packet; initial_decisions must remain false until that occurs",
+    "Only after durable runtime/fill integration and valid initial decisions are both complete may execution_ready/performance_started_at be considered; do not retroactively start performance"
   ],
   "classification": "User-approved prospective research experiment; old historical paper gate remains failed. Not an investable strategy or live trading."
 }
