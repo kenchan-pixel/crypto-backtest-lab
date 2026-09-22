@@ -1,0 +1,26 @@
+{
+  "schema": "eth-paper-runtime-integration-public-evidence-v1",
+  "source": "Binance connected public read-only market-data tool",
+  "tool_operation": "get_futures_usds_symbol_price_ticker",
+  "symbol": "ETHUSDT",
+  "read_only": true,
+  "orders_or_account_data_requested": false,
+  "quotes": [
+    {
+      "symbol": "ETHUSDT",
+      "price": "2740.44",
+      "exchange_time_ms": 1790115415579,
+      "observed_at": "2026-09-22T22:16:55.579000+00:00",
+      "source": "Binance USD-M public symbol price ticker",
+      "evidence_id": "runtime-integration-q1-1790115415579"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "price": "2741.37",
+      "exchange_time_ms": 1790115435183,
+      "observed_at": "2026-09-22T22:17:15.183000+00:00",
+      "source": "Binance USD-M public symbol price ticker",
+      "evidence_id": "runtime-integration-q2-1790115435183"
+    }
+  ]
+}
