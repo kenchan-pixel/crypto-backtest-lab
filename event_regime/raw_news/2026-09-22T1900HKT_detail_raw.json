@@ -2,13 +2,13 @@
   "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
   "provider": "Longbridge",
   "tool": "news_detail",
-  "note": "Verbatim structured detail evidence for identity/provenance fields returned by Longbridge for newly seen article IDs. Provider text is preserved; non-evidentiary engagement counters, images and ticker arrays are omitted from this evidence file. No chronology is inferred from published_at.",
+  "capture_mode": "structured_detail_fields",
+  "note": "Provider-returned stable id, title, description, URL, author/source and published_at are preserved as retrieved. Full article bodies are not archived here; no chronology is inferred from published_at.",
   "articles": [
     {
       "id":"299751042",
       "title":"BUZZ：随着比特币从八个月高点回落，加密货币相关股票下滑",
       "description":"",
-      "body":"随着比特币 (BTC=) 和以太坊 (ETH=) 下滑，美国上市的加密货币及区块链相关公司股票下跌\n\n全球最大加密货币比特币从近八个月高点下跌 1.28%，至 85,858.8 美元；以太币下跌 1.59%，报 2,739.5 美元\n\n加密货币交易所 Coinbase Global (COIN.O) 下跌 1.7%\n\n加密货币矿企：Riot Platforms Inc (RIOT.O)、MARA Holdings (MARA.O)、Hut 8 (HUT.O) 和 Bit Digital (BTBT.O) 跌幅在 0.5% 至 2.5% 之间\n\n交易平台 Robinhood Markets (HOOD.O) 下跌 1.1%\n\n比特币买家 Strategy (MSTR.O) 下滑 1.7%\n\n比特币矿机制造商嘉楠科技 (CAN.O) 和亿邦国际 (EBON.O) 分别下跌 1.8% 和 4.1%。\n\nProShares Bitcoin Strategy ETF (BITO.P) 下跌 0.8%\n\niShares Bitcoin Trust ETF (IBIT.O) 下跌 0.7%\n\n计入当日波动，比特币年初至今下跌 2.1%，以太币年初至今下跌 8.1%",
       "url":"https://longbridge.com/news/299751042",
       "author":{"member_id":"14","name":"LSEG"},
       "published_at":"2026-09-22T10:37:42Z"
@@ -17,7 +17,6 @@
       "id":"299747439",
       "title":"历史显示，这就是 2027 年比特币可能发生的情况",
       "description":"理解比特币的关键在于它每四年一次的周期，这一周期的规律性令人惊讶",
-      "body":"The key to understanding Bitcoin is its four-year cycle, which occurs with stunning regularity.",
       "url":"https://longbridge.com/news/299747439",
       "author":{"member_id":"5922","name":"MSN"},
       "published_at":"2026-09-22T10:10:56Z"
@@ -26,7 +25,6 @@
       "id":"299735034",
       "title":"REX 推出追踪比特币国库公司 Strive 的 2 倍杠杆 ETF",
       "description":"REX Shares 推出了 T-REX 2X Long Strive Daily Target ETF（股票代码 ASSX），旨在实现 Strive Asset Management 每日表现的 200%。与现货比特币 ETF 不同，这只杠杆基金跟踪 Strive 股票，该股票持有大量比特币资产。该产品提供了对公司股票的放大每日敞口，但由于杠杆和波动性带来了风险，这与直接持有比特币有所不同",
-      "body":"**摘要**\n\n- REX Shares 推出了以 ASSX 为代码的 T-REX 2X Long Strive Daily Target ETF。\n- 该基金旨在实现 Strive Asset Management 股票每日表现的 200%。\n- ASSX 是一个杠杆单只股票 ETF，而不是现货比特币 ETF。\n\n投资者现在可以获得与一家建立大型比特币国库的上市公司相关的杠杆 ETF。\n\nREX Shares 推出了以 ASSX 为代码的 T-REX 2X Long Strive Daily Target ETF，目标是提供 Strive Asset Management 股票每日表现的 200%。\n\n**ASSX 在比特币国库股票上增加杠杆**\n\nStrive 自身的资产负债表持有 26,355 BTC，使其股权对其运营业务和比特币国库的市场价值都敏感。\n\nASSX 在此股权基础上增加了每日杠杆。\n\n这与直接持有比特币有实质性不同，也不同于持有现货比特币 ETF。\n\n该基金跟踪 Strive 股票，而不是 BTC，其 2 倍目标每日重置。在超过一天的时间段内，复利和波动性可能导致回报与简单地翻倍 Strive 的长期股票表现显著偏离。\n\n**比特币国库股票不断催生新产品**\n\n随着越来越多的上市公司采用大型加密国库，这些股票本身正成为额外金融产品的构建块。\n\nASSX 就是这种二级市场的一个例子。\n\n希望获得 Strive 放大每日曝光的投资者现在可以通过交易所交易产品访问，但他们同时承担了杠杆、单只股票集中和 Strive 公司结构的风险。\n\n因此，该上市应被理解为对 ASST 股票的 2 倍杠杆 ETF。\n\n这不是一个杠杆现货比特币产品，尽管比特币仍然是推动该公司投资叙事的主要因素。\n\n_本文由新闻编辑部撰写，Samuel Rae 编辑。_\n\n来源：主要来源",
       "url":"https://longbridge.com/news/299735034",
       "author":{"member_id":"5978","name":"NewsBTC"},
       "published_at":"2026-09-22T08:30:00Z"
@@ -35,34 +33,30 @@
       "id":"299732286",
       "title":"比特币 ETF 接近 10 亿美元的资金流入，达到 2026 年的峰值。美国现货 ETF 在周一迎来了 10 亿美元的资金流入，这是自 2025 年 10 月以来的最大流入，因为比特币价格达到了 87,000 美元",
       "description":"在周一，美国现货比特币 ETF 经历了近 10 亿美元的显著资金流入，创下自 2025 年 10 月以来的最高单日流入。这一投资激增恰逢比特币短暂突破 87,000 美元",
-      "body":"周一，美国现货比特币 ETF 经历了近 10 亿美元的巨额资金流入，创下自 2025 年 10 月以来的最高单日流入。这一投资激增恰逢比特币短暂突破 87,000 美元。",
       "url":"https://longbridge.com/news/299732286",
       "author":{"member_id":"5899","name":"Unusual Whales"},
       "published_at":"2026-09-22T07:46:28Z"
     },
     {
-      "id":"299729771",
-      "title":"比特币 ETF 的资金流入达到 2026 年的高点，规模接近 10 亿美元",
-      "description":"美国现货比特币 ETF 在周一录得创纪录的 9.989 亿美元净流入，标志着 2026 年最高的单日收入，并超过了 1 月份创下的前高。贝莱德的 IBIT 以 3.81 亿美元领先。尽管出现了这一激增，但今年的累计流出仍为 4.64 亿美元。比特币价格上涨 4.7%，达到 85,430 美元，而以太坊 ETF 也录得 2.7 亿美元的显著流入",
-      "body":"美国现货比特币交易所交易基金（ETFs）在周一吸引了近 10 亿美元的净流入，创下 2026 年最大的单日收入。\n\n根据 SoSoValue 的数据，这些基金在单日净流入中记录了 9.989 亿美元，超过了 2026 年 1 月 14 日 844 万美元的前高。\n\n周一的总额也标志着自 2025 年 10 月 6 日以来最大的单日流入，当时美国现货比特币 ETF 吸引了超过 12 亿美元。尽管出现激增，但美国现货比特币 ETF 在 2026 年迄今已出现约 4.64 亿美元的净流出。\n\n根据 Farside Investors 的数据，黑石的 iShares 比特币信托（IBIT）在周一的流入中领先，达到 3.81 亿美元，其次是 ARK 21Shares 比特币 ETF（ARKB）为 2.89 亿美元，富达的 Wise Origin 比特币基金（FBTC）约为 2.39 亿美元。\n\n在发布时，比特币的交易价格为 85,430 美元，24 小时上涨 4.7%，过去一个月上涨 12.3%。根据 CoinGecko 的数据，周一比特币一度上涨至 87,200 美元以上。CryptoQuant 的 Julio Moreno 在周一表示，比特币已突破其 365 日移动平均线，他将其描述为确认新牛市所需的最后信号。\n\n美国现货以太坊 ETF 在周一吸引了约 2.7 亿美元的资金流入，创下 2026 年最大的单日流入。美国现货 XRP ETF 当天没有净流入，累计净流入约为 17.1 亿美元。",
-      "url":"https://longbridge.com/news/299729771",
-      "author":{"member_id":"5800","name":"Cointelegraph"},
-      "published_at":"2026-09-22T07:33:37Z"
-    },
-    {
       "id":"299733868",
-      "title":"Vitalik Buterin 欢迎预测市场的竞争者加入以太坊基础链，并表示该项目在道德层面上做了 ‘有趣且有意义’ 的事情",
+      "title":"Vitalik Buterin 欢迎预测市场的竞争者加入以太坊基础链，并表示该项目在道德层面上做了 “有趣且有意义” 的事情",
       "description":"以太坊联合创始人维塔利克·布特林（Vitalik Buterin）支持 Trueo，一个迁移到以太坊 L1 链的新预测市场平台。他赞扬了 Trueo 对去中心化和伦理标准的承诺，并将其与受到企业影响的竞争对手如 Polymarket 和 Kalshi 进行了对比。Trueo 旨在提供公正的争议解决，并发行以 USDC 支持的 TYD 稳定币。尽管存在风险，布特林仍然支持预测市场，因为它们具有追求真相的潜力",
-      "body":"以太坊 (CRYPTO: ETH) 联合创始人 Vitalik Buterin 在周一支持 Trueo 作为强有力的预测市场竞争者，称其道德且没有 ‘企业垃圾’。文章称 Trueo 从 Base 迁移到以太坊 L1，强调去中心化、公正争议解决，以及由 USDC 支持的 TYD 稳定币；并讨论 Polymarket、Kalshi 与预测市场的伦理风险。",
       "url":"https://longbridge.com/news/299733868",
       "author":{"member_id":"36","name":"benzinga_article"},
       "published_at":"2026-09-22T07:36:44Z"
     },
     {
+      "id":"299729771",
+      "title":"比特币 ETF 的资金流入达到 2026 年的高点，规模接近 10 亿美元",
+      "description":"美国现货比特币 ETF 在周一录得创纪录的 9.989 亿美元净流入，标志着 2026 年最高的单日收入，并超过了 1 月份创下的前高。贝莱德的 IBIT 以 3.81 亿美元领先。尽管出现了这一激增，但今年的累计流出仍为 4.64 亿美元。比特币价格上涨 4.7%，达到 85,430 美元，而以太坊 ETF 也录得 2.7 亿美元的显著流入",
+      "url":"https://longbridge.com/news/299729771",
+      "author":{"member_id":"5800","name":"Cointelegraph"},
+      "published_at":"2026-09-22T07:33:37Z"
+    },
+    {
       "id":"299723465",
       "title":"比特币价格预测：BTC 已突破 87,000 美元，今年是否会继续上涨？",
       "description":"比特币在 9 月 22 日突破 87,000 美元，创下 8 个月来的新高，随后回落至 85,265 美元。这波上涨是由于宏观经济条件改善，包括国债收益率下降和油价下跌，提升了风险偏好。美国现货比特币 ETF 录得创纪录的 10 亿美元资金流入。分析师指出 90,000–92,000 美元是下一个阻力位，如果 82,000 美元的支撑位保持，预计会出现健康的回调。持续的通胀缓解可能会推动价格向 100,000 美元迈进",
-      "body":"TradingKey - 比特币短暂突破 87,000 美元；下一个关键阻力位在哪里？\n\n在 9 月 22 日，比特币（BTC）强势突破了过去一个月的阻力位 82,000 美元，日内上涨超过 5%，短暂触及 87,000 美元，创下 8 个月新高。截至发稿时，比特币价格已回落，暂时交易于 85,265 美元。\n\n文章将上涨归因于国债收益率下降、油价下跌及风险偏好改善，并称美国现货比特币 ETF 录得约 10 亿美元净流入。文中引用分析师认为 90,000–92,000 美元是下一阻力位，并称 82,000 美元为关键支撑。",
       "url":"https://longbridge.com/news/299723465",
       "author":{"member_id":"6041","name":"TradingKey"},
       "published_at":"2026-09-22T06:37:09Z"
