@@ -30,17 +30,11 @@ jobs:
         with:
           python-version: '3.13'
       - run: python -m pip install -r forward_paper/requirements.txt
-      - name: Validate persisted pipeline plus live parity contract
+      - name: Run complete forward-paper tests
         run: |
           set -euo pipefail
           mkdir -p forward_validation
-          python -m pytest -q \
-            forward_paper/test_live_sources.py \
-            forward_paper/test_freshness.py \
-            forward_paper/test_live_pipeline.py \
-            forward_paper/test_persisted_pipeline.py \
-            forward_paper/test_persisted_extension_pipeline.py \
-            forward_paper/test_live_parity_contract.py | tee forward_validation/tests.txt
+          python -m pytest -q forward_paper | tee forward_validation/tests.txt
       - name: Run integration-only causal source-to-opportunity validation
         run: |
           set -euo pipefail
@@ -59,7 +53,7 @@ jobs:
           assert r['paper_trades_created']==0 and r['performance_started'] is False
           assert r['order_account_endpoints_used'] is False and r['raw_source_values_rewritten'] is False
           assert r['gate_effect'].startswith('Integration validation only')
-          assert r['derivative_freshness']['passed'] is True
+          assert r['derivative_freshness']['fresh'] is True
           assert all(r['derivative_feature_non_null_at_cut'].values())
           assert all(v>=16 for k,v in r['base_fresh_exact_overlap_rows'].items() if k!='funding')
           assert r['base_fresh_exact_overlap_rows']['funding']>=3
