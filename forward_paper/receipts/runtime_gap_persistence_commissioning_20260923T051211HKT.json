@@ -1,0 +1,67 @@
+{
+  "schema": "eth-paper-runtime-gap-commissioning-evidence-v1",
+  "generated_at_hkt": "2026-09-23T05:12:11.436037+08:00",
+  "bounded_step": "append-only late/missing fill and data-gap persistence only",
+  "status": "passed",
+  "successful_actions_run_id": 35785102388,
+  "successful_head_sha": "456a10ef9984420271c00fd4023f227f7d0c7861",
+  "tests_passed": 96,
+  "tests_elapsed_seconds": 5.55,
+  "actions_artifact": {
+    "artifact_id": 10719508910,
+    "artifact_sha256": "4d825033f48c60c01ce943b61d64ce22f489417d2c45816c93d993f1802471ef",
+    "runtime_gap_receipt_sha256": "97d26a9679ef9bdeb1cf6f7b05f433235d7e2f987dcb43df6d7d7f84419f4041",
+    "tests_txt_sha256": "37e53e9b705ad390e6e70627a1f03fe785cd6cd274605910226643d6378860af"
+  },
+  "prior_failed_attempt": {
+    "actions_run_id": 35781770590,
+    "head_sha": "24317211aee365678a3a4883dc4da597e44517fb",
+    "artifact_id": 10717873964,
+    "artifact_sha256": "e4cc6fe50260eeb6ce113155511021404a8c4fa4187b80498fb407785fd00009",
+    "failure": "pytest collection SyntaxError from a hyphenated test function name; commissioning probe steps were skipped",
+    "superseded_by_successful_run": true
+  },
+  "public_evidence": {
+    "path": "forward_paper/inputs/connected_gap_commissioning_evidence_20260923T0437HKT.json",
+    "sha256": "1ab15fe8f86936b175029f6b45306fe311a63dad1fd19c2d80ada5f44ab17e17",
+    "source": "Binance connected public read-only market-data tool",
+    "symbol": "ETHUSDT",
+    "ticker_exchange_time_ms": 1790109452323,
+    "ticker_price": "2753.77",
+    "latest_completed_5m_close_utc": "2026-09-22T20:34:59.999000+00:00",
+    "orders_or_account_data_requested": false
+  },
+  "checks": {
+    "entry_fill_gap_append_only": true,
+    "entry_gap_restart_replay_idempotent": true,
+    "missing_entry_not_backfilled": true,
+    "due_exit_gap_append_only": true,
+    "due_exit_gap_restart_replay_idempotent": true,
+    "missing_exit_keeps_position_open": true,
+    "no_exit_price_fabricated": true,
+    "data_gap_append_only": true,
+    "data_gap_restart_replay_idempotent": true,
+    "source_runtime_bytes_unchanged": true
+  },
+  "engineering_fixture": {
+    "synthetic_threshold_signal": true,
+    "synthetic_missing_entry_fill": true,
+    "synthetic_missing_exit_quote": true,
+    "synthetic_missing_data_family": true,
+    "actual_connected_public_quote_used_for_open_path_test": true,
+    "forward_opportunity_claimed": false,
+    "forward_trade_claimed": false
+  },
+  "actual_runtime_state_mutated": false,
+  "actual_runtime_paper_trades_created": 0,
+  "real_orders_created": 0,
+  "order_account_endpoints_used": false,
+  "gate_effect": "none; base/stress cost sidecars and genuine initial weekly decisions remain incomplete",
+  "runtime_status_after_step": {
+    "status": "COMMISSIONING",
+    "execution_ready": false,
+    "initial_decisions": false,
+    "performance_started_at": null
+  },
+  "historical_gate_effect": "none; the old failed historical paper gate remains failed"
+}
