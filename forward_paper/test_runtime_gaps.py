@@ -110,7 +110,7 @@ def test_due_exit_gap_keeps_position_open_and_replay_is_idempotent():
     assert any(account["open"] is not None for account in first["accounts"].values())
 
 
-def test_data_gap_is_first-seen_append_only():
+def test_data_gap_is_first_seen_append_only():
     state = fresh_state("2026-09-22T18:00:00+00:00")
     first = record_data_gap(
         state,
