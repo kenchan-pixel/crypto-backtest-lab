@@ -1,0 +1,15 @@
+{
+  "first_seen_at_hkt": "2026-09-22T23:00:00+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299778886","title":"忘掉狗狗币：PEPE 涨幅超越比特币和 XRP——FLOKI 会是下一个吗？","excerpt":"PEPE 以 20% 的涨幅领跑加密货币市场，表现优于比特币和 XRP，交易员基于反向头肩形态将目标价定为 0.00001 美元。与此同时，FLOKI 正在测试...","source_name":"benzinga_article","time":"2026-09-22T13:40:49Z","url":"https://longbridge.com/news/299778886.md"},
+    {"id":"299761196","title":"ETF资金流入提振加密货币，比特币突破8.7万美元","excerpt":"在巨额ETF资金流入和空头头寸清算的推动下，比特币飙升至24小时高点87,360美元。美国比特币现货ETF净流入跃升至9.99亿美元，而以太坊ETF净流入增至2...","source_name":"rttnews","time":"2026-09-22T11:51:47Z","url":"https://longbridge.com/news/299761196.md"},
+    {"id":"299755151","title":"卡拉莫斯投资公司首席执行官：人工智能和比特币将长期存在","excerpt":"卡拉莫斯投资公司（Calamos Investments）首席执行官约翰·库杜尼斯（John Koudounis）探讨了人工智能投资、石油、美联储政策以及比特币...","source_name":"MSN","time":"2026-09-22T11:08:56Z","url":"https://longbridge.com/news/299755151.md"}
+  ],
+  "dedupe_note": "These stable Longbridge article IDs were absent from the immediately prior 2026-09-22T19:00:00+08:00 detail manifest. Cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
