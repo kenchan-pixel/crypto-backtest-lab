@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from . import taker_decision_invariance as tdi
+from forward_paper import taker_decision_invariance as tdi
 
 TAKER = Path('forward_paper/inputs/connected_binance_full_20260922T072853HKT/taker.json')
 MODEL = Path('forward_paper/model.json')
