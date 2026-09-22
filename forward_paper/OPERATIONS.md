@@ -1,36 +1,66 @@
 # ETH forward observation — operator entrypoint
 
 ## Current verified state
-User-approved prospective research, not a successful historical gate and not live money. Three accounts in runtime/state.json each contain virtual10000USDT and no coins/trades. At initialization execution_ready=false and performance_started_at=null. Never present these zero balances/results as an already-running strategy.
 
-Frozen model persisted by actual successful Actions run35616440026. Model SHA256 08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe; original2024-only fit669 events;1869JSON/sklearn prediction checks; exact54/34 original2025/2026 raw-signal timestamps. The worker also ran14 paper-account unit tests. A separate outcome-free feature-value adapter matched all1869 original ETH sequence rows locally. This is NOT yet an end-to-end live signal, fill or performance test.
+This is the user-approved **new prospective PAPER-ONLY forward experiment**. It is not proof that the old historical paper gate passed, and it is not live-money trading. Preserve the old failed historical gate unchanged.
 
-Read-only cloud probe run35614673357 returned200 for Binance spot1h, funding, OI, top-position ratio and latest metrics archive checksum. Seven Longbridge macro queries are preserved as initialization evidence; their releases must not be backdated as our own first-seen observations. Historical full parent-opportunity replay run35652530113 reproduced all1,869 sequence rows and exact54/34 signals→45/26 executions with no outcome data in signal construction.
+Execution SOT is `forward_paper/runtime/state.json`. Current verified runtime remains:
 
-Direct Binance USD-M futures REST from GitHub-hosted Azure runners was then tested in two actual regions (eastus and centralus) and both returned HTTP451; the focused33 tests passed before source access. Do NOT proxy or bypass that restriction. The approved fallback is the already connected Binance public read-only tool. The first compact immutable connected snapshot is now persisted at `forward_paper/inputs/connected_binance_snapshot_20260922T061935HKT.json`, SHA256 `21b9ef3cddfcb96cc292475ae36a1c8ec5027bf72d66293e08d35a3f54db0056`. Actions run35662300853 passed24 source/freshness/persistence tests; at its real observation the common native5m metric was9.59minutes old and settled funding379.59minutes old, both valid. This validates the connected-tool→immutable-GitHub route only: the compact snapshot has just2 exact common5m rows and5 funding rows, so live_feature_parity/source_freshness remain false and no paper trade/performance begins.
+- `status=COMMISSIONING`
+- `execution_ready=false`
+- `performance_started_at=null`
+- `initial_decisions=false`
+- three independent virtual accounts, each 10,000 USDT, 0 ETH, 0 trades
+- frozen model SHA256 `08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe`
+- original threshold ~`0.010189194004167217`, planned hold 24h
+- no retraining, strategy search, leverage, shorts, real orders or paid data provider
 
-A full connected native5m tail was then persisted at `forward_paper/inputs/connected_binance_full_20260922T072853HKT/` with283 rows in each required metric family plus100 settled funding rows. The first persisted-pipeline validation (Actions run35669302279) passed26 focused source/pipeline tests but correctly REJECTED the snapshot before feature/opportunity evaluation: conservative first_seen=2026-09-21T23:42:43Z while the latest common native5m row=23:15:00Z, age27.72minutes > frozen15-minute freshness limit. Failure evidence is `forward_paper/receipts/persisted_pipeline_stale_snapshot_20260922.json`. Do not relax freshness, backdate first_seen, or reuse this stale snapshot as a qualifying current receipt. live_feature_parity/source_freshness remain false; paper trades remain0 and performance_started_at remains null.
+Never call Binance/Longbridge order, account, balance, wallet, margin, borrowing, transfer or deposit endpoints, including testnet. Existing Crypto News Collector and unrelated workflows must remain unchanged. No auto-merge.
 
-## Commissioning work still required — do work, not repeated status-only checks
-Only implement inside forward_paper and its dedicated workflow(s); preserve all original research modules, model, fees and parameters. No automatic merge.
+## Verified commissioning milestones
 
-1. Next, collect a NEW genuinely fresh FULL connected-Binance public read-only tail (native5m OI, top accounts, top positions, global accounts, taker, plus settled funding) sufficient to bridge the verified archive warmup. Persist exact raw response values and a conservative actual first_seen immutably in GitHub. The latest common required5m timestamp must be no more than15minutes older than conservative first_seen. Do not shorten first_seen after collection, lower the freshness requirement, reduce cadence, fill missing metrics or substitute one-hour ratios for native5m data.
-2. Run one complete current source→feature→opportunity commissioning receipt from that fresh persisted snapshot plus genuine completed ETH/BTC spot bars and the existing causal macro capture. Reuse the same `normalize_metric_bundle`, funding normalization, one-hour backward availability lag, frozen model and parent-opportunity logic. It must show checksum-bound archive/live overlap, no unacceptable gap, all required derivative features non-null at the cutoff, frozen regime states, current/recent candidates including no-signal result, model hash, source hashes and zero paper fills. Historical outcomes/execution prices must not enter. The previously rejected stale full tail does NOT count as receipt1.
-3. On a later independently timed run, repeat with a genuinely different fresh full connected snapshot and require the same deterministic pipeline checks before promoting `live_feature_parity` and `source_freshness`. A compact persistence probe or stale full snapshot does NOT count as either qualifying full pipeline receipt.
-4. After those gates pass, wire durable idempotent paper runtime around core.py/model.py using compare-and-swap state writes. Keep request, information cutoff, signal record, actual later quote/fill and exit timestamps separately. Save signal before observing fill; never use an already-known historical open. Process due exits even while new entries are paused. Keep base and stress-cost states on identical opportunities and add persistence conflict/retry, data gap, empty period, inactive AI review, delayed fill/exit tests.
-5. Obtain a fresh weekly management packet and record an ACTUAL AI rationale and1/.5/0 allocation. Simple control uses that same cutoff's ETH30d direction, HALF stays.5. Commit both decisions before eligibility; next fullHKT hour after commit is earliest effect. Initial review is current, not last Monday. Until all gates pass leave all accounts idle. Set performance_started_at only after actual readiness and effective decisions; do not reuse initialization date.
+Model reconstruction is checksum-bound to the original 2024-only ETH model. Actual Actions run `35616440026` verified the model export plus 14 paper-account tests; local feature-value parity covered 1,869 historical sequence rows. Historical opportunity replay reproduced the original signal/opportunity stream but remains historical evidence only.
 
-## Hourly operation after commissioning
-Read latest PROTOCOL, this document, state, model receipt and newest runtime receipt before acting. Do not retrain or search variants. Compute frozen parent opportunities on fresh data. All accounts share the same parent availability, even if AI skips. At each valid opportunity use actual saved weekly allocation and a genuine subsequently observed quote. Planned hold24h; actual delay/fill differences must be visible. Invoke NO order, wallet, balance, margin, borrowing, account or transfer API, including testnet.
+Direct Binance USD-M REST from GitHub-hosted Azure runners returned HTTP451 in two regions. Do not proxy or bypass it. The approved source is the connected Binance **public read-only** tool, persisted immutably into GitHub before use.
 
-Process exits first, then new opportunities. Avoid duplicate state writes and duplicate notifications. No need to notify for routine unchanged/zero-signal hours. Report meaningful access/data/exit/ledger failures once on transition, preserve explicit blockers, and notify when genuine paper observation first starts.
+Two independently timed qualifying current receipts have passed the causal source→feature→opportunity path. Receipt 1 is `forward_paper/receipts/qualifying_current_receipt_1_20260923T004308HKT.json`; Receipt 2 is `forward_paper/receipts/qualifying_current_receipt_2_20260923T013124HKT.json`. The second passed Actions `35761800850`. Therefore only `source_freshness=true` and `live_feature_parity=true` were promoted. Taker value semantics remain unresolved but Taker is retained/hash/freshness-checked and quarantined from the frozen decision matrix because the frozen model does not depend on it.
 
-## Weekly analysis and comparison
-First eligible run Monday morning after08:00HKT: current point-in-time review, actual AI decision and one weekly report. Include all three accounts' full-period and monthly returns,drawdown,exposure,transaction and assumedAI overhead, skipped winners/avoided losers, latency/missing data and sample counts. Existing Crypto News Collector remains unchanged; do not create another news collector. Update the existing Notion Trading Incubator and its Activity Log only for meaningful progress/decisions, not every poll.
+Durable paper runtime commissioning is complete through CAS persistence, restart/idempotency, exits-first ordering, genuine later-quote ordering, append-only late/missing-fill and data-gap events, BASE/STRESS cost sidecars, separate assumed AI operating-budget sidecars, and atomic sidecar wiring. Latest integrated runtime receipt before the weekly path is `forward_paper/receipts/runtime_sidecar_integration_commissioning_20260923T062104HKT.json` (Actions `35791826854`). These probes used isolated copies and public read-only evidence; they did not create actual paper trades or arm performance.
 
-Review12weeks after real performance start; this is operational/comparative evidence, not proof of investable alpha. Do not reset a losing arm, select a winner or authorize live money. A next phase needs a new decision.
+The genuine weekly decision **packet/commit path is now also commissioned**. `forward_paper/weekly_decision_packet.py` binds the current runtime hash, frozen model, immutable public evidence and SIMPLE_WEEKLY rule; it requires an explicit assistant AI weight `1/0.5/0` plus rationale, blocks coded AI fallback, requires a packet no older than 20 minutes at commit, uses CAS, and sets the earliest effect to the next full hour. It does not arm performance.
 
-## Inputs and safe recovery
-Existing durable derivative release research-derivatives-20260919-52b24ddfb33c-a1 contains real inputs, original source hashes and reusable feature code; ZIP SHA034aa3a79ea9451868f862d0796cceb158df956b12c1fe3ccf6901ff3fb43051. Original sequence artifact10603752542 SHAe1208b70c78cd60137d62a40db0c1a0f2d1c46fec0a9c8bfeeda742d370d5736, original payoff artifact10604261305 SHA12aaeaa9699645db26036a8433e2c5437c3d4dd233507182452b783434b9314c. Those artifacts expire; preserve necessary parity evidence during commissioning. Frozen model.json is already durable in this branch, so normal operation never refits it.
+Verified Actions run `35796569338` passed **110 tests** plus all commissioning-boundary checks. Permanent receipt: `forward_paper/receipts/weekly_decision_packet_commissioning_20260923T071627HKT.json`. Connected preview evidence: `forward_paper/inputs/connected_weekly_packet_preview_20260923T071024HKT.json`, file SHA256 `db4eac67063aa89d90e438436ddf2bcd07a3c94237778f3d3540033b6e422956`. The completed daily closes used only to validate the SIMPLE path were 2422.60 and 2776.19 exactly 30 calendar days apart, giving preview return +14.5954759% and preview SIMPLE weight 1.0. This was Wednesday and therefore **not a genuine weekly decision**: the guard correctly blocked commit, AI remained unset, runtime bytes were unchanged, and no gate was promoted.
 
-If a run hits a genuine inaccessible source, permission conflict or unresolved semantic mismatch, record a specific blocked state and ask only for the missing authorization/information. Do not bypass regional restrictions or infer unavailable data. Do not add a paid provider. Complete at most one bounded integration step per scheduled commissioning run with real tests, rather than an unbounded redesign. Once active, routine runs are observation/account maintenance only.
+## Remaining commissioning action — time-gated
+
+There is no remaining integration step to invent before the weekly decision window. Routine off-window runs should be silent after verifying that SOT has not materially changed.
+
+On the **first eligible Monday run at or after 08:00 Asia/Hong_Kong**:
+
+1. Read PROTOCOL, this OPERATIONS file, latest runtime state/model/parity receipts and latest meaningful receipt.
+2. First service any due exit if the runtime has somehow become active; otherwise continue commissioning.
+3. Collect a genuinely fresh connected public evidence packet. Do not reuse the Wednesday preview or any stale packet.
+4. Derive `SIMPLE_WEEKLY` from that same cutoff: prior-30d ETH return >=0 => 1.0, otherwise 0.5; unknown => no new trade.
+5. Make an **actual assistant** `AI_WEEKLY` decision of 1.0 / 0.5 / 0 with a short evidence-based rationale. Never substitute a coded rule and label it AI.
+6. Commit AI + SIMPLE through the guarded CAS path before the next eligibility hour; HALF remains 0.5. Read back the persisted decision and AI-budget sidecar.
+7. Do **not** set `performance_started_at` merely because the decision was saved. The decision must first become effective at the next full HKT hour. Only then, if every readiness receipt is valid, may `initial_decisions`, `execution_ready` and genuine performance start be considered. Record the actual start time, never retroactively.
+
+Until that point the three accounts remain idle. Zero P&L is not evidence that the signal engine is running.
+
+## Operation after genuine performance start
+
+Collect/check current data on each run. Service due exits before evaluating new opportunities. Preserve the full frozen parent-opportunity stream, including counterexamples and no-signal periods. Save each causal signal before observing a fill; use only a genuinely later public quote. Never invent a backdated fill. All arms share the same parent opportunity and fill observations, and the common parent busy-until marker remains binding even if AI skips.
+
+Maintain append-only idempotent ledgers with compare-and-swap writes. Log late/missing fills and data gaps explicitly. Keep BASE and STRESS cost comparisons on the same opportunities and keep assumed AI operating budgets separate from trading P&L. Planned hold remains 24h. A delayed exit uses genuine subsequent evidence and disclosed latency; it is never silently imputed.
+
+Routine unchanged/no-signal checks are silent. Report a new access/data/exit/ledger blocker only on meaningful transition. If a genuine permission or source-semantic issue prevents safe progress, leave runtime blocked and ask only for what is missing. Do not infer failure from truncated previews.
+
+## Weekly comparison and review
+
+The first eligible Monday decision produces one Chinese weekly comparison. Thereafter report all three arms together: full-period and monthly net return, drawdown, exposure, transaction costs, assumed AI overhead, missed winners/avoided losers, latency/missing data and trade counts. Do not claim significance from a small sample.
+
+Initial review is 12 weeks after the **genuine** `performance_started_at`. Review without auto-promoting to live money, resetting poor results, switching model/strategy, or selecting a winner. Any next phase requires a new explicit decision.
+
+## Evidence and recovery
+
+Important historical source artifacts and receipts remain under `forward_paper/receipts/` and `forward_paper/inputs/`; do not manufacture replacement gate receipts. The model JSON is durable in this branch and normal operation never refits it. Complete at most one bounded commissioning action per scheduled run. Once commissioned, runs are observation/account maintenance only.
