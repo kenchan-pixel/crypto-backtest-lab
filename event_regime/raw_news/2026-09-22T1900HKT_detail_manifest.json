@@ -1,0 +1,97 @@
+{
+  "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-22T15:04:34+08:00",
+    "searched_queries": [
+      {"query": "Bitcoin", "new_search_hits": 5},
+      {"query": "Ethereum", "new_search_hits": 1},
+      {"query": "Bitcoin ETF", "new_search_hits": 5},
+      {"query": "SEC crypto", "new_search_hits": 0}
+    ],
+    "dedupe_result_unique_articles": 7,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source content identity",
+    "cross_query_duplicate_ids": ["299751042", "299735034", "299732286", "299729771"],
+    "content_identity_duplicates_removed": [],
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable and never used for chronology; none of the 7 newly saved articles used a placeholder timestamp.",
+    "first_seen_policy": "2026-09-22T19:00:00+08:00 is a conservative observation timestamp for this collection. published_at is provider metadata and is never used to backdate first_seen_at_hkt.",
+    "detail_capture_note": "news_detail was retrieved successfully for all 7 unique articles. Stable id, title, description, URL, author/source and published_at were retained as provenance. The companion detail evidence file may abbreviate long body text and must not be treated as a verbatim full-article archive.",
+    "historical_news_completeness_claimed": false,
+    "trading_actions": "none"
+  },
+  "quality_notes": [
+    {
+      "id": "299723465",
+      "type": "late_search_or_indexing_visibility",
+      "note": "Provider published_at is 2026-09-22T06:37:09Z (2026-09-22 14:37:09 HKT), earlier than the prior 15:04:34 HKT collection, but the article was absent from that prior manifest. It is treated as newly seen at 19:00 HKT and first_seen is not backdated."
+    },
+    {
+      "id": "299729771",
+      "type": "provider_value_inconsistency_possible",
+      "note": "Provider detail says the current 9.989亿 USD inflow exceeded a prior 2026 high described as 844万 USD. This appears internally inconsistent in scale, so the provider values are preserved and not corrected or inferred."
+    }
+  ],
+  "new_articles": [
+    {
+      "id": "299751042",
+      "matched_queries": ["Bitcoin", "Bitcoin ETF"],
+      "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
+      "published_at_utc": "2026-09-22T10:37:42Z",
+      "source": "LSEG",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299747439",
+      "matched_queries": ["Bitcoin"],
+      "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
+      "published_at_utc": "2026-09-22T10:10:56Z",
+      "source": "MSN",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299735034",
+      "matched_queries": ["Bitcoin", "Bitcoin ETF"],
+      "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
+      "published_at_utc": "2026-09-22T08:30:00Z",
+      "source": "NewsBTC",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299732286",
+      "matched_queries": ["Bitcoin", "Bitcoin ETF"],
+      "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
+      "published_at_utc": "2026-09-22T07:46:28Z",
+      "source": "Unusual Whales",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299733868",
+      "matched_queries": ["Ethereum"],
+      "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
+      "published_at_utc": "2026-09-22T07:36:44Z",
+      "source": "benzinga_article",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299729771",
+      "matched_queries": ["Bitcoin", "Bitcoin ETF"],
+      "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
+      "published_at_utc": "2026-09-22T07:33:37Z",
+      "source": "Cointelegraph",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299723465",
+      "matched_queries": ["Bitcoin ETF"],
+      "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
+      "published_at_utc": "2026-09-22T06:37:09Z",
+      "source": "TradingKey",
+      "timestamp_quality": "verified_detail_late_seen"
+    }
+  ],
+  "detail_evidence_file": "event_regime/raw_news/2026-09-22T1900HKT_detail_raw.json"
+}
