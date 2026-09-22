@@ -1,0 +1,28 @@
+{
+  "schema": "eth-paper-connected-quote-pair-v1",
+  "captured_for": "commissioning actual-later-quote ordering validation only",
+  "source": "Binance USD-M public read-only symbol price ticker",
+  "tool_operation": "get_futures_usds_symbol_price_ticker",
+  "symbol": "ETHUSDT",
+  "read_only": true,
+  "orders_or_account_data_requested": false,
+  "quotes": [
+    {
+      "symbol": "ETHUSDT",
+      "price": "2752.17",
+      "exchange_time_ms": 1790106277241,
+      "observed_at": "2026-09-22T19:44:37.241000+00:00",
+      "source": "Binance USD-M public symbol price ticker",
+      "evidence_id": "binance-usdm-ETHUSDT-1790106277241"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "price": "2752.90",
+      "exchange_time_ms": 1790106291246,
+      "observed_at": "2026-09-22T19:44:51.246000+00:00",
+      "source": "Binance USD-M public symbol price ticker",
+      "evidence_id": "binance-usdm-ETHUSDT-1790106291246"
+    }
+  ],
+  "notes": "Both observations were returned by the connected Binance public market-data tool in this commissioning run. They are evidence for causal quote ordering tests only, not a market signal, fill in the real runtime, account balance, or forward performance result."
+}
