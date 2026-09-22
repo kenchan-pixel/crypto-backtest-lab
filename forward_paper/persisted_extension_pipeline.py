@@ -49,8 +49,47 @@ def merge_raw_exact(base, fresh):
     return merged,overlaps
 
 
+def merge_funding_warmup_exact(upstream, downstream):
+    """Carry only earlier-observed immutable funding history into a staging bridge.
+
+    The staging bridge intentionally contains a short recent funding tail. Frozen
+    funding-state z-scores need longer causal warmup, so a declared upstream snapshot
+    may contribute only its funding rows. Overlap must be byte-value equivalent at the
+    row level; nothing is rewritten or inferred.
+    """
+    old={_time_key('funding',r):r for r in upstream}
+    overlap=0
+    for r in downstream:
+        t=_time_key('funding',r)
+        if t in old:
+            overlap+=1
+            if old[t]!=r:
+                raise ValueError(f'Conflicting upstream/base funding overlap: {t}')
+        else:
+            old[t]=r
+    return [old[t] for t in sorted(old)],overlap
+
+
 def run(base_dir,fresh_dir,macro_capture,out_path,qualifying_current=False):
     base_manifest,base_seen,base_rows,base_checks=load_snapshot(base_dir)
+    funding_lineage=None
+    upstream_dir=base_manifest.get('upstream_base_snapshot_dir')
+    if upstream_dir:
+        _,upstream_seen,upstream_rows,upstream_checks=load_snapshot(upstream_dir)
+        if upstream_seen>base_seen:
+            raise ValueError('Declared funding warmup upstream was observed after staging base')
+        warmed,upstream_overlap=merge_funding_warmup_exact(upstream_rows['funding'],base_rows['funding'])
+        if upstream_overlap<3:
+            raise ValueError('Insufficient exact upstream/base funding overlap')
+        base_rows=dict(base_rows);base_rows['funding']=warmed
+        funding_lineage={
+          'upstream_snapshot_manifest':str(Path(upstream_dir)/'manifest.json'),
+          'upstream_first_seen_at_utc':upstream_seen.isoformat(),
+          'upstream_funding_blob_check':upstream_checks['funding'],
+          'upstream_base_funding_exact_overlap_rows':upstream_overlap,
+          'funding_rows_after_lineage_merge':len(warmed),
+          'rule':'Only earlier-observed immutable settled-funding rows are carried forward; exact overlapping rows must agree and no raw values are rewritten.'
+        }
     fresh_manifest,observed,fresh_rows,fresh_checks=load_snapshot(fresh_dir)
     if fresh_manifest.get('capture_mode')!='fresh_incremental_extension':
         raise ValueError('Fresh snapshot is not certified as an incremental extension')
@@ -91,8 +130,9 @@ def run(base_dir,fresh_dir,macro_capture,out_path,qualifying_current=False):
     macro=[{'usable_at':e['usable_at_utc'],'indicator':e['indicator'],'sign':e['sign']}
            for e in macro_norm['events'] if e['forward_eligible'] and pd.Timestamp(e['usable_at_utc'])<=observed]
     model=load('forward_paper/model.json');cut=regimes.index[-1];current=regimes.loc[cut]
-    if any(str(current[c])=='unknown' for c in REQ_STATE):
-        raise ValueError('Current regime has unknown frozen-model state')
+    unknown_states=[c for c in REQ_STATE if str(current[c])=='unknown']
+    if unknown_states:
+        raise ValueError('Current regime has unknown frozen-model state(s): '+','.join(unknown_states))
     needed=['funding_per_hour','oi_logchange_24h','top_position_ratio']
     if any(pd.isna(D.loc[cut,c]) for c in needed):
         raise ValueError('Required derivative feature is null at cutoff')
@@ -113,6 +153,7 @@ def run(base_dir,fresh_dir,macro_capture,out_path,qualifying_current=False):
       'base_snapshot_manifest':str(Path(base_dir)/'manifest.json'),'fresh_snapshot_manifest':str(Path(fresh_dir)/'manifest.json'),
       'base_first_seen_at_utc':base_seen.isoformat(),'fresh_first_seen_at_utc':observed.isoformat(),
       'base_blob_checks':base_checks,'fresh_blob_checks':fresh_checks,'base_fresh_exact_overlap_rows':overlap,
+      'funding_warmup_lineage':funding_lineage,
       'derivative_freshness':fresh,
       'spot_latest_complete_utc':cut.isoformat(),'spot_completed_aligned_hours':len(eth),'spot_latest_age_minutes':eth.attrs['latest_complete_age_minutes'],
       'spot_response_sha256':{'ETHUSDT':sha_bytes(eth_bytes),'BTCUSDT':sha_bytes(btc_bytes)},
@@ -127,7 +168,7 @@ def run(base_dir,fresh_dir,macro_capture,out_path,qualifying_current=False):
       'current_cut_candidate_count':len(candidates),'current_cut_threshold_count':sum(bool(x['passes_frozen_threshold']) for x in candidates),
       'recent_24h_candidate_count':len(recent),'recent_24h_threshold_count':sum(bool(x['passes_frozen_threshold']) for x in recent),
       'current_candidates':candidates,'model_sha256':hashlib.sha256(Path('forward_paper/model.json').read_bytes()).hexdigest(),
-      'causal_guards':['fresh conservative first_seen boundary','exact base/fresh raw overlap','completed spot bars only','native 5m metrics','checksum-bound archive warmup','validated fail-closed archive/live parity contract','unresolved taker live values quarantined from frozen decision matrix','1h backward-only derivative availability lag','actual settled funding intervals','late macro bootstrap excluded','six-hour confirmation fully observed'],
+      'causal_guards':['fresh conservative first_seen boundary','exact base/fresh raw overlap','earlier-observed immutable settled-funding warmup lineage when declared by staging bridge','completed spot bars only','native 5m metrics','checksum-bound archive warmup','validated fail-closed archive/live parity contract','unresolved taker live values quarantined from frozen decision matrix','1h backward-only derivative availability lag','actual settled funding intervals','late macro bootstrap excluded','six-hour confirmation fully observed'],
       'historical_outcome_columns_used':False,'raw_source_values_rewritten':False,
       'order_account_endpoints_used':False,'paper_trades_created':0,'performance_started':False,
       'gate_effect':gate_effect
