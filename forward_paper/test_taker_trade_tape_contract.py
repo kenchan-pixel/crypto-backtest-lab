@@ -34,12 +34,14 @@ def test_score_exact_nominal_window():
 
 
 def test_shifted_window_not_false_exact():
-    idx = pd.date_range('2026-09-21T00:00:00Z', periods=250, freq='5min')
+    # Keep enough edge rows that a deliberately shifted window still has the
+    # validator's minimum 250 overlaps; this tests semantics, not edge count.
+    idx = pd.date_range('2026-09-21T00:00:00Z', periods=252, freq='5min')
     rows = []
     for n, t in enumerate(idx):
         rows.append({'time': t + pd.Timedelta(seconds=2), 'quantity': float(2 + n % 3), 'is_buyer_maker': False})
         rows.append({'time': t + pd.Timedelta(seconds=4), 'quantity': 1.0, 'is_buyer_maker': True})
-    metrics = pd.DataFrame({'archive_ratio': [float(2 + n % 3) for n in range(250)]}, index=idx)
+    metrics = pd.DataFrame({'archive_ratio': [float(2 + n % 3) for n in range(252)]}, index=idx)
     exact = score(metrics, pd.DataFrame(rows), 0)
     shifted = score(metrics, pd.DataFrame(rows), 5)
     assert exact['max_abs_delta'] == 0.0
