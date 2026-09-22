@@ -64,19 +64,19 @@ def fetch_day(day: str) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
     required_m = {"create_time", "sum_taker_long_short_vol_ratio"}
     if not required_m.issubset(metrics.columns):
         raise ValueError("Metrics archive schema mismatch")
-    # Daily futures kline archives currently carry the standard named columns.
     required_k = {"open_time", "volume", "quote_volume", "taker_buy_volume", "taker_buy_quote_volume"}
     if not required_k.issubset(klines.columns):
         raise ValueError("Kline archive schema mismatch")
 
-    m = pd.DataFrame({
-        "metric": pd.to_numeric(metrics["sum_taker_long_short_vol_ratio"], errors="raise")
-    }, index=pd.to_datetime(metrics["create_time"], utc=True, errors="raise"))
+    mt = pd.to_datetime(metrics["create_time"], utc=True, errors="raise")
+    mv = pd.to_numeric(metrics["sum_taker_long_short_vol_ratio"], errors="raise").to_numpy()
+    m = pd.DataFrame({"metric": mv}, index=mt)
+
     kt = pd.to_datetime(pd.to_numeric(klines["open_time"], errors="raise"), unit="ms", utc=True)
-    volume = pd.to_numeric(klines["volume"], errors="raise")
-    buy = pd.to_numeric(klines["taker_buy_volume"], errors="raise")
-    quote = pd.to_numeric(klines["quote_volume"], errors="raise")
-    buy_quote = pd.to_numeric(klines["taker_buy_quote_volume"], errors="raise")
+    volume = pd.to_numeric(klines["volume"], errors="raise").to_numpy()
+    buy = pd.to_numeric(klines["taker_buy_volume"], errors="raise").to_numpy()
+    quote = pd.to_numeric(klines["quote_volume"], errors="raise").to_numpy()
+    buy_quote = pd.to_numeric(klines["taker_buy_quote_volume"], errors="raise").to_numpy()
     sell = volume - buy
     sell_quote = quote - buy_quote
     k = pd.DataFrame({
@@ -125,6 +125,9 @@ def diagnose(days: list[str], connected_taker_path: str) -> dict:
     for col in ("base_ratio", "quote_ratio"):
         for off in OFFSETS_MIN:
             candidates[f"{col}@kline_plus_{off}m"] = score(metrics, klines, col, off)
+    if max(v["rows"] for v in candidates.values()) < 500:
+        raise ValueError("Insufficient archive/kline overlap; refuse false-green semantic receipt")
+
     ranked = sorted(
         candidates.items(),
         key=lambda x: (
@@ -136,12 +139,10 @@ def diagnose(days: list[str], connected_taker_path: str) -> dict:
     second_name, second = ranked[1]
 
     overlap = metrics.join(connected, how="inner").dropna()
+    if len(overlap) < 250:
+        raise ValueError("Insufficient archive/connected taker overlap")
     conn_delta = (overlap["metric"] - overlap["connected_ratio"]).abs()
 
-    # A source contract is accepted here only if the same-time final 5m base-volume
-    # ratio is uniquely dominant and agrees to archive precision across essentially
-    # the full two-day sample. The strict 5e-10 bound corresponds to a 10-decimal
-    # archive field, not an ad-hoc fit to observed deltas.
     resolved = bool(
         best_name == "base_ratio@kline_plus_0m"
         and best["rows"] >= 500
@@ -170,8 +171,8 @@ def diagnose(days: list[str], connected_taker_path: str) -> dict:
         "runner_up_score": second,
         "connected_archive_same_timestamp": {
             "rows": int(len(conn_delta)),
-            "max_abs_delta": None if conn_delta.empty else float(conn_delta.max()),
-            "median_abs_delta": None if conn_delta.empty else float(conn_delta.median()),
+            "max_abs_delta": float(conn_delta.max()),
+            "median_abs_delta": float(conn_delta.median()),
         },
         "resolved": resolved,
         "resolved_contract": (
