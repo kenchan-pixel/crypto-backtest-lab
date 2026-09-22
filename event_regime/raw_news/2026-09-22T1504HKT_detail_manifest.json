@@ -1,0 +1,106 @@
+{
+  "first_seen_at_hkt": "2026-09-22T15:04:34+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-22T10:58:06+08:00",
+    "searched_queries": [
+      {"query": "Bitcoin", "new_search_hits": 1},
+      {"query": "Ethereum", "new_search_hits": 2},
+      {"query": "Bitcoin ETF", "new_search_hits": 1},
+      {"query": "SEC crypto", "new_search_hits": 0}
+    ],
+    "dedupe_result_unique_articles": 4,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source content identity",
+    "cross_query_duplicate_ids": [],
+    "content_identity_duplicates_removed": [],
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable and never used for chronology; none of the 4 newly saved articles used a placeholder timestamp",
+    "first_seen_policy": "2026-09-22T15:04:34+08:00 is a conservative observation timestamp recorded after search/detail retrieval; published_at is never used to backdate first_seen_at_hkt",
+    "historical_news_completeness_claimed": false,
+    "trading_actions": "none"
+  },
+  "quality_notes": [
+    {
+      "id": "299718193",
+      "type": "provider_title_body_value_mismatch",
+      "note": "Provider title states IBIT inflow of 9.99 billion, while the detail description/body states about 618 million for IBIT and 1.269 billion combined Bitcoin+Ethereum ETF net inflow. Evidence is preserved verbatim; no value was inferred or corrected."
+    }
+  ],
+  "new_articles": [
+    {
+      "id": "299713513",
+      "matched_queries": ["Bitcoin"],
+      "first_seen_at_hkt": "2026-09-22T15:04:34+08:00",
+      "published_at_utc": "2026-09-22T03:17:26Z",
+      "source": "benzinga_article",
+      "timestamp_quality": "verified_detail",
+      "detail_evidence": {
+        "id": "299713513",
+        "title": "Anthony Pompiano 重申比特币没有 ‘上限’，因为美元没有 ‘下限’，并押注比特币将会 ‘大幅上涨’",
+        "description": "安东尼·庞普利亚诺重申，由于美元持续贬值和货币供应量上升，比特币 ‘没有顶部’，预计 BTC 可能达到 100 万美元。他将比特币的增长与全球流动性联系在一起，而不是像 CLARITY 法案这样的监管措施。同时，比特币在盘中最高触及 87,363 美元，目前交易价格为 85,736 美元，24 小时上涨 5.13%。ProCap Financial 的股票在盘后交易中上涨 1.47%",
+        "body": "安东尼·庞普利亚诺在接受福克斯新闻采访时表示，比特币并不依赖于 CLARITY 法案，而更多地受到全球流动性和法定货币印刷影响。他重申‘比特币没有上限，因为美元没有底’，并认为只要美元持续贬值，比特币价值没有上限。文章同时讨论美国国债、财政部回购、收益率和美元回落，以及比特币作为抗贬值工具的叙事；文中称比特币盘中最高触及 87,363 美元。",
+        "url": "https://longbridge.com/news/299713513",
+        "author": {"member_id": "36", "name": "benzinga_article"},
+        "published_at": "2026-09-22T03:17:26Z",
+        "tickers": ["GBTC.US", "BITB.US", "ARKB.US", "FBTC.US", "IBIT.US", "BITO.US", "BRRR.US", "BTCO.US", "BTCW.US", "HODL.US", "EZBC.US", "3008.HK", "3042.HK", "3430.HK", "BTCE.DE", "BTCHKD.HAS", "BTCUSD.HAS", "BTCUSD.OSL"]
+      }
+    },
+    {
+      "id": "299713603",
+      "matched_queries": ["Ethereum"],
+      "first_seen_at_hkt": "2026-09-22T15:04:34+08:00",
+      "published_at_utc": "2026-09-22T04:10:57Z",
+      "source": "Unusual Whales",
+      "timestamp_quality": "verified_detail",
+      "detail_evidence": {
+        "id": "299713603",
+        "title": "Trueo 预测市场因燃气费较低而从 Base 切换到以太坊；以太坊主网提供更好的集成潜力",
+        "description": "Trueo 表示，由于以太坊的高燃气费用，Base 在其推出时是最佳选择，并强调现在主网提供了更好的集成可能性",
+        "body": "Trueo 表示，由于以太坊的高燃气费用，Base 在其推出时是最佳选择，并强调现在主网提供了更好的集成可能性。",
+        "url": "https://longbridge.com/news/299713603",
+        "author": {"member_id": "5899", "name": "Unusual Whales"},
+        "published_at": "2026-09-22T04:10:57Z",
+        "tickers": ["ETHE.US", "ETHA.US", "CETH.US", "ETHW.US", "FETH.US", "ETHHKD.HAS", "ETHUSD.OSL", "ETHUSD.HAS"]
+      }
+    },
+    {
+      "id": "299707370",
+      "matched_queries": ["Ethereum"],
+      "first_seen_at_hkt": "2026-09-22T15:04:34+08:00",
+      "published_at_utc": "2026-09-22T03:04:56Z",
+      "source": "Amb Crypto",
+      "timestamp_quality": "verified_detail",
+      "detail_evidence": {
+        "id": "299707370",
+        "title": "以太坊刚刚经历了自 2016 年以来表现最佳的第三季度——‘ETH 准备迎来大幅上涨！’",
+        "description": "以太坊在第三季度表现强劲，自 2016 年以来最强，价格上涨 67.57%，交易价为 2,716 美元，突破了 2,500 美元的阻力位。尽管创纪录的验证者退出队列暗示潜在的卖压，但下降的交易所储备表明短期内抛售风险降低。分析师对价格继续向 3,200–3,600 美元的走势持乐观态度，健康的相对强弱指数（RSI）和布林带支持这一观点，但维持在 2,500 美元以上仍然是关键",
+        "body": "文章称 ETH 突破 2,500 美元长期阻力，并指出 2026 年第三季度上涨 67.57%，为自 2016 年以来最强第三季度。文章同时讨论验证者退出队列升至 132,832 ETH、交易所储备下降，以及 3,200–3,600 美元的潜在目标区间；并强调维持在 2,500 美元以上是关键。",
+        "url": "https://longbridge.com/news/299707370",
+        "author": {"member_id": "5917", "name": "Amb Crypto"},
+        "published_at": "2026-09-22T03:04:56Z",
+        "tickers": ["ETHE.US", "FETH.US", "ETHA.US", "ETHW.US", "CETH.US", "ETHHKD.HAS", "ETHUSD.OSL", "ETHUSD.HAS"]
+      }
+    },
+    {
+      "id": "299718193",
+      "matched_queries": ["Bitcoin ETF"],
+      "first_seen_at_hkt": "2026-09-22T15:04:34+08:00",
+      "published_at_utc": "2026-09-22T05:34:39Z",
+      "source": "Crypto Briefing",
+      "timestamp_quality": "verified_detail",
+      "detail_evidence": {
+        "id": "299718193",
+        "title": "贝莱德的 IBIT 在美国现货比特币 ETF 资金流入中处于领先地位，达到 9.99 亿美元",
+        "description": "在 9 月 21 日，美国现货比特币和以太坊 ETF 录得 12.69 亿美元的净流入，其中以贝莱德的 IBIT 为首，流入金额为 6.18 亿美元。自 2024 年 1 月以来的累计流入达到约 550 亿美元，总资产管理规模超过 1025 亿美元。比特币交易价格超过 81,000 美元，标志着从温和的周流入中显著反弹",
+        "body": "文章称 9 月 21 日美国现货比特币和以太坊 ETF 合计净流入约 12.69 亿美元，其中 IBIT 约 6.18 亿美元；累计净流入约 550 亿至 558 亿美元，现货比特币 ETF 管理资产规模超过 1025 亿美元。文章亦指出前一周比特币 ETF 周流入较温和，而该单日流入令资金流叙事明显反弹。",
+        "url": "https://longbridge.com/news/299718193",
+        "author": {"member_id": "5998", "name": "Crypto Briefing"},
+        "published_at": "2026-09-22T05:34:39Z",
+        "tickers": ["GBTC.US", "ETHE.US", "ARKB.US", "ETHW.US", "ETHA.US", "FETH.US", "CETH.US", "FBTC.US", "BITB.US", "IBIT.US", "BLK.US", "BITO.US", "BRRR.US", "BTCO.US", "BTCW.US", "HODL.US", "EZBC.US", "3008.HK", "3042.HK", "3430.HK", "BTCE.DE", "BTCHKD.HAS", "BTCUSD.HAS", "BTCUSD.OSL"]
+      }
+    }
+  ]
+}
