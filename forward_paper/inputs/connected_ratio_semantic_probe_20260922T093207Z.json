@@ -1,0 +1,54 @@
+{
+  "schema": "eth-forward-connected-ratio-semantic-probe-v1",
+  "scope": "Bounded public read-only connector probe for account/taker source semantics; no orders, balances, wallets, margin, borrowing, transfers, deposits, fills, model changes or gate promotion.",
+  "symbol": "ETHUSDT",
+  "period": "5m",
+  "requested_window": {
+    "start_ms": 1790034300000,
+    "end_ms": 1790034900000,
+    "start_utc": "2026-09-21T23:45:00Z",
+    "end_utc": "2026-09-21T23:55:00Z"
+  },
+  "observed_after_reads_utc": "2026-09-22T09:32:07.138119Z",
+  "sources": {
+    "top_accounts": {
+      "connector_function": "get_futures_usds_top_trader_long_short_ratio_accounts",
+      "rows": [
+        {"symbol":"ETHUSDT","longAccount":"0.5540","longShortRatio":"1.2422","shortAccount":"0.4460","timestamp":1790034300000},
+        {"symbol":"ETHUSDT","longAccount":"0.5538","longShortRatio":"1.2411","shortAccount":"0.4462","timestamp":1790034600000},
+        {"symbol":"ETHUSDT","longAccount":"0.5535","longShortRatio":"1.2396","shortAccount":"0.4465","timestamp":1790034900000}
+      ]
+    },
+    "global_accounts": {
+      "connector_function": "get_futures_usds_long_short_ratio",
+      "rows": [
+        {"symbol":"ETHUSDT","longAccount":"0.7005","longShortRatio":"2.3389","shortAccount":"0.2995","timestamp":1790034300000},
+        {"symbol":"ETHUSDT","longAccount":"0.7000","longShortRatio":"2.3333","shortAccount":"0.3000","timestamp":1790034600000},
+        {"symbol":"ETHUSDT","longAccount":"0.6998","longShortRatio":"2.3311","shortAccount":"0.3002","timestamp":1790034900000}
+      ]
+    },
+    "taker": {
+      "connector_function": "get_futures_usds_taker_buy_sell_volume",
+      "rows": [
+        {"buySellRatio":"1.1316","sellVol":"2432.4130","buyVol":"2752.5800","timestamp":1790034000000},
+        {"buySellRatio":"0.6277","sellVol":"4180.0540","buyVol":"2623.6650","timestamp":1790034300000},
+        {"buySellRatio":"2.1506","sellVol":"2609.3840","buyVol":"5611.7750","timestamp":1790034600000}
+      ],
+      "request_boundary_note": "For this exact 23:45Z-23:55Z request, the public connector returned 23:40Z, 23:45Z and 23:50Z buckets, corroborating the previously recorded taker endpoint boundary shift. Raw timestamps/values are preserved."
+    }
+  },
+  "official_semantic_evidence": {
+    "source": "Binance Developer Docs",
+    "url": "https://developers.binance.com/docs/derivatives/coin-margined-futures/market-data/rest-api/Get-Funding-Info",
+    "relevant_claims": [
+      "Top-trader account long/short ratio is Long Account % divided by Short Account %.",
+      "Global long/short ratio exposes longAccount, shortAccount, longShortRatio and a timestamp documented as the end time of the period.",
+      "This probe treats documentation as semantic evidence only, not archive-equivalence proof."
+    ]
+  },
+  "sha256_of_this_serialization_before_git": "360b63d118e051107b3960dbedc7e5ee34fc9a93b6a31ec47bcbd0442fee2108",
+  "read_only": true,
+  "order_or_account_endpoints_used": false,
+  "paper_trades_created": 0,
+  "gate_promotion": false
+}
