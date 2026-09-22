@@ -148,11 +148,28 @@
       "status": "semantic_mapping_hypothesis_requires_broader_verification",
       "paper_trades_created": 0,
       "gate_promotion": false
+    },
+    "archive_semantic_validation_attempt": {
+      "receipt": "forward_paper/receipts/archive_semantic_validation_blocked_20260922T012835Z.json",
+      "semantic_validator_commit": "c0af58323b11e2a07858627bcf7cc22e72d8f263",
+      "initial_false_green_run_id": 35675708769,
+      "initial_false_green_artifact_sha256": "78d0dff5a08d687619ca2a9d89c3159b9aa49720b78a7394de20d26325e394e3",
+      "fail_closed_workflow_fix_commit": "7b6e3dfab06aa333a70087c8b26247451529a544",
+      "verified_failure_run_id": 35675863910,
+      "verified_failure_job_id": 106582146900,
+      "verified_failure_artifact_sha256": "d18d2ab426511faceb7f0358d081d02b09defeeee4c6f56dc7f803b54c44d4bb",
+      "blocked_archive_date": "2026-09-21",
+      "blocked_archive_http_status": 404,
+      "blocked_archive_observed_at_utc": "2026-09-22T01:28:35.660108Z",
+      "status": "blocked_transient_source_publication_lag",
+      "semantic_mapping_promoted": false,
+      "paper_trades_created": 0,
+      "gate_promotion": false
     }
   },
   "pending": [
-    "Verify Binance daily metrics archive create_time versus connected endpoint timestamp semantics over multiple overlapping rows/days; preserve raw values and do not assume the observed one-bucket offset until broader validation passes",
-    "Define and test precision-aware source-contract comparison for rounded ratio endpoints while retaining exact comparison where source precision permits, especially open-interest fields",
+    "Retry the multi-day archive/connected semantic validator only after Binance publishes the 2026-09-21 daily ETHUSDT metrics archive; the 2026-09-22 01:28:35Z request returned HTTP 404, so the prior +5 minute mapping remains a hypothesis",
+    "After multi-day validation passes, define/apply the precision-aware source contract without rewriting raw values: tight comparison for open-interest fields and only evidence-supported rounding tolerance for ratio endpoints",
     "Rerun the first fresh current causal source-to-feature-to-opportunity receipt only after the source semantic mapping is verified; keep source_freshness/live_feature_parity false until a later independently timed second receipt also passes",
     "Idempotent persistent runtime integration with actual later quotes and stress sidecar",
     "Initial real AI and simple weekly decisions committed and effective"
