@@ -1,0 +1,85 @@
+{
+  "schema": "eth-forward-account-ratio-precision-contract-receipt-v1",
+  "observed_at_utc": "2026-09-22T09:34:51.724Z",
+  "scope": "Bounded commissioning validation of top-trader account and global-account ratio source semantics only. This does not resolve taker semantics, create paper fills, change the frozen model/strategy, rewrite source values, or promote readiness gates.",
+  "branch": "research/payoff-aware-20260920",
+  "workflow": {
+    "run_id": 35711143779,
+    "job_id": 106691761841,
+    "head_sha": "78d03f19f1a51ace3fab5f532c484b6c9a6f9936",
+    "conclusion": "success",
+    "complete_forward_paper_tests_passed": 64
+  },
+  "artifact": {
+    "id": 10687210807,
+    "name": "eth-forward-account-ratio-precision-contract",
+    "size_bytes": 3656,
+    "sha256": "019d9c1e5b5ebe4535f3ba9e8be8c040d044d4b6a8bcec90cf598a9dd1b2e350"
+  },
+  "connected_evidence": {
+    "manifest": "forward_paper/inputs/connected_binance_full_20260922T072853HKT/manifest.json",
+    "manifest_sha256": "50fc302d27cc5f6d4a5da1b5ced253cd1d8b64f0111b2774a48851948a4d6745",
+    "corroborating_probe": "forward_paper/inputs/connected_ratio_semantic_probe_20260922T093207Z.json",
+    "corroborating_probe_sha256": "a520451815a553f0d513c3c7306822192a6d34436fc51776e9d35ff008be07ee",
+    "read_only_public_market_data_only": true,
+    "order_or_account_endpoints_used": false
+  },
+  "archive_evidence": {
+    "checksum_verified": true,
+    "sha256": {
+      "2026-09-20": "54c07ed33c80ad47618d0e79faab937fa0e018a24c6c1e9eb1dff852bf5ad0d6",
+      "2026-09-21": "84e76323a33e78f2d00d648fb67c2b1be726385e4cb36f59192e5e30a98c9fa0"
+    },
+    "archive_create_time_to_connected_period_end_offset_minutes": 5
+  },
+  "semantic_basis": {
+    "formula": "Long/Short Ratio (Accounts) = Long Account % / Short Account %",
+    "method": "For each row, intersect the true long-account-share interval implied by the connector's rounded longAccount and by 1-shortAccount, then transform the interval monotonically through p/(1-p). The archive higher-precision ratio must fall inside that evidence-derived interval. This is not an ad-hoc tolerance and raw values are not changed.",
+    "endpoint_reported_ratio_check": "The connector longShortRatio must equal the ratio of its published longAccount/shortAccount components rounded to the connector's published ratio precision."
+  },
+  "families": {
+    "top_accounts": {
+      "rows_expected": 283,
+      "rows_covered": 283,
+      "reported_ratio_equals_rounded_ratio_of_published_components": 283,
+      "archive_value_within_component_rounding_interval": 283,
+      "all_rows_internal_formula_consistent": true,
+      "all_archive_values_precision_compatible": true,
+      "max_component_implied_ratio_interval_width": 0.000529932277437088,
+      "max_abs_archive_vs_connected_direct_ratio": 0.00029319,
+      "examples_outside_interval": []
+    },
+    "global_accounts": {
+      "rows_expected": 283,
+      "rows_covered": 283,
+      "reported_ratio_equals_rounded_ratio_of_published_components": 283,
+      "archive_value_within_component_rounding_interval": 283,
+      "all_rows_internal_formula_consistent": true,
+      "all_archive_values_precision_compatible": true,
+      "max_component_implied_ratio_interval_width": 0.0011382656070514187,
+      "max_abs_archive_vs_connected_direct_ratio": 0.00058237,
+      "examples_outside_interval": []
+    }
+  },
+  "resolved_ratio_families_after_this_step": [
+    "top_positions",
+    "top_accounts",
+    "global_accounts"
+  ],
+  "unresolved_ratio_families_after_this_step": ["taker"],
+  "interpretation": "The earlier top_accounts/global_accounts exact-ratio mismatches are fully compatible with the connector's finite-precision published account-share components under the documented account-ratio formula across all 283 rows per family. They are therefore resolved as a precision representation contract, not by mutating raw data or widening an arbitrary error tolerance.",
+  "raw_values_rewritten": false,
+  "paper_trades_created": 0,
+  "gate_promotion": false,
+  "performance_started": false,
+  "readiness_effect": {
+    "execution_ready": false,
+    "source_freshness": false,
+    "live_feature_parity": false,
+    "initial_decisions": false,
+    "performance_started_at": null,
+    "paper_trades_created": 0
+  },
+  "old_historical_paper_gate": "remains failed and unchanged",
+  "next_safe_step": "Boundedly resolve only the remaining taker endpoint versus checksum-archive bucket/value aggregation semantics, preserving the observed endpoint boundary shift and raw values. Do not retry the full current source-to-feature-to-opportunity receipt or promote readiness until taker has an evidence-backed source contract."
+}
