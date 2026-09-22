@@ -198,13 +198,27 @@
       "paper_trades_created": 0,
       "taker_value_semantics_resolved": false,
       "taker_live_values_quarantined_from_frozen_decision_matrix": true
+    },
+    "runtime_gap_persistence_commissioning": {
+      "receipt": "forward_paper/receipts/runtime_gap_persistence_commissioning_20260923T051211HKT.json",
+      "actions_run_id": 35785102388,
+      "head_sha": "456a10ef9984420271c00fd4023f227f7d0c7861",
+      "tests_passed": 96,
+      "artifact_sha256": "4d825033f48c60c01ce943b61d64ce22f489417d2c45816c93d993f1802471ef",
+      "public_evidence_sha256": "1ab15fe8f86936b175029f6b45306fe311a63dad1fd19c2d80ada5f44ab17e17",
+      "checks_passed": 10,
+      "actual_runtime_state_mutated": false,
+      "paper_trades_created": 0,
+      "real_orders_created": 0,
+      "order_account_endpoints_used": false,
+      "gate_promotion": false,
+      "status": "passed"
     }
   },
   "pending": [
-    "Commission durable idempotent persistent runtime/fill integration with compare-and-swap writes, service-due-exits-first ordering, actual later quote evidence, and base/stress cost sidecars; do not create backdated fills",
-    "Validate runtime restart/idempotency and late/missing fill/data-gap logging on the three common-parent paper arms while performance_started_at remains null",
+    "Complete and validate base/stress cost comparison sidecars plus separate assumed AI operating-budget sidecars on the durable paper runtime; do not create backdated fills or actual trades during commissioning",
     "At the first eligible Monday after 08:00 Asia/Hong_Kong, commit genuine initial AI weekly allocation and simple weekly ETH30d-direction control from a fresh evidence packet; initial_decisions must remain false until that occurs",
-    "Only after durable runtime/fill integration and valid initial decisions are both complete may execution_ready/performance_started_at be considered; do not retroactively start performance"
+    "Only after remaining runtime cost sidecars and valid initial decisions are both complete may execution_ready/performance_started_at be considered; do not retroactively start performance"
   ],
   "classification": "User-approved prospective research experiment; old historical paper gate remains failed. Not an investable strategy or live trading."
 }
