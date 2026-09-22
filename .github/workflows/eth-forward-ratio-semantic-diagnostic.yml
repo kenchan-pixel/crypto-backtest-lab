@@ -25,8 +25,8 @@ jobs:
         with:
           python-version: '3.13'
       - run: python -m pip install -r forward_paper/requirements.txt
-      - name: Run forward-paper tests
-        run: python -m unittest discover -s forward_paper -p 'test_*.py'
+      - name: Run complete forward-paper tests
+        run: python -m pytest forward_paper -q
       - name: Diagnose each ratio family independently
         shell: bash
         run: |
