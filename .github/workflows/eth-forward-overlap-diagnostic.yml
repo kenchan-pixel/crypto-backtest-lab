@@ -1,0 +1,38 @@
+name: ETH archive overlap diagnostic
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths:
+      - '.github/workflows/eth-forward-overlap-diagnostic.yml'
+      - 'forward_paper/archive_overlap_diagnostic.py'
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    if: github.repository == 'kenchan-pixel/crypto-backtest-lab' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r forward_paper/requirements.txt
+      - name: Diagnose exact overlap cells
+        run: |
+          mkdir -p forward_validation
+          python -m forward_paper.archive_overlap_diagnostic \
+            --base-dir forward_paper/inputs/connected_binance_full_20260922T072853HKT \
+            --out forward_validation/archive_overlap_diagnostic.json | tee forward_validation/diagnostic.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eth-forward-archive-overlap-diagnostic
+          path: forward_validation/
+          retention-days: 14
