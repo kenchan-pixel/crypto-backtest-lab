@@ -35,12 +35,14 @@ def sha256_file(path: str | Path) -> str:
 
 
 def state_derivative_inputs() -> set[str]:
-    """Extract D.<name> dependencies directly from the frozen state builder."""
+    """Extract data-column D.<name> dependencies from the frozen state builder."""
     tree = ast.parse(inspect.getsource(ff.states))
     out: set[str] = set()
     for node in ast.walk(tree):
         if isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) and node.value.id == "D":
             out.add(node.attr)
+    # D.reindex(...) is a dataframe method, not a derivative data dependency.
+    out.discard("reindex")
     return out
 
 
@@ -149,15 +151,10 @@ def validate(taker_path: str | Path, model_path: str | Path) -> dict:
         raise AssertionError("Taker perturbation changed frozen regime state")
 
     valid = base.index[base.index >= base.index[800]]
-    # Add deterministic macro catalysts to prove taker cannot alter macro candidate paths either.
-    macro = []
-    for t, indicator, sign in [
-        (valid[24], "diagnostic_a", "positive"),
-        (valid[96], "diagnostic_b", "negative"),
-        (valid[168], "diagnostic_c", "inline"),
-    ]:
-        macro.append({"usable_at": t.isoformat(), "indicator": indicator, "sign": sign})
-
+    # Macro input is intentionally empty here: its source is independent of all
+    # derivative columns, while the endogenous catalyst path exercises state ->
+    # catalyst -> sequence feature -> frozen score -> threshold -> parent stream.
+    macro: list[dict] = []
     cuts = valid[6:]
     candidate_mismatches = 0
     threshold_mismatches = 0
@@ -182,6 +179,8 @@ def validate(taker_path: str | Path, model_path: str | Path) -> dict:
             if ra[5] != rb[5]:
                 threshold_mismatches += 1
     catalyst_mismatches = int(catalyst_keys_base != catalyst_keys_variant)
+    if candidate_count == 0:
+        raise AssertionError("Synthetic diagnostic produced no candidate records")
     if candidate_mismatches or threshold_mismatches or max_prediction_delta != 0.0 or catalyst_mismatches:
         raise AssertionError("Taker perturbation changed frozen candidate/score/threshold stream")
 
