@@ -30,4 +30,6 @@ def test_compare_snapshots_detects_one_changed_field():
 def test_volume_ratio_interval_is_precision_derived():
     lo, hi = volume_ratio_interval("125.0000", "100.0000")
     assert lo < Decimal("1.25") < hi
-    assert (hi - lo) < Decimal("0.000002")
+    # Both inputs expose four decimal places, so the conservative interval is
+    # narrow and mechanically derived from +/- half an LSU for each volume.
+    assert Decimal("0") < (hi - lo) < Decimal("0.000003")
