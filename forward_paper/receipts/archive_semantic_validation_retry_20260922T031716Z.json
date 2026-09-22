@@ -1,0 +1,39 @@
+{
+  "schema": "eth-forward-archive-semantic-validation-retry-v1",
+  "observed_at_utc": "2026-09-22T03:17:16.630824Z",
+  "scope": "Bounded commissioning retry of the existing multi-day Binance archive/connected timestamp and precision semantic validator. No paper fill, gate promotion, model change, order/account endpoint, or source-contract relaxation.",
+  "status": "blocked_transient_source_publication_lag",
+  "branch": "research/payoff-aware-20260920",
+  "workflow": {
+    "run_id": 35675863910,
+    "run_attempt": 3,
+    "job_id": 106602453204,
+    "head_sha": "7b6e3dfab06aa333a70087c8b26247451529a544",
+    "conclusion": "failure",
+    "fail_closed": true
+  },
+  "required_archive": {
+    "date": "2026-09-21",
+    "url": "https://data.binance.vision/data/futures/um/daily/metrics/ETHUSDT/ETHUSDT-metrics-2026-09-21.zip",
+    "observed_http_status": 404,
+    "sha256": null,
+    "interpretation": "The required public daily metrics archive was still unpublished at this retry. This remains a source publication lag and is not evidence for or against the timestamp-semantic hypothesis."
+  },
+  "artifact": {
+    "id": 10674329450,
+    "sha256": "21e284f4b8b1defb50d39727fd7f621046cee06a59013199c5ba57323ca8299f",
+    "content": "diagnostic log only; validator stopped at HTTP 404 before producing a semantic receipt"
+  },
+  "semantic_conclusion": "No timestamp mapping or precision contract is promoted. The prior +5-minute mapping remains a hypothesis pending the required multi-day archive evidence.",
+  "readiness_effect": {
+    "execution_ready": false,
+    "source_freshness": false,
+    "live_feature_parity": false,
+    "initial_decisions": false,
+    "performance_started_at": null,
+    "paper_trades_created": 0,
+    "gate_promotion": false
+  },
+  "order_or_account_endpoints_used": false,
+  "next_safe_step": "Retry the same bounded validator after the 2026-09-21 Binance daily metrics archive is publicly available; do not weaken the multi-day requirement, rewrite raw values, or substitute a different source semantic."
+}
