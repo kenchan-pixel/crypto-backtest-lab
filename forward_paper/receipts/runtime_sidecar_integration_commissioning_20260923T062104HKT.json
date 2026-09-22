@@ -1,0 +1,61 @@
+{
+  "schema": "eth-paper-runtime-sidecar-integration-verified-receipt-v1",
+  "verified_at_utc": "2026-09-22T22:21:04Z",
+  "verified_at_hkt": "2026-09-23T06:21:04+08:00",
+  "branch": "research/payoff-aware-20260920",
+  "actions": {
+    "run_id": 35791826854,
+    "job_id": 106961881474,
+    "head_sha": "9779274012318c764c14267ca078827e205b6bd8",
+    "conclusion": "success",
+    "artifact_id": 10721983096,
+    "artifact_digest": "sha256:29308513c895948b397b069cc1f469b930d1dcfecfa9c4d0e84ed48763f406f4"
+  },
+  "source_files": {
+    "runtime_state_git_blob_sha1": "76134ec05b373b0944b7a3bbc3b323aa3fce0b47",
+    "runtime_integration_py_git_blob_sha1": "51966e6b04030fb0ebe2627b9ddc4c5c3be00748",
+    "test_runtime_integration_py_git_blob_sha1": "c65bb5a0daf87847231789afd4e2a39c9b272d91",
+    "runtime_costs_py_git_blob_sha1": "debc0dbe0f581fbeea5dc0b0dd9b6fb549a27fbd",
+    "runtime_cycle_py_git_blob_sha1": "43465c7cfc5a2361c9e39e43bd4831ee9129379a",
+    "runtime_store_py_git_blob_sha1": "86fcb18d794bb999096a691317fcd4483de1553c",
+    "workflow_git_blob_sha1": "5acb5b540056fe790ed1fd917671abf458b33d0d",
+    "public_evidence_git_blob_sha1": "aaa26e91a82c68b447f8b6f7ddb41e3525451f8d"
+  },
+  "public_evidence": {
+    "path": "forward_paper/inputs/connected_runtime_integration_evidence_20260923T061715HKT.json",
+    "sha256": "45753bc0f354484e78e499c74c8cf2e2b5751c4eab9ff43c69bc74dcec0dada5",
+    "source": "Binance connected public read-only market-data tool",
+    "tool_operation": "get_futures_usds_symbol_price_ticker",
+    "symbol": "ETHUSDT",
+    "prices": ["2740.44", "2741.37"],
+    "exchange_time_ms": [1790115415579, 1790115435183],
+    "elapsed_seconds": 19.604,
+    "read_only": true,
+    "orders_or_account_data_requested": false
+  },
+  "verified_integration_contract": {
+    "completed_paper_exit_appends_cost_sidecar_before_single_cas_persist": true,
+    "cost_sidecar_uses_same_saved_parent_entry_exit": true,
+    "base_cost_sidecar_matches_core_accounting": true,
+    "weekly_decision_appends_ai_budget_sidecar_before_single_cas_persist": true,
+    "exact_weekly_decision_replay_is_idempotent": true,
+    "conflicting_repeated_weekly_decision_fails_closed": true,
+    "stale_cas_writer_is_rejected": true,
+    "stale_conflict_leaves_no_partial_decision_or_budget": true,
+    "explicit_reread_retry_persists_complete_pair": true,
+    "source_runtime_bytes_unchanged_during_probe": true
+  },
+  "commissioning_boundary": {
+    "actual_runtime_state_mutated_by_probe": false,
+    "actual_runtime_paper_trades_created": 0,
+    "genuine_weekly_decision_created": false,
+    "real_orders_created": 0,
+    "order_account_endpoints_used": false,
+    "gate_promotion": false,
+    "execution_ready": false,
+    "performance_started_at": null
+  },
+  "gate_effect": "none; atomic runtime sidecar wiring is verified, but genuine initial Monday weekly decisions are still absent and the runtime remains COMMISSIONING",
+  "next_bounded_step": "Prepare and validate the genuine Monday weekly decision evidence-packet/commit path without fabricating a decision outside the first eligible Monday after 08:00 Asia/Hong_Kong. Until then remain unarmed and do not create paper trades.",
+  "classification": "User-approved prospective PAPER-ONLY experiment. Old failed historical paper gates remain failed and are not overridden by this receipt."
+}
