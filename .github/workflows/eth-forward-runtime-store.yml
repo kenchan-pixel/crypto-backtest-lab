@@ -1,4 +1,4 @@
-name: ETH forward runtime CAS commissioning
+name: ETH forward runtime commissioning
 on:
   workflow_dispatch:
   push:
@@ -7,10 +7,13 @@ on:
       - '.github/workflows/eth-forward-runtime-store.yml'
       - 'forward_paper/runtime_store.py'
       - 'forward_paper/test_runtime_store.py'
+      - 'forward_paper/runtime_cycle.py'
+      - 'forward_paper/test_runtime_cycle.py'
+      - 'forward_paper/inputs/connected_eth_quote_pair_20260923T034451HKT.json'
 permissions:
   contents: read
 concurrency:
-  group: eth-forward-runtime-cas
+  group: eth-forward-runtime-commissioning
   cancel-in-progress: false
 jobs:
   validate:
@@ -40,26 +43,41 @@ jobs:
             --state forward_paper/runtime/state.json \
             --work-dir forward_validation/runtime_store_probe \
             --out forward_validation/runtime_store_receipt.json | tee forward_validation/runtime_store.log
+      - name: Exercise exits-first and actual-later-quote ordering on isolated copy
+        run: |
+          set -euo pipefail
+          python -m forward_paper.runtime_cycle \
+            --state forward_paper/runtime/state.json \
+            --quote-pair forward_paper/inputs/connected_eth_quote_pair_20260923T034451HKT.json \
+            --work-dir forward_validation/runtime_cycle_probe \
+            --out forward_validation/runtime_cycle_receipt.json | tee forward_validation/runtime_cycle.log
       - name: Enforce commissioning boundary
         run: |
           python - <<'PY'
           import json
-          r=json.load(open('forward_validation/runtime_store_receipt.json'))
-          assert r['passed'] is True
-          assert all(r['checks'].values())
-          assert r['actual_runtime_state_mutated'] is False
-          assert r['paper_trades_created']==0 and r['real_orders_created']==0
-          assert r['order_account_endpoints_used'] is False
-          assert r['source_status']=='COMMISSIONING'
-          assert r['source_execution_ready'] is False
-          assert r['source_performance_started_at'] is None
-          assert r['source_paper_closed_trades']==0
-          assert r['gate_effect'].startswith('none;')
-          print('CAS/restart foundation validated on an isolated copy; live runtime remains idle and unarmed.')
+          cas=json.load(open('forward_validation/runtime_store_receipt.json'))
+          cyc=json.load(open('forward_validation/runtime_cycle_receipt.json'))
+          assert cas['passed'] is True and all(cas['checks'].values())
+          assert cas['actual_runtime_state_mutated'] is False
+          assert cas['paper_trades_created']==0 and cas['real_orders_created']==0
+          assert cas['order_account_endpoints_used'] is False
+          assert cas['source_status']=='COMMISSIONING'
+          assert cas['source_execution_ready'] is False
+          assert cas['source_performance_started_at'] is None
+          assert cas['source_paper_closed_trades']==0
+          assert cyc['passed'] is True and all(cyc['checks'].values())
+          assert cyc['actual_runtime_state_mutated'] is False
+          assert cyc['actual_runtime_paper_trades_created']==0
+          assert cyc['real_orders_created']==0
+          assert cyc['order_account_endpoints_used'] is False
+          assert cyc['engineering_fixture']['forward_opportunity_claimed'] is False
+          assert cyc['engineering_fixture']['forward_trade_claimed'] is False
+          assert cyc['gate_effect'].startswith('none;')
+          print('Runtime ordering commissioned on isolated fixtures; real runtime remains idle and unarmed.')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: eth-forward-runtime-cas-commissioning
+          name: eth-forward-runtime-commissioning
           path: forward_validation/
           retention-days: 14
