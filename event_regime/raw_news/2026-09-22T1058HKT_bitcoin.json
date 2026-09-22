@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-22T10:58:06+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299697341","title":"比特币（BTCUSD）在 9 月 22 日下跌 1.27%：原因分析","excerpt":"比特币在 9 月 22 日下跌了 1.27%，至 85,870 美元，原因是近期高位后的战术性获利了结和衍生品杠杆的解除。影响因素包括机构 ETF 资金流入的暂...","source_name":"TradingKey","time":"2026-09-22T01:11:09Z","url":"https://longbridge.com/news/299697341.md"},
+    {"id":"299694805","title":"为什么 Strategy 股票今天大涨","excerpt":"比特币正在上涨","source_name":"MSN","time":"2026-09-22T00:32:56Z","url":"https://longbridge.com/news/299694805.md"}
+  ],
+  "dedupe_note": "Both IDs were absent from the prior 2026-09-22T07:05:47+08:00 detail manifest. 299697341 also appeared in the Bitcoin ETF search and is stored once in the detail manifest with both matched queries.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
