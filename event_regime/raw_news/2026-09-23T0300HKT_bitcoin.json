@@ -1,0 +1,28 @@
+{
+  "first_seen_at_hkt": "2026-09-23T03:00:00+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "299795264",
+      "title": "独家：“机构正在买入比特币”——散户则在交易其他一切",
+      "excerpt": "机构正将加密资产敞口集中在比特币ETF上，管理资产规模升至1020亿美元，而散户交易者则专注于模因币、AI代币和代币化股票。这种分化造就了一个双轨市场：机构资本...",
+      "source_name": "benzinga_article",
+      "time": "2026-09-22T16:27:47Z",
+      "url": "https://longbridge.com/news/299795264.md"
+    },
+    {
+      "id": "299777831",
+      "title": "Strategy 股价在过去一个月飙升 40%，因其再次买入比特币",
+      "excerpt": "该股近期受益于比特币价值的上涨",
+      "source_name": "MSN",
+      "time": "2026-09-22T13:52:56Z",
+      "url": "https://longbridge.com/news/299777831.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against the immediately prior 2026-09-22T23:00:00+08:00 detail manifest and recent manifests. Cross-query duplicates are reconciled in the detail manifest. Article 299777831 has a provider publish time before the prior collection but was absent from that prior manifest, so it is treated as newly seen now and first_seen is not backdated.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
