@@ -1,0 +1,44 @@
+{
+  "schema": "eth-forward-archive-semantic-validation-retry-v1",
+  "observed_at_utc": "2026-09-22T05:38:38.220236Z",
+  "scope": "Bounded commissioning retry of the existing multi-day Binance archive/connected timestamp and precision semantic validator. No paper fill, gate promotion, model change, order/account endpoint, or source-contract relaxation.",
+  "status": "blocked_transient_source_publication_lag",
+  "branch": "research/payoff-aware-20260920",
+  "validator_source": {
+    "workflow_path": ".github/workflows/eth-forward-overlap-diagnostic.yml",
+    "workflow_git_blob_sha1": "34287b3a0c5dfdf1259b43b19404c77b975d91c1",
+    "diagnostic_path": "forward_paper/archive_overlap_diagnostic.py",
+    "diagnostic_git_blob_sha1": "9ad0fb849b646b605ab40f4022be0226f8d96a7d"
+  },
+  "workflow": {
+    "run_id": 35675863910,
+    "job_id": 106629217208,
+    "head_sha": "7b6e3dfab06aa333a70087c8b26247451529a544",
+    "conclusion": "failure",
+    "fail_closed": true
+  },
+  "required_archive": {
+    "date": "2026-09-21",
+    "url": "https://data.binance.vision/data/futures/um/daily/metrics/ETHUSDT/ETHUSDT-metrics-2026-09-21.zip",
+    "observed_http_status": 404,
+    "sha256": null,
+    "interpretation": "The required public daily metrics archive was still unpublished at this retry. This remains a transient source-publication lag and provides no new evidence for or against the timestamp-semantic hypothesis."
+  },
+  "artifact": {
+    "id": 10679185210,
+    "sha256": "782b2a9828114723a753b4cc7ee113f1d28f968a225145f43ac26deabb1fbf15",
+    "content": "diagnostic log only; validator stopped at HTTP 404 before producing a semantic receipt"
+  },
+  "semantic_conclusion": "No timestamp mapping or precision contract is promoted. The prior +5-minute mapping remains a hypothesis pending the required multi-day archive evidence.",
+  "readiness_effect": {
+    "execution_ready": false,
+    "source_freshness": false,
+    "live_feature_parity": false,
+    "initial_decisions": false,
+    "performance_started_at": null,
+    "paper_trades_created": 0,
+    "gate_promotion": false
+  },
+  "order_or_account_endpoints_used": false,
+  "next_safe_step": "Retry the same bounded validator after the 2026-09-21 Binance daily metrics archive is publicly available; do not weaken the multi-day requirement, rewrite raw values, or substitute a different source semantic."
+}
