@@ -1,0 +1,49 @@
+{
+  "first_seen_at_hkt": "2026-09-23T10:57:12+08:00",
+  "provider": "Longbridge",
+  "tool": "news_detail",
+  "capture_mode": "structured_detail_fields",
+  "note": "Provider-returned stable id, title, description, URL, author/source and published_at are preserved as retrieved. Full article bodies are not archived here; no chronology is inferred from published_at.",
+  "articles": [
+    {
+      "id": "299830992",
+      "title": "MSTR 股价隔夜上涨：分析师认为较当前水平有 16.5% 的上涨空间",
+      "description": "B. Riley 将 Strategy (MSTR) 的目标价从 175 美元上调至 195 美元，维持 “买入” 评级，上行空间约为 16.5%。该公司指出，加密货币反弹和流动性情绪是主要驱动因素，并注意到比特币最近一周上涨了 14%。催化因素包括潜在的中美外交会晤以及美国证券交易委员会对代币化股票的豁免。华尔街共识平均目标价为 229.87 美元，16 位分析师中有 15 位给予 “买入” 或更高评级。Stocktwits 上的散户情绪看涨",
+      "url": "https://longbridge.com/news/299830992",
+      "author": {"member_id":"5922","name":"MSN"},
+      "published_at": "2026-09-23T01:48:56Z"
+    },
+    {
+      "id": "299826672",
+      "title": "比特币和“精选山寨币”将上涨——Arthur Hayes 解释原因",
+      "description": "BitMEX 联合创始人 Arthur Hayes 认为，潜在的人工智能债务危机可能对比特币构成利好。他指出，人工智能发展放缓可能会给科技公司的财务状况带来压力，促使政府通过增加借贷和货币扩张来支持基础设施或防止金融不稳定。无论具体的政策回应如何，这种流动性的涌入预计都将推动比特币和特定加密货币的价格上涨",
+      "url": "https://longbridge.com/news/299826672",
+      "author": {"member_id":"5917","name":"Amb Crypto"},
+      "published_at": "2026-09-23T01:04:56Z"
+    },
+    {
+      "id": "299824416",
+      "title": "加密货币市场突破3万亿美元。是什么推动了这一里程碑，又是什么能使其保持在这一水平？",
+      "description": "在美国国债回购引导投资者资金、美国证券交易委员会批准区块链上的代币化股票以及 9.2 亿美元的强制空头平仓的推动下，加密货币市场自 1 月以来首次突破 3 万亿美元大关。尽管取得了这一里程碑式的进展，但比特币、以太坊、XRP 和 Solana 等主要资产年初至今仍处于下跌状态，只有 Zcash 显示出显著的年度涨幅。此次飙升反映的是外部金融压力，而非有机增长",
+      "url": "https://longbridge.com/news/299824416",
+      "author": {"member_id":"5922","name":"MSN"},
+      "published_at": "2026-09-23T00:30:56Z"
+    },
+    {
+      "id": "299823346",
+      "title": "比特币价格反弹使10万美元目标更具可能性",
+      "description": "9 月 21 日至 22 日，受美国现货 ETF 流入 9.9895 亿美元及 6.48 亿美元空头平仓的推动，比特币飙升至 87,395 美元。此次反弹使得年底达到 10 万美元的目标更具可能性，渣打银行分析师 Geoff Kendrick 甚至认为该目标可能过于保守。尽管宏观因素助推了此次涨势，但杠杆风险和市场敏感性方面的不确定性依然存在",
+      "url": "https://longbridge.com/news/299823346",
+      "author": {"member_id":"5998","name":"Crypto Briefing"},
+      "published_at": "2026-09-23T00:09:21Z"
+    },
+    {
+      "id": "299820239",
+      "title": "BitMine 以太坊储备突破 500 万枚，Tom Lee 预测 ETH 将迎来“更强劲的上涨”",
+      "description": "BitMine 已积累超过 598 万枚 ETH，价值达 164.3 亿美元，接近其 “5% 炼金术” 目标。Tom Lee 预测，在第三季度大幅跑赢市场后，ETH 将在 2026 年第四季度出现更强劲的上涨走势。该公司将其持有量的 85% 用于质押，预计年化收入为 3.57 亿至 4.21 亿美元。BitMine 股票（BMNR）上涨 8.84%，在美国上市公司中排名第 100 位，这得益于与 American Validator 达成的新质押协议，将费用降低至 1.50%",
+      "url": "https://longbridge.com/news/299820239",
+      "author": {"member_id":"5917","name":"Amb Crypto"},
+      "published_at": "2026-09-22T23:11:36Z"
+    }
+  ]
+}
