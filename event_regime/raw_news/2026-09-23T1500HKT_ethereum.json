@@ -1,0 +1,13 @@
+{
+  "first_seen_at_hkt": "2026-09-23T15:00:27+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299840540","title":"以太坊 (ETHUSD) 9月23日上涨1.15%：需关注的关键驱动因素","excerpt":"受机构ETF资金流入和巨鲸积累推动，以太坊在9月23日上涨1.15%至2,780.62美元。然而，2,800美元的阻力位引发了获利了结。风险包括近期的ETF资金...","source_name":"TradingKey","time":"2026-09-23T03:49:09Z","url":"https://longbridge.com/news/299840540.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
