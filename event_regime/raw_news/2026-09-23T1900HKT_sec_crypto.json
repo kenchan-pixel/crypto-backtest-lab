@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-23T19:03:46+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299810205","title":"《清晰法案》在参议院陷入僵局后，美国监管机构加紧制定加密货币规则手册","excerpt":"空白。美国证券交易委员会（SEC）扩大了其代币化股票框架，而","source_name":"CNBC","time":"2026-09-23T05:30:56Z","url":"https://longbridge.com/news/299810205.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "quality_note": "Article 299810205 is newly visible in this collection despite a provider publication timestamp before the prior 15:00 HKT observation. It was published after the preceding 10:57 HKT collection and is absent from the 15:00 HKT new-article manifest; first_seen is not backdated.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
