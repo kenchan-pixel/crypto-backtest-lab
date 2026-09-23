@@ -1,0 +1,28 @@
+{
+  "first_seen_at_hkt": "2026-09-23T19:03:46+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "299878546",
+      "title": "特朗普就伊朗问题发表言论打击风险情绪，以太坊回调至关键趋势线",
+      "excerpt": "基本面概述：本周以太坊缺乏重大的特异风险催化剂，该加密货币仅凭惯性继续上涨。提醒一下，周四美国商品期货交易委员会（CFTC）提交的加密货币规则制定文件公开后，大...",
+      "source_name": "Investinglive",
+      "time": "2026-09-23T10:07:11Z",
+      "url": "https://longbridge.com/news/299878546.md"
+    },
+    {
+      "id": "299880394",
+      "title": "Kalshi否认对敲交易指控，此前报告指出以太坊永续合约市场存在异常活动",
+      "excerpt": "在一份报告突出显示近相同的5,500美元以太坊永续合约交易后，Kalshi否认了对敲交易的指控。该平台将这种模式归因于其流动性提供者计划，并表示此类操纵行为是被...",
+      "source_name": "Benzinga",
+      "time": "2026-09-23T10:02:31Z",
+      "url": "https://longbridge.com/news/299880394.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
