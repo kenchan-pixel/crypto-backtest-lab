@@ -1,0 +1,17 @@
+{
+  "first_seen_at_hkt": "2026-09-24T03:05:39+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299934263","title":"Deribit 周五将有价值 160 亿美元的比特币期权到期","excerpt":"本周五，Deribit 交易所将有近 160 亿美元的比特币期权到期，这是一次重大的季度结算。期权持仓结构偏向看涨，看跌/看涨比率约为 0.7，表明交易员情绪乐...","source_name":"Crypto Briefing","time":"2026-09-23T18:52:43Z","url":"https://longbridge.com/news/299934263.md"},
+    {"id":"299932527","title":"美债收益率飙升，比特币价格跌破85,000美元","excerpt":"9月22日，随着美国国债收益率飙升至19年来的高点5.12%，比特币价格跌破85,000美元。债券收益率的飙升引发了广泛的市场抛售，促使投资者将资金从加密货币等...","source_name":"Tip Ranks","time":"2026-09-23T18:17:49Z","url":"https://longbridge.com/news/299932527.md"},
+    {"id":"299929679","title":"美债收益率飙升，比特币出现回撤。买方仍掌控局面吗？","excerpt":"自9月16日在75,000美元附近触底以来，比特币一直表现强劲。价格突破了81,517美元至82,833美元之间的震荡区间，随后突破了从2025年10月近126...","source_name":"Investinglive","time":"2026-09-23T17:41:34Z","url":"https://longbridge.com/news/299929679.md"},
+    {"id":"299931055","title":"比特币、以太坊和XRP随180亿美元期权到期临近而下滑：发生了什么？","excerpt":"随着交易员为周五2026年规模最大的180亿美元期权到期做准备，比特币、以太坊和XRP出现回落。Deribit数据显示，市场看涨头寸沉重，75,000美元构成“...","source_name":"Benzinga","time":"2026-09-23T17:41:29Z","url":"https://longbridge.com/news/299931055.md"},
+    {"id":"299921786","title":"YieldMax Bitcoin Option Income Strategy ETF 宣布派发 0.1924 美元周股息","excerpt":"YieldMax Bitcoin Option Income","source_name":"businessinsider","time":"2026-09-23T16:00:11Z","url":"https://longbridge.com/news/299921786.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
