@@ -1,0 +1,13 @@
+{
+  "first_seen_at_hkt": "2026-09-24T03:05:39+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299931055","title":"比特币、以太坊和XRP随180亿美元期权到期临近而下滑：发生了什么？","excerpt":"随着交易员为周五2026年规模最大的180亿美元期权到期做准备，比特币、以太坊和XRP出现回落。Deribit数据显示，市场看涨头寸沉重，75,000美元构成“...","source_name":"Benzinga","time":"2026-09-23T17:41:29Z","url":"https://longbridge.com/news/299931055.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
