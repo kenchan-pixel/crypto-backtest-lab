@@ -1,0 +1,13 @@
+{
+  "first_seen_at_hkt": "2026-09-24T03:05:39+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299927681","title":"美 SEC 委员 Uyeda：放弃部分加密诉讼以避免损害监管机构信誉","excerpt":"美国 SEC 委员 Mark Uyeda 表示，为避免损害监管机构信誉，SEC 已放弃数起遗留的加密货币诉讼案件。他指出，在准备推翻此前法律解释的情况下，继续为...","source_name":"钜亨网","time":"2026-09-23T17:00:38Z","url":"https://longbridge.com/news/299927681.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
