@@ -1,0 +1,19 @@
+{
+  "first_seen_at_hkt": "2026-09-23T23:04:16+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299910131","title":"比特币迎来自2012年以来最长连涨纪录","excerpt":"比特币正经历自2012年以来最长的连续月度上涨，7月（4.8%）、8月（25%）和9月（迄今11%）均实现增长。这是近15年来首次出现这样的三个月连涨。此次反弹...","source_name":"Baystreet","time":"2026-09-23T14:14:59Z","url":"https://longbridge.com/news/299910131.md"},
+    {"id":"299908467","title":"比特币分析师承认其加息看空论点“缺乏数据支撑”","excerpt":"比特币分析师本杰明·考恩（Benjamin Cowen）承认，他关于加息的看空论点缺乏数据支持，因为尽管美元走强，比特币仍出现反弹。他指出，历史数据显示加息并未...","source_name":"Benzinga","time":"2026-09-23T13:52:52Z","url":"https://longbridge.com/news/299908467.md"},
+    {"id":"299905381","title":"马克·尤斯科表示：比特币在涨至10万美元前可能回测6万美元低位，称“每个人”都应持有","excerpt":"资深投资者马克·尤斯科预测，比特币在升至10万美元之前可能会回测6万美元附近的低位，理由是当前市场处于超买状态，且周期底部可能出现在10月初。他认为，相对于网络...","source_name":"Benzinga","time":"2026-09-23T13:32:01Z","url":"https://longbridge.com/news/299905381.md"},
+    {"id":"299901952","title":"比特币跌破86,000美元，但在中东和平希望支撑下仍持于一月高位——第二次更新","excerpt":"比特币小幅回落至85,528美元，但在中东和平希望以及比特币ETF净流入10亿美元的支撑下，仍接近一月高点。尽管近期美联储加息且立法遭遇挫折，该加密货币本月仍上...","source_name":"MorningStar","time":"2026-09-23T13:09:05Z","url":"https://longbridge.com/news/299901952.md"},
+    {"id":"299892593","title":"2x Bitcoin Strategy ETF 宣布每月派发 0.0212 美元","excerpt":"要点：2x Bitcoin Strategy ETF - 0","source_name":"Seeking Alpha","time":"2026-09-23T12:00:32Z","url":"https://longbridge.com/news/299892593.md"},
+    {"id":"299905678","title":"Cuentas 宣布西德克萨斯能源回收、比特币挖矿及 Bitcoin Mobile 战略 | CUEN 股票新闻","excerpt":"Cuentas 计划推出的“Bitcoin Mobile”服务。该","source_name":"StockTitan","time":"2026-09-23T05:30:00Z","url":"https://longbridge.com/news/299905678.md"},
+    {"id":"299904097","title":"Cuentas 与 Power Upp USA 合作开展西德克萨斯州甲烷供电比特币挖矿项目","excerpt":"兆瓦的产能。挖矿利润将用于补贴 Cuentas 的 Bitcoin Mobile 无线服务，包括客户奖励和网络安全功能","source_name":"PUBT","time":"2026-09-23T13:31:15Z","url":"https://longbridge.com/news/299904097.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
