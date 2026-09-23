@@ -1,0 +1,15 @@
+{
+  "first_seen_at_hkt": "2026-09-24T07:06:08+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299950021","title":"单日净流入近10亿美元后，比特币ETF资金流在2026年转为正值","excerpt":"在经历单日近10亿美元的净流入后，比特币ETF资金流在2026年转为正值，","source_name":"Investinglive","time":"2026-09-23T22:39:02Z","url":"https://longbridge.com/news/299950021.md"},
+    {"id":"299946649","title":"比特币有望迎来2012年以来首个第三季度连胜：历史能给我们什么启示？","excerpt":"场缺乏ETF和机构参与。如今的市场格局包括大量的ETF持仓和","source_name":"MSN","time":"2026-09-23T21:40:56Z","url":"https://longbridge.com/news/299946649.md"},
+    {"id":"299937176","title":"加密货币市场一分为二","excerpt":"机构投资者正专注于比特币ETF，而零售投资者则青睐模因币、AI代币和代币化股票","source_name":"MSN","time":"2026-09-23T19:48:56Z","url":"https://longbridge.com/news/299937176.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
