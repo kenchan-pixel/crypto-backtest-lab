@@ -1,0 +1,52 @@
+{
+  "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is the current collection-run observation timestamp and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "300061056",
+      "title": "这位分析师表示将不再碰触XRP——以下是他更青睐的替代选择",
+      "excerpt": "分析师斯科特·梅尔克（Scott Melker）表示他将永远不会再投资XRP，理由是他更偏好具有实际效用和收入能力的代币。他预测99%的加密货币代币将会失败，转...",
+      "source_name": "Benzinga",
+      "time": "2026-09-24T16:47:15Z",
+      "url": "https://longbridge.com/news/300061056.md"
+    },
+    {
+      "id": "300056950",
+      "title": "收益率与美元走高，比特币从八个月高点回落",
+      "excerpt": "在美国经济数据热度超预期推动美债收益率和美元飙升后，比特币从近87,000美元的八个月高点下跌约4%，至83,200美元左右。尽管通过ETF流入显示出强劲的机构...",
+      "source_name": "Crypto Briefing",
+      "time": "2026-09-24T16:10:12Z",
+      "url": "https://longbridge.com/news/300056950.md"
+    },
+    {
+      "id": "300056445",
+      "title": "比特币交投走低，但在关键摆动区域顶部附近守住支撑。下一步走势如何？",
+      "excerpt": "比特币从本周高点的回调今日触及新的修正低点82,873美元。这使得价格接近81,517美元至82,833美元之间关键摆动区域的顶部。在价格重新进入该区域之前，买...",
+      "source_name": "Investinglive",
+      "time": "2026-09-24T16:06:15Z",
+      "url": "https://longbridge.com/news/300056445.md"
+    },
+    {
+      "id": "300054238",
+      "title": "随着机构资本重塑周期，比特币熊市正趋于温和",
+      "excerpt": "与以往周期相比，比特币当前的熊市更为温和，跌幅约为50%，而历史跌幅曾高达78%-84%。机构资本，尤其是通过现货ETF流入的资金，稳定了市场；主要机构在下跌期...",
+      "source_name": "Crypto Briefing",
+      "time": "2026-09-24T15:43:55Z",
+      "url": "https://longbridge.com/news/300054238.md"
+    },
+    {
+      "id": "300053810",
+      "title": "随着 Strategy 股价和杠杆 ETF 飙升，比特币押注进入白热化",
+      "excerpt": "Strategy Inc. (MSTR) 在五天内飙升近 29%，得益于总计 950 枚比特币的购买行动。与 MSTR 挂钩的杠杆 ETF（包括 MSTU、MS...",
+      "source_name": "Benzinga",
+      "time": "2026-09-24T15:34:09Z",
+      "url": "https://longbridge.com/news/300053810.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence. Cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
