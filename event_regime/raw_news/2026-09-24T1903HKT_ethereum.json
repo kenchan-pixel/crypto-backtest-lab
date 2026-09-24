@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-24T19:03:36+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"300011360","title":"Ondo Stocks 现在可直接由 Alpaca 托管的股份铸造，获批机构无需经过现金环节","excerpt":"Ondo 允许获批机构将托管在 Alpaca 的股份转换为以太坊和 BNB Chain 上的 Ondo Stocks，跳过需要资金支持的铸造步骤","source_name":"MSN","time":"2026-09-24T10:06:56Z","url":"https://longbridge.com/news/300011360.md"},
+    {"id":"299994139","title":"以太坊 (ETHUSD) 9月24日突然上涨1.05%：你需要关注什么","excerpt":"9月24日，受宏观流动性改善、ETF资金流入为正以及Layer-2基本面强劲推动，以太坊上涨1.05%至2,696.93美元。技术指标显示买入信号，但2,786...","source_name":"TradingKey","time":"2026-09-24T07:57:09Z","url":"https://longbridge.com/news/299994139.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
