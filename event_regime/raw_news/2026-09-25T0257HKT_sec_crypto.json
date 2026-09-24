@@ -1,0 +1,41 @@
+{
+  "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Publication time is provider metadata only; first_seen_at_hkt is not backdated. Invalid placeholder timestamps are unusable.",
+  "new_search_hits": [
+    {
+      "id": "300063475",
+      "source_name": "Unusual Whales",
+      "time": "2026-09-24T17:32:28Z",
+      "url": "https://longbridge.com/news/300063475.md"
+    },
+    {
+      "id": "300055851",
+      "source_name": "Amb Crypto",
+      "time": "2026-09-24T16:04:56Z",
+      "url": "https://longbridge.com/news/300055851.md"
+    },
+    {
+      "id": "299954110",
+      "source_name": "金色财经",
+      "time": "2026-09-24T00:04:56Z",
+      "url": "https://longbridge.com/news/299954110.md"
+    },
+    {
+      "id": "299900785",
+      "source_name": "钜亨网",
+      "time": "2026-09-23T13:01:22Z",
+      "url": "https://longbridge.com/news/299900785.md"
+    },
+    {
+      "id": "299814865",
+      "source_name": "金色财经",
+      "time": "2026-09-22T21:24:56Z",
+      "url": "https://longbridge.com/news/299814865.md"
+    }
+  ],
+  "dedupe_note": "Stable IDs were checked against prior collection evidence; secondary content dedupe is recorded in the manifest.",
+  "historical_news_completeness_claimed": false
+}
