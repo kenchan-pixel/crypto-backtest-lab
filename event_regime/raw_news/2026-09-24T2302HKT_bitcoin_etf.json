@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-24T23:02:29+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"300030471","title":"2030年，1000美元的比特币和莱特币价值几何？","excerpt":"强劲的长期表现和显著更大的ETF资金流入，比特币目前占据更有","source_name":"MSN","time":"2026-09-24T12:32:56Z","url":"https://longbridge.com/news/300030471.md"},
+    {"id":"300028183","title":"债券抛售致比特币大跌","excerpt":"13亿美元，其中多头头寸损失占大部分。比特币现货ETF净流入降至3.47亿美元。以太坊也下跌2","source_name":"rttnews","time":"2026-09-24T12:15:07Z","url":"https://longbridge.com/news/300028183.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
