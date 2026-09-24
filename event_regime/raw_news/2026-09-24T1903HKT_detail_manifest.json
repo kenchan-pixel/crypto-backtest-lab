@@ -1,0 +1,43 @@
+{
+  "first_seen_at_hkt": "2026-09-24T19:03:36+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-24T15:01:33+08:00",
+    "searched_queries": [
+      {"query":"Bitcoin","new_search_hits":5},
+      {"query":"Ethereum","new_search_hits":2},
+      {"query":"Bitcoin ETF","new_search_hits":1},
+      {"query":"SEC crypto","new_search_hits":0}
+    ],
+    "new_search_hits_before_cross_query_dedupe": 8,
+    "new_stable_ids_before_secondary_dedupe": 7,
+    "dedupe_result_unique_articles": 6,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source/body content identity across current and prior evidence",
+    "cross_query_duplicate_ids": ["300009542"],
+    "content_identity_duplicates_removed": [
+      {"id":"299999767","duplicate_of":"299934263","reason":"Same Crypto Briefing Deribit 25 Sep quarterly-expiry story as prior retained evidence: approximately $15.9B BTC and $2.1B ETH options, same settlement timing and positioning/max-pain context. Raw search/detail evidence is retained but this update is not counted as a new logical article."}
+    ],
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable and never used for chronology; none of the seven retrieved detail records used a placeholder timestamp.",
+    "first_seen_policy": "2026-09-24T19:03:36+08:00 is a conservative collection observation timestamp recorded after search/detail retrieval began. published_at is provider metadata and is never used to backdate first_seen_at_hkt.",
+    "detail_capture_note": "news_detail was retrieved successfully for all seven newly surfaced stable IDs before secondary content-identity deduplication. Stable id, title, description, URL, detail author metadata, search source_name and published_at are retained in the companion structured detail evidence file; full article bodies are not archived.",
+    "historical_news_completeness_claimed": false,
+    "trading_actions": "none"
+  },
+  "quality_notes": [
+    {"id":"299999767","type":"content_identity_duplicate_update","note":"Same logical Crypto Briefing Deribit 25 Sep options-expiry event as previously retained 299934263. Evidence preserved, logical duplicate removed."},
+    {"id":"300016655","type":"source_metadata_conflict","note":"Longbridge search source_name is MSN while news_detail author.name is 唐纳德·特朗普. Both provider fields are preserved. Manifest source uses the search metadata label and flags the conflict rather than fabricating a reconciliation."}
+  ],
+  "new_articles": [
+    {"id":"300016655","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-24T19:03:36+08:00","published_at_utc":"2026-09-24T10:44:56Z","source":"MSN","timestamp_quality":"verified_detail","source_quality":"search_detail_metadata_conflict"},
+    {"id":"300010186","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-24T19:03:36+08:00","published_at_utc":"2026-09-24T09:53:29Z","source":"Crypto Briefing","timestamp_quality":"verified_detail"},
+    {"id":"300009542","matched_queries":["Bitcoin","Bitcoin ETF"],"first_seen_at_hkt":"2026-09-24T19:03:36+08:00","published_at_utc":"2026-09-24T09:37:55Z","source":"Unusual Whales","timestamp_quality":"verified_detail"},
+    {"id":"299995338","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-24T19:03:36+08:00","published_at_utc":"2026-09-24T08:04:56Z","source":"Amb Crypto","timestamp_quality":"verified_detail"},
+    {"id":"300011360","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-24T19:03:36+08:00","published_at_utc":"2026-09-24T10:06:56Z","source":"MSN","timestamp_quality":"verified_detail"},
+    {"id":"299994139","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-24T19:03:36+08:00","published_at_utc":"2026-09-24T07:57:09Z","source":"TradingKey","timestamp_quality":"verified_detail"}
+  ],
+  "detail_evidence_file": "event_regime/raw_news/2026-09-24T1903HKT_detail_raw.json"
+}
