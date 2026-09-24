@@ -1,0 +1,20 @@
+{
+  "first_seen_at_hkt": "2026-09-21T19:01:00+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "raw_new_hits": [
+    {"id":"299628879","title":"美股盘前热门交易：Robinhood 盘前涨 4.09%；Grayscale Ethereum Staking ETF 盘前涨 3.68%","excerpt":"09%；Grayscale Ethereum Staking ETF","source_name":"异动追踪","time":"2026-09-21T10:42:58Z","url":"https://longbridge.com/news/299628879.md"},
+    {"id":"299616419","title":"比特币突破84,000美元，以太坊站上2,700美元，加密货币市场延续强劲反弹","excerpt":"9月21日，比特币飙升突破84,000美元，以太坊突破2,700美元，标志着加密货币市场的强劲反弹。此次复苏得益于美国证券交易委员会（SEC）为代币化股票引入“...","source_name":"TradingKey","time":"2026-09-21T09:03:10Z","url":"https://longbridge.com/news/299616419.md"},
+    {"id":"299615610","title":"随着CFTC在国会缺席的情况下推进监管，以太坊终于突破长达一个月的盘整区间","excerpt":"基本面概览：周四美国商品期货交易委员会（CFTC）提交的加密货币规则制定文件公开后，以太坊及其他主要加密货币在周五大幅反弹。此前一周，由于《CLARITY法案》...","source_name":"Investinglive","time":"2026-09-21T08:51:11Z","url":"https://longbridge.com/news/299615610.md"},
+    {"id":"299614144","title":"以太坊价格升至2,664美元，突破布林带上轨；预计7日内触及2,786美元，预示看涨突破","excerpt":"以太坊当前交易价格为2,664美元，已突破其布林带上轨。这一情况反映出技术面超买的情形，多头可能推动价格显著突破2,725美元至2,786美元的阻力区间","source_name":"Unusual Whales","time":"2026-09-21T08:25:47Z","url":"https://longbridge.com/news/299614144.md"}
+  ],
+  "provenance": {
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description/excerpt + source identity",
+    "timestamp_policy": "search/detail timestamps are evidence only; first_seen_at_hkt is the conservative collection observation time and is never backdated",
+    "historical_completeness_claimed": false
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-22T07:05:47+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "search_limit": 50,
+  "historical_news_completeness_claimed": false,
+  "timestamp_policy": "Search timestamps are provider metadata; 1970/equivalent placeholders are unusable. first_seen_at_hkt is never backdated from published_at.",
+  "new_search_hits": [
+    {"id":"299681978","title":"比特币重新站上 87,000 美元，因为空头头寸被清除","excerpt":"比特币价格飙升至超过 87,000 美元，在一个小时内清除超过 3 亿美元的空头头寸。这一 5-6% 的涨幅是由于强制平仓和 4.35 亿美元的 ETF 资金流...","source_name":"Crypto Briefing","time":"2026-09-21T20:41:41Z","url":"https://longbridge.com/news/299681978.md"},
+    {"id":"299679389","title":"Strategy盘中创近1个月新高，比特币突破8.5万美元带动加密货币概念股走强","excerpt":"Strategy(MSTR.US)盘后涨0.71%，现报169.7美元。日内常规交易时段涨9.47%，公司上周购入950枚比特币并回购1.77亿美元优先股。","source_name":"美股行情速递","time":"2026-09-21T20:12:46Z","url":"https://longbridge.com/news/299679389.md"},
+    {"id":"299676133","title":"比特币价格突破 86,000 美元，创下 8 个月来的新高","excerpt":"旗舰加密货币继续其火热的反弹，自 8 月 19 日以来上涨超过 30%，并稳稳保持在 80,000 美元以上，这一水平在最近几周被证明是一个顽固的阻力位","source_name":"MSN","time":"2026-09-21T19:12:56Z","url":"https://longbridge.com/news/299676133.md"}
+  ]
+}

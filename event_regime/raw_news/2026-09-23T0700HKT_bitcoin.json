@@ -1,0 +1,11 @@
+{
+  "first_seen_at_hkt": "2026-09-23T07:00:43+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

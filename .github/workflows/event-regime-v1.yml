@@ -1,0 +1,54 @@
+name: Event + Regime Dataset v1
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/event-regime-v1-20260920']
+    paths: ['event_regime/**', '.github/workflows/event-regime-v1.yml']
+permissions:
+  contents: read
+concurrency:
+  group: event-regime-v1-20260920
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.event.repository.private == false && github.repository == 'kenchan-pixel/crypto-backtest-lab'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned research dependencies
+        run: python -m pip install -r derivatives/requirements.txt
+      - name: Event/regime causal tests
+        run: python -m pytest -q event_regime/test_event_regime.py derivatives/test_increment.py multifactor/test_research.py
+      - name: Restore exact durable market inputs
+        run: python -m macrostudy.prepare
+      - name: Build v1 dataset
+        run: python -u -m event_regime.build
+      - name: Verify output
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,pandas as pd
+          p=Path('event_regime_outputs')
+          r=pd.read_csv(p/'hourly_regimes.csv.gz')
+          e=pd.read_csv(p/'events.csv')
+          assert len(r)>40000 and {'BTCUSDT','ETHUSDT'}==set(r.symbol)
+          assert len(e)>=214 and (e.event_type=='news').any()
+          m=json.loads((p/'MANIFEST.json').read_text())
+          assert m['market_data_simulated'] is False and m['live_approved'] is False
+          print(m)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: event-regime-v1-bootstrap
+          path: event_regime_outputs/
+          retention-days: 14
+          compression-level: 6

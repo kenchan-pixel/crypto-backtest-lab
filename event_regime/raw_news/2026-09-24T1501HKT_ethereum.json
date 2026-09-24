@@ -1,0 +1,16 @@
+{
+  "first_seen_at_hkt": "2026-09-24T15:01:33+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299982083","title":"以太坊经典价格预测——尽管回调11%，看涨结构依然有效","excerpt":"以太坊经典（ETC）经历了一次11%的回调，从9.68美元跌至8.60美元，这主要是由更广泛市场的清算和获利了结所驱动。尽管出现此次下跌，ETC在较高时间框架上...","source_name":"Amb Crypto","time":"2026-09-24T06:08:16Z","url":"https://longbridge.com/news/299982083.md"},
+    {"id":"299968682","title":"以太坊呈现所有看多信号——唯独缺少确认迈向3000美元的关键一环","excerpt":"以太坊展现出强劲的看多信号，预计投资回报率超过70%，未平仓合约达300亿美元，且贝莱德ETF资金大幅流入。然而，仍需关键确认：ETH/BTC汇率必须突破0.0...","source_name":"Amb Crypto","time":"2026-09-24T03:04:56Z","url":"https://longbridge.com/news/299968682.md"},
+    {"id":"299971292","title":"比特币、以太坊、XRP、狗狗币随加息预期飙升而下滑：分析师称尽管出现回调，BTC目标价仍维持在10万美元","excerpt":"9月23日，包括比特币、以太坊和XRP在内的主要加密货币下跌，因强劲的宏观经济数据增加了再次加息的预期。加密货币市值下跌2.6%至2.96万亿美元，爆仓金额超过...","source_name":"Benzinga","time":"2026-09-24T02:02:24Z","url":"https://longbridge.com/news/299971292.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "quality_note": "299982083 is an Ethereum Classic (ETC) search hit returned by the provider for the Ethereum query. Its article body references April 23 while provider published_at is 2026-09-24; retain as raw evidence but treat event-time interpretation cautiously.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-24T07:06:08+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299939790","title":"主流加密货币下跌；比特币跌破 85,000 美元关口","excerpt":"周三，主流加密货币普遍下跌，比特币跌破 85,000 美元关口，至 84,527 美元。CoinDesk 市场指数在 24 小时内下跌 3.4%，而美国主要股指...","source_name":"MSN","time":"2026-09-23T20:20:56Z","url":"https://longbridge.com/news/299939790.md"},
+    {"id":"299934938","title":"10年期美债收益率触及19年高点，比特币跌破85,000美元","excerpt":"随着美国10年期国债收益率飙升至5%以上，创下19年新高，比特币价格跌破85,000美元。此次飙升紧随强劲的9月采购经理人指数（PMI）数据之后，该数据显示经济...","source_name":"Benzinga","time":"2026-09-23T18:36:53Z","url":"https://longbridge.com/news/299934938.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

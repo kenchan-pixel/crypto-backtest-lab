@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-22T03:10:00+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "historical_news_completeness_claimed": false,
+  "timestamp_policy": "Search timestamps are provider metadata; 1970/equivalent placeholders are unusable. first_seen_at_hkt is never backdated from published_at.",
+  "new_search_hits": [
+    {"id":"299674144","title":"比特币突破了一年的下行趋势，分析师表示看涨的势头已经回归","excerpt":"比特币约85,900美元，受到ETF资金流入、空头平仓和移动平均金叉支持。","source_name":"Crypto Briefing","time":"2026-09-21T18:28:26Z","url":"https://longbridge.com/news/299674144.md"},
+    {"id":"299671025","title":"比特币突破 85,000 美元，以太坊超过 2,750 美元，带动加密货币股票上涨","excerpt":"比特币及以太坊上涨带动加密股票；报道提及ETF流向和现货购买动能。","source_name":"businessinsider","time":"2026-09-21T17:44:58Z","url":"https://longbridge.com/news/299671025.md"},
+    {"id":"299669045","title":"为什么今天加密货币市场上涨？比特币（BTC USD）自一月份以来首次达到 85,000 美元，ETH USD、XRP、SOL 和其他山寨币在油价下跌、收益率下降以及空头平仓的情况下纷纷上涨","excerpt":"报道将上涨与油价、收益率、空头平仓及比特币ETF资金流等因素并列。","source_name":"economictimes","time":"2026-09-21T17:11:57Z","url":"https://longbridge.com/news/299669045.md"},
+    {"id":"299658274","title":"比特币、以太坊和 XRP 价格飙升，因 4 亿美元的空头头寸被清算","excerpt":"比特币突破85,000美元触发空头挤压，美国现货比特币ETF资金回流；以太坊和XRP也上涨。","source_name":"benzinga_article","time":"2026-09-21T14:48:43Z","url":"https://longbridge.com/news/299658274.md","note":"Cross-query duplicate with Ethereum in this same collection; represented once in detail manifest."}
+  ]
+}

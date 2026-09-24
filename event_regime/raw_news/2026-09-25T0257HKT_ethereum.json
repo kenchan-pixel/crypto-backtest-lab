@@ -1,0 +1,52 @@
+{
+  "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is the current collection-run observation timestamp and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "300064950",
+      "title": "Bitwise称比特币是唯一的“通用”押注——以太坊和Solana必须证明“某些东西行得通”",
+      "excerpt": "Bitwise于2026年9月发布的报告显示，所有15家受访机构均持有比特币，将其视为通用的价值储存手段和对冲货币贬值的工具。相比之下，以太坊和Solana被视...",
+      "source_name": "Benzinga",
+      "time": "2026-09-24T18:02:18Z",
+      "url": "https://longbridge.com/news/300064950.md"
+    },
+    {
+      "id": "300061056",
+      "title": "这位分析师表示将不再碰触XRP——以下是他更青睐的替代选择",
+      "excerpt": "分析师斯科特·梅尔克（Scott Melker）表示他将永远不会再投资XRP，理由是他更偏好具有实际效用和收入能力的代币。他预测99%的加密货币代币将会失败，转...",
+      "source_name": "Benzinga",
+      "time": "2026-09-24T16:47:15Z",
+      "url": "https://longbridge.com/news/300061056.md"
+    },
+    {
+      "id": "299898822",
+      "title": "欧盟监管机构警告量子计算对区块链安全构成威胁，比特币开发者考虑迁移计划，以太坊瞄准2029年",
+      "excerpt": "欧盟监管机构已提出担忧，认为量子计算的兴起可能会危及区块链技术的安全性。为应对这一威胁，比特币开发者目前正在评估一项迁移计划草案。此外，以太坊还设定了到2029...",
+      "source_name": "Unusual Whales",
+      "time": "2026-09-23T12:30:17Z",
+      "url": "https://longbridge.com/news/299898822.md"
+    },
+    {
+      "id": "299622532",
+      "title": "Global X Ethereum Covered Call ETF 宣布派发 0.133 美元的股息",
+      "excerpt": "Global X Ethereum Covered Call",
+      "source_name": "businessinsider",
+      "time": "2026-09-21T09:59:58Z",
+      "url": "https://longbridge.com/news/299622532.md"
+    },
+    {
+      "id": "299839282",
+      "title": "特朗普吹捧与伊朗“良好会晤”，比特币、以太坊、XRP、狗狗币上涨：分析师称比特币“企稳”于强劲支撑位上方",
+      "excerpt": "9月22日，随着投资者对特朗普总统关于伊朗谈判的言论做出反应，加密货币价格上扬。比特币上涨1.10%至86,640美元，以太坊和XRP也录得涨幅。全球加密货币市...",
+      "source_name": "Benzinga",
+      "time": "2026-09-23T02:04:11Z",
+      "url": "https://longbridge.com/news/299839282.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence. Cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

@@ -1,0 +1,20 @@
+{
+  "first_seen_at_hkt": "2026-09-22T15:04:34+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time recorded after search/detail retrieval and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "299718193",
+      "title": "贝莱德的 IBIT 在美国现货比特币 ETF 资金流入中处于领先地位，达到 9.99 亿美元",
+      "excerpt": "在 9 月 21 日，美国现货比特币和以太坊 ETF 录得 12.69 亿美元的净流入，其中以贝莱德的 IBIT 为首。",
+      "source_name": "Crypto Briefing",
+      "time": "2026-09-22T05:34:39Z",
+      "url": "https://longbridge.com/news/299718193.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article id 299718193 was absent from the immediately prior 2026-09-22T10:58:06+08:00 manifest. Its verified detail published_at is later than that prior collection. No content-identity duplicate was identified among this run's new articles.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-22T07:05:47+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "search_limit": 50,
+  "historical_news_completeness_claimed": false,
+  "timestamp_policy": "Search timestamps are provider metadata; 1970/equivalent placeholders are unusable. first_seen_at_hkt is never backdated from published_at.",
+  "new_search_hits": [
+    {"id":"299678872","title":"Aztec：私密智能合约结算至以太坊现已上线 -2026年9月21日","excerpt":"Aztec 的私人智能合约在以太坊上的结算于2026年9月21日上线。此转变将协议从路线图转向运营，使用户能够执行在链上验证的私人合约。此次发布将核心声明转化为...","source_name":"CoinMarketCal","time":"2026-09-21T20:00:17Z","url":"https://longbridge.com/news/299678872.md"},
+    {"id":"299678776","title":"以太坊目标 3000 美元，神秘鲸鱼将 8700 万美元从比特币转移","excerpt":"以太坊突破了 2700 美元，原因是一个鲸鱼将 8680 万美元从比特币转换为以太坊并进行质押。创纪录的钱包增长和强劲的链上活动支持了看涨的势头。分析师的目标在...","source_name":"benzinga_article","time":"2026-09-21T19:51:07Z","url":"https://longbridge.com/news/299678776.md"},
+    {"id":"299677544","title":"比特币价格达到 86,000 美元，狗狗币领涨；以太坊和 XRP 的上涨推动清算金额接近 10 亿美元","excerpt":"比特币飙升至接近 86,000 美元的八个月高点，主要受到机构资金流入和现货 ETF 购买的推动。以太坊、XRP 和狗狗币也出现上涨，导致近 10 亿美元的交易...","source_name":"benzinga_article","time":"2026-09-21T19:07:54Z","url":"https://longbridge.com/news/299677544.md"}
+  ]
+}

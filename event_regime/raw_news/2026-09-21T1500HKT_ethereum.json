@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-21T15:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+  "query": "Ethereum",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit_requested": 20,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across all prior event_regime/raw_news snapshots; content identity secondary check",
+    "note": "raw.text contains only genuinely newly seen search hits from this run; field values are preserved from Longbridge search output. first_seen_at_hkt is conservatively rounded forward to 15:00 HKT and is never backdated."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299599920\",\"title\":\"以太坊价格预测：ETH 在六天的上涨中突破了 2700 美元，它能否在九月份重新达到 3000 美元？\",\"excerpt\":\"以太坊上涨至 2700 美元，标志着连续六天的反弹，并且是自一月份以来的最高水平。这一恢复得益于缓解的宏观经济通胀担忧、上升的风险偏好以及强劲的链上基本面，包括...\",\"source_name\":\"TradingKey\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299599920.md\"},{\"id\":\"299590414\",\"title\":\"比特币触及 82,000 美元，以太坊、XRP 和狗狗币也在 SEC 推动代币化的背景下上涨：分析师确认这一主要加密货币的'突破'\",\"excerpt\":\"加密货币在 9 月 20 日反弹，比特币触及 82,000 美元，以太坊超过 2,700 美元，这得益于美国证券交易委员会（SEC）对代币化股票的倡议。全球加密...\",\"source_name\":\"benzinga_article\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299590414.md\"}]"
+  }
+}

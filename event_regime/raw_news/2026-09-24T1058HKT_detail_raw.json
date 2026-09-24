@@ -1,0 +1,13 @@
+{
+  "first_seen_at_hkt": "2026-09-24T10:58:12+08:00",
+  "provider": "Longbridge",
+  "tool": "news_detail",
+  "capture_mode": "structured_detail_fields",
+  "note": "Provider-returned stable id, title, description, URL, author/source and published_at are preserved as retrieved. Full article bodies are not archived here; no chronology is inferred from published_at.",
+  "articles": [
+    {"id":"299961156","title":"贝莱德 IBIT 吸引 10 亿美元资金，比特币从 8.7 万美元回落","description":"贝莱德的现货比特币 ETF（IBIT）在连续四个交易日吸引了约 10.2 亿美元的净流入，占美国现货比特币 ETF 总流量的 44%。尽管比特币从接近 87,300 美元的盘中高点回落至 84,175 美元左右，但强劲的需求依然持续。这些流入表明，尽管存在短期获利回吐和价格波动，投资者对受监管敞口的兴趣依然浓厚","url":"https://longbridge.com/news/299961156","author":{"member_id":"5917","name":"Amb Crypto"},"published_at":"2026-09-24T01:35:10Z"},
+    {"id":"299958588","title":"a16z寻求SEC对去中心化交易所的豁免——传统金融会反击吗？","description":"a16z Crypto 和 DeFi 教育基金已请求美国证券交易委员会（SEC）为去中心化交易所（DEX）及其开发者提供监管救济，认为如果这些平台是非托管的，应免除《交易所法》的注册要求。他们还提议为控制用户资金的加密交易平台设立独立的审批路径。这一举动紧随 SEC 对 Uniswap 采取执法行动之后。与此同时，传统经纪交易商集团 SIFMA 批评了 SEC 的 “创新豁免” 框架，可能会反对给予 DEX 豁免权","url":"https://longbridge.com/news/299958588","author":{"member_id":"5917","name":"Amb Crypto"},"published_at":"2026-09-24T01:08:16Z"}
+  ],
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

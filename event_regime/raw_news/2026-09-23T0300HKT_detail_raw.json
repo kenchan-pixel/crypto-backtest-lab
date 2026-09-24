@@ -1,0 +1,65 @@
+{
+  "first_seen_at_hkt": "2026-09-23T03:00:00+08:00",
+  "provider": "Longbridge",
+  "tool": "news_detail",
+  "capture_mode": "structured_detail_fields",
+  "note": "Provider-returned stable id, title, description, URL, author/source and published_at are preserved as retrieved. Full article bodies are not archived here; no chronology is inferred from published_at.",
+  "articles": [
+    {
+      "id": "299795264",
+      "title": "独家：“机构正在买入比特币”——散户则在交易其他一切",
+      "description": "机构正将加密资产敞口集中在比特币 ETF 上，管理资产规模升至 1020 亿美元，而散户交易者则专注于模因币、AI 代币和代币化股票。这种分化造就了一个双轨市场：机构资本通过 ETF 寻求受监管的比特币敞口，而散户活动则推动了投机性山寨币的高交易量交易。比特币的主导率仍接近 59%，表明广泛的参与尚未触发持续的山寨币轮动",
+      "url": "https://longbridge.com/news/299795264",
+      "author": {"member_id":"36","name":"benzinga_article"},
+      "published_at": "2026-09-22T16:27:47Z"
+    },
+    {
+      "id": "299777831",
+      "title": "Strategy 股价在过去一个月飙升 40%，因其再次买入比特币",
+      "description": "该股近期受益于比特币价值的上涨",
+      "url": "https://longbridge.com/news/299777831",
+      "author": {"member_id":"5922","name":"MSN"},
+      "published_at": "2026-09-22T13:52:56Z"
+    },
+    {
+      "id": "299795644",
+      "title": "Zcash 在美国 ETF 之后推出首款欧盟 ETP；21shares 在泛欧交易所巴黎及阿姆斯特丹分部上市 ZEC 和 ETHFI",
+      "description": "21shares 已在泛欧交易所巴黎和阿姆斯特丹分部推出了实物支持的 Zcash (ZEC) 和以太坊 (ETH) 金融工具 (FI)。此举标志着发行商将其产品范围扩展至主流加密货币之外",
+      "url": "https://longbridge.com/news/299795644",
+      "author": {"member_id":"5899","name":"Unusual Whales"},
+      "published_at": "2026-09-22T16:29:22Z"
+    },
+    {
+      "id": "299796984",
+      "title": "Fundstrat称“加密寒冬已结束”：为何比特币、以太坊和Solana ETF此刻至关重要",
+      "description": "Fundstrat 的 Sean Farrell 宣布 “加密寒冬已经结束”，此前比特币突破 86,000 美元，周一美国现货比特币 ETF 净流入达 9.989 亿美元。贝莱德的 IBIT 以 680 亿美元的资产规模领涨。以太坊 ETF 也录得 1.438 亿美元的净流入。分析师将此次反弹归因于机构需求的复苏以及空头回补，但对于这些资金流在短期市场动态之外是否具有可持续性，仍存疑问",
+      "url": "https://longbridge.com/news/299796984",
+      "author": {"member_id":"36","name":"benzinga_article"},
+      "published_at": "2026-09-22T17:05:07Z"
+    },
+    {
+      "id": "299793023",
+      "title": "每周ETF资金流向：11个板块中有8个录得资金流出；黄金领涨资金流入",
+      "description": "上周，标普 500 指数 11 个板块 ETF 中有 8 个录得净流出，总额达 20.1 亿美元，其中能源（XLE）和金融（XLF）板块跌幅最大。相反，非必需消费品板块（XLY）以 7.1443 亿美元的资金流入领跑。在大宗商品方面，黄金 ETF（GLD）吸引了 13.5 亿美元的资金流入，而尽管比特币价格飙升，比特币 ETF（IBIT）却遭遇资金流出。SPY ETF 也出现了 226.4 亿美元的显著资金流出",
+      "url": "https://longbridge.com/news/299793023",
+      "author": {"member_id":"5922","name":"MSN"},
+      "published_at": "2026-09-22T16:14:56Z"
+    },
+    {
+      "id": "299788015",
+      "title": "比特币ETF单日吸金近10亿美元，持有者重返盈利",
+      "description": "9 月 21 日，美国现货比特币 ETF 录得 9.9895 亿美元的创纪录资金净流入，主要受比特币价格飙升突破 87,000 美元推动。贝莱德的 IBIT 以 3.81 亿美元领跑，ARKB 和 FBTC 紧随其后。这是近一年来最大的单日资金流入，使持有者重新实现盈利。现货以太坊 ETF 也获得了 2.7 亿美元的资金流入。这一资金涌入凸显了通过受监管产品增加的机构采用率",
+      "url": "https://longbridge.com/news/299788015",
+      "author": {"member_id":"5998","name":"Crypto Briefing"},
+      "published_at": "2026-09-22T15:13:32Z"
+    },
+    {
+      "id": "299789924",
+      "title": "为何加密货币可能迎来监管",
+      "description": "Solana Policy Institute 的 Kristin Smith 表示，全面的加密货币市场结构立法（特别是《清晰法案》）在当前国会届期内可能已错失良机。因此，行业正将重心转向 “B 计划”，即利用现有法律以及美国证券交易委员会（SEC）和商品期货交易委员会（CFTC）等机构的监管途径来填补空白。Smith 强调，鉴于有 6,700 万美国人使用加密货币，监管至关重要，且监管机构已准备好对稳定币和代币化证券执行相关规定",
+      "url": "https://longbridge.com/news/299789924",
+      "author": {"member_id":"5843","name":"American Banker"},
+      "published_at": "2026-09-22T15:37:23Z"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-21T07:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T07:00:00+08:00",
+  "query": "Bitcoin",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit_requested": 20,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across prior event_regime/raw_news snapshots; normalized title + description + source content identity as secondary check",
+    "note": "raw.text contains only genuinely newly seen search hits from this collection. Search timestamps from Longbridge were invalid 1970 placeholders. first_seen_at_hkt is conservatively rounded forward to 07:00 HKT and is never backdated, including articles whose verified published_at predates the prior collection boundary."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299566778\",\"title\":\"VanEck 指出比特币财务公司 Metaplanet 存在严重的高管股权稀释问题\",\"excerpt\":\"VanEck 强调了 Metaplanet 这家企业比特币国库公司显著的高管稀释。分析显示，高管期权的容量相当于 22.4% 的股份。关注点不在于比特币的出售，...\",\"source_name\":\"NewsBTC\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299566778.md\"},{\"id\":\"299562423\",\"title\":\"比特币（BTC）突破 81,000 USDT，24 小时内跌幅收窄至 0.79%\",\"excerpt\":\"根据币安市场数据，2026年9月20日16:08（UTC），比特币已突破 81,000 USDT 的基准，目前交易价格为 81,000 USDT，24 小时内下...\",\"source_name\":\"CoinLive\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299562423.md\"},{\"id\":\"299558238\",\"title\":\"比尔·米勒四世表示他对比特币的看涨态度比以往任何时候都更强\",\"excerpt\":\"比尔·米勒四世（Bill Miller IV），米勒价值合伙公司的首席执行官，表示他对比特币的看法比以往更加乐观。他将比特币视为 “资本的分母”，而非传统资产，...\",\"source_name\":\"CoinLive\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299558238.md\"},{\"id\":\"299548686\",\"title\":\"CryptoQuant 分析师表示，比特币压缩指标已回到极端的 93.9% 区域\",\"excerpt\":\"CryptoQuant 分析师 Axel Adler Jr. 表示，比特币的 30 天压缩指标已回升至 93.9%，这是自当前熊市阶段开始以来出现过四次的极端水...\",\"source_name\":\"CoinLive\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299548686.md\"}]"
+  }
+}

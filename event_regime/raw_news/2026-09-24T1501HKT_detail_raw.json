@@ -1,0 +1,20 @@
+{
+  "first_seen_at_hkt": "2026-09-24T15:01:33+08:00",
+  "provider": "Longbridge",
+  "tool": "news_detail",
+  "capture_mode": "structured_detail_fields",
+  "note": "Provider-returned stable id, title, description, URL, author/source and published_at are preserved as retrieved. Full article bodies are not archived here; no chronology is inferred from published_at.",
+  "articles": [
+    {"id":"299982587","title":"比特币日内下跌3%，勉强守住84,000美元关口：跌势会持续吗？","description":"比特币日内下跌 3%，短暂跌破 84,000 美元至低点 83,777 美元后反弹。此次回调受美国强劲采购经理人指数（PMI）数据驱动，引发市场对美联储推迟降息的担忧，从而削弱了对无收益资产的需求。此外，高杠杆导致 1.45 亿美元多头头寸被清算，近期反弹后的获利了结也促成了此次下跌。技术分析显示，支撑位可能重新测试 82,000-83,000 美元区间","url":"https://longbridge.com/news/299982587","author":{"member_id":"6041","name":"TradingKey"},"published_at":"2026-09-24T06:13:09Z"},
+    {"id":"299971588","title":"Circle National Trust 通过托管服务增强比特币可编程性","description":"Circle National Trust 通过托管服务增强比特币可编程性","url":"https://longbridge.com/news/299971588","author":{"member_id":"5998","name":"Crypto Briefing"},"published_at":"2026-09-24T03:39:11Z"},
+    {"id":"299982083","title":"以太坊经典价格预测——尽管回调11%，看涨结构依然有效","description":"以太坊经典（ETC）经历了一次 11% 的回调，从 9.68 美元跌至 8.60 美元，这主要是由更广泛市场的清算和获利了结所驱动。尽管出现此次下跌，ETC 在较高时间框架上仍保持看涨结构，并得到强劲资金流入和上行动能指标的支持。分析师表示，如果 7.09 美元的支撑位守住，上升趋势将保持不变。潜在回落至 7.64 美元至 8.39 美元区间被视为波段交易者的买入机会","url":"https://longbridge.com/news/299982083","author":{"member_id":"5917","name":"Amb Crypto"},"published_at":"2026-09-24T06:08:16Z"},
+    {"id":"299968682","title":"以太坊呈现所有看多信号——唯独缺少确认迈向3000美元的关键一环","description":"以太坊展现出强劲的看多信号，预计投资回报率超过 70%，未平仓合约达 300 亿美元，且贝莱德 ETF 资金大幅流入。然而，仍需关键确认：ETH/BTC 汇率必须突破 0.03 的阻力位，以验证动能并支持其向 3000 美元迈进。若未能突破该水平，可能引发杠杆多头头寸的平仓","url":"https://longbridge.com/news/299968682","author":{"member_id":"5917","name":"Amb Crypto"},"published_at":"2026-09-24T03:04:56Z"},
+    {"id":"299971292","title":"比特币、以太坊、XRP、狗狗币随加息预期飙升而下滑：分析师称尽管出现回调，BTC目标价仍维持在10万美元","description":"9 月 23 日，包括比特币、以太坊和 XRP 在内的主要加密货币下跌，因强劲的宏观经济数据增加了再次加息的预期。加密货币市值下跌 2.6% 至 2.96 万亿美元，爆仓金额超过 5.4 亿美元。尽管股市也出现下跌，但分析师 Ali Martinez 维持比特币 10 万美元的目标价，理由是双底形态以及大额钱包的积累行为","url":"https://longbridge.com/news/299971292","author":{"member_id":"36","name":"Benzinga"},"published_at":"2026-09-24T02:02:24Z"}
+  ],
+  "quality_notes": [
+    "299982083 has valid provider detail metadata but its body references April 23 while published_at is 2026-09-24; preserve it as provider evidence and do not treat the body date as reliable event time.",
+    "299971292 was published before the prior 10:58 HKT collection but was not present as a newly seen article in that prior evidence; treat this as possible delayed search/index visibility and keep first_seen_at_hkt at the current observation time."
+  ],
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

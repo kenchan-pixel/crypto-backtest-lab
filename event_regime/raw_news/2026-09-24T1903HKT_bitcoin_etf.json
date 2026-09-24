@@ -1,0 +1,13 @@
+{
+  "first_seen_at_hkt": "2026-09-24T19:03:36+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"300009542","title":"比特币从近期8.7万美元高点回落至8.4万美元以下，比特币ETF新增资金3.47亿美元。美国ETF流入放缓，五日累计达26.5亿美元","excerpt":"在美国，随着比特币价格跌破8.4万美元，现货比特币ETF周三的流入额降至3.47亿美元。过去五天，总流入额达到26.5亿美元","source_name":"Unusual Whales","time":"2026-09-24T09:37:55Z","url":"https://longbridge.com/news/300009542.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

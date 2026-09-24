@@ -1,0 +1,122 @@
+{
+  "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+  "provider": "Longbridge",
+  "tool": "news_detail",
+  "capture_mode": "structured_detail_fields",
+  "note": "Stable article id, title, source, URL and published_at preserved from detail retrieval. Publication time is not used to backdate first_seen_at_hkt.",
+  "articles": [
+    {
+      "id": "300061056",
+      "title": "这位分析师表示将不再碰触XRP——以下是他更青睐的替代选择",
+      "source": "Benzinga",
+      "published_at": "2026-09-24T16:47:15Z",
+      "url": "https://longbridge.com/news/300061056"
+    },
+    {
+      "id": "300056950",
+      "title": "收益率与美元走高，比特币从八个月高点回落",
+      "source": "Crypto Briefing",
+      "published_at": "2026-09-24T16:10:12Z",
+      "url": "https://longbridge.com/news/300056950"
+    },
+    {
+      "id": "300056445",
+      "title": "比特币交投走低，但在关键摆动区域顶部附近守住支撑。下一步走势如何？",
+      "source": "Investinglive",
+      "published_at": "2026-09-24T16:06:15Z",
+      "url": "https://longbridge.com/news/300056445"
+    },
+    {
+      "id": "300054238",
+      "title": "随着机构资本重塑周期，比特币熊市正趋于温和",
+      "source": "Crypto Briefing",
+      "published_at": "2026-09-24T15:43:55Z",
+      "url": "https://longbridge.com/news/300054238"
+    },
+    {
+      "id": "300053810",
+      "title": "随着 Strategy 股价和杠杆 ETF 飙升，比特币押注进入白热化",
+      "source": "Benzinga",
+      "published_at": "2026-09-24T15:34:09Z",
+      "url": "https://longbridge.com/news/300053810"
+    },
+    {
+      "id": "300064950",
+      "title": "Bitwise称比特币是唯一的“通用”押注——以太坊和Solana必须证明“某些东西行得通”",
+      "source": "Benzinga",
+      "published_at": "2026-09-24T18:02:18Z",
+      "url": "https://longbridge.com/news/300064950"
+    },
+    {
+      "id": "299898822",
+      "title": "欧盟监管机构警告量子计算对区块链安全构成威胁，比特币开发者考虑迁移计划，以太坊瞄准2029年",
+      "source": "Unusual Whales",
+      "published_at": "2026-09-23T12:30:17Z",
+      "url": "https://longbridge.com/news/299898822"
+    },
+    {
+      "id": "299622532",
+      "title": "Global X Ethereum Covered Call ETF 宣布派发 0.133 美元的股息",
+      "source": "businessinsider",
+      "published_at": "2026-09-21T09:59:58Z",
+      "url": "https://longbridge.com/news/299622532"
+    },
+    {
+      "id": "299839282",
+      "title": "特朗普吹捧与伊朗“良好会晤”，比特币、以太坊、XRP、狗狗币上涨：分析师称比特币“企稳”于强劲支撑位上方",
+      "source": "Benzinga",
+      "published_at": "2026-09-23T02:04:11Z",
+      "url": "https://longbridge.com/news/299839282"
+    },
+    {
+      "id": "300061021",
+      "title": "比特币较峰值下跌55%——尽管面临156亿美元期权到期，汤姆·李为何仍预测加密货币牛市",
+      "source": "economictimes",
+      "published_at": "2026-09-24T17:06:09Z",
+      "url": "https://longbridge.com/news/300061021"
+    },
+    {
+      "id": "299622524",
+      "title": "Global X Bitcoin Covered Call ETF 宣布派发 0.0734 美元的股息",
+      "source": "businessinsider",
+      "published_at": "2026-09-21T09:59:57Z",
+      "url": "https://longbridge.com/news/299622524"
+    },
+    {
+      "id": "300063475",
+      "title": "皮尔斯在离任前最后一次演讲中呼吁终止KYC监控；警告数据泄露使加密货币持有者面临风险",
+      "source": "Unusual Whales",
+      "published_at": "2026-09-24T17:32:28Z",
+      "url": "https://longbridge.com/news/300063475"
+    },
+    {
+      "id": "300055851",
+      "title": "“受美国证券交易委员会监管”——参议院民主党人推动对预测市场进行监管",
+      "source": "Amb Crypto",
+      "published_at": "2026-09-24T16:04:56Z",
+      "url": "https://longbridge.com/news/300055851"
+    },
+    {
+      "id": "299954110",
+      "title": "美 SEC 委员 Uyeda：放弃部分加密诉讼以避免损害监管机构信誉",
+      "source": "金色财经",
+      "published_at": "2026-09-24T00:04:56Z",
+      "url": "https://longbridge.com/news/299954110"
+    },
+    {
+      "id": "299900785",
+      "title": "花旗：SEC 新规制定将成加密市场下一观察点",
+      "source": "钜亨网",
+      "published_at": "2026-09-23T13:01:22Z",
+      "url": "https://longbridge.com/news/299900785"
+    },
+    {
+      "id": "299814865",
+      "title": "a16z 与 DeFi 教育基金致信美 SEC，提议 DEX 免于交易所注册",
+      "source": "金色财经",
+      "published_at": "2026-09-22T21:24:56Z",
+      "url": "https://longbridge.com/news/299814865"
+    }
+  ],
+  "historical_news_completeness_claimed": false
+}

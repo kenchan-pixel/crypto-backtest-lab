@@ -1,0 +1,11 @@
+{
+  "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [],
+  "dedupe_note": "No genuinely new SEC crypto articles were identified relative to prior manifests; current top results were already seen in earlier runs.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

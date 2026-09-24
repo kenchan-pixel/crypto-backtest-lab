@@ -1,0 +1,17 @@
+{
+  "first_seen_at_hkt": "2026-09-24T23:02:29+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"300041202","title":"实时市场：比特币的“寒冬”可能即将结束，Ned Davis转为看涨","excerpt":"Ned Davis Research对比特币转为看涨立场，预测到2027年年中可能重新测试其123,000美元的高点。该公司指出，强劲的动力、10月和11月有利...","source_name":"LSEG","time":"2026-09-24T13:52:52Z","url":"https://longbridge.com/news/300041202.md"},
+    {"id":"300030471","title":"2030年，1000美元的比特币和莱特币价值几何？","excerpt":"对2030年前投入比特币和莱特币的1000美元投资进行分析，结果显示两者走势分化。尽管莱特币若能反弹至此前高点将提供更高的上行潜力，但凭借更强劲的长期表现和显著...","source_name":"MSN","time":"2026-09-24T12:32:56Z","url":"https://longbridge.com/news/300030471.md"},
+    {"id":"300028183","title":"债券抛售致比特币大跌","excerpt":"在强劲经济数据和美联储加息担忧引发美国债市大规模抛售的背景下，比特币跌破8.3万美元。长期债券收益率触及22年高点，提振美元并施压风险资产。加密市场情绪受挫，清...","source_name":"rttnews","time":"2026-09-24T12:15:07Z","url":"https://longbridge.com/news/300028183.md"},
+    {"id":"300024807","title":"StarkWare编程竞赛将量子安全比特币交易成本降至66美元","excerpt":"StarkWare举办的编程竞赛将量子安全比特币交易的成本从320美元降低至66美元，降幅达80%。该挑战赛于2026年9月启动，吸引了开发者和AI工具参与优化...","source_name":"Crypto Briefing","time":"2026-09-24T11:44:57Z","url":"https://longbridge.com/news/300024807.md"},
+    {"id":"300022197","title":"Sequans出售比特币持仓以强化资产负债表并加强半导体业务推进","excerpt":"Sequans Communications通过出售剩余持仓，完全退出了其比特币库藏策略，旨在强化资产负债表并专注于半导体增长。此举恰逢第二季度产品收入同比增长...","source_name":"Tip Ranks","time":"2026-09-24T10:28:06Z","url":"https://longbridge.com/news/300022197.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

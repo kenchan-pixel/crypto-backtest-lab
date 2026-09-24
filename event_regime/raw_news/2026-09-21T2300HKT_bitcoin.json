@@ -1,0 +1,30 @@
+{
+  "first_seen_at_hkt": "2026-09-21T23:00:00+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "raw_new_hits": [
+    {"id":"299656125","title":"比特币价格创下自一月份以来的最高水平","excerpt":"比特币在 9 月 21 日飙升至超过 85,000 美元，达到了自 1 月份以来的最高水平，日涨幅为 5%。这一反弹是更广泛的加密货币复苏的一部分，自 8 月底...","source_name":"Baystreet","time":"2026-09-21T14:35:02Z","url":"https://longbridge.com/news/299656125.md"},
+    {"id":"299654164","title":"‘加密货币的春天来了’：比特币为何突破 85,000 美元的四大原因","excerpt":"“这是加密货币的春天”：比特币突破 85,000 美元的四个原因","source_name":"businessinsider","time":"2026-09-21T14:14:59Z","url":"https://longbridge.com/news/299654164.md"},
+    {"id":"299654799","title":"比特币今日达到 85,000 美元，而 SoFi 股票几乎没有变化","excerpt":"SoFi Technologies (SOFI) 的股价在比特币上涨至 85,000 美元的情况下仍然保持在 16.95 美元左右。尽管像 Coinbase 这...","source_name":"benzinga_article","time":"2026-09-21T14:13:20Z","url":"https://longbridge.com/news/299654799.md"},
+    {"id":"299653154","title":"Strive 再次引领比特币购买，1.077 亿美元的购买推动其股票上涨 6%","excerpt":"Strive (NASDAQ: ASST) 于2026年9月21日由首席执行官 Matt Cole 宣布，购买了 1,355 个比特币，交易金额为 1.077 ...","source_name":"MSN","time":"2026-09-21T14:04:56Z","url":"https://longbridge.com/news/299653154.md"},
+    {"id":"299651758","title":"星云计划通过即将发射的卫星在太空中进行比特币开采","excerpt":"Starcloud, Inc. 计划在其即将发射的 Starcloud-2 卫星上使用 ASIC 进行太空比特币挖矿，预计将在 207 年发射。该公司利用轨道上...","source_name":"Crypto Briefing","time":"2026-09-21T13:48:50Z","url":"https://longbridge.com/news/299651758.md"},
+    {"id":"299650409","title":"Strive盘中急涨","excerpt":"ASST.US盘中异动，现报30.04美元，较前收盘微跌0.17%。公司9月14日至18日购入1,355枚比特币，总持仓升至26,355枚。","source_name":"美股行情速递","time":"2026-09-21T13:40:12Z","url":"https://longbridge.com/news/299650409.md"},
+    {"id":"299651536","title":"当前与比特币同步上涨的六大加密股票","excerpt":"比特币突破 85,000 美元，推动了与加密货币相关的股票上涨。包括 MicroStrategy (MSTR)、Coinbase (COIN)、Robinhoo...","source_name":"benzinga_article","time":"2026-09-21T13:32:04Z","url":"https://longbridge.com/news/299651536.md"},
+    {"id":"299647359","title":"由于比特币突破 85,000 美元，Coinbase 的股票在周一有所上涨","excerpt":"Coinbase Global (COIN) 的股价在盘前交易中上涨了 5.81%，达到 205.54 美元，原因是比特币突破了 85,000 美元，以及更广泛...","source_name":"benzinga_article","time":"2026-09-21T13:08:35Z","url":"https://longbridge.com/news/299647359.md"},
+    {"id":"299646393","title":"Strategy盘前涨超8%，比特币突破8.5万美元带动加密概念股走高","excerpt":"Strategy(MSTR.US)盘前涨8.16%报166.48美元。比特币突破8.5万美元，公司近期购入950枚比特币并回购1.77亿美元优先股。","source_name":"美股行情速递","time":"2026-09-21T13:03:55Z","url":"https://longbridge.com/news/299646393.md"},
+    {"id":"299645247","title":"随着比特币攀升至 85,000 美元，Strategy 股票上涨了 7%","excerpt":"Strategy Inc. (MSTR) 的股价上涨了 7%，达到了 165.20 美元，跟随比特币上涨至 85,000 美元。作为最大的企业比特币持有者，MS...","source_name":"benzinga_article","time":"2026-09-21T12:45:42Z","url":"https://longbridge.com/news/299645247.md"},
+    {"id":"299643911","title":"Strive Inc 扩大其比特币持有量并调整资本结构","excerpt":"Strive Inc (ASST) 宣布在2026年9月14日至 18 日期间购买了 1,355 个比特币，使总持有量达到 26,355 个。现金等价物增加至 ...","source_name":"Tip Ranks","time":"2026-09-21T12:32:57Z","url":"https://longbridge.com/news/299643911.md"},
+    {"id":"299642748","title":"Strategy 增加比特币持有量并进行股票回购","excerpt":"Strategy (MSTR) 报告称在2026年9月14日至 20 日期间购买了 950 个比特币，花费 7570 万美元，并回购了 177 万优先股，花费 ...","source_name":"Tip Ranks","time":"2026-09-21T12:29:53Z","url":"https://longbridge.com/news/299642748.md"},
+    {"id":"299638154","title":"博雅互动在进军 Web3 游戏的同时增加了比特币持有量","excerpt":"博雅互动国际（香港：0434）以 9063 万港元收购了约 152 个比特币，使其总持有量达到 4468 个比特币。此次收购由闲置现金资助，支持其向成为领先的 ...","source_name":"Tip Ranks","time":"2026-09-21T11:42:02Z","url":"https://longbridge.com/news/299638154.md"},
+    {"id":"299645706","title":"IncomeSTKd 1x Bitcoin & 1x Gold Premium ETF 宣布每周派发 0.05 美元的股息","excerpt":"IncomeSTKd 1x Bitcoin & 1x Gold Premium ETF 宣布每周派发 0.05 美元的股息","source_name":"businessinsider","time":"2026-09-21T12:59:59Z","url":"https://longbridge.com/news/299645706.md"}
+  ],
+  "provenance": {
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-21T19:01:00+08:00",
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description/excerpt + source identity",
+    "timestamp_policy": "provider timestamps are evidence only; first_seen_at_hkt is the conservative collection observation time and is never backdated",
+    "historical_completeness_claimed": false
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "first_seen_at_hkt": "2026-09-24T10:58:12+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299958588","title":"a16z寻求SEC对去中心化交易所的豁免——传统金融会反击吗？","excerpt":"a16z Crypto和DeFi教育基金已请求美国证券交易委","source_name":"Amb Crypto","time":"2026-09-24T01:08:16Z","url":"https://longbridge.com/news/299958588.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

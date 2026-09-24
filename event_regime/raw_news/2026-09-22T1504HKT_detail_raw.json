@@ -1,0 +1,53 @@
+{
+  "first_seen_at_hkt": "2026-09-22T15:04:34+08:00",
+  "provider": "Longbridge",
+  "tool": "news_detail",
+  "note": "Verbatim-equivalent structured detail evidence captured from Longbridge for newly seen article IDs in this collection. Provider values are preserved; no chronology is inferred from published_at.",
+  "articles": [
+    {
+      "id":"299713513",
+      "title":"Anthony Pompiano 重申比特币没有 ‘上限’，因为美元没有 ‘下限’，并押注比特币将会 ‘大幅上涨’",
+      "description":"安东尼·庞普利亚诺重申，由于美元持续贬值和货币供应量上升，比特币 “没有顶部”，预计 BTC 可能达到 100 万美元。他将比特币的增长与全球流动性联系在一起，而不是像 CLARITY 法案这样的监管措施。同时，比特币在盘中最高触及 87,363 美元，目前交易价格为 85,736 美元，24 小时上涨 5.13%。ProCap Financial 的股票在盘后交易中上涨 1.47%",
+      "body":"**安东尼·庞普利亚诺**， **ProCap Financial Inc.** 的首席执行官 (NASDAQ: BRR)，在周一重申了他长期以来的观点，即 **比特币** (CRYPTO: BTC) 的未来增长与货币供应的增加密切相关。\n\n## ‘美元没有底’\n\n在接受福克斯新闻采访时，庞普利亚诺表示，比特币并不依赖于 CLARITY 法案，而是更多地受到全球流动性和法定货币印刷的影响。\n\n他进一步强调了美国日益增长的国家债务，目前超过 40 万亿美元，并认为只要美元继续贬值，比特币的价值就没有上限。\n\n“比特币没有上限，因为美元没有底，” 庞普利亚诺重申道。\n\n## 贬值交易回归？\n\nCoinGlass 的数据在很大程度上支持庞普利亚诺的观点，即比特币往往受益于全球货币供应的增长。但在 2025-2026 年的熊市中，这种联系减弱，尽管流动性上升，比特币价格却下跌。\n\n![](https://imageproxy.pbkrs.com/https://editorial-assets.benzinga.com/wp-content/uploads/2026/09/21224056/image-486-1024x506.png?x-oss-process=image/auto-orient,1/interlace,1/resize,w_1440,h_1440/quality,q_95/format,jpg)\n\n_来源：Coinglass_\n\n“如果政府继续印钞，比特币在未来几年将会大幅上涨，” 庞普利亚诺预测道。\n\n财政部上个月表示，将 至少将其回购操作的最大规模翻倍，从 20 亿美元增加到 40 亿美元，目标是 10 至 20 年和 20 至 30 年到期的证券。\n\n这一举措使收益率和美元下跌，促使人们 重新关注比特币作为对抗贬值的对冲工具。\n\n**另请阅读：** **索拉纳的下一个 ‘代币超级周期’ 正在形成吗？专家识别出三个关键指标**\n\n## 比特币起飞\n\n庞普利亚诺上个月表示，华盛顿特区的人 “绝对荒谬”，他愿意打赌他们的 “愚蠢” 会导致更多的货币印刷。\n\n他坚持认为 比特币最终将达到 100 万美元，这是基于这一推测。\n\n比特币 在周一达到了 87,363 美元的日内高点，这是自 1 月底以来的最高点，因为美国证券交易委员会推动 建立加密货币的监管框架，包括代币化的美国股票，超过了 CLARITY 法案的失败。\n\n**价格动态**：在撰写本文时，BTC 的交易价格为 85,736 美元，在过去 24 小时内上涨了 5.13%，根据 Benzinga Pro 的数据。\n\nProCap 的股票在盘后交易中上涨了 1.47%。该股票在周一的常规交易时段收盘上涨 8.24%，报 4.07 美元。\n\n根据 Benzinga 的 Edge 股票排名，该 股票 在短期和中期内显示出更强的价格趋势，但在长期内表现滞后。\n\n**查看更多：** **优质股票**\n\n_照片：嗨，我的名字是 Jacco，来自 Shutterstock.com_",
+      "url":"https://longbridge.com/news/299713513",
+      "author":{"member_id":"36","name":"benzinga_article"},
+      "images":[{"url":"https://imageproxy.pbkrs.com/https://editorial-assets.benzinga.com/wp-content/uploads/2026/09/21224056/image-486-1024x506.png?x-oss-process=image/auto-orient,1/interlace,1/resize,w_640,h_640/quality,q_95/format,jpg","sm":"https://imageproxy.pbkrs.com/https://editorial-assets.benzinga.com/wp-content/uploads/2026/09/21224056/image-486-1024x506.png?x-oss-process=image/auto-orient,1/interlace,1/resize,w_260,h_260/quality,q_95/format,jpg","lg":"https://imageproxy.pbkrs.com/https://editorial-assets.benzinga.com/wp-content/uploads/2026/09/21224056/image-486-1024x506.png?x-oss-process=image/auto-orient,1/interlace,1/resize,w_1440,h_1440/quality,q_95/format,jpg"}],
+      "comments_count":0,"likes_count":0,"shares_count":0,
+      "published_at":"2026-09-22T03:17:26Z",
+      "tickers":["GBTC.US","BITB.US","ARKB.US","FBTC.US","IBIT.US","BITO.US","BRRR.US","BTCO.US","BTCW.US","HODL.US","EZBC.US","3008.HK","3042.HK","3430.HK","BTCE.DE","BTCHKD.HAS","BTCUSD.HAS","BTCUSD.OSL"]
+    },
+    {
+      "id":"299713603",
+      "title":"Trueo 预测市场因燃气费较低而从 Base 切换到以太坊；以太坊主网提供更好的集成潜力",
+      "description":"Trueo 表示，由于以太坊的高燃气费用，Base 在其推出时是最佳选择，并强调现在主网提供了更好的集成可能性",
+      "body":"Trueo 表示，由于以太坊的高燃气费用，Base 在其推出时是最佳选择，并强调现在主网提供了更好的集成可能性。",
+      "url":"https://longbridge.com/news/299713603",
+      "author":{"member_id":"5899","name":"Unusual Whales"},
+      "images":[],"comments_count":0,"likes_count":0,"shares_count":0,
+      "published_at":"2026-09-22T04:10:57Z",
+      "tickers":["ETHE.US","ETHA.US","CETH.US","ETHW.US","FETH.US","ETHHKD.HAS","ETHUSD.OSL","ETHUSD.HAS"]
+    },
+    {
+      "id":"299707370",
+      "title":"以太坊刚刚经历了自 2016 年以来表现最佳的第三季度——‘ETH 准备迎来大幅上涨！’",
+      "description":"以太坊在第三季度表现强劲，自 2016 年以来最强，价格上涨 67.57%，交易价为 2,716 美元，突破了 2,500 美元的阻力位。尽管创纪录的验证者退出队列暗示潜在的卖压，但下降的交易所储备表明短期内抛售风险降低。分析师对价格继续向 3,200–3,600 美元的走势持乐观态度，健康的相对强弱指数（RSI）和布林带支持这一观点，但维持在 2,500 美元以上仍然是关键",
+      "body":"以太坊 \\[ETH\\] 最终突破了 $2500 的长期阻力位，截至发稿时交易价格为 $2,716.86，过去 24 小时上涨了 5.7%。\n\n回到 2026 年 2 月的水平，ETH 在第三季度表现异常强劲。\n\n根据 CoinGlass 的季度收益图表，2026 年第三季度以太坊上涨了 67.57%，而九天后九月将结束，这使得这是自 2016 年以来最强的第三季度。\n\n来源：CoinGlass\n\n这与 ETH 在 2026 年上半年经历的两个连续负季度形成鲜明对比，第一季度损失约 29%，第二季度再损失 25%。\n\n## ETH 的质押和交易所储备引发担忧\n\n然而，这与以太坊的验证者退出队列形成直接对比，该队列达到了 132,832 ETH——三个月来的最高水平。换句话说，更多的验证者在等待提取他们质押的 ETH，这表明潜在的卖压增加。\n\n来源：验证者队列\n\n但是，根据 Alphractal 的说法，比特币的交易所储备正在上升，而以太坊的交易所储备正在下降。这意味着可供出售的 ETH 更少，这可能表明立即卖压减轻。\n\n对此，Alphractal 的创始人兼首席执行官 Joao Wedson 表示，\n\n> 比特币和以太坊目前在其交易所储备中表现出相反的行为。\n\n来源：Alphractal\n\n## ETH 的未来走向如何？\n\n由于一切似乎都紧密相连，结论取决于 ETH 是否能够维持在 $2500 的价格阈值之上，或者如果空头继续控制，则是否会跌回 $2000 以下。\n\n然而，尽管存在不确定性，许多加密社区的人们仍然乐观，因为他们相信 $3,200–$3,600 可能是下一个目标。\n\n来源：X\n\n事实上，随着 RSI 位于健康范围的中性线之上，布林带平行运行，强劲的牛市延续阶段是有保障的。\n\n来源：Trading View\n\n* * *\n\n## 最终总结\n\n- _以太坊在 2026 年上半年经历了两个连续的负季度。_\n- _ETH 在 $1,900 和 $1,500 之间形成了新的支撑位。_",
+      "url":"https://longbridge.com/news/299707370",
+      "author":{"member_id":"5917","name":"Amb Crypto"},
+      "images":[],"comments_count":0,"likes_count":0,"shares_count":0,
+      "published_at":"2026-09-22T03:04:56Z",
+      "tickers":["ETHE.US","FETH.US","ETHA.US","ETHW.US","CETH.US","ETHHKD.HAS","ETHUSD.OSL","ETHUSD.HAS"]
+    },
+    {
+      "id":"299718193",
+      "title":"贝莱德的 IBIT 在美国现货比特币 ETF 资金流入中处于领先地位，达到 9.99 亿美元",
+      "description":"在 9 月 21 日，美国现货比特币和以太坊 ETF 录得 12.69 亿美元的净流入，其中以贝莱德的 IBIT 为首，流入金额为 6.18 亿美元。自 2024 年 1 月以来的累计流入达到约 550 亿美元，总资产管理规模超过 1025 亿美元。比特币交易价格超过 81,000 美元，标志着从温和的周流入中显著反弹",
+      "body":"机构资金持续流入比特币，9 月 21 日的数据使这一点难以争辩。美国现货比特币和以太坊 ETF 在这一天的净流入总额达到 12.69 亿美元，其中黑石的 iShares 比特币信托基金领衔。\n\nIBIT 单独吸引了约 6.18 亿美元，这一数字使其在其他产品中遥遥领先。富达的 FBTC 始终排名第二，但在这一天，黑石的产品不仅在比赛中获胜，还在不断拉开差距。\n\n自 2024 年 1 月推出以来，累计净流入现已达到约 550 亿至 558 亿美元。美国现货比特币 ETF 的管理资产总额已超过 1025 亿美元，一些估计到 2026 年 9 月底这一数字将接近 1056 亿美元。\n\n9 月 21 日，比特币价格交易在 81,000 美元以上，盘中水平接近 82,000 美元。在 9 月 21 日之前的一周并不完全积极。比特币 ETF 的周流入量一直较为温和，约为 620 万美元，直到单日反弹有效地重置了叙事。\n\n12.69 亿美元的头条数字包括比特币和以太坊现货 ETF 的流入。当现货比特币 ETF 在 2024 年 1 月推出时，以太坊产品仍在等待监管审批。它们的最终批准代表了加密资产机构化的第二章，而它们对创纪录流入日的贡献表明这一章正在被认真阅读。\n\n对于黑石来说，IBIT 在每日流入排名中的持续主导地位巩固了其作为类别领导者的地位。富达的 FBTC 一直是稳定的亚军，这两款产品在大多数交易日中占据了净流入的绝大部分。\n\n随着管理资产总额超过 1000 亿美元，这些产品在宏观层面上也开始变得重要。当 IBIT 代表新流入购买比特币时，这一需求是真实且即时的，当天就会影响公开市场。",
+      "url":"https://longbridge.com/news/299718193",
+      "author":{"member_id":"5998","name":"Crypto Briefing"},
+      "images":[],"comments_count":0,"likes_count":0,"shares_count":0,
+      "published_at":"2026-09-22T05:34:39Z",
+      "tickers":["GBTC.US","ETHE.US","ARKB.US","ETHW.US","ETHA.US","FETH.US","CETH.US","FBTC.US","BITB.US","IBIT.US","BLK.US","BITO.US","BRRR.US","BTCO.US","BTCW.US","HODL.US","EZBC.US","3008.HK","3042.HK","3430.HK","BTCE.DE","BTCHKD.HAS","BTCUSD.HAS","BTCUSD.OSL"]
+    }
+  ]
+}
