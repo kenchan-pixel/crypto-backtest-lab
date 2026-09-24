@@ -1,0 +1,45 @@
+{
+  "first_seen_at_hkt": "2026-09-24T23:02:29+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-24T19:03:36+08:00",
+    "searched_queries": [
+      {"query":"Bitcoin","new_search_hits":5},
+      {"query":"Ethereum","new_search_hits":4},
+      {"query":"Bitcoin ETF","new_search_hits":2},
+      {"query":"SEC crypto","new_search_hits":1}
+    ],
+    "new_search_hits_before_cross_query_dedupe": 12,
+    "new_stable_ids_before_secondary_dedupe": 10,
+    "dedupe_result_unique_articles": 10,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source/body content identity across current and prior evidence",
+    "cross_query_duplicate_ids": ["300030471","300028183"],
+    "content_identity_duplicates_removed": [],
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable and never used for chronology; none of the ten retrieved detail records used a placeholder timestamp.",
+    "first_seen_policy": "2026-09-24T23:02:29+08:00 is a conservative collection observation timestamp recorded after the current search/detail retrieval. published_at is provider metadata and is never used to backdate first_seen_at_hkt.",
+    "detail_capture_note": "news_detail was retrieved successfully for all ten newly surfaced stable IDs. Stable id, title, description, URL, detail author metadata, search source_name and published_at are retained in the companion structured detail evidence file; full article bodies are not archived.",
+    "historical_news_completeness_claimed": false,
+    "trading_actions": "none"
+  },
+  "quality_notes": [
+    {"id":"300022197","type":"delayed_search_visibility","note":"Provider published_at predates the prior collection observation, but this ID was not present in the prior Bitcoin evidence. It is first-seen only in this run; first_seen_at_hkt was not backdated."},
+    {"id":"300042756","type":"related_but_distinct_from_prior","note":"Compared with prior Amb Crypto article 299968682 because both reuse Q3 return/open-interest and ETH/BTC context. Current article adds distinct realized-volatility and MVRV/long-term-holder analysis, so it is retained as a separate logical article."}
+  ],
+  "new_articles": [
+    {"id":"300041202","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-24T23:02:29+08:00","published_at_utc":"2026-09-24T13:52:52Z","source":"LSEG","timestamp_quality":"verified_detail"},
+    {"id":"300030471","matched_queries":["Bitcoin","Bitcoin ETF"],"first_seen_at_hkt":"2026-09-24T23:02:29+08:00","published_at_utc":"2026-09-24T12:32:56Z","source":"MSN","timestamp_quality":"verified_detail"},
+    {"id":"300028183","matched_queries":["Bitcoin","Bitcoin ETF"],"first_seen_at_hkt":"2026-09-24T23:02:29+08:00","published_at_utc":"2026-09-24T12:15:07Z","source":"rttnews","timestamp_quality":"verified_detail"},
+    {"id":"300024807","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-24T23:02:29+08:00","published_at_utc":"2026-09-24T11:44:57Z","source":"Crypto Briefing","timestamp_quality":"verified_detail"},
+    {"id":"300022197","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-24T23:02:29+08:00","published_at_utc":"2026-09-24T10:28:06Z","source":"Tip Ranks","timestamp_quality":"verified_detail","visibility_quality":"delayed_search_visibility"},
+    {"id":"300042756","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-24T23:02:29+08:00","published_at_utc":"2026-09-24T14:04:56Z","source":"Amb Crypto","timestamp_quality":"verified_detail"},
+    {"id":"300042639","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-24T23:02:29+08:00","published_at_utc":"2026-09-24T14:02:26Z","source":"CoinMarketCal","timestamp_quality":"verified_detail"},
+    {"id":"300027048","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-24T23:02:29+08:00","published_at_utc":"2026-09-24T12:04:56Z","source":"Amb Crypto","timestamp_quality":"verified_detail"},
+    {"id":"300020351","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-24T23:02:29+08:00","published_at_utc":"2026-09-24T11:12:56Z","source":"MSN","timestamp_quality":"verified_detail"},
+    {"id":"300024123","matched_queries":["SEC crypto"],"first_seen_at_hkt":"2026-09-24T23:02:29+08:00","published_at_utc":"2026-09-24T11:39:42Z","source":"Crypto Briefing","timestamp_quality":"verified_detail"}
+  ],
+  "detail_evidence_file": "event_regime/raw_news/2026-09-24T2302HKT_detail_raw.json"
+}
