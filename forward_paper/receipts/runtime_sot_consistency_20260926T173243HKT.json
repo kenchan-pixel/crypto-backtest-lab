@@ -1,0 +1,42 @@
+{
+  "schema": "eth-paper-runtime-sot-consistency-audit-v1",
+  "verified_at_hkt": "2026-09-26T17:32:43+08:00",
+  "verified_at_utc": "2026-09-26T09:32:43Z",
+  "branch": "research/payoff-aware-20260920",
+  "classification": "metadata/SOT reconciliation only; not a gate receipt, not forward performance evidence",
+  "source_blob_sha1": {
+    "runtime_state_before": "76134ec05b373b0944b7a3bbc3b323aa3fce0b47",
+    "operations": "d63fbf9c784021236739a61d8f37070f21f1a4f5",
+    "runtime_sidecar_receipt": "2fa5a8cd5186518d088b29d8793f82d492c7e5d6",
+    "weekly_decision_receipt": "7cb4fcf15471c2a0acf64e02d9c90572c48e6217"
+  },
+  "verified_receipts": {
+    "runtime_sidecar_actions_run_id": 35791826854,
+    "runtime_sidecar_conclusion": "success",
+    "weekly_packet_actions_run_id": 35796569338,
+    "weekly_packet_tests_passed": 110,
+    "weekly_packet_conclusion": "success"
+  },
+  "finding": {
+    "runtime_pending_list_stale": true,
+    "stale_item": "runtime state still listed BASE/STRESS + AI operating-budget sidecars as pending even though later verified receipts and OPERATIONS mark them commissioned",
+    "safety_fields_consistent": true,
+    "current_status": "COMMISSIONING",
+    "execution_ready": false,
+    "performance_started_at": null,
+    "initial_decisions": false,
+    "paper_trades": 0
+  },
+  "correction_scope": {
+    "add_verified_receipt_pointers_to_commissioning_evidence": true,
+    "replace_completed_pending_items_with_time_gated_monday_actions": true,
+    "gates_changed": false,
+    "accounts_changed": false,
+    "decision_changed": false,
+    "ledger_changed": false,
+    "performance_start_changed": false,
+    "real_orders_created": false,
+    "order_account_endpoints_used": false
+  },
+  "next_action": "Remain COMMISSIONING and silent off-window. On the first eligible Monday at/after 08:00 Asia/Hong_Kong, collect a new fresh connected packet and commit genuine AI_WEEKLY + SIMPLE_WEEKLY through the guarded CAS path."
+}
