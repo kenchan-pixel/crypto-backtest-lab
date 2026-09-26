@@ -216,9 +216,8 @@
     }
   },
   "pending": [
-    "Complete and validate base/stress cost comparison sidecars plus separate assumed AI operating-budget sidecars on the durable paper runtime; do not create backdated fills or actual trades during commissioning",
-    "At the first eligible Monday after 08:00 Asia/Hong_Kong, commit genuine initial AI weekly allocation and simple weekly ETH30d-direction control from a fresh evidence packet; initial_decisions must remain false until that occurs",
-    "Only after remaining runtime cost sidecars and valid initial decisions are both complete may execution_ready/performance_started_at be considered; do not retroactively start performance"
+    "At the first eligible Monday at or after 08:00 Asia/Hong_Kong, collect a genuinely fresh evidence packet and CAS-commit actual AI_WEEKLY allocation plus SIMPLE_WEEKLY ETH30d-direction control; read back both decisions and the AI operating-budget sidecar",
+    "Only after valid initial decisions become effective at the next full HKT hour and all readiness checks are valid may initial_decisions/execution_ready/performance_started_at be considered; record the actual performance start, never retroactively"
   ],
   "classification": "User-approved prospective research experiment; old historical paper gate remains failed. Not an investable strategy or live trading."
 }
