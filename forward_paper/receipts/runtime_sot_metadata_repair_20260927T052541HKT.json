@@ -1,0 +1,73 @@
+{
+  "schema": "eth-paper-runtime-sot-metadata-repair-audit-v1",
+  "verified_at_hkt": "2026-09-27T05:25:41+08:00",
+  "classification": "Metadata-only repair and write-path audit; not a readiness gate receipt, current market-data receipt, weekly decision or forward performance result",
+  "branch": "research/payoff-aware-20260920",
+  "source_head_sha": "cdfa0a570b504096cfca8a77d3bf46a31f40f338",
+  "repair_commit_sha": "cbaee44c9b66bf4d5c6252df886d97c32d9774b2",
+  "state_path": "forward_paper/runtime/state.json",
+  "state_before": {
+    "git_blob_sha1": "76134ec05b373b0944b7a3bbc3b323aa3fce0b47",
+    "sha256": "1394cbc1f92dc2d5696d5a589da0e8dd7aac1436df396b9511a1670d2b203311"
+  },
+  "state_after": {
+    "git_blob_sha1": "540fca5a1c231b56248d44e8d8ba25b9b98ee7d4",
+    "sha256": "009b535a4918a0d22393de887f682f0853025b057b4fe57d8d2202886bcdd707"
+  },
+  "write_evidence": {
+    "operation": "GitHub.update_file",
+    "expected_current_blob_sha_supplied": true,
+    "success_returned_with_commit_and_content_sha": true,
+    "branch_readback_content_and_blob_matched": true,
+    "compare_base_head_changed_files": ["forward_paper/runtime/state.json"],
+    "changed_json_paths": ["/pending"],
+    "terminal_newline_removed": true
+  },
+  "local_validation": {
+    "execution_location": "ChatGPT computation container",
+    "original_bytes_match_connector_git_blob_sha1": true,
+    "persisted_bytes_match_connector_git_blob_sha1": true,
+    "before_and_after_valid_json": true,
+    "top_level_keys_unchanged": true,
+    "all_json_values_except_pending_identical": true,
+    "gates_accounts_ledger_decision_and_commissioning_evidence_unchanged": true,
+    "full_forward_suite_rerun": false,
+    "new_actions_run_claimed": false
+  },
+  "existing_evidence_rechecked_not_reexecuted": {
+    "operations_git_blob_sha1": "d63fbf9c784021236739a61d8f37070f21f1a4f5",
+    "prior_audit_path": "forward_paper/receipts/runtime_sot_consistency_20260926T173243HKT.json",
+    "runtime_sidecar_receipt_path": "forward_paper/receipts/runtime_sidecar_integration_commissioning_20260923T062104HKT.json",
+    "runtime_sidecar_receipt_git_blob_sha1": "2fa5a8cd5186518d088b29d8793f82d492c7e5d6",
+    "weekly_packet_receipt_path": "forward_paper/receipts/weekly_decision_packet_commissioning_20260923T071627HKT.json",
+    "weekly_packet_receipt_git_blob_sha1": "7cb4fcf15471c2a0acf64e02d9c90572c48e6217",
+    "weekly_packet_actions_run_id": 35796569338,
+    "weekly_packet_actions_job_id": 106977108768,
+    "actions_job_and_each_relevant_step_rechecked_success": true,
+    "historical_receipt_tests_passed": 110
+  },
+  "runtime_after_repair": {
+    "status": "COMMISSIONING",
+    "execution_ready": false,
+    "initial_decisions": false,
+    "performance_started_at": null,
+    "each_account_virtual_usdt": 10000,
+    "each_account_eth": 0,
+    "each_account_open_position": null,
+    "each_account_trades": 0,
+    "frozen_model_sha256": "08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe"
+  },
+  "safety_scope": {
+    "new_market_data_collected": false,
+    "paper_trades_created": 0,
+    "genuine_weekly_decisions_created": 0,
+    "real_orders_created": 0,
+    "binance_or_longbridge_endpoints_invoked": false,
+    "old_historical_failed_gates_changed": false,
+    "model_or_strategy_changed": false,
+    "gate_promotion": false,
+    "unrelated_workflows_changed": false,
+    "auto_merge": false
+  },
+  "next_action": "Verify existing Notion Hub and Activity Log persistence before resuming the existing hourly observation task. Remain unarmed off-window. The next scheduled Monday eligibility is 2026-09-28 at or after 08:00 Asia/Hong_Kong; collect new evidence then, save actual AI/SIMPLE decisions through guarded CAS, and consider genuine start only after decisions become effective and all readiness checks pass."
+}
