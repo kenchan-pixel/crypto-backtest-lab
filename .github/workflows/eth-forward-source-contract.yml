@@ -1,0 +1,158 @@
+name: ETH forward live-source contract
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths:
+      - '.github/workflows/eth-forward-source-contract.yml'
+      - 'forward_paper/live_sources.py'
+      - 'forward_paper/freshness.py'
+      - 'forward_paper/test_live_sources.py'
+      - 'forward_paper/test_freshness.py'
+      - 'forward_paper/test_connected_snapshot.py'
+      - 'forward_paper/inputs/live_derivative_schema_probe_20260921.json'
+      - 'forward_paper/inputs/derivative_freshness_probe_*.json'
+      - 'forward_paper/inputs/connected_binance_snapshot_*.json'
+permissions:
+  contents: read
+concurrency:
+  group: eth-forward-live-source-contract
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.repository == 'kenchan-pixel/crypto-backtest-lab' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install bounded validation dependencies
+        run: python -m pip install pandas==2.2.3 pytest==9.0.2
+      - name: Validate source contracts, derivative freshness and fresh read-only spot pair
+        run: |
+          set -euo pipefail
+          python -m pytest -q forward_paper/test_live_sources.py forward_paper/test_freshness.py forward_paper/test_connected_snapshot.py
+          python - <<'PY'
+          import datetime,hashlib,json,urllib.request,os
+          from pathlib import Path
+          from forward_paper.live_sources import normalize_spot_pair
+          from forward_paper.freshness import validate_derivative_freshness
+
+          contract_path=Path('forward_paper/inputs/live_derivative_schema_probe_20260921.json')
+          derivative_contract=json.loads(contract_path.read_text())
+          assert derivative_contract['symbol']=='ETHUSDT'
+          assert derivative_contract['frozen_archive_contract']['native_metrics_cadence']=='5m'
+          assert derivative_contract['not_yet_proven']
+
+          freshness_paths=sorted(Path('forward_paper/inputs').glob('derivative_freshness_probe_*.json'))
+          assert freshness_paths, 'No derivative freshness probe found'
+          freshness_path=freshness_paths[-1]
+          freshness_probe=json.loads(freshness_path.read_text())
+          derivative_freshness=validate_derivative_freshness(
+            symbol=freshness_probe['symbol'],observed_at=freshness_probe['observed_at_utc'],
+            open_interest=freshness_probe['open_interest'],top_accounts=freshness_probe['top_accounts'],
+            top_positions=freshness_probe['top_positions'],all_accounts=freshness_probe['all_accounts'],
+            taker=freshness_probe['taker'],funding=freshness_probe['funding'])
+          assert derivative_freshness['fresh'] is True
+
+          independent_repeat=False
+          repeat_gap_minutes=None
+          if len(freshness_paths)>=2:
+            previous=json.loads(freshness_paths[-2].read_text())
+            current_time=datetime.datetime.fromisoformat(freshness_probe['observed_at_utc'].replace('Z','+00:00'))
+            previous_time=datetime.datetime.fromisoformat(previous['observed_at_utc'].replace('Z','+00:00'))
+            repeat_gap_minutes=(current_time-previous_time).total_seconds()/60
+            assert repeat_gap_minutes>=45, 'Freshness repeats must be independently separated in time'
+            assert freshness_probe['raw_sample_sha256']!=previous['raw_sample_sha256'], 'Repeated snapshot must contain independently collected raw evidence'
+            independent_repeat=True
+
+          raw={};decoded={}
+          for symbol in ['ETHUSDT','BTCUSDT']:
+            url=f'https://data-api.binance.vision/api/v3/klines?symbol={symbol}&interval=1h&limit=1000'
+            req=urllib.request.Request(url,headers={'User-Agent':'crypto-backtest-lab-forward-paper/1'})
+            with urllib.request.urlopen(req,timeout=30) as r:
+              body=r.read();status=r.status
+            assert status==200
+            raw[symbol]=body
+            decoded[symbol]=json.loads(body)
+          observed=datetime.datetime.now(datetime.timezone.utc)
+          eth,btc=normalize_spot_pair(decoded['ETHUSDT'],decoded['BTCUSDT'],observed,min_completed_hours=721)
+          assert eth.index.equals(btc.index)
+          ret30=float(eth.close.iloc[-1]/eth.close.iloc[-721]-1)
+          receipt={
+            'schema':'eth-forward-source-contract-receipt-v4',
+            'derivative_connected_probe_sha256':hashlib.sha256(contract_path.read_bytes()).hexdigest(),
+            'derivative_freshness_probe_path':str(freshness_path),
+            'derivative_freshness_probe_sha256':hashlib.sha256(freshness_path.read_bytes()).hexdigest(),
+            'source_contract_tests_passed':True,
+            'derivative_freshness_snapshot':derivative_freshness,
+            'independent_derivative_repeat_verified':independent_repeat,
+            'repeat_gap_minutes':repeat_gap_minutes,
+            'freshness_probe_count':len(freshness_paths),
+            'live_spot_pair_checked':True,
+            'spot_symbols':['ETHUSDT','BTCUSDT'],
+            'spot_response_sha256':{s:hashlib.sha256(raw[s]).hexdigest() for s in raw},
+            'completed_aligned_hours':len(eth),
+            'latest_complete_utc':eth.index[-1].isoformat(),
+            'eth_latest_complete_age_minutes':eth.attrs['latest_complete_age_minutes'],
+            'btc_latest_complete_age_minutes':btc.attrs['latest_complete_age_minutes'],
+            'partial_rows_excluded':{'ETHUSDT':eth.attrs['partial_rows_excluded'],'BTCUSDT':btc.attrs['partial_rows_excluded']},
+            'eth_30d_return_observation':ret30,
+            'observed_at_utc':observed.isoformat(),
+            'forward_execution_ready':False,
+            'paper_trades_executed':0,
+            'does_not_promote_source_freshness_gate':True,
+            'remaining_before_source_freshness_gate':['complete current connected-snapshot live pipeline receipt and independent repeat'],
+            'commit':os.environ['GITHUB_SHA'],
+            'run_id':os.environ['GITHUB_RUN_ID']
+          }
+          Path('source_contract_receipt.json').write_text(json.dumps(receipt,indent=2))
+          print(json.dumps(receipt,indent=2))
+          PY
+      - name: Verify persisted connected Binance snapshot route
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          from forward_paper.live_sources import normalize_metric_bundle,normalize_funding_history
+          from forward_paper.freshness import validate_derivative_freshness
+          paths=sorted(Path('forward_paper/inputs').glob('connected_binance_snapshot_*.json'))
+          assert paths,'No persisted connected Binance snapshot'
+          p=paths[-1];s=json.loads(p.read_text())
+          metric=normalize_metric_bundle(symbol=s['symbol'],period=s['period'],open_interest=s['open_interest'],
+            top_accounts=s['top_accounts'],top_positions=s['top_positions'],all_accounts=s['all_accounts'],taker=s['taker'])
+          funding=normalize_funding_history(s['symbol'],s['funding'])
+          fresh=validate_derivative_freshness(symbol=s['symbol'],observed_at=s['observed_after_reads_utc'],
+            open_interest=s['open_interest'],top_accounts=s['top_accounts'],top_positions=s['top_positions'],
+            all_accounts=s['all_accounts'],taker=s['taker'],funding=s['funding'])
+          assert fresh['fresh'] is True
+          receipt={
+            'schema':'eth-connected-binance-persistence-receipt-v1',
+            'status':'FIRST_IMMUTABLE_CONNECTED_SNAPSHOT_VALIDATED',
+            'snapshot_path':str(p),'snapshot_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),
+            'snapshot_observed_after_reads_utc':s['observed_after_reads_utc'],
+            'normalized_common_metric_rows':len(metric),'normalized_funding_rows':len(funding),
+            'latest_common_metric_utc':fresh['latest_common_metric_utc'],
+            'common_metric_age_minutes_at_capture':fresh['common_metric_age_minutes'],
+            'latest_funding_utc':fresh['latest_funding_utc'],
+            'funding_age_minutes_at_capture':fresh['funding_age_minutes'],
+            'read_only_source':True,'order_or_account_endpoints_used':False,
+            'gate_promotions':[], 'execution_ready':False,'performance_started':False,'paper_trades_created':0,
+            'next_required':'Collect a full connected read-only live tail sufficient to bridge verified archive warmup and run deterministic source-to-feature-to-opportunity receipt; later require an independently timed repeat before gate promotion.',
+            'commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID']
+          }
+          Path('connected_snapshot_receipt.json').write_text(json.dumps(receipt,indent=2))
+          print(json.dumps(receipt,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eth-forward-live-source-contract
+          path: |
+            source_contract_receipt.json
+            connected_snapshot_receipt.json
+          retention-days: 14

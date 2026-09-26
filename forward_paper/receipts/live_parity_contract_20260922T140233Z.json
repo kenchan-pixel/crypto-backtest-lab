@@ -1,0 +1,88 @@
+{
+  "schema": "eth-forward-live-parity-contract-validation-v1",
+  "observed_at_utc": "2026-09-22T14:02:33Z",
+  "scope": "Bounded commissioning validation of the fail-closed archive/live parity contract against immutable connected Binance public read-only evidence and checksum-verified public archives. No fill, performance start, strategy/model change, or gate promotion.",
+  "branch": "research/payoff-aware-20260920",
+  "workflow": {
+    "run_id": 35737479146,
+    "job_id": 106778337654,
+    "head_sha": "6d7321e1ac45ecf2c574e83fa9eddf52b42a2144",
+    "conclusion": "success",
+    "complete_forward_paper_tests_passed": 81
+  },
+  "artifact": {
+    "id": 10697953863,
+    "name": "eth-forward-live-parity-contract",
+    "size_bytes": 4316,
+    "sha256": "a9b2c238ccd226b1dde23cd8f841e11716e7fd83191e27ba8a10b5537b7331b3",
+    "expires_at_utc": "2026-10-06T14:02:33Z"
+  },
+  "connected_evidence": {
+    "manifest": "forward_paper/inputs/connected_binance_full_20260922T072853HKT/manifest.json",
+    "manifest_sha256": "50fc302d27cc5f6d4a5da1b5ced253cd1d8b64f0111b2774a48851948a4d6745",
+    "first_seen_at_utc": "2026-09-21T23:42:43+00:00",
+    "rows": 283,
+    "full_taker_rows_present": 283,
+    "source_sha256": {
+      "open_interest": "87a64d159685ddda0b4b9e18252f9ff1cecfb835c0ee4da48f6881017e229045",
+      "top_accounts": "864968f46c76c9dec5388338d3d6233775d8dc57794a700f4da9199ccf06b448",
+      "top_positions": "cb22179ab7e05049d2448c4ca4252c9ecd52813ce896c5e13430809dc8d52e15",
+      "global_accounts": "53ba19813ad89932bdc37bb6777eb41481045c1bec9d91ad4d6f00882ec5b545",
+      "taker": "f82b99061a41b6ff05733e27060f9602ec0396483ba494c84fd762837791b62c",
+      "funding": "32c0a84f15ae47442e17529a984b6048925afe35062a0770bcdcacb0a981c0d7"
+    },
+    "read_only_public_market_data_only": true,
+    "order_or_account_endpoints_used": false
+  },
+  "archive_evidence": {
+    "days": ["2026-09-20", "2026-09-21"],
+    "checksum_verified": true,
+    "sha256": {
+      "2026-09-20": "54c07ed33c80ad47618d0e79faab937fa0e018a24c6c1e9eb1dff852bf5ad0d6",
+      "2026-09-21": "84e76323a33e78f2d00d648fb67c2b1be726385e4cb36f59192e5e30a98c9fa0"
+    }
+  },
+  "contract": {
+    "schema": "eth-forward-live-parity-contract-v1",
+    "frozen_model_sha256": "08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe",
+    "dependency_receipt": "forward_paper/receipts/taker_decision_invariance_20260922T134155Z.json",
+    "dependency_receipt_sha256": "9d18ac4bb2eddbda35234c2e121033c9973fe305a07128d825b2ef9be0bb0d2e",
+    "decision_derivative_inputs": ["funding_per_hour", "oi_logchange_24h", "top_position_ratio"],
+    "taker_enters_frozen_decision": false,
+    "archive_create_time_to_connected_period_end_offset_minutes": 5,
+    "decision_exact_columns": ["sum_open_interest", "sum_open_interest_value"],
+    "decision_precision_columns": {
+      "sum_toptrader_long_short_ratio": {
+        "connected_decimal_places": 4,
+        "max_abs_delta": 0.00004999999999988347,
+        "half_lsu": 0.00005
+      }
+    },
+    "archive_live_overlap_rows": 283,
+    "decision_exact_mismatches": {
+      "sum_open_interest": 0,
+      "sum_open_interest_value": 0
+    },
+    "non_decision_columns_value_parity_asserted": false,
+    "taker_value_semantics_resolved": false,
+    "taker_live_values_quarantined_from_decision_matrix": true,
+    "full_taker_stream_required_upstream": true,
+    "raw_values_rewritten": false,
+    "gate_promotion": false
+  },
+  "merged_max_gap_minutes": 5.0,
+  "interpretation": "The fail-closed contract is now evidence-backed for this frozen model: decision-relevant OI values match exactly after the verified archive-create-time to connected-period-end +5 minute mapping, top-position values are compatible with the connected endpoint's verified four-decimal representation, and unresolved taker values are not assigned archive-equivalent meaning or admitted to the frozen decision matrix. The complete taker stream remains mandatory upstream for cadence, provenance and freshness checks.",
+  "raw_values_rewritten": false,
+  "paper_trades_created": 0,
+  "gate_promotion": false,
+  "performance_started": false,
+  "readiness_effect": {
+    "execution_ready": false,
+    "source_freshness": false,
+    "live_feature_parity": false,
+    "initial_decisions": false,
+    "performance_started_at": null
+  },
+  "old_historical_paper_gate": "remains failed and unchanged",
+  "next_safe_step": "Integrate this validated contract into the persisted current causal pipeline, collect a genuinely fresh connected extension, and produce the next source-to-feature-to-opportunity receipt. Do not promote readiness until the required independently timed repeated current receipt and later runtime/fill gates pass."
+}

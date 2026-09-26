@@ -1,0 +1,66 @@
+name: ETH persisted connected pipeline commissioning
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths:
+      - '.github/workflows/eth-forward-persisted-pipeline.yml'
+      - 'forward_paper/persisted_pipeline.py'
+      - 'forward_paper/test_persisted_pipeline.py'
+permissions:
+  contents: read
+concurrency:
+  group: eth-forward-persisted-pipeline
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.repository == 'kenchan-pixel/crypto-backtest-lab' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r forward_paper/requirements.txt
+      - name: Run focused causal-source tests
+        run: |
+          set -euo pipefail
+          mkdir -p forward_validation
+          python -m pytest -q \
+            forward_paper/test_live_sources.py \
+            forward_paper/test_freshness.py \
+            forward_paper/test_live_pipeline.py \
+            forward_paper/test_persisted_pipeline.py | tee forward_validation/tests.txt
+      - name: Run first persisted current source-to-opportunity receipt
+        run: |
+          set -euo pipefail
+          python -m forward_paper.persisted_pipeline \
+            --snapshot-dir forward_paper/inputs/connected_binance_full_20260922T072853HKT \
+            --macro-capture forward_paper/inputs/macro_first_seen_20260922T031843HKT.json \
+            --out forward_validation/persisted_pipeline_receipt.json | tee forward_validation/pipeline.log
+      - name: Assert no gate promotion and no fills
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('forward_validation/persisted_pipeline_receipt.json'))
+          assert r['passed'] is True
+          assert r['paper_trades_created']==0
+          assert r['performance_started'] is False
+          assert r['order_account_endpoints_used'] is False
+          assert r['gate_effect'].startswith('Receipt 1 of 2')
+          assert r['archive_live_overlap_rows']>=r['expected_overlap_rows']>=3
+          assert all(r['derivative_feature_non_null_at_cut'].values())
+          print('First persisted full-pipeline receipt passed; gates deliberately remain unpromoted.')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eth-forward-persisted-pipeline-commissioning
+          path: forward_validation/
+          retention-days: 14

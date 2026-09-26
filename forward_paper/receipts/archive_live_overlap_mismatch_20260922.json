@@ -1,0 +1,38 @@
+{
+  "schema": "archive-live-overlap-mismatch-v1",
+  "recorded_at_utc": "2026-09-22T00:09:25Z",
+  "diagnostic_run_id": 35670710452,
+  "diagnostic_job_id": 106566293454,
+  "diagnostic_artifact_id": 10670574966,
+  "diagnostic_artifact_sha256": "9124fd7dfaa047bceb57a82eb8cbc37d9cb3d7c450949c8515edbf48102d9ffa",
+  "archive_date": "2026-09-20",
+  "archive_sha256": "54c07ed33c80ad47618d0e79faab937fa0e018a24c6c1e9eb1dff852bf5ad0d6",
+  "expected_overlap_utc": ["2026-09-20T23:45:00Z", "2026-09-20T23:50:00Z", "2026-09-20T23:55:00Z"],
+  "mismatch_cells": 18,
+  "all_six_metric_cells_mismatched_at_each_expected_timestamp": true,
+  "observed_pattern": {
+    "status": "hypothesis_requires_broader_verification",
+    "description": "The checksum-bound daily archive create_time appears consistently one 5-minute bucket earlier than the connected endpoint timestamp for the same underlying observation. For open interest, archive 23:45 equals connected 23:50 exactly; archive 23:50 equals connected 23:55 exactly; archive 23:55 equals connected 00:00 exactly. Ratio endpoints additionally expose fewer decimals than the archive, so exact floating-point equality is not a valid source contract for those fields even after timestamp alignment.",
+    "examples": [
+      {"archive_time_utc":"2026-09-20T23:45:00Z","field":"sum_open_interest","archive":2345802.57,"connected_same_timestamp":2342945.504,"connected_next_5m":2345802.57},
+      {"archive_time_utc":"2026-09-20T23:50:00Z","field":"sum_open_interest","archive":2346591.475,"connected_same_timestamp":2345802.57,"connected_next_5m":2346591.475},
+      {"archive_time_utc":"2026-09-20T23:55:00Z","field":"sum_open_interest","archive":2346233.528,"connected_same_timestamp":2346591.475,"connected_next_5m":2346233.528}
+    ],
+    "precision_observation": "Daily archive ratios contain more decimal precision than connected public ratio endpoints, which are rounded to about four decimal places. A validated precision-aware comparison is required; raw values must remain unchanged."
+  },
+  "fresh_extension": {
+    "path": "forward_paper/inputs/connected_binance_fresh_20260922T080126HKT",
+    "conservative_first_seen_at_utc": "2026-09-22T00:01:26.073897Z",
+    "latest_common_5m_utc": "2026-09-21T23:55:00Z",
+    "common_age_minutes": 6.4346,
+    "latest_funding_utc": "2026-09-22T00:00:00Z",
+    "funding_age_minutes": 1.4346,
+    "freshness_itself_passed": true,
+    "focused_tests_passed": 28
+  },
+  "gate_effect": "No promotion. source_freshness=false and live_feature_parity=false until the archive/connected timestamp semantics and precision mapping are verified over a broader overlap sample and the full causal pipeline passes twice at independent observation times.",
+  "next_bounded_step": "Verify archive create_time versus connected endpoint timestamp semantics across multiple overlapping rows/days. If the period-end versus period-start mapping is confirmed, implement it only in normalization while preserving immutable raw timestamps/values. Use exact comparison for open-interest fields and a justified precision-aware comparison for rounded ratio fields, then rerun the first fresh full-pipeline receipt.",
+  "paper_trades_created": 0,
+  "performance_started": false,
+  "order_or_account_endpoints_used": false
+}

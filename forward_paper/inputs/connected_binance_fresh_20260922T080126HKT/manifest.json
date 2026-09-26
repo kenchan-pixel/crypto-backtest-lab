@@ -1,0 +1,29 @@
+{
+  "schema":"connected-binance-native-tail-v1",
+  "symbol":"ETHUSDT",
+  "capture_purpose":"fresh commissioning extension only; not a trade signal, fill, or forward-performance result",
+  "capture_mode":"fresh_incremental_extension",
+  "base_snapshot_dir":"forward_paper/inputs/connected_binance_full_20260922T072853HKT",
+  "conservative_first_seen_at_utc":"2026-09-22T00:01:26.073897Z",
+  "first_seen_rule":"Timestamp recorded after all connected Binance read-only calls completed; never backdated to exchange source timestamps.",
+  "read_only_public_market_data_only":true,
+  "order_or_account_endpoints_used":false,
+  "native_metric_period":"5m",
+  "intended_bridge_range":{"start_ms":1790028000000,"start_utc":"2026-09-21T22:00:00Z","common_latest_ms":1790034900000,"common_latest_utc":"2026-09-21T23:55:00Z","common_latest_age_minutes_at_first_seen":6.4346,"funding_latest_ms":1790035200000,"funding_latest_utc":"2026-09-22T00:00:00Z","funding_latest_age_minutes_at_first_seen":1.4346},
+  "sources":{
+    "open_interest":{"file":"open_interest.json","function":"get_futures_usds_open_interest_statistics","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790028000000,"limit":30},"rows_observed":25,"first_source_timestamp_ms":1790028000000,"last_source_timestamp_ms":1790035200000,"git_blob_sha1":"acb2b74e64c127b12593a8149983f5c8cd0b1f88"},
+    "top_accounts":{"file":"top_accounts.json","function":"get_futures_usds_top_trader_long_short_ratio_accounts","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790028000000,"limit":30},"rows_observed":25,"first_source_timestamp_ms":1790028000000,"last_source_timestamp_ms":1790035200000,"git_blob_sha1":"cb5f2386c46cdaab99daf5e929d509e4a409ca30"},
+    "top_positions":{"file":"top_positions.json","function":"get_futures_usds_top_trader_long_short_ratio_positions","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790028000000,"limit":30},"rows_observed":25,"first_source_timestamp_ms":1790028000000,"last_source_timestamp_ms":1790035200000,"git_blob_sha1":"a8b6a61b731f416b27cb1fc06ff40fd9def03232"},
+    "global_accounts":{"file":"global_accounts.json","function":"get_futures_usds_long_short_ratio","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790028000000,"limit":30},"rows_observed":25,"first_source_timestamp_ms":1790028000000,"last_source_timestamp_ms":1790035200000,"git_blob_sha1":"0d7d2e9e8d40ab992fe7bbdc734ac7cdf7fca2ad"},
+    "taker":{"file":"taker.json","function":"get_futures_usds_taker_buy_sell_volume","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790028000000,"limit":30},"endpoint_window_note":"Connector returned the immediately preceding 5m bucket as well; raw response is preserved without rewriting.","rows_observed":25,"first_source_timestamp_ms":1790027700000,"last_source_timestamp_ms":1790034900000,"git_blob_sha1":"ee84c023511eff0806497ad73f6a682a27709694"},
+    "funding":{"file":"funding.json","function":"get_futures_usds_funding_rate_history","request":{"symbol":"ETHUSDT","startTime":1789776000000,"limit":10},"rows_observed":10,"first_funding_time_ms":1789776000000,"last_funding_time_ms":1790035200000,"last_funding_rate":"0.00005727","git_blob_sha1":"f22afbcbfdce935d2721cc6c0e8e2ffe5082d59b"}
+  },
+  "base_extension_overlap_expected":{"minimum_common_5m_rows":16,"first_overlap_ms":1790028000000,"last_overlap_ms":1790032500000,"exact_value_match_required":true},
+  "archive_overlap_expected":{"date":"2026-09-20","timestamps_utc":["2026-09-20T23:45:00Z","2026-09-20T23:50:00Z","2026-09-20T23:55:00Z"],"inherited_via_base_snapshot":true},
+  "gate_promotion":false,
+  "source_freshness_gate":false,
+  "live_feature_parity_gate":false,
+  "paper_trades_executed":0,
+  "performance_started":false,
+  "next_bounded_step":"Merge this fresh extension with the earlier immutable full tail, verify exact overlap/no conflict, then execute current causal source-to-feature-to-opportunity commissioning receipt."
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "eth-forward-live-derivative-source-probe-v1",
+  "run_context_after_utc": "2026-09-21T15:30:38+00:00",
+  "source": "Connected Binance public read-only market-data tools",
+  "symbol": "ETHUSDT",
+  "purpose": "Commissioning source-contract evidence only; not a model signal, fill, trade or performance result.",
+  "frozen_archive_contract": {
+    "native_metrics_cadence": "5m",
+    "required_columns": [
+      "sum_open_interest",
+      "sum_open_interest_value",
+      "count_toptrader_long_short_ratio",
+      "sum_toptrader_long_short_ratio",
+      "count_long_short_ratio",
+      "sum_taker_long_short_vol_ratio"
+    ],
+    "assumed_live_availability_lag_hours": 1,
+    "metrics_expiry_hours_after_lag": 2,
+    "funding_expiry_hours_after_lag": 12,
+    "rule": "Retain native 5m rows and later apply the inherited backward-only as-of join. Do not substitute the 1h statistics endpoint for the archived 5m metric stream."
+  },
+  "api_mapping": {
+    "open_interest_statistics.sumOpenInterest": "sum_open_interest",
+    "open_interest_statistics.sumOpenInterestValue": "sum_open_interest_value",
+    "top_trader_long_short_ratio_accounts.longShortRatio": "count_toptrader_long_short_ratio",
+    "top_trader_long_short_ratio_positions.longShortRatio": "sum_toptrader_long_short_ratio",
+    "global_long_short_ratio.longShortRatio": "count_long_short_ratio",
+    "taker_buy_sell_volume.buySellRatio": "sum_taker_long_short_vol_ratio"
+  },
+  "samples": {
+    "open_interest_5m": [
+      {"symbol":"ETHUSDT","sumOpenInterest":"2386398.57000000","sumOpenInterestValue":"6541291244.52971500","timestamp":1790004000000},
+      {"symbol":"ETHUSDT","sumOpenInterest":"2384197.57200000","sumOpenInterestValue":"6514128448.19412000","timestamp":1790004300000},
+      {"symbol":"ETHUSDT","sumOpenInterest":"2383523.83000000","sumOpenInterestValue":"6511906279.75150000","timestamp":1790004600000}
+    ],
+    "open_interest_1h_diagnostic_not_frozen_input": [
+      {"symbol":"ETHUSDT","sumOpenInterest":"2415245.03900000","sumOpenInterestValue":"6604101119.93926000","timestamp":1789995600000},
+      {"symbol":"ETHUSDT","sumOpenInterest":"2407083.29400000","sumOpenInterestValue":"6573238988.42226000","timestamp":1789999200000},
+      {"symbol":"ETHUSDT","sumOpenInterest":"2388976.17700000","sumOpenInterestValue":"6535163780.99235000","timestamp":1790002800000}
+    ],
+    "top_positions_5m": [
+      {"symbol":"ETHUSDT","longAccount":"0.6121","longShortRatio":"1.5781","shortAccount":"0.3879","timestamp":1790004000000},
+      {"symbol":"ETHUSDT","longAccount":"0.6122","longShortRatio":"1.5786","shortAccount":"0.3878","timestamp":1790004300000},
+      {"symbol":"ETHUSDT","longAccount":"0.6132","longShortRatio":"1.5856","shortAccount":"0.3868","timestamp":1790004600000}
+    ],
+    "top_accounts_5m": [
+      {"symbol":"ETHUSDT","longAccount":"0.5596","longShortRatio":"1.2707","shortAccount":"0.4404","timestamp":1790004000000},
+      {"symbol":"ETHUSDT","longAccount":"0.5601","longShortRatio":"1.2732","shortAccount":"0.4399","timestamp":1790004300000},
+      {"symbol":"ETHUSDT","longAccount":"0.5596","longShortRatio":"1.2707","shortAccount":"0.4404","timestamp":1790004600000}
+    ],
+    "all_accounts_5m": [
+      {"symbol":"ETHUSDT","longAccount":"0.6993","longShortRatio":"2.3256","shortAccount":"0.3007","timestamp":1790004000000},
+      {"symbol":"ETHUSDT","longAccount":"0.6997","longShortRatio":"2.3300","shortAccount":"0.3003","timestamp":1790004300000},
+      {"symbol":"ETHUSDT","longAccount":"0.6991","longShortRatio":"2.3234","shortAccount":"0.3009","timestamp":1790004600000}
+    ],
+    "taker_5m": [
+      {"buySellRatio":"0.8327","sellVol":"10425.1030","buyVol":"8681.3340","timestamp":1790003700000},
+      {"buySellRatio":"0.5631","sellVol":"19233.7360","buyVol":"10829.8560","timestamp":1790004000000},
+      {"buySellRatio":"0.6106","sellVol":"16869.0590","buyVol":"10299.6010","timestamp":1790004300000}
+    ],
+    "funding_history": [
+      {"symbol":"ETHUSDT","fundingTime":1789920000000,"fundingRate":"0.00003468","markPrice":"2612.06340310","rateType":"Regular"},
+      {"symbol":"ETHUSDT","fundingTime":1789948800007,"fundingRate":"0.00008166","markPrice":"2643.82038760","rateType":"Regular"},
+      {"symbol":"ETHUSDT","fundingTime":1789977600004,"fundingRate":"0.00008660","markPrice":"2660.81116279","rateType":"Regular"}
+    ],
+    "current_funding_info": {"symbol":"ETHUSDT","fundingIntervalHours":8,"adjustedFundingRateCap":"0.00300","adjustedFundingRateFloor":"-0.00300","disclaimer":true,"updateTime":null}
+  },
+  "verified_observations": [
+    "All required archived metric families have a current public read endpoint and compatible field meaning for the sampled rows.",
+    "The required metric stream is natively available at 5m cadence; exact common timestamps 1790004000000 and 1790004300000 are present across all five sampled families.",
+    "The current 1h OI statistics values differ from the 5m samples and are therefore not accepted as a parity-preserving substitute.",
+    "Funding settlement timestamps contain millisecond jitter; actual intervals must continue to be inferred from consecutive settlements rather than rounded or assumed from an 8h constant.",
+    "Current funding metadata reports ETHUSDT fundingIntervalHours=8, used only as a consistency check."
+  ],
+  "not_yet_proven": [
+    "Continuous collector freshness across all hours",
+    "Full historical/live opportunity-stream parity",
+    "Spot/BTC peer and macro collector integration",
+    "Durable state/fill integration",
+    "Any eligible forward trade or performance"
+  ]
+}

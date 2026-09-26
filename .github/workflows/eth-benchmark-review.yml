@@ -1,0 +1,57 @@
+name: Frozen ETH benchmark review
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths: ['benchmark_review/**', '.github/workflows/eth-benchmark-review.yml']
+permissions:
+  contents: read
+concurrency:
+  group: eth-benchmark-review
+  cancel-in-progress: false
+jobs:
+  review:
+    if: github.event.repository.private == false && github.repository == 'kenchan-pixel/crypto-backtest-lab'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+      actions: read
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r benchmark_review/requirements.txt
+      - name: Test benchmark arithmetic and controls
+        run: |
+          set -euo pipefail
+          mkdir -p verification
+          python -m pytest -q benchmark_review/test_analysis.py | tee verification/tests.txt
+      - name: Restore hash-bound original inputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m benchmark_review.lifecycle prepare
+      - name: Execute review notebook and independent checks
+        run: python -m benchmark_review.lifecycle notebook
+      - name: Package complete durable evidence
+        run: python -m benchmark_review.lifecycle package
+      - name: Publish versioned research evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m benchmark_review.lifecycle publish
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eth-benchmark-review-20260921
+          path: |
+            delivery/
+            verification/
+            output/execution_receipt.json
+          retention-days: 3
+          if-no-files-found: error

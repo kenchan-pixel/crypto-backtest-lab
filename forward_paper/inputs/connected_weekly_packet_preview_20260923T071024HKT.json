@@ -1,0 +1,61 @@
+{
+  "bars": {
+    "end_latest_completed": {
+      "close": "2776.19000000",
+      "close_time_ms": 1790035199999,
+      "high": "2807.34000000",
+      "low": "2643.71000000",
+      "open": "2645.21000000",
+      "open_time_ms": 1789948800000,
+      "quote_asset_volume": "1560312644.56178500",
+      "taker_buy_base": "300160.47060000",
+      "taker_buy_quote": "817038878.48588100",
+      "trades": 4795393,
+      "volume": "573089.93720000"
+    },
+    "start_30d": {
+      "close": "2422.60000000",
+      "close_time_ms": 1787443199999,
+      "high": "2529.99000000",
+      "low": "2385.00000000",
+      "open": "2516.31000000",
+      "open_time_ms": 1787356800000,
+      "quote_asset_volume": "1187496571.73347100",
+      "taker_buy_base": "244219.42540000",
+      "taker_buy_quote": "598108530.04623700",
+      "trades": 4481778,
+      "volume": "485164.89010000"
+    }
+  },
+  "derived_preview": {
+    "commit_status": "preview_only_outside_Monday_window",
+    "return_30d": 0.14595475934945923,
+    "simple_weekly_weight": 1.0
+  },
+  "end_bar_close_at": "2026-09-21T23:59:59.999000+00:00",
+  "observed_at": "2026-09-23T07:10:24+08:00",
+  "orders_or_account_data_requested": false,
+  "provenance_note": "Both rows were independently re-queried from the connected Binance public spot kline tool with exact start/end bounds. No account, wallet, order, margin, borrowing, transfer or deposit endpoint was used.",
+  "query_contract": {
+    "connected_calls": [
+      {
+        "endTime": 1787443199999,
+        "limit": 1,
+        "startTime": 1787356800000
+      },
+      {
+        "endTime": 1790035199999,
+        "limit": 1,
+        "startTime": 1789948800000
+      }
+    ],
+    "interval": "1d",
+    "selection": "latest completed daily close and the daily close exactly 30 calendar days earlier",
+    "symbol": "ETHUSDT",
+    "time_zone": "UTC"
+  },
+  "read_only": true,
+  "schema": "eth-weekly-connected-evidence-v1",
+  "source": "Binance connected public read-only market-data tool",
+  "tool_operation": "get_spot_kline_candlestick_data"
+}

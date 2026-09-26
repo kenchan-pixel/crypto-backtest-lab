@@ -1,0 +1,82 @@
+{
+  "schema": "eth-paper-runtime-cost-sidecars-commissioning-receipt-v1",
+  "generated_at_utc": "2026-09-22T21:45:45.181336+00:00",
+  "generated_at_hkt": "2026-09-23T05:45:45.181336+08:00",
+  "branch": "research/payoff-aware-20260920",
+  "actions": {
+    "run_id": 35788491896,
+    "job_id": 106951023420,
+    "head_sha": "3583b575de55c1fa2f7ccbb9bc117037451ba58a",
+    "conclusion": "success",
+    "tests_passed": 100,
+    "artifact_id": 10719939797,
+    "artifact_sha256": "0c5b52797386364c6fe0cbf7588191e342582a802cc9c0d6525e7c95040a696f"
+  },
+  "source_runtime": {
+    "path": "forward_paper/runtime/state.json",
+    "content_sha256": "1394cbc1f92dc2d5696d5a589da0e8dd7aac1436df396b9511a1670d2b203311",
+    "semantic_sha256": "5128a13f64e1d53297511680eba871829212436004ac17de7b67271c1009df69",
+    "status": "COMMISSIONING",
+    "execution_ready": false,
+    "performance_started_at": null,
+    "paper_closed_trades": 0
+  },
+  "source_files": {
+    "runtime_costs_py_git_blob_sha1": "debc0dbe0f581fbeea5dc0b0dd9b6fb549a27fbd",
+    "test_runtime_costs_py_git_blob_sha1": "e44ad71cedf4f3b788fa27522643c9b93ec1833d",
+    "workflow_git_blob_sha1": "700ab813fa87f9b7525c81f9496732ca24fc35b4",
+    "public_evidence_git_blob_sha1": "6d6ed0bfabc90b40e22c9d892b42522f95e1a232"
+  },
+  "public_evidence": {
+    "path": "forward_paper/inputs/connected_cost_commissioning_evidence_20260923T053748HKT.json",
+    "sha256": "98b6a3da720838163163a28505522b7857cb72e473c6255b28bafd5ea2542135",
+    "source": "Binance connected public read-only market-data tool",
+    "tool_operation": "USD-M futures ETHUSDT public symbol price ticker",
+    "symbol": "ETHUSDT",
+    "price": "2749.13",
+    "exchange_time_ms": 1790113068639,
+    "read_only": true,
+    "orders_or_account_data_requested": false
+  },
+  "cost_contract": {
+    "BASE": {"fee_per_side": 0.001, "slippage_per_side": 0.0005},
+    "STRESS": {"fee_per_side": 0.0015, "slippage_per_side": 0.0015}
+  },
+  "ai_operating_budget_contract": {
+    "rates_of_starting_account_per_actual_ai_review": {"0pct": 0.0, "0.01pct": 0.0001, "0.05pct": 0.0005},
+    "assumed_usdt_per_review_at_10000_start": {"0pct": 0.0, "0.01pct": 1.0, "0.05pct": 5.0},
+    "applies_on_inactive_ai_week": true,
+    "deducted_from_trading_nav": false
+  },
+  "checks": {
+    "base_cost_contract_exact": true,
+    "stress_cost_contract_exact": true,
+    "same_parent_and_saved_fill_references": true,
+    "base_sidecar_matches_core_accounting": true,
+    "stress_cost_is_not_better_than_base": true,
+    "cost_sidecar_replay_idempotent": true,
+    "ai_budget_rates_exact": true,
+    "inactive_ai_review_still_counted": true,
+    "ai_budget_separate_from_trading_nav": true,
+    "ai_budget_replay_idempotent": true,
+    "isolated_cas_persistence_round_trip": true,
+    "source_runtime_bytes_unchanged": true
+  },
+  "engineering_fixture": {
+    "synthetic_threshold_signal": true,
+    "actual_connected_public_price_anchor": true,
+    "synthetic_24h_exit_timestamp": true,
+    "synthetic_same_price_exit_for_cost_isolation": true,
+    "synthetic_inactive_ai_weekly_review": true,
+    "forward_opportunity_claimed": false,
+    "forward_trade_claimed": false
+  },
+  "actual_runtime_state_mutated": false,
+  "actual_runtime_paper_trades_created": 0,
+  "real_orders_created": 0,
+  "order_account_endpoints_used": false,
+  "gate_promotion": false,
+  "gate_effect": "none; cost/budget sidecar mechanics are verified on durable isolated CAS state, but runtime-cycle/weekly-decision wiring and genuine initial weekly decisions remain incomplete",
+  "next_bounded_step": "Wire verified cost sidecar append to completed paper exits and AI-budget sidecar append to genuine weekly-decision commits, then validate fail-closed replay/CAS integration without arming or creating trades.",
+  "classification": "User-approved prospective PAPER-ONLY experiment; old failed historical paper gates remain failed and are not overridden by this commissioning receipt."
+}

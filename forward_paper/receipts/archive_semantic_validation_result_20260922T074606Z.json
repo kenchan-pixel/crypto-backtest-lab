@@ -1,0 +1,80 @@
+{
+  "schema": "eth-forward-archive-semantic-validation-result-v1",
+  "observed_at_utc": "2026-09-22T07:46:06.739Z",
+  "scope": "Bounded commissioning validation of checksum-verified Binance daily metrics archives against the immutable connected read-only native-5m tail. No paper fill, performance, model change, order/account endpoint, source substitution, or gate promotion.",
+  "status": "blocked_ratio_source_semantics_mismatch",
+  "branch": "research/payoff-aware-20260920",
+  "workflow": {
+    "run_id": 35675863910,
+    "job_id": 106659455247,
+    "head_sha": "7b6e3dfab06aa333a70087c8b26247451529a544",
+    "conclusion": "failure",
+    "fail_closed": true
+  },
+  "artifact": {
+    "id": 10682012425,
+    "size_bytes": 5313,
+    "sha256": "557d6ecae7ee45a443c2ffaa7c35eb1b433a75ea8aa6b3aaf1fca11fb1481aca",
+    "expires_at_utc": "2026-10-06T07:46:06Z"
+  },
+  "connected_evidence": {
+    "manifest": "forward_paper/inputs/connected_binance_full_20260922T072853HKT/manifest.json",
+    "manifest_sha256": "50fc302d27cc5f6d4a5da1b5ced253cd1d8b64f0111b2774a48851948a4d6745",
+    "common_rows": 283,
+    "first_utc": "2026-09-20T23:45:00+00:00",
+    "last_utc": "2026-09-21T23:15:00+00:00",
+    "base_first_seen_at_utc": "2026-09-21T23:42:43+00:00"
+  },
+  "archive_evidence": {
+    "days": ["2026-09-20", "2026-09-21"],
+    "checksum_verified": true,
+    "sha256": {
+      "2026-09-20": "54c07ed33c80ad47618d0e79faab937fa0e018a24c6c1e9eb1dff852bf5ad0d6",
+      "2026-09-21": "84e76323a33e78f2d00d648fb67c2b1be726385e4cb36f59192e5e30a98c9fa0"
+    }
+  },
+  "timestamp_semantic_evidence": {
+    "candidate_offsets_minutes_archive_to_connected": {
+      "-10": {"oi_cells": 566, "matches": 0},
+      "-5": {"oi_cells": 566, "matches": 0},
+      "0": {"oi_cells": 566, "matches": 0},
+      "5": {"oi_cells": 566, "matches": 566},
+      "10": {"oi_cells": 566, "matches": 0}
+    },
+    "best_offset_minutes": 5,
+    "all_connected_rows_covered_after_oi_alignment": true,
+    "open_interest_mismatches_after_plus5_alignment": 0,
+    "conclusion": "For the two open-interest archive fields, archive create_time + 5 minutes uniquely matches the connected endpoint timestamp across all 283 rows and both archive days. This does not by itself authorize applying the same semantic to every ratio family."
+  },
+  "ratio_contract_evidence": {
+    "tested_contract": "absolute archive/live delta <= half one least-significant decimal unit published by the connected endpoint",
+    "cells_checked": 1132,
+    "mismatches": 772,
+    "connected_precision_dp_seen": 4,
+    "max_abs_delta": {
+      "count_toptrader_long_short_ratio": 0.0002931899999998322,
+      "sum_toptrader_long_short_ratio": 0.00004999999999988347,
+      "count_long_short_ratio": 0.0005823700000000542,
+      "sum_taker_long_short_vol_ratio": 2.2217070000000003
+    },
+    "max_delta_in_connected_units": {
+      "count_toptrader_long_short_ratio": 2.931899999998322,
+      "sum_toptrader_long_short_ratio": 0.4999999999988347,
+      "count_long_short_ratio": 5.823700000000542,
+      "sum_taker_long_short_vol_ratio": 22217.070000000003
+    },
+    "raw_values_rewritten": false,
+    "conclusion": "The generic precision-only explanation is rejected. Ratio families require separate source-semantic investigation before any archive/live normalization can be promoted. The taker family shows especially large disagreement under the OI +5-minute alignment, so it must not be coerced by rounding tolerance."
+  },
+  "readiness_effect": {
+    "execution_ready": false,
+    "source_freshness": false,
+    "live_feature_parity": false,
+    "initial_decisions": false,
+    "performance_started_at": null,
+    "paper_trades_created": 0,
+    "gate_promotion": false
+  },
+  "order_or_account_endpoints_used": false,
+  "next_safe_step": "Boundedly diagnose timestamp/value semantics separately for each ratio family, especially taker, against the same immutable connected tail and checksum-verified archives. Do not alter raw values, relax tolerance, promote the generic +5-minute mapping to all metrics, or run paper fills until that source contract is evidence-backed."
+}
