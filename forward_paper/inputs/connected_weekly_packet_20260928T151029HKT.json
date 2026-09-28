@@ -1,0 +1,158 @@
+{
+  "schema": "eth-weekly-connected-evidence-v1",
+  "observed_at": "2026-09-28T07:10:29+00:00",
+  "end_bar_close_at": "2026-09-27T23:59:59.999000+00:00",
+  "source": "Binance connected public read-only market-data tool",
+  "tool_operation": "get_spot_kline_candlestick_data",
+  "read_only": true,
+  "orders_or_account_data_requested": false,
+  "query_contract": {
+    "symbol": "ETHUSDT",
+    "interval": "1d",
+    "time_zone": "UTC"
+  },
+  "bars": {
+    "start_30d": {
+      "open_time_ms": 1787875200000,
+      "close_time_ms": 1787961599999,
+      "close": "2442.80000000"
+    },
+    "end_latest_completed": {
+      "open_time_ms": 1790467200000,
+      "close_time_ms": 1790553599999,
+      "close": "2688.65000000"
+    }
+  },
+  "supplemental_public_context": {
+    "spot_price": {
+      "symbol": "ETHUSDT",
+      "price": "2649.73000000"
+    },
+    "futures_mark": {
+      "symbol": "ETHUSDT",
+      "markPrice": "2648.51481957",
+      "indexPrice": "2650.00139535",
+      "estimatedSettlePrice": "2650.72927894",
+      "lastFundingRate": "-0.00002261",
+      "interestRate": "0.00010000",
+      "nextFundingTime": 1790582400000,
+      "time": 1790579416003
+    },
+    "futures_open_interest": {
+      "symbol": "ETHUSDT",
+      "openInterest": "2292151.618",
+      "time": 1790579412331
+    },
+    "funding_history": [
+      {
+        "symbol": "ETHUSDT",
+        "fundingTime": 1790352000002,
+        "fundingRate": "0.00004924",
+        "markPrice": "2685.72000000",
+        "rateType": "Regular"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "fundingTime": 1790380800000,
+        "fundingRate": "0.00006606",
+        "markPrice": "2690.60376744",
+        "rateType": "Regular"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "fundingTime": 1790409600001,
+        "fundingRate": "0.00006744",
+        "markPrice": "2689.71000000",
+        "rateType": "Regular"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "fundingTime": 1790438400001,
+        "fundingRate": "0.00005798",
+        "markPrice": "2691.99000000",
+        "rateType": "Regular"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "fundingTime": 1790467200000,
+        "fundingRate": "0.00005712",
+        "markPrice": "2695.45568164",
+        "rateType": "Regular"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "fundingTime": 1790496000001,
+        "fundingRate": "0.00010000",
+        "markPrice": "2717.05000000",
+        "rateType": "Regular"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "fundingTime": 1790524800000,
+        "fundingRate": "0.00005390",
+        "markPrice": "2688.83000000",
+        "rateType": "Regular"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "fundingTime": 1790553600000,
+        "fundingRate": "0.00003121",
+        "markPrice": "2687.36000000",
+        "rateType": "Regular"
+      }
+    ],
+    "open_interest_stats_5m": {
+      "first": {
+        "symbol": "ETHUSDT",
+        "sumOpenInterest": "2289045.82500000",
+        "sumOpenInterestValue": "6076419865.76013100",
+        "timestamp": 1790575800000
+      },
+      "last": {
+        "symbol": "ETHUSDT",
+        "sumOpenInterest": "2290272.89400000",
+        "sumOpenInterestValue": "6077607556.35277200",
+        "timestamp": 1790579100000
+      }
+    },
+    "top_trader_accounts_5m_latest": {
+      "symbol": "ETHUSDT",
+      "longAccount": "0.6221",
+      "longShortRatio": "1.6462",
+      "shortAccount": "0.3779",
+      "timestamp": 1790579400000
+    },
+    "top_trader_positions_5m_latest": {
+      "symbol": "ETHUSDT",
+      "longAccount": "0.6174",
+      "longShortRatio": "1.6136",
+      "shortAccount": "0.3826",
+      "timestamp": 1790579100000
+    },
+    "global_accounts_5m_latest": {
+      "symbol": "ETHUSDT",
+      "longAccount": "0.7377",
+      "longShortRatio": "2.8124",
+      "shortAccount": "0.2623",
+      "timestamp": 1790579100000
+    },
+    "taker_buy_sell_5m_latest": {
+      "buySellRatio": "1.2883",
+      "sellVol": "4350.5940",
+      "buyVol": "5605.0190",
+      "timestamp": 1790578800000
+    },
+    "provenance": [
+      "get_spot_kline_candlestick_data",
+      "get_spot_symbol_price_ticker",
+      "get_futures_usds_mark_price",
+      "get_futures_usds_open_interest",
+      "get_futures_usds_funding_rate_history",
+      "get_futures_usds_open_interest_statistics",
+      "get_futures_usds_top_trader_long_short_ratio_accounts",
+      "get_futures_usds_top_trader_long_short_ratio_positions",
+      "get_futures_usds_long_short_ratio",
+      "get_futures_usds_taker_buy_sell_volume"
+    ]
+  }
+}
