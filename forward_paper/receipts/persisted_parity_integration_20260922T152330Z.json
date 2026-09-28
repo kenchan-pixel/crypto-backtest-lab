@@ -1,0 +1,81 @@
+{
+  "schema": "eth-forward-persisted-parity-integration-evidence-v1",
+  "created_at_utc": "2026-09-22T15:23:30Z",
+  "passed": true,
+  "scope": "Bounded commissioning integration validation only. The fail-closed live parity contract is wired into the persisted causal source-to-feature-to-opportunity extension pipeline using prior immutable fresh-at-capture connected evidence. This is not a qualifying current receipt and creates no paper fill or performance result.",
+  "branch": "research/payoff-aware-20260920",
+  "implementation_commit": "66fc15fdefd172a25251d29857400b9b542fb3ab",
+  "validated_head_commit": "d419173f327d97928dde096386b7bd0a4440bda1",
+  "workflow_run_id": 35746898856,
+  "workflow": ".github/workflows/eth-forward-fresh-extension-pipeline.yml",
+  "tests": {
+    "forward_paper_total": 81,
+    "passed": 81,
+    "failed": 0
+  },
+  "pipeline_receipt_schema": "eth-forward-persisted-extension-receipt-v2",
+  "qualifying_current_receipt": false,
+  "artifact": {
+    "id": 10703660448,
+    "name": "eth-forward-fresh-extension-commissioning",
+    "zip_sha256": "2775210b7ccb4b9428e093c0cda1277b7673b46d111af4535bcd152a53a185c3"
+  },
+  "superseded_validation_run": {
+    "run_id": 35746713646,
+    "pipeline_step_passed": true,
+    "tests_passed": 34,
+    "final_boundary_step_failed": true,
+    "reason": "The workflow asserted derivative_freshness.passed, while the existing freshness receipt field is derivative_freshness.fresh. The assertion was corrected and the complete forward_paper suite was run in workflow_run_id 35746898856."
+  },
+  "immutable_connected_source_hashes": {
+    "base_manifest": "forward_paper/inputs/connected_binance_full_20260922T072853HKT/manifest.json",
+    "fresh_manifest": "forward_paper/inputs/connected_binance_fresh_20260922T080126HKT/manifest.json",
+    "fresh_open_interest_sha256": "09a32e05a8507af844565c72ced0aad66b2b2d7bd0d58e8e97767e8789ac7e6e",
+    "fresh_top_accounts_sha256": "a8dc3428907577cfd408745e96543b51a01ecfaf657fc87e628e3cf6985019f9",
+    "fresh_top_positions_sha256": "d4dca90faecb9382fcbbf6ea27dc96b8a5c8a0ee2535b084454a06412ee69c1b",
+    "fresh_all_accounts_sha256": "02e84318290b797a01b4c9cfd2a1732a3147e2d45bd64acead39923188bf453f",
+    "fresh_taker_sha256": "8b402241bd04951c64f83c0b272fc61cdbfe8ff3fc2c384df10071ac7cd35cae",
+    "fresh_funding_sha256": "7f9e1e1f26a90262239dd64acfa30aa5632231fbff131bdc09c0d7f5dc932c16",
+    "archive_2026_09_20_sha256": "54c07ed33c80ad47618d0e79faab937fa0e018a24c6c1e9eb1dff852bf5ad0d6",
+    "macro_capture_sha256": "fbabc3aac1a0ff899d72e29c769bbd8119b9512ee8d591fdfa73ba2b32cf48bb"
+  },
+  "frozen_model_sha256": "08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe",
+  "live_parity_contract": {
+    "dependency_receipt_sha256": "9d18ac4bb2eddbda35234c2e121033c9973fe305a07128d825b2ef9be0bb0d2e",
+    "archive_create_time_to_connected_period_end_offset_minutes": 5,
+    "archive_live_overlap_rows": 4,
+    "decision_exact_mismatches": {
+      "sum_open_interest": 0,
+      "sum_open_interest_value": 0
+    },
+    "top_position_connected_decimal_places": 4,
+    "top_position_max_abs_delta": 0.00004199999999987547,
+    "top_position_half_lsu": 0.00005,
+    "taker_value_semantics_resolved": false,
+    "taker_live_values_quarantined_from_decision_matrix": true,
+    "full_taker_stream_required_upstream": true,
+    "raw_values_rewritten": false,
+    "gate_promotion": false
+  },
+  "causal_result": {
+    "derivative_freshness_at_original_capture": true,
+    "required_derivative_features_non_null": true,
+    "current_cut_candidate_count": 0,
+    "current_cut_threshold_count": 0,
+    "recent_24h_candidate_count": 3,
+    "recent_24h_threshold_count": 0,
+    "historical_outcome_columns_used": false,
+    "order_account_endpoints_used": false,
+    "paper_trades_created": 0,
+    "performance_started": false
+  },
+  "readiness_effect": {
+    "execution_ready": false,
+    "live_feature_parity": false,
+    "source_freshness": false,
+    "initial_decisions": false,
+    "performance_started_at": null,
+    "old_historical_paper_gate": "unchanged_failed"
+  },
+  "next_bounded_step": "Collect and persist a new genuinely fresh FULL connected Binance read-only extension for all required derivative families plus settled funding, then run this integrated pipeline with --qualifying-current to attempt the first qualifying current receipt."
+}

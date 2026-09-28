@@ -1,0 +1,27 @@
+{
+  "schema":"connected-binance-native-tail-v1",
+  "symbol":"ETHUSDT",
+  "capture_purpose":"independently timed genuinely fresh FULL connected Binance read-only extension for qualifying current Receipt 2; no trade, fill, account, order or performance start by capture alone",
+  "capture_mode":"fresh_incremental_extension",
+  "base_snapshot_dir":"forward_paper/inputs/connected_binance_fresh_20260923T003050HKT",
+  "conservative_first_seen_at_utc":"2026-09-22T17:31:24.810779Z",
+  "first_seen_rule":"Timestamp recorded only after all six connected Binance public read-only market-data reads for this capture window had completed; never backdated to source timestamps.",
+  "read_only_public_market_data_only":true,
+  "order_or_account_endpoints_used":false,
+  "native_metric_period":"5m",
+  "freshness_at_capture":{"common_latest_ms":1790097600000,"common_latest_utc":"2026-09-22T17:20:00Z","common_latest_age_minutes":11.4135,"open_interest_latest_ms":1790097600000,"top_accounts_latest_ms":1790097600000,"top_positions_latest_ms":1790097600000,"global_accounts_latest_ms":1790097600000,"taker_latest_ms":1790097600000,"funding_latest_ms":1790092800000,"funding_latest_utc":"2026-09-22T16:00:00Z","funding_latest_age_minutes":91.4135},
+  "sources":{
+    "open_interest":{"file":"open_interest.json","function":"get_futures_usds_open_interest_statistics","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790089200000,"endTime":1790097600000,"limit":30},"rows_observed":29,"first_source_timestamp_ms":1790089200000,"last_source_timestamp_ms":1790097600000,"git_blob_sha1":"e621140b97c3c3052a7faac06f970d185327d1ef"},
+    "top_accounts":{"file":"top_accounts.json","function":"get_futures_usds_top_trader_long_short_ratio_accounts","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790089200000,"endTime":1790097600000,"limit":30},"rows_observed":29,"first_source_timestamp_ms":1790089200000,"last_source_timestamp_ms":1790097600000,"git_blob_sha1":"bcee6bfcb10a4354faa702d9ea9954fea61c4ccc"},
+    "top_positions":{"file":"top_positions.json","function":"get_futures_usds_top_trader_long_short_ratio_positions","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790089200000,"endTime":1790097600000,"limit":30},"rows_observed":29,"first_source_timestamp_ms":1790089200000,"last_source_timestamp_ms":1790097600000,"git_blob_sha1":"f16cbd17de884d383e2f31188f0b834036a25916"},
+    "global_accounts":{"file":"global_accounts.json","function":"get_futures_usds_long_short_ratio","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790089200000,"endTime":1790097600000,"limit":30},"rows_observed":29,"first_source_timestamp_ms":1790089200000,"last_source_timestamp_ms":1790097600000,"git_blob_sha1":"a7a4a0e3aa0e0bc3c9520c1cb825af34c0fe16bd"},
+    "taker":{"file":"taker.json","function":"get_futures_usds_taker_buy_sell_volume","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790089200000,"endTime":1790097900000,"limit":30},"endpoint_window_note":"Connector returned one immediately preceding 5m bucket; raw response preserved without rewriting. Latest common completed taker bucket was 17:20Z.","rows_observed":30,"first_source_timestamp_ms":1790088900000,"last_source_timestamp_ms":1790097600000,"git_blob_sha1":"2bb9866018f7501858534ab675aa4e59a760011b"},
+    "funding":{"file":"funding.json","function":"get_futures_usds_funding_rate_history","request":{"symbol":"ETHUSDT","startTime":1790006400000,"limit":10},"rows_observed":4,"first_funding_time_ms":1790006400002,"last_funding_time_ms":1790092800000,"last_funding_rate":"0.00005735","git_blob_sha1":"51d1e99e8fcfccff9ca8e481c505d8510fd60d87"}
+  },
+  "base_extension_overlap_expected":{"minimum_common_5m_rows":16,"first_overlap_ms":1790089200000,"last_overlap_ms":1790094000000,"common_overlap_rows_expected_at_least":17,"minimum_funding_overlap_rows":3,"exact_value_match_required":true},
+  "archive_overlap_expected":{"date":"2026-09-21","timestamps_utc":["2026-09-21T21:35:00Z","2026-09-21T21:40:00Z","2026-09-21T21:45:00Z"],"minimum_rows":3},
+  "gate_promotion":false,
+  "paper_trades_executed":0,
+  "performance_started":false,
+  "next_bounded_step":"Run the dedicated persisted fresh-extension workflow against this immutable independently timed snapshot as qualifying current Receipt 2. Only a genuine pass may promote source_freshness/live_feature_parity; execution_ready and performance_started_at must remain blocked pending durable runtime/fill integration and actual initial weekly decisions."
+}

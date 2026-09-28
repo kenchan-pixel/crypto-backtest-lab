@@ -1,0 +1,90 @@
+{
+  "schema": "eth-weekly-packet-commissioning-verification-v1",
+  "experiment": "new_forward_paper_observation",
+  "status": "VERIFIED_COMMISSIONING_STEP",
+  "verified_at": "2026-09-23T07:16:27+08:00",
+  "paper_only": true,
+  "historical_failed_gate_unchanged": true,
+  "frozen_model_sha256": "08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe",
+  "actions": {
+    "run_id": 35796569338,
+    "job_id": 106977108768,
+    "head_sha": "331f324ec757cdb8dcf202a1467916fb5a48027a",
+    "conclusion": "success",
+    "tests_passed": 110,
+    "artifact_id": 10723553852,
+    "artifact_digest_sha256": "a376789d5d77532fd59fd99dd31fa8ee063abb031cd454461fe346c30303d410",
+    "artifact_name": "eth-forward-runtime-commissioning"
+  },
+  "connected_evidence": {
+    "path": "forward_paper/inputs/connected_weekly_packet_preview_20260923T071024HKT.json",
+    "git_blob_sha": "e36ac61c5589348f2b2e89de8178c6376aa82466",
+    "file_sha256": "db4eac67063aa89d90e438436ddf2bcd07a3c94237778f3d3540033b6e422956",
+    "observed_at": "2026-09-23T07:10:24+08:00",
+    "source": "Binance connected public read-only market-data tool",
+    "tool_operation": "get_spot_kline_candlestick_data",
+    "orders_or_account_data_requested": false,
+    "start_30d": {
+      "open_time_ms": 1787356800000,
+      "close_time_ms": 1787443199999,
+      "close": 2422.6
+    },
+    "end_latest_completed": {
+      "open_time_ms": 1789948800000,
+      "close_time_ms": 1790035199999,
+      "close": 2776.19
+    },
+    "simple_control_preview": {
+      "return_30d": 0.14595475934945923,
+      "direction": "nonnegative",
+      "weight": 1.0,
+      "bars_sha256": "90a0f2dbd1318d706201912aa98d314f6932dcbd092b816ff4e8db2c0e452739"
+    }
+  },
+  "weekly_packet": {
+    "packet_sha256": "970ade53cb225df5fb6cd3325f62eb0aa95a846c6adec9a084685364d49f51f0",
+    "runtime_content_sha256": "1394cbc1f92dc2d5696d5a589da0e8dd7aac1436df396b9511a1670d2b203311",
+    "predecision_gates": {
+      "model_identity": true,
+      "live_feature_parity": true,
+      "source_freshness": true,
+      "accounting_tests": true
+    },
+    "ai_weight": null,
+    "ai_choice_synthesized": false,
+    "half_weight": 0.5,
+    "current_eligibility": false,
+    "current_block_reason": "outside_monday_after_0800_hkt",
+    "genuine_weekly_decision_committed": false
+  },
+  "verified_contracts": {
+    "simple_control_requires_two_completed_utc_daily_bars_exactly_30d_apart": true,
+    "monday_after_0800_hkt_guard": true,
+    "fresh_packet_required_at_commit": true,
+    "max_packet_age_minutes_at_commit": 20,
+    "explicit_ai_0_0p5_1_and_rationale_required": true,
+    "coded_ai_fallback_prohibited": true,
+    "decision_effect_no_earlier_than_next_full_hour": true,
+    "decision_and_ai_budget_sidecar_atomic_cas": true,
+    "off_window_commit_fails_closed": true,
+    "commissioning_probe_does_not_mutate_runtime": true,
+    "commit_path_does_not_arm_performance": true
+  },
+  "source_hashes": {
+    "forward_paper/weekly_decision_packet.py_git_blob_sha": "f72fd675432a2edeab4ec0793eece710ab9c6326",
+    "forward_paper/test_weekly_decision_packet.py_git_blob_sha": "121c98e916138c3e1ffcbeee7507e44a314293e5",
+    ".github/workflows/eth-forward-runtime-store.yml_git_blob_sha": "166cb91bef884400cb392f431ebcbc8e5b49e37e",
+    "forward_paper/runtime/state.json_git_blob_sha_before_step": "76134ec05b373b0944b7a3bbc3b323aa3fce0b47"
+  },
+  "runtime_effect": {
+    "actual_runtime_state_mutated": false,
+    "actual_runtime_paper_trades_created": 0,
+    "real_orders_created": 0,
+    "order_account_endpoints_used": false,
+    "execution_ready": false,
+    "performance_started_at": null,
+    "initial_decisions_gate": false,
+    "gate_promotion": false
+  },
+  "next_bounded_step": "Do not synthesize or precommit a decision. On the first eligible Monday run at/after 08:00 Asia/Hong_Kong, collect a genuinely fresh connected evidence packet, make an explicit AI_WEEKLY 1/0.5/0 choice with rationale, derive SIMPLE_WEEKLY from that same cutoff, CAS-commit both before the next eligibility hour, read back, then wait until the decision is effective before any arming/performance start."
+}

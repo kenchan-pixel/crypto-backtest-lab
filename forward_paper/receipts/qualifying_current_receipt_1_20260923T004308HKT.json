@@ -1,0 +1,103 @@
+{
+  "schema": "eth-forward-qualifying-current-receipt-record-v1",
+  "status": "passed",
+  "qualifying_current_receipt": true,
+  "validated_commit": "01494ccab60464de4d4fddb7d348cc67cf666e4a",
+  "actions_run_id": 35757863375,
+  "actions_job_id": 106848096396,
+  "tests_passed": 81,
+  "tests_output_sha256": "9718b8c23253024112290ced8fc40be61873dd95d8da586a75fcb355bdb1ffe4",
+  "generated_receipt_sha256": "78f38bf40010c01aa4b77e70bab55f150101d50920e920a1a899a173375b7f42",
+  "artifact": {
+    "id": 10708144403,
+    "sha256": "89775d45f432aabec27424fcf40e9b800f386f430a4c78ebe4ee3b2ede9b7436",
+    "name": "eth-forward-fresh-extension-qualifying-receipt-1"
+  },
+  "observation": {
+    "base_first_seen_at_utc": "2026-09-22T16:40:43+00:00",
+    "fresh_first_seen_at_utc": "2026-09-22T16:43:08+00:00",
+    "fresh_common_metric_age_minutes": 8.133333333333333,
+    "fresh_funding_age_minutes": 43.13333333333333,
+    "spot_latest_complete_utc": "2026-09-22T16:00:00+00:00",
+    "spot_completed_aligned_hours": 998
+  },
+  "exact_base_fresh_overlap_rows": {
+    "open_interest": 18,
+    "top_accounts": 18,
+    "top_positions": 18,
+    "all_accounts": 18,
+    "taker": 18,
+    "funding": 4
+  },
+  "funding_warmup_lineage": {
+    "upstream_snapshot_manifest": "forward_paper/inputs/connected_binance_full_20260922T072853HKT/manifest.json",
+    "upstream_first_seen_at_utc": "2026-09-21T23:42:43+00:00",
+    "upstream_funding_git_blob_sha1": "fe94a588b248be7536a8217e4eed3940b4956f49",
+    "upstream_funding_sha256": "32c0a84f15ae47442e17529a984b6048925afe35062a0770bcdcacb0a981c0d7",
+    "upstream_funding_rows": 100,
+    "upstream_base_exact_overlap_rows": 9,
+    "funding_rows_after_lineage_merge": 103,
+    "raw_values_rewritten": false
+  },
+  "base_source_sha256": {
+    "open_interest": "821b9e7f7bfcc96cbc023ce5b5e89c68eef9dce68c58321e309949ce4a103edc",
+    "top_accounts": "9010c05cf3715352495c39bb82f6163ec22dbd5bc2dc21618324f35cf621820a",
+    "top_positions": "e3a5cf28d641e7a7bb0e5951092338f2485e215dd8d1f3cdec79d59016c3a6db",
+    "all_accounts": "b0e301452077ede440033a69fb800342bc4cf5a1b26c81fc4e48eff4ac9ea87c",
+    "taker": "232c517e1ff1568a8d4101cf9b22442e441c5194a15d10ce74ae989a9df805c8",
+    "funding_short_tail": "f79bbc5b76f3ee5949669f66f68c9909e579287c1e9b3f0cfd9c578c31eae38a"
+  },
+  "fresh_source_sha256": {
+    "open_interest": "d3d670e166233917de996a4d5f2e17e1fbd1671488e4ccc26bd39bb8486c4d8a",
+    "top_accounts": "2ef7418ac8240d707471ef999e618f10093395c201e518c40eba4db7933918d8",
+    "top_positions": "0b39938fcc75a6affa4576b6a40089c6ed762b898efe813a684da15898bd836b",
+    "all_accounts": "5d321857b047f4e213351395f4bbc85b41b16302438f0118edd47de712756baf",
+    "taker": "31c0ba0760d900cbd2603375d14dd84d22354961493bc7da22c20127d3276c5b",
+    "funding": "962a660efc41e35dcac797a5dad1475ae00c1fc41bb3f430af3274837e5b3f23"
+  },
+  "spot_response_sha256": {
+    "ETHUSDT": "e47c3fefe77dd850f48fb0b0c09362e1c31a263998b43c2f80e89fdd145388d1",
+    "BTCUSDT": "2349d90c06dd0317e5c0e55625c73075bec8c34ff0e040a6dc01f65bbfebc0ef"
+  },
+  "archive": {
+    "verified_days": 36,
+    "latest_verified_day": "2026-09-21",
+    "latest_day_sha256": "84e76323a33e78f2d00d648fb67c2b1be726385e4cb36f59192e5e30a98c9fa0",
+    "archive_live_overlap_rows": 31,
+    "max_merged_metric_gap_minutes": 5.0
+  },
+  "live_parity_contract": {
+    "frozen_model_sha256": "08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe",
+    "archive_create_time_to_connected_period_end_offset_minutes": 5,
+    "decision_exact_mismatches": {
+      "sum_open_interest": 0,
+      "sum_open_interest_value": 0
+    },
+    "top_position_connected_decimal_places": 4,
+    "top_position_max_abs_delta": 0.000048000000000048004,
+    "top_position_half_lsu": 0.00005,
+    "taker_value_semantics_resolved": false,
+    "taker_live_values_quarantined_from_decision_matrix": true,
+    "raw_values_rewritten": false
+  },
+  "current_regime": {
+    "trend_30d": "up",
+    "trend_7d": "up",
+    "vol_state": "normal",
+    "cross_asset_state": "aligned",
+    "funding_state": "normal",
+    "oi_state": "deleveraging",
+    "positioning_state": "balanced"
+  },
+  "eth_30d_return": 0.12518965644503854,
+  "current_cut_candidate_count": 0,
+  "current_cut_threshold_count": 0,
+  "recent_24h_candidate_count": 2,
+  "recent_24h_threshold_count": 0,
+  "paper_trades_created": 0,
+  "performance_started": false,
+  "read_only_public_market_data_only": true,
+  "order_account_endpoints_used": false,
+  "historical_outcome_columns_used": false,
+  "gate_effect": "Receipt 1 of 2 only. live_feature_parity/source_freshness/execution_ready remain false until an independently timed second qualifying fresh observation passes; no paper performance starts."
+}

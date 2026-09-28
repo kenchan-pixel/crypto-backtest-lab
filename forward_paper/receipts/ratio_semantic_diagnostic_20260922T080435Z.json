@@ -1,0 +1,86 @@
+{
+  "schema": "eth-forward-ratio-semantic-diagnostic-v1",
+  "scope": "Bounded checksum-archive versus immutable connected public read-only ratio semantic diagnostic; no fills, no model/strategy change, no gate promotion.",
+  "base_first_seen_at_utc": "2026-09-21T23:42:43+00:00",
+  "connected_manifest": "forward_paper/inputs/connected_binance_full_20260922T072853HKT/manifest.json",
+  "connected_manifest_sha256": "50fc302d27cc5f6d4a5da1b5ced253cd1d8b64f0111b2774a48851948a4d6745",
+  "archive_days": ["2026-09-20", "2026-09-21"],
+  "archive_day_sha256": {
+    "2026-09-20": "54c07ed33c80ad47618d0e79faab937fa0e018a24c6c1e9eb1dff852bf5ad0d6",
+    "2026-09-21": "84e76323a33e78f2d00d648fb67c2b1be726385e4cb36f59192e5e30a98c9fa0"
+  },
+  "archive_checksum_verified": true,
+  "workflow": {
+    "run_id": 35702800029,
+    "head_sha": "cb28e74823c1c401bcc0ef139574340079ebc474",
+    "conclusion": "success",
+    "artifact_id": 10681719993,
+    "artifact_sha256": "618f76ac6b3acc0d7ed9f1f243304b7ce608d6a7c0d1619a5745433f053b74e5",
+    "artifact_created_at_utc": "2026-09-22T08:04:35Z"
+  },
+  "families": {
+    "top_accounts": {
+      "raw_key": "top_accounts",
+      "archive_column": "count_toptrader_long_short_ratio",
+      "connected_rows": 283,
+      "best_candidate": "direct_ratio@archive_plus_5m",
+      "within_half_lsu": 51,
+      "match_rate": 0.18021201413427562,
+      "max_abs_delta": 0.0002931899999998322,
+      "median_abs_delta": 0.00013036999999993526,
+      "unique_perfect_contract": false
+    },
+    "top_positions": {
+      "raw_key": "top_positions",
+      "archive_column": "sum_toptrader_long_short_ratio",
+      "connected_rows": 283,
+      "best_candidate": "direct_ratio@archive_plus_5m",
+      "within_half_lsu": 283,
+      "match_rate": 1.0,
+      "max_abs_delta": 0.00004999999999988347,
+      "median_abs_delta": 0.000026999999999999247,
+      "unique_perfect_contract": true
+    },
+    "global_accounts": {
+      "raw_key": "all_accounts",
+      "archive_column": "count_long_short_ratio",
+      "connected_rows": 283,
+      "best_candidate": "direct_ratio@archive_plus_5m",
+      "within_half_lsu": 26,
+      "match_rate": 0.09187279151943463,
+      "max_abs_delta": 0.0005823700000000542,
+      "median_abs_delta": 0.0002835700000001218,
+      "unique_perfect_contract": false
+    },
+    "taker": {
+      "raw_key": "taker",
+      "archive_column": "sum_taker_long_short_vol_ratio",
+      "connected_rows": 283,
+      "best_candidate": "buy_volume_over_sell_volume@archive_plus_0m",
+      "within_half_lsu": 83,
+      "match_rate": 0.29328621908127206,
+      "max_abs_delta": 0.0019057976470906457,
+      "median_abs_delta": 0.00011233708384295049,
+      "runner_up_candidate": "direct_ratio@archive_plus_0m",
+      "runner_up_match_rate": 0.29328621908127206,
+      "unique_perfect_contract": false
+    }
+  },
+  "resolved_families": ["top_positions"],
+  "unresolved_families": ["top_accounts", "global_accounts", "taker"],
+  "diagnostic_completed": true,
+  "raw_values_rewritten": false,
+  "paper_trades_created": 0,
+  "gate_promotion": false,
+  "performance_started": false,
+  "order_or_account_endpoints_used": false,
+  "readiness_effect": {
+    "execution_ready": false,
+    "source_freshness": false,
+    "live_feature_parity": false,
+    "initial_decisions": false,
+    "performance_started_at": null,
+    "paper_trades_created": 0
+  },
+  "next_safe_step": "Investigate the connected endpoint versus archive value semantics for top_accounts and global_accounts, and the taker aggregation/value contract. Preserve raw connected values and archive values; do not normalize by ad-hoc tolerance. Only after every frozen-model derivative input has an evidence-backed causal source contract should the current source-to-feature-to-opportunity receipt be retried."
+}

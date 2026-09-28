@@ -1,0 +1,71 @@
+{
+  "schema": "eth-forward-taker-decision-invariance-receipt-v1",
+  "validated_at_utc": "2026-09-22T13:41:55.971296+00:00",
+  "scope": "Bounded commissioning proof of frozen decision dependency only; unresolved taker archive/live value semantics remain unresolved and no source gate is promoted here.",
+  "frozen_model": {
+    "sha256": "08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe",
+    "threshold": 0.010189194004167217,
+    "taker_feature_references": []
+  },
+  "dependency_proof": {
+    "state_derivative_inputs": [
+      "funding_per_hour",
+      "oi_logchange_24h",
+      "top_position_ratio"
+    ],
+    "taker_derived_columns": [
+      "taker_ratio",
+      "taker_ratio_change6h"
+    ],
+    "taker_enters_frozen_state": false,
+    "taker_enters_frozen_model": false
+  },
+  "real_connected_taker_evidence": {
+    "path": "forward_paper/inputs/connected_binance_full_20260922T072853HKT/taker.json",
+    "sha256": "f82b99061a41b6ff05733e27060f9602ec0396483ba494c84fd762837791b62c",
+    "rows": 283,
+    "first_timestamp_ms": 1789947900000,
+    "last_timestamp_ms": 1790032500000
+  },
+  "dynamic_invariance": {
+    "hourly_rows": 1100,
+    "evaluated_confirmation_cuts": 294,
+    "state_value_mismatches": 0,
+    "catalyst_stream_mismatches": 0,
+    "candidate_records_evaluated": 17,
+    "candidate_feature_mismatches": 0,
+    "max_prediction_abs_delta": 0.0,
+    "threshold_decision_mismatches": 0,
+    "parent_opportunities": 0,
+    "parent_opportunity_mismatches": 0
+  },
+  "conclusion": {
+    "frozen_decision_invariant_to_taker": true,
+    "taker_source_semantics_resolved": false,
+    "meaning": "For the frozen model and opportunity logic, taker_ratio/taker_ratio_change6h are computed side columns but are not consumed by regimes, catalysts, sequence features, score, threshold, or parent busy-stream construction.",
+    "next_bounded_step": "Define a fail-closed live parity contract that still captures/hashes/checks freshness of the full taker stream but does not require archive/live taker value equivalence for a decision path that provably cannot consume it; retain exact verified contracts for decision-relevant OI/top-position/funding data, then rerun a fresh current causal receipt."
+  },
+  "actions": {
+    "run_id": 35735115538,
+    "head_sha": "99bb545456b54ef113538b4d4c1783fb994f41fa",
+    "conclusion": "success",
+    "forward_paper_tests_passed": 75,
+    "artifact_id": 10696764705,
+    "artifact_zip_sha256": "17d3cdc5aa4186f9c04a3425b3a3649efdd092294cb95ed872b2e23e277d802c",
+    "superseded_draft_runs": [
+      {
+        "run_id": 35734782510,
+        "reason": "Test collection import path error; diagnostic did not run."
+      },
+      {
+        "run_id": 35734895886,
+        "reason": "Static AST detector counted dataframe method D.reindex as a data column; 73 tests passed and 2 new tests failed before diagnostic."
+      }
+    ]
+  },
+  "raw_values_rewritten": false,
+  "paper_trades_created": 0,
+  "gate_promotion": false,
+  "performance_started": false,
+  "order_or_account_endpoints_used": false
+}

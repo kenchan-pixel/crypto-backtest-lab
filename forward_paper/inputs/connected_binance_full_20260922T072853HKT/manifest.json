@@ -1,0 +1,86 @@
+{
+  "schema": "connected-binance-native-tail-v1",
+  "symbol": "ETHUSDT",
+  "capture_purpose": "commissioning input only; not a trade signal, fill, or forward-performance result",
+  "conservative_first_seen_at_utc": "2026-09-21T23:42:43Z",
+  "first_seen_rule": "The common first_seen time is intentionally later than every connector read in this batch because some connector calls did not expose a wall-clock observation timestamp. It must not be backdated to source timestamps.",
+  "read_only_public_market_data_only": true,
+  "order_or_account_endpoints_used": false,
+  "native_metric_period": "5m",
+  "intended_bridge_range": {
+    "start_ms": 1789947900000,
+    "start_utc": "2026-09-20T23:45:00Z",
+    "end_ms": 1790032500000,
+    "end_utc": "2026-09-21T23:15:00Z",
+    "duration_hours": 23.5
+  },
+  "sources": {
+    "open_interest": {
+      "file": "open_interest.json",
+      "function": "get_futures_usds_open_interest_statistics",
+      "request": {"symbol":"ETHUSDT","period":"5m","limit":300,"startTime":1789947900000,"endTime":1790032500000},
+      "rows_observed": 283,
+      "first_source_timestamp_ms": 1789947900000,
+      "last_source_timestamp_ms": 1790032500000,
+      "git_blob_sha1": "2340cb3dbb8a10e9c967b59ffc79a890868a0cdb"
+    },
+    "top_accounts": {
+      "file": "top_accounts.json",
+      "function": "get_futures_usds_top_trader_long_short_ratio_accounts",
+      "request": {"symbol":"ETHUSDT","period":"5m","limit":300,"startTime":1789947900000,"endTime":1790032500000},
+      "rows_observed": 283,
+      "first_source_timestamp_ms": 1789947900000,
+      "last_source_timestamp_ms": 1790032500000,
+      "git_blob_sha1": "eda8ef9ec71e03b5185ab1dcaaaa1eb3cc7038ef"
+    },
+    "top_positions": {
+      "file": "top_positions.json",
+      "function": "get_futures_usds_top_trader_long_short_ratio_positions",
+      "request": {"symbol":"ETHUSDT","period":"5m","limit":300,"startTime":1789947900000,"endTime":1790032500000},
+      "rows_observed": 283,
+      "first_source_timestamp_ms": 1789947900000,
+      "last_source_timestamp_ms": 1790032500000,
+      "git_blob_sha1": "801a4488cdc3d5145ab929f1b53a157a1c8cb7cb"
+    },
+    "global_accounts": {
+      "file": "global_accounts.json",
+      "function": "get_futures_usds_long_short_ratio",
+      "request": {"symbol":"ETHUSDT","period":"5m","limit":300,"startTime":1789947900000,"endTime":1790032500000},
+      "rows_observed": 283,
+      "first_source_timestamp_ms": 1789947900000,
+      "last_source_timestamp_ms": 1790032500000,
+      "git_blob_sha1": "78f634d004d2db9f655808e8865ed3e1feae199a"
+    },
+    "taker": {
+      "file": "taker.json",
+      "function": "get_futures_usds_taker_buy_sell_volume",
+      "request": {"symbol":"ETHUSDT","period":"5m","limit":300,"startTime":1789948200000,"endTime":1790032800000},
+      "endpoint_window_note": "This endpoint returned the immediately preceding 5m bucket relative to the supplied boundaries; request was shifted by one interval so the persisted raw response covers the same intended 23:45Z to 23:15Z bridge range. No timestamps or values were rewritten.",
+      "rows_observed": 283,
+      "first_source_timestamp_ms": 1789947900000,
+      "last_source_timestamp_ms": 1790032500000,
+      "git_blob_sha1": "563c013e0b5adec0b5a43f16a2700d0cd332a8b0"
+    },
+    "funding": {
+      "file": "funding.json",
+      "function": "get_futures_usds_funding_rate_history",
+      "request": {"symbol":"ETHUSDT","limit":100},
+      "rows_observed": 100,
+      "first_funding_time_ms": 1787155200004,
+      "last_funding_time_ms": 1790006400002,
+      "last_funding_rate": "0.00008935",
+      "git_blob_sha1": "fe94a588b248be7536a8217e4eed3940b4956f49"
+    }
+  },
+  "archive_overlap_expected": {
+    "date": "2026-09-20",
+    "timestamps_utc": ["2026-09-20T23:45:00Z","2026-09-20T23:50:00Z","2026-09-20T23:55:00Z"],
+    "value_level_overlap_validated": false
+  },
+  "gate_promotion": false,
+  "source_freshness_gate": false,
+  "live_feature_parity_gate": false,
+  "paper_trades_executed": 0,
+  "performance_started": false,
+  "next_bounded_step": "Consume this persisted native tail, verify checksum-bound archive overlap and causal source freshness, then produce the first current source-to-feature-to-opportunity receipt."
+}

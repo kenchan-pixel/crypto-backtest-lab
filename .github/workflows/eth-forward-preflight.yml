@@ -1,0 +1,51 @@
+name: ETH forward data preflight
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths: ['.github/workflows/eth-forward-preflight.yml']
+permissions:
+  contents: read
+concurrency:
+  group: eth-forward-preflight
+  cancel-in-progress: false
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Probe read-only sources without credentials
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,urllib.request,urllib.error,datetime
+          from pathlib import Path
+          urls={
+           'spot':'https://data-api.binance.vision/api/v3/klines?symbol=ETHUSDT&interval=1h&limit=2',
+           'funding':'https://fapi.binance.com/fapi/v1/fundingRate?symbol=ETHUSDT&limit=2',
+           'oi':'https://fapi.binance.com/futures/data/openInterestHist?symbol=ETHUSDT&period=1h&limit=2',
+           'positions':'https://fapi.binance.com/futures/data/topLongShortPositionRatio?symbol=ETHUSDT&period=1h&limit=2',
+           'metrics_archive':'https://data.binance.vision/data/futures/um/daily/metrics/ETHUSDT/ETHUSDT-metrics-2026-09-20.zip.CHECKSUM'
+          }
+          out={'observed_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'paper_execution_started':False,'probes':{}}
+          for name,url in urls.items():
+              try:
+                  with urllib.request.urlopen(url,timeout=20) as r:
+                      body=r.read();status=r.status
+                  try:
+                      data=json.loads(body);count=len(data) if isinstance(data,list) else None
+                  except Exception: data=None;count=None
+                  out['probes'][name]={'url':url,'http_status':status,'rows':count,'sample':data if data is not None else body.decode()[:200]}
+              except Exception as e:
+                  out['probes'][name]={'url':url,'error':str(e),'http_status':getattr(e,'code',None)}
+          Path('forward_preflight.json').write_text(json.dumps(out,indent=2))
+          print(json.dumps(out,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eth-forward-data-preflight
+          path: forward_preflight.json
+          retention-days: 7

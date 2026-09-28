@@ -1,0 +1,46 @@
+{
+  "schema": "eth-paper-initial-weekly-window-miss-v1",
+  "observed_at_hkt": "2026-09-29T00:39:27+08:00",
+  "branch": "research/payoff-aware-20260920",
+  "classification": "commissioning blocker/audit only; not a readiness gate receipt, not a weekly decision, not forward performance evidence",
+  "protocol_effect": {
+    "old_historical_failed_gate_unchanged": true,
+    "status": "COMMISSIONING",
+    "execution_ready": false,
+    "initial_decisions": false,
+    "performance_started_at": null,
+    "decision": null,
+    "paper_trades": 0,
+    "real_orders_created": 0
+  },
+  "source_evidence": {
+    "runtime_state_path": "forward_paper/runtime/state.json",
+    "runtime_state_git_blob_sha1": "540fca5a1c231b56248d44e8d8ba25b9b98ee7d4",
+    "latest_monday_packet_path": "forward_paper/inputs/connected_weekly_packet_20260928T232849HKT.json",
+    "latest_monday_packet_git_blob_sha1": "115983ad649764172a10eb3b743c4cb73e39ce8d",
+    "latest_monday_packet_observed_at": "2026-09-28T15:28:49+00:00",
+    "latest_monday_packet_end_bar_close_at": "2026-09-27T23:59:59.999000+00:00"
+  },
+  "finding": {
+    "first_eligible_monday_date_hkt": "2026-09-28",
+    "monday_window_closed_without_valid_committed_initial_weekly_decision": true,
+    "runtime_decision_remains_null": true,
+    "latest_saved_packet_is_not_reusable": true,
+    "reason_not_reusable": [
+      "current observation time is Tuesday 2026-09-29 HKT, outside the Monday decision window",
+      "weekly commit path requires a packet no older than 20 minutes at commit"
+    ],
+    "no_backfill_permitted": true,
+    "next_eligible_monday_hkt": "2026-10-05T08:00:00+08:00"
+  },
+  "safety": {
+    "no_new_market_data_collected_this_audit": true,
+    "no_binance_or_longbridge_endpoint_invoked_this_audit": true,
+    "no_model_retraining": true,
+    "no_strategy_search": true,
+    "no_leverage_or_shorts": true,
+    "no_real_or_testnet_orders": true,
+    "no_auto_merge": true
+  },
+  "next_action": "Remain unarmed. On the next eligible Monday at/after 08:00 Asia/Hong_Kong, collect a genuinely fresh connected public evidence packet, make actual AI_WEEKLY and derive SIMPLE_WEEKLY from the same cutoff, guarded-CAS commit and read back. Only after the decision becomes effective at the next full HKT hour and all readiness checks pass may performance start."
+}

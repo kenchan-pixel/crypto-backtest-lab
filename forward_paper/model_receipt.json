@@ -1,0 +1,18 @@
+{
+  "reconstruction_passed": true,
+  "training_events": 669,
+  "training_year": 2024,
+  "threshold": 0.010189194004167217,
+  "json_equivalence_rows": 1869,
+  "max_abs_error": 0.0,
+  "historical_signal_timestamp_checks": {
+    "2025": 54,
+    "2026": 34
+  },
+  "model_sha256": "08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe",
+  "no_new_market_data_used": true,
+  "verified_at": "2026-09-21T15:04:57.076073+00:00",
+  "code_commit": "2ee4d9920a1c9781d2a4d091c9259e1314bca9b8",
+  "run_id": "35616440026",
+  "not_a_forward_performance_result": true
+}

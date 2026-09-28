@@ -1,0 +1,58 @@
+name: Payoff-aware Sequence Strategy
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths: ['payoff_strategy/**', '.github/workflows/payoff-aware.yml']
+permissions:
+  contents: read
+concurrency:
+  group: payoff-aware-20260920
+  cancel-in-progress: false
+jobs:
+  research:
+    if: github.event.repository.private == false && github.repository == 'kenchan-pixel/crypto-backtest-lab'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned dependencies
+        run: python -m pip install -r derivatives/requirements.txt
+      - name: Unit and causal tests
+        run: python -m pytest -q payoff_strategy/test_payoff.py sequence_strategy/test_sequence.py event_regime/test_event_regime.py derivatives/test_increment.py multifactor/test_research.py
+      - name: Restore exact durable market inputs
+        run: python -m macrostudy.prepare
+      - name: Rebuild Event + Regime Dataset v1
+        run: python -u -m event_regime.build
+      - name: Run payoff-aware study
+        run: python -u -m payoff_strategy.study
+      - name: Verify output
+        run: |
+          python - <<'PY'
+          import json,pandas as pd
+          from pathlib import Path
+          p=Path('payoff_outputs')
+          s=json.loads((p/'execution_status.json').read_text())
+          x=pd.read_csv(p/'strategy_summary.csv')
+          a=pd.read_csv(p/'audit_inference.csv')
+          assert s['completed'] and len(x)==4 and len(a)==2
+          print(json.dumps(s,indent=2))
+          print(x.to_string(index=False))
+          print(a.to_string(index=False))
+          print('Candidates',json.loads((p/'research_candidates.json').read_text()))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: payoff-aware-research-20260920
+          path: payoff_outputs/
+          retention-days: 14
+          compression-level: 6

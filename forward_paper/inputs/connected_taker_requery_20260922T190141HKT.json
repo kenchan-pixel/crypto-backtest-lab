@@ -1,0 +1,28 @@
+{
+  "schema": "eth-forward-connected-taker-requery-v1",
+  "observed_at_utc": "2026-09-22T11:01:41Z",
+  "source": "connected Binance public read-only USD-S taker buy/sell volume tool",
+  "request": {
+    "symbol": "ETHUSDT",
+    "period": "5m",
+    "requested_start_ms": 1789947900000,
+    "requested_end_ms": 1790032500000,
+    "limit": 500
+  },
+  "scope": "Bounded historical endpoint stability sample only. No order/account/balance/wallet/margin/transfer endpoint used.",
+  "rows": [
+    {"buySellRatio":"0.6822","sellVol":"7611.0570","buyVol":"5192.0490","timestamp":1789947900000},
+    {"buySellRatio":"1.0925","sellVol":"6271.1970","buyVol":"6851.0700","timestamp":1789948200000},
+    {"buySellRatio":"1.2260","sellVol":"2844.6280","buyVol":"3487.4640","timestamp":1789948500000},
+    {"buySellRatio":"1.9726","sellVol":"21186.8920","buyVol":"41792.8730","timestamp":1789948800000},
+    {"buySellRatio":"1.2278","sellVol":"22291.0270","buyVol":"27368.3020","timestamp":1789949100000},
+    {"buySellRatio":"1.6028","sellVol":"55914.6290","buyVol":"89621.4740","timestamp":1789949400000},
+    {"buySellRatio":"1.0250","sellVol":"41669.2630","buyVol":"42709.1860","timestamp":1789949700000},
+    {"buySellRatio":"1.3122","sellVol":"25859.2540","buyVol":"33933.1300","timestamp":1789950000000},
+    {"buySellRatio":"0.8323","sellVol":"12866.9930","buyVol":"10709.1470","timestamp":1789950300000},
+    {"buySellRatio":"0.6363","sellVol":"16375.8790","buyVol":"10420.0980","timestamp":1789950600000}
+  ],
+  "orders_or_account_data_requested": false,
+  "paper_trades_created": 0,
+  "gate_promotion": false
+}

@@ -1,0 +1,29 @@
+{
+  "bars": {
+    "end_latest_completed": {
+      "close": "2688.65000000",
+      "close_time_ms": 1790553599999,
+      "open_time_ms": 1790467200000
+    },
+    "start_30d": {
+      "close": "2442.80000000",
+      "close_time_ms": 1787961599999,
+      "open_time_ms": 1787875200000
+    }
+  },
+  "end_bar_close_at": "2026-09-27T23:59:59.999000+00:00",
+  "observed_at": "2026-09-28T01:06:14+00:00",
+  "orders_or_account_data_requested": false,
+  "query_contract": {
+    "interval": "1d",
+    "symbol": "ETHUSDT",
+    "time_zone": "UTC"
+  },
+  "read_only": true,
+  "schema": "eth-weekly-connected-evidence-v1",
+  "source": "Binance connected public read-only market-data tool",
+  "source_hashes_sha256": {
+    "daily_selected_bars": "4f25eb44f37f8bf07248186f91f5fcdb479e8f8445e41b6db5573f4a6885474a"
+  },
+  "tool_operation": "get_spot_kline_candlestick_data"
+}

@@ -1,0 +1,18 @@
+{
+  "source": "Connected Longbridge macrodata read tool",
+  "capture_type": "initialization_probe_not_a_complete_live_feed",
+  "recorded_date_hkt": "2026-09-21",
+  "first_seen_at": null,
+  "availability_rule": "No precise per-call observation timestamp was returned. Do not use the release time as our first-seen time. A live collector must attach its actual recorded/observed time before using any row as an eligible forward catalyst.",
+  "request_window": {"start_date": "2026-09-14", "end_date": "2026-09-21", "limit": 100},
+  "responses": [
+    {"indicator": "cpi_yoy", "indicator_code": "30771871", "data": [], "count": 0},
+    {"indicator": "core_cpi_mom", "indicator_code": "30771844", "data": [], "count": 0},
+    {"indicator": "nfp", "indicator_code": "30771890", "data": [], "count": 0},
+    {"indicator": "unemployment", "indicator_code": "30771865", "data": [], "count": 0},
+    {"indicator": "core_pce_yoy", "indicator_code": "30771724", "data": [], "count": 0},
+    {"indicator": "ppi_yoy", "indicator_code": "30771924", "data": [], "count": 0},
+    {"indicator": "fed_funds_target", "indicator_code": "30771885", "data": [{"period": "2026-09-17", "release_at": "2026-09-16T18:00:00Z", "actual_value": "3.875", "previous_value": "3.625", "forecast_value": "3.875", "unit": "Percent"}], "count": 1}
+  ],
+  "does_not_establish": ["full news coverage", "zero macro risk", "first-publication vintage", "active forward strategy"]
+}
