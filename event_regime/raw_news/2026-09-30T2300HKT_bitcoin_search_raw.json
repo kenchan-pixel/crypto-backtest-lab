@@ -1,0 +1,339 @@
+{
+  "first_seen_at_hkt": "2026-09-30T23:00:01+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "request": {
+    "keyword": "Bitcoin",
+    "requested_limit": 10
+  },
+  "raw_search_response": [
+    {
+      "id": "300590562",
+      "title": "比特币第三季度上涨40%",
+      "excerpt": "第三季度比特币飙升41.8%，随着“加密寒冬”结束，其表现优于股票和黄金。在人工智能泡沫担忧加剧的背景下，投资者重返加密货币市场，以太坊上涨73%。尽管市场波动...",
+      "source_name": "Baystreet",
+      "time": "2026-09-30T14:50:11Z",
+      "url": "https://longbridge.com/news/300590562.md"
+    },
+    {
+      "id": "300583694",
+      "title": "通胀数据降温提振风险资产，比特币突破85,000美元——更新",
+      "excerpt": "在美国通胀数据低于预期后，比特币飙升突破85,000美元。该数据导致美国国债收益率下降，并提振了风险资产。核心个人消费支出（PCE）物价指数年率上升3.4%，较...",
+      "source_name": "MorningStar",
+      "time": "2026-09-30T13:48:12Z",
+      "url": "https://longbridge.com/news/300583694.md"
+    },
+    {
+      "id": "300581877",
+      "title": "Strategy盘中急涨",
+      "excerpt": "Strategy(MSTR.US)现报156.54美元，涨1.21%。比特币反弹超41%带动加密股走强。",
+      "source_name": "美股行情速递",
+      "time": "2026-09-30T13:38:16Z",
+      "url": "https://longbridge.com/news/300581877.md"
+    },
+    {
+      "id": "300578417",
+      "title": "是否应追踪比特币 ETF 资金流向以把握买入时机？",
+      "excerpt": "由于报告延迟和覆盖范围有限，比特币 ETF 资金流向对于把握买入时机并不可靠。数据通常在价格变动之后才公布，往往预示的是峰值而非入场点。资金流向仅追踪总交易活动...",
+      "source_name": "MSN",
+      "time": "2026-09-30T13:11:09Z",
+      "url": "https://longbridge.com/news/300578417.md"
+    },
+    {
+      "id": "300577590",
+      "title": "比特币价格在 84,500 美元受阻——更深的 BTC 回调是否仍有可能？",
+      "excerpt": "尽管市场情绪高涨，比特币在 84,500 美元处停滞，引发人们对更深层次回调的担忧。现货需求疲软、ETF 资金流入降温以及短期持有者的抛售压力表明市场存在脆弱性...",
+      "source_name": "Amb Crypto",
+      "time": "2026-09-30T13:05:10Z",
+      "url": "https://longbridge.com/news/300577590.md"
+    },
+    {
+      "id": "300577405",
+      "title": "PowerCompute 偿还比特币债务并扩大挖矿产能",
+      "excerpt": "PowerCompute (PWCM) 已全额偿还 ChainFi 的 2,245 万美元比特币支持债务，将有担保债务降至 125 万美元，并解除了抵押品质押。...",
+      "source_name": "Tip Ranks",
+      "time": "2026-09-30T13:02:08Z",
+      "url": "https://longbridge.com/news/300577405.md"
+    },
+    {
+      "id": "300576099",
+      "title": "随着机构资金涌入，比特币“货币贬值交易”再度升温",
+      "excerpt": "Bitwise 的研究表明，机构投资者正日益将比特币视为类似黄金的硬资产，从而推动了“货币贬值交易”。主权财富基金和其他大型投资者正在将投资组合的 2-8% 配...",
+      "source_name": "Benzinga",
+      "time": "2026-09-30T12:40:06Z",
+      "url": "https://longbridge.com/news/300576099.md"
+    },
+    {
+      "id": "300569407",
+      "title": "比特币正在反弹——以下是参与反弹行情的两种方式",
+      "excerpt": "比特币已从7月的低点反弹超过41%，这得益于熊市周期的缓解、通过ETF流入的机构需求以及宏观经济因素的推动。这一复苏正在提振股市，尤其是Coinbase (CO...",
+      "source_name": "Market Beat",
+      "time": "2026-09-30T12:05:00Z",
+      "url": "https://longbridge.com/news/300569407.md"
+    },
+    {
+      "id": "300549297",
+      "title": "American Bitcoin 暴跌 92%，而比特币仅跌 25%。问题出在哪里？",
+      "excerpt": "American Bitcoin 是一家与特朗普有关联的企业，结合挖矿与比特币积累策略，自",
+      "source_name": "CoinLive",
+      "time": "2026-09-30T09:28:00Z",
+      "url": "https://longbridge.com/news/300549297.md"
+    },
+    {
+      "id": "300543789",
+      "title": "美国劳动力市场走弱——为何今年十月对比特币而言可能不同",
+      "excerpt": "美国劳动力市场疲软，职位空缺减少和长期失业率上升便是明证，这可能促使美联储放松货币政策，从而潜在利好比特币。随着消费者信心降至多年低点，且降息预期升温，比特币的...",
+      "source_name": "Amb Crypto",
+      "time": "2026-09-30T09:05:10Z",
+      "url": "https://longbridge.com/news/300543789.md"
+    },
+    {
+      "id": "300538982",
+      "title": "币安联席首席执行官称，尽管宏观环境“充满挑战”，但比特币需求显现“改善迹象”，现货ETF资金流入激增",
+      "excerpt": "币安联席首席执行官Richard Teng表示，尽管美国国债收益率高企导致宏观经济环境充满挑战，但机构对比特币的需求正显现出改善迹象。现货比特币ETF资金流入激...",
+      "source_name": "Benzinga",
+      "time": "2026-09-30T07:39:39Z",
+      "url": "https://longbridge.com/news/300538982.md"
+    },
+    {
+      "id": "300523102",
+      "title": "山寨币现货交易量以4倍优势超越比特币，但山寨季还能走多远？",
+      "excerpt": "山寨币现货交易量飙升至比特币的四倍，创下年度新高，显示出强劲的市场需求。然而，从历史来看，这一趋势往往与比特币的阶段性顶部重合。尽管山寨币抛售激增，但稳定币储备...",
+      "source_name": "Amb Crypto",
+      "time": "2026-09-30T06:05:10Z",
+      "url": "https://longbridge.com/news/300523102.md"
+    },
+    {
+      "id": "300505097",
+      "title": "BitMine 增持 1.7 万枚 ETH，以太坊有望在第四季度相对于比特币实现突破",
+      "excerpt": "BitMine (BMNR) 在其持仓中增加了 17,000 枚 ETH，随着山寨币轮动势头增强，这标志着机构兴趣可能发生转变。尽管比特币 ETF 在第三季度吸...",
+      "source_name": "Amb Crypto",
+      "time": "2026-09-30T02:08:29Z",
+      "url": "https://longbridge.com/news/300505097.md"
+    },
+    {
+      "id": "300489119",
+      "title": "比特币期货名义价值降至两年最低水平",
+      "excerpt": "比特币期货名义价值已跌至两年来的低点，其相对于现货市场活动的比率降至 0.24 倍。这一下降反映出杠杆投机活动显著减少，因为总未平仓合约量从峰值下降了 47-5...",
+      "source_name": "Crypto Briefing",
+      "time": "2026-09-29T22:24:58Z",
+      "url": "https://longbridge.com/news/300489119.md"
+    },
+    {
+      "id": "300481032",
+      "title": "Bitwise高管称比特币公允价值为19.7万美元：BTC能否弥合差距？",
+      "excerpt": "Bitwise的安德烈·德拉戈施（André Dragosch）认为，基于全球流动性模型，比特币目前被低估，其公允价值应为19.7万美元。他指出，美联储政策转向...",
+      "source_name": "Benzinga",
+      "time": "2026-09-29T20:00:22Z",
+      "url": "https://longbridge.com/news/300481032.md"
+    },
+    {
+      "id": "300470480",
+      "title": "CryptoQuant警告：随着利润见顶，比特币可能出现回调",
+      "excerpt": "随着已实现利润见顶且现货需求降温，CryptoQuant警告比特币可能出现回调。获利了结激增、Coinbase溢价指数为负以及由期货驱动的反弹表明，市场正处于“...",
+      "source_name": "Crypto Briefing",
+      "time": "2026-09-29T17:49:38Z",
+      "url": "https://longbridge.com/news/300470480.md"
+    },
+    {
+      "id": "300469433",
+      "title": "过去四次中期选举后比特币均大幅下跌：历史会重演吗？",
+      "excerpt": "加密货币分析师 Ali Martinez 强调了一种历史模式，即自2010年以来，比特币在每次美国中期选举后均出现下跌，这表明选举后价格可能跌至73,000美元...",
+      "source_name": "Benzinga",
+      "time": "2026-09-29T17:22:34Z",
+      "url": "https://longbridge.com/news/300469433.md"
+    },
+    {
+      "id": "300467100",
+      "title": "比特币有望创下史上最佳九月表现，2024年上涨7.33%，在仅剩一天的情况下超越此前纪录",
+      "excerpt": "加密货币比特币在九月份上涨了7.33%，超越了2024年创下的此前纪录，成为有记录以来表现最好的九月。在月度K线收盘前仅剩一天之际，比特币价值持续上升",
+      "source_name": "Unusual Whales",
+      "time": "2026-09-29T16:51:36Z",
+      "url": "https://longbridge.com/news/300467100.md"
+    },
+    {
+      "id": "300464991",
+      "title": "哪些上市公司持有的比特币最多？",
+      "excerpt": "Capital、MARA Holdings、Bitcoin Standard Treasury",
+      "source_name": "MSN",
+      "time": "2026-09-29T16:43:09Z",
+      "url": "https://longbridge.com/news/300464991.md"
+    },
+    {
+      "id": "300463274",
+      "title": "比特币涨至100万美元？里克·埃德尔曼称全球资产配置2%即可实现",
+      "excerpt": "里克·埃德尔曼预测，如果全球投资者将2%的资产配置于比特币，其价格可能达到100万美元；若配置比例为1%，则可能触及50万美元。他建议投资者关注比特币在投资组合...",
+      "source_name": "MSN",
+      "time": "2026-09-29T16:23:09Z",
+      "url": "https://longbridge.com/news/300463274.md"
+    },
+    {
+      "id": "300456950",
+      "title": "2026年山寨币季即将来临？比特币市值占比58.3%透露的信号",
+      "excerpt": "截至2026年9月28日，比特币市值占比为58.3%。尽管Zcash和Uniswap等部分山寨币大幅上涨，但全面的山寨币季尚未显现。近期市场数据显示，当前更多是...",
+      "source_name": "MSN",
+      "time": "2026-09-29T15:13:09Z",
+      "url": "https://longbridge.com/news/300456950.md"
+    },
+    {
+      "id": "300454071",
+      "title": "HANetf 推出首只欧元对冲比特币基金",
+      "excerpt": "HANetf 推出了全球首只欧元对冲比特币交易所交易商品（ETC），以满足欧洲投资者在现有投资组合中避免美元敞口的需求。此举呼应了黄金 ETF 的趋势，使投资者...",
+      "source_name": "MSN",
+      "time": "2026-09-29T14:43:09Z",
+      "url": "https://longbridge.com/news/300454071.md"
+    },
+    {
+      "id": "300454052",
+      "title": "2026年应该买入比特币还是以太坊？",
+      "excerpt": "比特币和以太坊的交易价格均低于峰值，其中比特币表现出更强的稳定性（同比下跌24.7%），而以太坊的跌幅更为剧烈（同比下跌35.2%）。然而，以太坊近期的反弹速度...",
+      "source_name": "MSN",
+      "time": "2026-09-29T14:43:09Z",
+      "url": "https://longbridge.com/news/300454052.md"
+    },
+    {
+      "id": "300447955",
+      "title": "市场波动加剧，比特币表现优于黄金",
+      "excerpt": "9月，比特币表现优于黄金，上涨7%至84,300美元，而黄金因债券收益率上升和美元走强下跌10%。自8月以来，比特币累计上涨30%，第三季度涨幅达40%，跑赢标...",
+      "source_name": "Baystreet",
+      "time": "2026-09-29T13:55:13Z",
+      "url": "https://longbridge.com/news/300447955.md"
+    },
+    {
+      "id": "300447383",
+      "title": "分析师预测比特币到2029年可能飙升至60万美元，认为XRP是高风险投资。预计比特币峰值在30万至60万美元之间",
+      "excerpt": "Brandt预测，10月份可能出现的价格回调或许为投资者提供了在比特币即将达到30万至60万美元峰值区间之前入市的机会。Brandt对XRP仍持怀疑态度，称其为...",
+      "source_name": "Unusual Whales",
+      "time": "2026-09-29T13:32:50Z",
+      "url": "https://longbridge.com/news/300447383.md"
+    },
+    {
+      "id": "300441767",
+      "title": "比特币 ETF 资金流入激增，但以太坊表现更胜一筹：究竟发生了什么？",
+      "excerpt": "受资金轮动和潜在看涨旗形形态（目标价指向 3,000 美元）的推动，以太坊月度涨幅达 11%，优于比特币的 8%。尽管现货比特币 ETF 录得 27.7 亿美元...",
+      "source_name": "Benzinga",
+      "time": "2026-09-29T12:48:43Z",
+      "url": "https://longbridge.com/news/300441767.md"
+    },
+    {
+      "id": "300411903",
+      "title": "黄金大跌后，比特币在 84,000 美元附近徘徊",
+      "excerpt": "在一周低点之后，比特币在 84,000 美元附近徘徊，因为市场预计美国将进一步加息，抑制了包括黄金在内的大宗商品的风险偏好。Bitfinex 分析师指出，比特币...",
+      "source_name": "MorningStar",
+      "time": "2026-09-29T09:29:56Z",
+      "url": "https://longbridge.com/news/300411903.md"
+    },
+    {
+      "id": "300409246",
+      "title": "比特币豪赌引爆小盘乱局，资金链暗战浮出水面",
+      "excerpt": "被归为“其他”的股票近期分化显著。XXI.US因比特币财库转型强势上涨，YMAT.US股权融资引发剧烈波动，AI算力股SHAZ.US与AGPU.US营收激增却难",
+      "source_name": "环球通讯",
+      "time": "2026-09-29T09:15:16Z",
+      "url": "https://longbridge.com/news/300409246.md"
+    },
+    {
+      "id": "300401403",
+      "title": "比特币长期持有者走出浅度压力区间，重回盈利状态",
+      "excerpt": "比特币长期持有者已重回未实现净利润状态，走出了MVRV指标压缩的“浅度压力”时期。截至2026年9月下旬，比特币交易价格接近8.4万美元，而实现价格在4.8万至...",
+      "source_name": "Crypto Briefing",
+      "time": "2026-09-29T08:10:09Z",
+      "url": "https://longbridge.com/news/300401403.md"
+    },
+    {
+      "id": "300397428",
+      "title": "9月28日，比特币、以太坊、Solana和XRP现货ETF均录得资金净流入",
+      "excerpt": "9月28日，比特币、以太坊、Solana和XRP现货ETF均录得资金净流入，总额约为6,500万美元。其中比特币以3,107万美元居首，其次是以太坊（1,710...",
+      "source_name": "Crypto Briefing",
+      "time": "2026-09-29T07:36:28Z",
+      "url": "https://longbridge.com/news/300397428.md"
+    },
+    {
+      "id": "300391061",
+      "title": "以太坊在 Hyperliquid 上的未平仓合约超越比特币",
+      "excerpt": "以太坊在去中心化永续合约交易所 Hyperliquid 上的未平仓合约已超越比特币，ETH 达到约 30.2 亿美元，而 BTC 为 28 亿美元。这一转变凸显...",
+      "source_name": "Crypto Briefing",
+      "time": "2026-09-29T06:41:13Z",
+      "url": "https://longbridge.com/news/300391061.md"
+    },
+    {
+      "id": "300350852",
+      "title": "比特币ETF迎来自2025年10月以来最大规模资金流入，比特币是否终于回归？",
+      "excerpt": "全球头号加密货币正重新吸引机构投资者的关注",
+      "source_name": "MSN",
+      "time": "2026-09-28T21:31:09Z",
+      "url": "https://longbridge.com/news/300350852.md"
+    },
+    {
+      "id": "300343555",
+      "title": "主流加密货币下跌；比特币跌破 84,000 美元",
+      "excerpt": "周一，主流加密货币全线下跌，比特币跌破 84,000 美元，交投于 83,292 美元。CoinDesk 市场指数在过去 24 小时内下跌 1.6%。此次下挫恰...",
+      "source_name": "MSN",
+      "time": "2026-09-28T20:03:09Z",
+      "url": "https://longbridge.com/news/300343555.md"
+    },
+    {
+      "id": "300318593",
+      "title": "比特币跌至83,000美元，反弹势头受阻",
+      "excerpt": "随着反弹势头受阻，比特币下探至83,300美元，受到油价上涨和美债收益率攀升的打压。美国总统特朗普拒绝伊朗提出的重新开放霍尔木兹海峡的条件，推动布伦特原油价格上...",
+      "source_name": "Baystreet",
+      "time": "2026-09-28T14:15:13Z",
+      "url": "https://longbridge.com/news/300318593.md"
+    },
+    {
+      "id": "300311130",
+      "title": "Strive 扩大比特币储备并增强流动性状况",
+      "excerpt": "Strive Inc. 通过以平均价格 85,396 美元购买 1,107 枚比特币扩大了其比特币储备，使总持有量达到 27,462 枚。现金及现金等价物增加至...",
+      "source_name": "Tip Ranks",
+      "time": "2026-09-28T13:08:23Z",
+      "url": "https://longbridge.com/news/300311130.md"
+    },
+    {
+      "id": "300311283",
+      "title": "Strategy 扩大比特币持仓并执行股票回购",
+      "excerpt": "Strategy (MSTR) 将其比特币持仓量扩大至 847,666 BTC，并利用 2.462 亿美元股权融资的收益回购了 STRC 优先股。该公司拥有 5...",
+      "source_name": "Tip Ranks",
+      "time": "2026-09-28T13:07:56Z",
+      "url": "https://longbridge.com/news/300311283.md"
+    },
+    {
+      "id": "300307018",
+      "title": "本轮周期比特币能涨到多高？",
+      "excerpt": "自6月以来，比特币已飙升45%至约84,883美元，但仍比2025年10月创下的126,198美元的历史纪录低33%。在88,100美元至110,000美元之间...",
+      "source_name": "MSN",
+      "time": "2026-09-28T12:43:09Z",
+      "url": "https://longbridge.com/news/300307018.md"
+    },
+    {
+      "id": "300294503",
+      "title": "莱特币先达500美元还是比特币先破20万美元：哪个会先发生？",
+      "excerpt": "在莱特币触及500美元之前，比特币更有可能先达到20万美元。尽管莱特币近期势头更强，需上涨604%才能达标，而比特币仅需上涨136%，但比特币凭借更大的市值、机...",
+      "source_name": "MSN",
+      "time": "2026-09-28T11:11:09Z",
+      "url": "https://longbridge.com/news/300294503.md"
+    },
+    {
+      "id": "300286730",
+      "title": "应该购买比特币还是比特币ETF？费用、税收和托管比较",
+      "excerpt": "投资者在直接持有比特币和比特币ETF之间做出选择时，必须权衡费用、税收和托管因素。虽然两者跟踪的价格相似，但像FBTC这样的ETF收取年度费用，但通过1099-...",
+      "source_name": "MSN",
+      "time": "2026-09-28T10:13:09Z",
+      "url": "https://longbridge.com/news/300286730.md"
+    },
+    {
+      "id": "300427340",
+      "title": "为何比特币不再像其持有者预期的那样发挥通胀对冲作用",
+      "excerpt": "为何比特币不再像其持有者预期的那样发挥通胀对冲作用",
+      "source_name": "MSN",
+      "time": "2026-09-29T11:23:09Z",
+      "url": "https://longbridge.com/news/300427340.md"
+    }
+  ],
+  "provenance": {
+    "branch": "research/event-regime-v1-20260920",
+    "collection_scope": "Current Longbridge search response only; historical news completeness is not claimed.",
+    "timestamp_policy": "Provider publication timestamps are retained as metadata only. first_seen_at_hkt is the current run observation time and is never backdated. 1970/equivalent placeholder timestamps are unusable."
+  },
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
