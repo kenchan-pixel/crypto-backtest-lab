@@ -1,0 +1,11 @@
+{
+  "first_seen_at_hkt": "2026-09-24T15:01:33+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [],
+  "dedupe_note": "No newly seen stable IDs were found for this query relative to prior collection evidence. Cross-query and content-identity deduplication is reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

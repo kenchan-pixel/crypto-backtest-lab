@@ -1,0 +1,17 @@
+{
+  "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299751042","title":"BUZZ：随着比特币从八个月高点回落，加密货币相关股票下滑","excerpt":"随着比特币和以太坊从近期高点回落，在美国上市的加密货币和区块链股票下跌。比特币下跌1.28%至85,858.80美元，以太币下跌1.59%至2,739.50美元...","source_name":"LSEG","time":"2026-09-22T10:37:42Z","url":"https://longbridge.com/news/299751042.md"},
+    {"id":"299747439","title":"历史显示，这就是 2027 年比特币可能发生的情况","excerpt":"理解比特币的关键在于它每四年一次的周期，这一周期的规律性令人惊讶","source_name":"MSN","time":"2026-09-22T10:10:56Z","url":"https://longbridge.com/news/299747439.md"},
+    {"id":"299735034","title":"REX 推出追踪比特币国库公司 Strive 的 2 倍杠杆 ETF","excerpt":"REX Shares 推出了 T-REX 2X Long Strive Daily Target ETF（股票代码 ASSX），旨在实现 Strive Asset Management 每日表现的 200%。与现货比特币 ETF 不同，这只杠杆基金跟踪 Strive 股票，该股票持有大量比特币资产。该产品提供了对公司股票的放大每日敞口，但由于杠杆和波动性带来了风险，这与直接持有比特币有所不同","source_name":"NewsBTC","time":"2026-09-22T08:30:00Z","url":"https://longbridge.com/news/299735034.md"},
+    {"id":"299732286","title":"比特币 ETF 接近 10 亿美元的资金流入，达到 2026 年的峰值。美国现货 ETF 在周一迎来了 10 亿美元的资金流入，这是自 2025 年 10 月以来的最大流入，因为比特币价格达到了 87,000 美元","excerpt":"在周一，美国现货比特币 ETF 经历了近 10 亿美元的显著资金流入，创下自 2025 年 10 月以来的最高单日流入。这一投资激增恰逢比特币短暂突破 87,000 美元","source_name":"Unusual Whales","time":"2026-09-22T07:46:28Z","url":"https://longbridge.com/news/299732286.md"},
+    {"id":"299729771","title":"比特币 ETF 的资金流入达到 2026 年的高点，规模接近 10 亿美元","excerpt":"美国现货比特币 ETF 在周一录得创纪录的 9.989 亿美元净流入，标志着 2026 年最高的单日收入，并超过了 1 月份创下的前高。贝莱德的 IBIT 以 3.81 亿美元领先。尽管出现了这一激增，但今年的累计流出仍为 4.64 亿美元。比特币价格上涨 4.7%，达到 85,430 美元，而以太坊 ETF 也录得 2.7 亿美元的显著流入","source_name":"Cointelegraph","time":"2026-09-22T07:33:37Z","url":"https://longbridge.com/news/299729771.md"}
+  ],
+  "dedupe_note": "These stable Longbridge article IDs were absent from the immediately prior 2026-09-22T15:04:34+08:00 manifest. Cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

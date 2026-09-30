@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-21T03:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T03:00:00+08:00",
+  "query": "Ethereum",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit_requested": 20,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across all prior event_regime/raw_news snapshots; content identity secondary check",
+    "note": "raw.text contains only genuinely newly seen search hits from this run; field values are preserved from Longbridge search output. first_seen_at_hkt is conservatively rounded forward to 03:00 HKT and is never backdated."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299564000\",\"title\":\"这款加密货币是否仍然能够造就百万富翁？\",\"excerpt\":\"以太坊的疯狂上涨波动日子可能不会再回来了，但这不应该阻止任何人购买它\",\"source_name\":\"MSN\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299564000.md\"},{\"id\":\"299563334\",\"title\":\"以太坊供应紧缩，ETH 价格重回 2500 美元——接下来会发生什么？\",\"excerpt\":\"以太坊在供应收紧的情况下重新回到了 2500 美元，原因是交易所余额减少、质押量增加（上升至 35.56%）以及总计 167 亿美元的显著 ETF 流入。这些因...\",\"source_name\":\"Amb Crypto\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299563334.md\"},{\"id\":\"299561422\",\"title\":\"以太坊（ETH）超过 2600 USDT，24 小时内跌幅缩小至 1.59%\",\"excerpt\":\"根据币安市场数据，截至2026年9月20日15:04（UTC），以太坊已突破 2,600 USDT 的基准，目前交易价格为 2,600.070068 USDT，...\",\"source_name\":\"CoinLive\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299561422.md\"}]"
+  }
+}

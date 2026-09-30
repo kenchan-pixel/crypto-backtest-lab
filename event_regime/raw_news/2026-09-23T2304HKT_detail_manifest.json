@@ -1,0 +1,47 @@
+{
+  "first_seen_at_hkt": "2026-09-23T23:04:16+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-23T19:03:46+08:00",
+    "searched_queries": [
+      {"query":"Bitcoin","new_search_hits":7},
+      {"query":"Ethereum","new_search_hits":0},
+      {"query":"Bitcoin ETF","new_search_hits":4},
+      {"query":"SEC crypto","new_search_hits":2}
+    ],
+    "new_stable_ids_before_secondary_dedupe": 11,
+    "dedupe_result_unique_articles": 9,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source/body content identity across current and prior evidence",
+    "cross_query_duplicate_ids": ["299901952", "299892593"],
+    "content_identity_duplicates_removed": [
+      {"id":"299901952","duplicate_of":"299879800","reason":"Same Joseph Wilkins / Dow Jones MorningStar story as the prior retained update, now surfaced as a second update; raw evidence retained but not counted as a new logical article."},
+      {"id":"299904097","duplicate_of":"299905678","reason":"PUBT AI-generated brief explicitly derives from the same Cuentas / Power Upp GlobeNewswire release preserved in 299905678; raw evidence retained but only the full-source version is counted as the logical article."}
+    ],
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable and never used for chronology; none of the 11 retrieved detail records used a placeholder timestamp.",
+    "first_seen_policy": "2026-09-23T23:04:16+08:00 is a conservative observation timestamp recorded after retrieval in this collection. published_at is provider metadata and is never used to backdate first_seen_at_hkt.",
+    "detail_capture_note": "news_detail was retrieved successfully for all 11 stable IDs surfaced as new search evidence before secondary content-identity deduplication. Stable id, title, description, URL, author/source and published_at are retained in the companion structured detail evidence file; full article bodies are not archived.",
+    "historical_news_completeness_claimed": false,
+    "trading_actions": "none"
+  },
+  "quality_notes": [
+    {"id":"299905678","type":"late_search_or_indexing_visibility","note":"Provider published_at is 2026-09-23T05:30:00Z (2026-09-23 13:30:00 HKT), earlier than the prior 19:03:46 HKT collection. It was not present in prior new-evidence snapshots and surfaced in this collection; first_seen remains 23:04:16 HKT and is not backdated."},
+    {"id":"299901952","type":"content_identity_duplicate_update","note":"Same Joseph Wilkins / Dow Jones MorningStar logical story previously retained as 299879800 (with 299870052 already marked an older duplicate). This second update is preserved as raw evidence but is not a new logical article."},
+    {"id":"299904097","type":"content_identity_duplicate_ai_summary","note":"PUBT states the brief is AI-generated from the same Cuentas GlobeNewswire release underlying 299905678. It is preserved as raw evidence but excluded from the logical new-article set."}
+  ],
+  "new_articles": [
+    {"id":"299910131","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-23T23:04:16+08:00","published_at_utc":"2026-09-23T14:14:59Z","source":"Baystreet","timestamp_quality":"verified_detail"},
+    {"id":"299908467","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-23T23:04:16+08:00","published_at_utc":"2026-09-23T13:52:52Z","source":"Benzinga","timestamp_quality":"verified_detail"},
+    {"id":"299905381","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-23T23:04:16+08:00","published_at_utc":"2026-09-23T13:32:01Z","source":"Benzinga","timestamp_quality":"verified_detail"},
+    {"id":"299892593","matched_queries":["Bitcoin","Bitcoin ETF"],"first_seen_at_hkt":"2026-09-23T23:04:16+08:00","published_at_utc":"2026-09-23T12:00:32Z","source":"Seeking Alpha","timestamp_quality":"verified_detail"},
+    {"id":"299905678","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-23T23:04:16+08:00","published_at_utc":"2026-09-23T05:30:00Z","source":"StockTitan","timestamp_quality":"verified_detail_late_seen"},
+    {"id":"299912244","matched_queries":["Bitcoin ETF"],"first_seen_at_hkt":"2026-09-23T23:04:16+08:00","published_at_utc":"2026-09-23T14:11:38Z","source":"Benzinga","timestamp_quality":"verified_detail"},
+    {"id":"299904973","matched_queries":["Bitcoin ETF"],"first_seen_at_hkt":"2026-09-23T23:04:16+08:00","published_at_utc":"2026-09-23T13:29:11Z","source":"Benzinga","timestamp_quality":"verified_detail"},
+    {"id":"299901932","matched_queries":["SEC crypto"],"first_seen_at_hkt":"2026-09-23T23:04:16+08:00","published_at_utc":"2026-09-23T13:14:29Z","source":"CNA","timestamp_quality":"verified_detail"},
+    {"id":"299896480","matched_queries":["SEC crypto"],"first_seen_at_hkt":"2026-09-23T23:04:16+08:00","published_at_utc":"2026-09-23T12:28:01Z","source":"Crypto Briefing","timestamp_quality":"verified_detail"}
+  ],
+  "detail_evidence_file": "event_regime/raw_news/2026-09-23T2304HKT_detail_raw.json"
+}

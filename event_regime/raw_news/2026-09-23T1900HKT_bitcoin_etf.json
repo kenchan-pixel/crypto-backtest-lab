@@ -1,0 +1,19 @@
+{
+  "first_seen_at_hkt": "2026-09-23T19:03:46+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299879800","title":"比特币跌破86,000美元，但在中东和平希望推动下仍维持1月高位——更新","excerpt":"000美元附近徘徊，在中东和平希望以及强劲的ETF资金流入推动下，维持在1月的","source_name":"MorningStar","time":"2026-09-23T10:17:34Z","url":"https://longbridge.com/news/299879800.md"},
+    {"id":"299879116","title":"Roundhill Bitcoin Covered Call Strategy ETF 宣布派发 0.1019 美元股息","excerpt":"Roundhill Bitcoin Covered Call","source_name":"businessinsider","time":"2026-09-23T10:14:58Z","url":"https://longbridge.com/news/299879116.md"},
+    {"id":"299878473","title":"宏观信号分化与细分赛道的独立行情：10 只美股释放的最新动向","excerpt":"的定价逻辑。从现货比特币 ETF 到 AI 供应链，部分公司","source_name":"环球通讯","time":"2026-09-23T10:12:05Z","url":"https://longbridge.com/news/299878473.md"},
+    {"id":"299870052","title":"比特币平盘整理，持稳于86,000美元上方","excerpt":"86,000美元上方。周一ETF资金流入激增近10亿美元。分","source_name":"MorningStar","time":"2026-09-23T09:01:17Z","url":"https://longbridge.com/news/299870052.md"},
+    {"id":"299863490","title":"比特币 MVRV 指标发出历史性看多信号——BTC 价格能否突破 9 万美元？","excerpt":"，而极度贪婪情绪和激增的 ETF 资金流入则表明市场情绪强劲。尽管这些因素支持比特币可能突破","source_name":"Amb Crypto","time":"2026-09-23T08:04:56Z","url":"https://longbridge.com/news/299863490.md"},
+    {"id":"299861980","title":"比特币价格突破投资者平均持仓成本，比特币ETF在48小时内吸金超17亿美元","excerpt":"在两天时间内，美国现货比特币ETF迎来了超过17亿美元的惊人净","source_name":"Unusual Whales","time":"2026-09-23T07:35:11Z","url":"https://longbridge.com/news/299861980.md"},
+    {"id":"299856676","title":"比特币价格预测：BTC站稳86,000美元，持续的ETF资金流入或推动其突破90,000美元","excerpt":"500美元，较9月低点上涨超过13%，这得益于美国现货ETF在三天内持续流入近18亿美元","source_name":"TradingKey","time":"2026-09-23T07:09:09Z","url":"https://longbridge.com/news/299856676.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

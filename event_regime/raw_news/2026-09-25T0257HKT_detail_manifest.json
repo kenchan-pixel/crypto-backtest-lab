@@ -1,0 +1,247 @@
+{
+  "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": [
+      "news_search",
+      "news_detail"
+    ],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-24T23:02:29+08:00",
+    "searched_queries": [
+      {
+        "query": "Bitcoin",
+        "new_search_hits": 5
+      },
+      {
+        "query": "Ethereum",
+        "new_search_hits": 5
+      },
+      {
+        "query": "Bitcoin ETF",
+        "new_search_hits": 5
+      },
+      {
+        "query": "SEC crypto",
+        "new_search_hits": 5
+      }
+    ],
+    "new_search_hits_before_cross_query_dedupe": 20,
+    "new_stable_ids_before_secondary_dedupe": 16,
+    "dedupe_result_unique_articles": 15,
+    "cross_query_duplicate_ids": [
+      "300061056",
+      "300056950",
+      "300054238",
+      "300053810"
+    ],
+    "content_identity_duplicates_removed": [
+      {
+        "id": "299954110",
+        "duplicate_of": "299927681",
+        "reason": "same underlying Uyeda legacy-crypto-case / innovation-exemption report"
+      }
+    ],
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable; none of the sixteen new stable IDs had an invalid detail published_at.",
+    "first_seen_policy": "first_seen_at_hkt is the current observation timestamp and is never backdated from provider publication metadata.",
+    "historical_news_completeness_claimed": false,
+    "trading_actions": "none"
+  },
+  "quality_notes": [
+    {
+      "type": "delayed_search_visibility",
+      "ids": [
+        "299622524",
+        "299622532",
+        "299814865",
+        "299839282",
+        "299898822",
+        "299900785",
+        "299954110"
+      ],
+      "note": "Provider publication predates the prior collection run, but these stable IDs were absent from earlier snapshots for their respective query. first_seen_at_hkt remains the current observation time."
+    },
+    {
+      "id": "299954110",
+      "type": "content_identity_duplicate",
+      "duplicate_of": "299927681",
+      "note": "Raw search/detail provenance is preserved but it is not counted as a new logical article."
+    }
+  ],
+  "newly_seen_stable_ids": [
+    "300061056",
+    "300056950",
+    "300056445",
+    "300054238",
+    "300053810",
+    "300064950",
+    "299898822",
+    "299622532",
+    "299839282",
+    "300061021",
+    "299622524",
+    "300063475",
+    "300055851",
+    "299954110",
+    "299900785",
+    "299814865"
+  ],
+  "new_articles": [
+    {
+      "id": "300061056",
+      "matched_queries": [
+        "Bitcoin",
+        "Ethereum"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-24T16:47:15Z",
+      "source": "Benzinga",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "300056950",
+      "matched_queries": [
+        "Bitcoin",
+        "Bitcoin ETF"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-24T16:10:12Z",
+      "source": "Crypto Briefing",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "300056445",
+      "matched_queries": [
+        "Bitcoin"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-24T16:06:15Z",
+      "source": "Investinglive",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "300054238",
+      "matched_queries": [
+        "Bitcoin",
+        "Bitcoin ETF"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-24T15:43:55Z",
+      "source": "Crypto Briefing",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "300053810",
+      "matched_queries": [
+        "Bitcoin",
+        "Bitcoin ETF"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-24T15:34:09Z",
+      "source": "Benzinga",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "300064950",
+      "matched_queries": [
+        "Ethereum"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-24T18:02:18Z",
+      "source": "Benzinga",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299898822",
+      "matched_queries": [
+        "Ethereum"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-23T12:30:17Z",
+      "source": "Unusual Whales",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299622532",
+      "matched_queries": [
+        "Ethereum"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-21T09:59:58Z",
+      "source": "businessinsider",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299839282",
+      "matched_queries": [
+        "Ethereum"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-23T02:04:11Z",
+      "source": "Benzinga",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "300061021",
+      "matched_queries": [
+        "Bitcoin ETF"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-24T17:06:09Z",
+      "source": "economictimes",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299622524",
+      "matched_queries": [
+        "Bitcoin ETF"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-21T09:59:57Z",
+      "source": "businessinsider",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "300063475",
+      "matched_queries": [
+        "SEC crypto"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-24T17:32:28Z",
+      "source": "Unusual Whales",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "300055851",
+      "matched_queries": [
+        "SEC crypto"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-24T16:04:56Z",
+      "source": "Amb Crypto",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299900785",
+      "matched_queries": [
+        "SEC crypto"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-23T13:01:22Z",
+      "source": "钜亨网",
+      "timestamp_quality": "verified_detail"
+    },
+    {
+      "id": "299814865",
+      "matched_queries": [
+        "SEC crypto"
+      ],
+      "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+      "published_at_utc": "2026-09-22T21:24:56Z",
+      "source": "金色财经",
+      "timestamp_quality": "verified_detail"
+    }
+  ],
+  "detail_evidence_file": "event_regime/raw_news/2026-09-25T0257HKT_detail_raw.json"
+}

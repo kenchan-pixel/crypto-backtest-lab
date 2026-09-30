@@ -1,0 +1,15 @@
+{
+  "first_seen_at_hkt": "2026-09-24T03:05:39+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299921786","title":"YieldMax Bitcoin Option Income Strategy ETF 宣布派发 0.1924 美元周股息","excerpt":"YieldMax Bitcoin Option Income","source_name":"businessinsider","time":"2026-09-23T16:00:11Z","url":"https://longbridge.com/news/299921786.md"},
+    {"id":"299923268","title":"比特币价值回落，但分叉币飙升，得益于芝加哥商品交易所期货和 Grayscale ETF——主流币种触及七个月高点","excerpt":"芝加哥商品交易所期货的上市以及新的 Grayscale ETF 的提交，推高了比特币两大主","source_name":"Unusual Whales","time":"2026-09-23T15:57:25Z","url":"https://longbridge.com/news/299923268.md"},
+    {"id":"299926631","title":"狗狗币一周上涨18%，ETF资金流入回归——接下来会发生什么？","excerpt":"在比特币反弹以及9月22日美国现货ETF净流入总额达117万美元的推","source_name":"Benzinga","time":"2026-09-23T16:36:23Z","url":"https://longbridge.com/news/299926631.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

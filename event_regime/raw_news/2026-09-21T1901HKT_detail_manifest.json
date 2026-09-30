@@ -1,0 +1,89 @@
+{
+  "first_seen_at_hkt": "2026-09-21T19:01:00+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+    "searched_queries": [
+      {"query":"Bitcoin","new_search_hits":9},
+      {"query":"Ethereum","new_search_hits":4},
+      {"query":"Bitcoin ETF","new_search_hits":6},
+      {"query":"SEC crypto","new_search_hits":2}
+    ],
+    "dedupe_result_unique_articles": 16,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source content identity",
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable and never used for chronology; none of the newly saved hits in this run used such a placeholder",
+    "first_seen_policy": "2026-09-21T19:01:00+08:00 is a conservative observation timestamp after the searches began; published_at is never used to backdate first_seen_at_hkt",
+    "historical_news_completeness_claimed": false,
+    "note": "All 16 unique IDs have verified news_detail responses. Article 299628927 has a clear title/body topical mismatch in the provider detail; raw evidence is preserved and flagged rather than corrected or inferred."
+  },
+  "new_articles": [
+    {
+      "id":"299628885","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T10:42:56Z","source":"MSN","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299628885","title":"是什么因素正在推动比特币的上涨","description":"对该币的需求很高，且来源于多个渠道","url":"https://longbridge.com/news/299628885","author":{"member_id":"5922","name":"MSN"},"published_at":"2026-09-21T10:42:56Z"}
+    },
+    {
+      "id":"299628253","matched_queries":["Bitcoin","Bitcoin ETF"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T10:34:37Z","source":"Crypto Briefing","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299628253","title":"比特币价格飙升至 85,000 美元，同时有 6.48 亿美元的空头头寸被清算","description":"比特币在 2026 年 9 月 21 日飙升至八个月来的最高点 85,000 美元，这一涨幅受到 6.48 亿美元的空头挤压和对美国现货比特币 ETF 持续流入的推动。此次反弹突破了 80,000 美元的关口，并在 45 周内首次实现了超过 50 周移动平均线的周收盘。市场观察者目前正在关注机构 ETF 流入和长期持有者的行为，以寻找支持或撤退的迹象，同时美联储的利率决策等宏观经济因素仍然是关键变量","url":"https://longbridge.com/news/299628253","author":{"member_id":"5998","name":"Crypto Briefing"},"published_at":"2026-09-21T10:34:37Z"}
+    },
+    {
+      "id":"299628927","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T10:23:49Z","source":"Unusual Whales","timestamp_quality":"verified_detail","content_quality_flag":"provider_title_body_mismatch",
+      "detail_evidence":{"id":"299628927","title":"比特币价格逼近 85,000 美元，创下 8 个月来的新高。本周请持续关注比特币的相关新闻","description":"最近有报道称，美国的失业率在三月份降至 3.8%。这比上个月下降了 0.2 个百分点。此外，三月份经济新增了 196,000 个就业岗位，超出了预期。强劲的就业增长主要体现在医疗保健、专业和技术服务以及餐饮服务行业。这一积极趋势表明该国的劳动力市场健康而强劲","url":"https://longbridge.com/news/299628927","author":{"member_id":"5899","name":"Unusual Whales"},"published_at":"2026-09-21T10:23:49Z"}
+    },
+    {
+      "id":"299625627","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T10:18:27Z","source":"LSEG","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299625627","title":"比特币创逾七个月新高，加密概念股集体走高","description":"","url":"https://longbridge.com/news/299625627","author":{"member_id":"14","name":"LSEG"},"published_at":"2026-09-21T10:18:27Z"}
+    },
+    {
+      "id":"299617894","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T09:15:15Z","source":"Motley Fool","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299617894","title":"当前更值得购买的是：比特币还是狗狗币","description":"这篇文章比较了比特币和狗狗币，得出结论认为比特币是更优的投资选择。比特币受到政治支持的推动，包括特朗普的行政命令以建立战略储备，得益于其 “数字黄金” 的叙述和有限的供应，吸引了机构投资者。相反，狗狗币缺乏明确的使用案例或技术优势，在日益激烈的表情符号代币竞争和逐渐减弱的病毒式关注中挣扎。作者推荐比特币作为加密领域最佳购买选择，因为它具有价值储存的吸引力和监管的顺风","url":"https://longbridge.com/news/299617894","author":{"member_id":"315","name":"Motley Fool"},"published_at":"2026-09-21T09:15:15Z"}
+    },
+    {
+      "id":"299616419","matched_queries":["Bitcoin","Ethereum","Bitcoin ETF","SEC crypto"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T09:03:10Z","source":"TradingKey","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299616419","title":"比特币突破84,000美元，以太坊站上2,700美元，加密货币市场延续强劲反弹","description":"9 月 21 日，比特币飙升突破 84,000 美元，以太坊突破 2,700 美元，标志着加密货币市场的强劲反弹。此次复苏得益于美国证券交易委员会（SEC）为代币化股票引入 “创新豁免” 后市场情绪的改善、现货比特币 ETF 录得 1.6 亿美元净流入带来的积极资金流向，以及空头头寸的清算。上涨动能已从比特币蔓延至以太坊等主要山寨币，逆转了此前因监管不确定性导致的下跌趋势","url":"https://longbridge.com/news/299616419","author":{"member_id":"6041","name":"TradingKey"},"published_at":"2026-09-21T09:03:10Z"}
+    },
+    {
+      "id":"299613648","matched_queries":["Bitcoin","Bitcoin ETF"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T08:40:09Z","source":"美股行情速递","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299613648","title":"Strategy盘中涨超5% 股价创近1个月新高，受比特币突破82000美元提振","description":"Strategy(MSTR.US) 盘前涨 5.46% 至 162.33 美元。比特币突破 82000 美元创新高，现货 ETF 资金持续流入，塞勒暗示增持推动股价走强。","url":"https://longbridge.com/news/299613648","author":{"member_id":"56","name":"美股行情速递"},"published_at":"2026-09-21T08:40:09Z"}
+    },
+    {
+      "id":"299614143","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T08:25:48Z","source":"Unusual Whales","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299614143","title":"比特币徘徊在81,600美元，多头瞄准82,400美元以避免跌至79,000美元。MACD持平，随机指标在93处显示超买。未来48小时决定反弹命运","description":"比特币价格目前徘徊在 81,610 美元附近，位于其布林带上轨下方。MACD 柱状图显示缺乏动能，表明趋势持平，而随机指标显示比特币目前在 93 处处于超买状态。接下来的关键 48 小时将决定比特币当前的反弹是否会继续……","url":"https://longbridge.com/news/299614143","author":{"member_id":"5899","name":"Unusual Whales"},"published_at":"2026-09-21T08:25:48Z"}
+    },
+    {
+      "id":"299604101","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T07:12:56Z","source":"MSN","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299604101","title":"亿万富翁蒂姆·德雷珀预测比特币将在两年内达到 25 万美元。以下是需要实现的条件","description":"比特币真的能在短短 24 个月内价值三倍吗？","url":"https://longbridge.com/news/299604101","author":{"member_id":"5922","name":"MSN"},"published_at":"2026-09-21T07:12:56Z"}
+    },
+    {
+      "id":"299628879","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T10:42:58Z","source":"异动追踪","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299628879","title":"美股盘前热门交易：Robinhood 盘前涨 4.09%；Grayscale Ethereum Staking ETF 盘前涨 3.68%","description":"Robinhood 盘前涨 4.09%；Grayscale Ethereum Staking ETF 盘前涨 3.68%；Greenland Energy 盘前涨 160.94%；Greenland Mines 盘前涨 73.18%；Black Titan 盘前涨 70.27%。","url":"https://longbridge.com/news/299628879","author":{"member_id":"38","name":"异动追踪"},"published_at":"2026-09-21T10:42:58Z"}
+    },
+    {
+      "id":"299615610","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T08:51:11Z","source":"Investinglive","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299615610","title":"随着CFTC在国会缺席的情况下推进监管，以太坊终于突破长达一个月的盘整区间","description":"基本面概览：周四美国商品期货交易委员会（CFTC）提交的加密货币规则制定文件公开后，以太坊及其他主要加密货币在周五大幅反弹。此前一周，由于《CLARITY 法案》未能在参议院获得推进，这些文件已提交以供监管审查","url":"https://longbridge.com/news/299615610","author":{"member_id":"6060","name":"Investinglive"},"published_at":"2026-09-21T08:51:11Z"}
+    },
+    {
+      "id":"299614144","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T08:25:47Z","source":"Unusual Whales","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299614144","title":"以太坊价格升至2,664美元，突破布林带上轨；预计7日内触及2,786美元，预示看涨突破","description":"以太坊当前交易价格为 2,664 美元，已突破其布林带上轨。这一情况反映出技术面超买的情形，多头可能推动价格显著突破 2,725 美元至 2,786 美元的阻力区间","url":"https://longbridge.com/news/299614144","author":{"member_id":"5899","name":"Unusual Whales"},"published_at":"2026-09-21T08:25:47Z"}
+    },
+    {
+      "id":"299627631","matched_queries":["Bitcoin ETF"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T10:33:03Z","source":"异动追踪","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299627631","title":"美股盘前热门交易：Grayscale Bitcoin Trust BTC - ETF 盘前涨 4.55%；三井住友金融盘前涨 4.34%","description":"Grayscale Bitcoin Trust BTC - ETF 盘前涨 4.55%；三井住友金融盘前涨 4.34%；Greenland Energy 盘前涨 160.94%；Greenland Mines 盘前涨 73.18%；Black Titan 盘前涨 70.27%。","url":"https://longbridge.com/news/299627631","author":{"member_id":"38","name":"异动追踪"},"published_at":"2026-09-21T10:33:03Z"}
+    },
+    {
+      "id":"299613559","matched_queries":["Bitcoin ETF"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T07:33:54Z","source":"CoinLive","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299613559","title":"加密货币市场是否正在发起全面反击？","description":"9 月，比特币飙升突破 82,000 美元，以太坊突破 2,700 美元，逆转了此前因加息担忧引发的恐慌情绪。在强劲的现货 ETF 资金流入（尤其是贝莱德的 IBIT）以及美联储政策预期被市场消化的推动下，加密货币总市值回升至 2.81 万亿美元。NEAR 和 AVAX 等山寨币也录得显著涨幅，而比特币主导地位仍维持在 58-59% 的高位，表明此轮上涨由优质资产驱动，而非投机行为","url":"https://longbridge.com/news/299613559","author":{"member_id":"6000","name":"CoinLive"},"published_at":"2026-09-21T07:33:54Z"}
+    },
+    {
+      "id":"299606335","matched_queries":["Bitcoin ETF"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T07:28:43Z","source":"benzinga_article","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299606335","title":"Jason Calacanis 称比特币为 “死猫”，但仍在反弹——Cathie Wood 认为比特币 “还有很多生命力”","description":"Ark Invest 首席执行官 Cathie Wood 与 Michael Saylor 和 Brian Armstrong 一起为比特币辩护，反驳 Jason Calacanis 认为比特币是 “死猫反弹” 的说法。Wood 认为比特币还有 “许多生命”，并提到人工智能的融合，而 Saylor 则强调其 1.6 万亿美元的市值是代际财富的保值。Armstrong 称其为 “数字黄金”。尽管 Ark 最近出售了 ETF，但支持者们仍然坚持比特币的长期价值和实用性","url":"https://longbridge.com/news/299606335","author":{"member_id":"36","name":"benzinga_article"},"published_at":"2026-09-21T07:28:43Z"}
+    },
+    {
+      "id":"299609317","matched_queries":["SEC crypto"],"first_seen_at_hkt":"2026-09-21T19:01:00+08:00","published_at_utc":"2026-09-21T08:04:12Z","source":"美股行情速递","timestamp_quality":"verified_detail",
+      "detail_evidence":{"id":"299609317","title":"Coinbase盘中股价创近1个月新高，SEC批准代币化证券豁免提振加密股","description":"Coinbase(COIN.US) 盘前涨 1.85% 至 197.85 美元，受 SEC 批准代币化证券豁免利好，加密概念股延续涨势","url":"https://longbridge.com/news/299609317","author":{"member_id":"56","name":"美股行情速递"},"published_at":"2026-09-21T08:04:12Z"}
+    }
+  ]
+}

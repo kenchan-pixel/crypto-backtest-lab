@@ -1,0 +1,18 @@
+{
+  "first_seen_at_hkt": "2026-09-21T19:01:00+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "raw_new_hits": [
+    {"id":"299616419","title":"比特币突破84,000美元，以太坊站上2,700美元，加密货币市场延续强劲反弹","excerpt":"得益于美国证券交易委员会（SEC）为代币化股票引入“创新豁免","source_name":"TradingKey","time":"2026-09-21T09:03:10Z","url":"https://longbridge.com/news/299616419.md"},
+    {"id":"299609317","title":"Coinbase盘中股价创近1个月新高，SEC批准代币化证券豁免提振加密股","excerpt":"85%至197.85美元，受SEC批准代币化证券豁免利好，加密概念股延续涨势","source_name":"美股行情速递","time":"2026-09-21T08:04:12Z","url":"https://longbridge.com/news/299609317.md"}
+  ],
+  "provenance": {
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description/excerpt + source identity",
+    "timestamp_policy": "search/detail timestamps are evidence only; first_seen_at_hkt is the conservative collection observation time and is never backdated",
+    "historical_completeness_claimed": false
+  }
+}

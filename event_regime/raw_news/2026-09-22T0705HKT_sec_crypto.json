@@ -1,0 +1,13 @@
+{
+  "first_seen_at_hkt": "2026-09-22T07:05:47+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "search_limit": 50,
+  "historical_news_completeness_claimed": false,
+  "timestamp_policy": "Search timestamps are provider metadata; 1970/equivalent placeholders are unusable. first_seen_at_hkt is never backdated from published_at.",
+  "new_search_hits": [
+    {"id":"299680679","title":"【加密演义】ICO 2.0：合规融资浪潮或成为本轮牛市驱动力","excerpt":"美国 CLARITY 法案在参议院表决失败，折射加密监管体系深层重构。该法案旨在终结 SEC 与 CFTC 管辖权之争，确立以去中心化程度分类代币，并为合规融资...","source_name":"香港文汇报","time":"2026-09-21T20:29:56Z","url":"https://longbridge.com/news/299680679.md"},
+    {"id":"299678216","title":"特朗普的加密货币和 Robinhood 的救助计划？SEC 关于代币化股票规则的变更解释","excerpt":"了解最近的 SEC 规则变化如何影响加密货币、Robinhood","source_name":"MSN","time":"2026-09-21T19:52:56Z","url":"https://longbridge.com/news/299678216.md"}
+  ]
+}

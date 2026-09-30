@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-21T15:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+  "query": "SEC crypto",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit_requested": 20,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across all prior event_regime/raw_news snapshots; content identity secondary check",
+    "note": "raw.text contains only genuinely newly seen search hits from this run; field values are preserved from Longbridge search output. first_seen_at_hkt is conservatively rounded forward to 15:00 HKT and is never backdated."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299602032\",\"title\":\"由于比特币代币的价格保持在超过 81,000 美元的高位，比特币 ETF 转为正面\",\"excerpt\":\"美元。这一激增是在美国证券交易委员会（SEC）批准数字证券交易后出现的，\",\"source_name\":\"Money Control\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299602032.md\"},{\"id\":\"299586922\",\"title\":\"随着美联储加息，本周热门股票受到关注，同时呼吁放缓人工智能模型开发的声音越来越多\",\"excerpt\":\"华尔街收盘表现不一，因美联储加息以及人工智能安全问题影响科技股。纳斯达克上涨 0.7%，而道琼斯指数下跌 1.7%。主要动态包括沃伦·巴菲特辞去伯克希尔哈撒韦董...\",\"source_name\":\"MSN\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299586922.md\"},{\"id\":\"299590414\",\"title\":\"比特币触及 82,000 美元，以太坊、XRP 和狗狗币也在 SEC 推动代币化的背景下上涨：分析师确认这一主要加密货币的'突破'\",\"excerpt\":\"美元，这得益于美国证券交易委员会（SEC）对代币化股票的倡议。全球加密市场市值上涨\",\"source_name\":\"benzinga_article\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299590414.md\"}]"
+  }
+}

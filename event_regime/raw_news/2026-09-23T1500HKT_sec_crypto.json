@@ -1,0 +1,13 @@
+{
+  "first_seen_at_hkt": "2026-09-23T15:00:27+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299823564","title":"美国加密监管争相填补真空：《清晰法案》参院搁浅，SEC、CFTC 火速补位","excerpt":"《清晰法案》在参议院搁浅后，美国 SEC 与 CFTC 加速填补加密监管真空。SEC","source_name":"智通财经","time":"2026-09-23T00:08:49Z","url":"https://longbridge.com/news/299823564.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query duplicates are reconciled in the detail manifest. Article 299823564 is newly visible despite a provider publication timestamp before the prior collection; first_seen is not backdated.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

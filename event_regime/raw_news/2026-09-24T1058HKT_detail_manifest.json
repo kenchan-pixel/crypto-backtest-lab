@@ -1,0 +1,34 @@
+{
+  "first_seen_at_hkt": "2026-09-24T10:58:12+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-24T07:06:08+08:00",
+    "searched_queries": [
+      {"query":"Bitcoin","new_search_hits":1},
+      {"query":"Ethereum","new_search_hits":0},
+      {"query":"Bitcoin ETF","new_search_hits":1},
+      {"query":"SEC crypto","new_search_hits":1}
+    ],
+    "new_search_hits_before_cross_query_dedupe": 3,
+    "new_stable_ids_before_secondary_dedupe": 2,
+    "dedupe_result_unique_articles": 2,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source/body content identity across current and prior evidence",
+    "cross_query_duplicate_ids": ["299961156"],
+    "content_identity_duplicates_removed": [],
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable and never used for chronology; neither retrieved detail record used a placeholder timestamp.",
+    "first_seen_policy": "2026-09-24T10:58:12+08:00 is the conservative collection observation timestamp. published_at is provider metadata and is never used to backdate first_seen_at_hkt.",
+    "detail_capture_note": "news_detail was retrieved successfully for both newly seen stable IDs. Stable id, title, description, URL, author/source and published_at are retained in the companion structured detail evidence file; full article bodies are not archived.",
+    "historical_news_completeness_claimed": false,
+    "trading_actions": "none"
+  },
+  "quality_notes": [],
+  "new_articles": [
+    {"id":"299961156","matched_queries":["Bitcoin","Bitcoin ETF"],"first_seen_at_hkt":"2026-09-24T10:58:12+08:00","published_at_utc":"2026-09-24T01:35:10Z","source":"Amb Crypto","timestamp_quality":"verified_detail"},
+    {"id":"299958588","matched_queries":["SEC crypto"],"first_seen_at_hkt":"2026-09-24T10:58:12+08:00","published_at_utc":"2026-09-24T01:08:16Z","source":"Amb Crypto","timestamp_quality":"verified_detail"}
+  ],
+  "detail_evidence_file": "event_regime/raw_news/2026-09-24T1058HKT_detail_raw.json"
+}

@@ -1,0 +1,52 @@
+{
+  "first_seen_at_hkt": "2026-09-25T02:57:17+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is the current collection-run observation timestamp and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "300056950",
+      "title": "收益率与美元走高，比特币从八个月高点回落",
+      "excerpt": ",200美元左右。尽管通过ETF流入显示出强劲的机构需求，但",
+      "source_name": "Crypto Briefing",
+      "time": "2026-09-24T16:10:12Z",
+      "url": "https://longbridge.com/news/300056950.md"
+    },
+    {
+      "id": "300054238",
+      "title": "随着机构资本重塑周期，比特币熊市正趋于温和",
+      "excerpt": "。机构资本，尤其是通过现货ETF流入的资金，稳定了市场；主要",
+      "source_name": "Crypto Briefing",
+      "time": "2026-09-24T15:43:55Z",
+      "url": "https://longbridge.com/news/300054238.md"
+    },
+    {
+      "id": "300053810",
+      "title": "随着 Strategy 股价和杠杆 ETF 飙升，比特币押注进入白热化",
+      "excerpt": "枚比特币的购买行动。与 MSTR 挂钩的杠杆 ETF（包括 MSTU、MSTP 和",
+      "source_name": "Benzinga",
+      "time": "2026-09-24T15:34:09Z",
+      "url": "https://longbridge.com/news/300053810.md"
+    },
+    {
+      "id": "300061021",
+      "title": "比特币较峰值下跌55%——尽管面临156亿美元期权到期，汤姆·李为何仍预测加密货币牛市",
+      "excerpt": "值达到2万亿美元，以及通过ETF增加的机构参与度，这些因素通",
+      "source_name": "economictimes",
+      "time": "2026-09-24T17:06:09Z",
+      "url": "https://longbridge.com/news/300061021.md"
+    },
+    {
+      "id": "299622524",
+      "title": "Global X Bitcoin Covered Call ETF 宣布派发 0.0734 美元的股息",
+      "excerpt": "Global X Bitcoin Covered Call ETF 宣布派发",
+      "source_name": "businessinsider",
+      "time": "2026-09-21T09:59:57Z",
+      "url": "https://longbridge.com/news/299622524.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence. Cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

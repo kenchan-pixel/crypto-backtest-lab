@@ -1,0 +1,16 @@
+{
+  "first_seen_at_hkt": "2026-09-22T10:58:06+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [],
+  "latest_returned_hits_checked": [
+    {"id":"299680679","title":"【加密演义】ICO 2.0：合规融资浪潮或成为本轮牛市驱动力","source_name":"香港文汇报","time":"2026-09-21T20:29:56Z"},
+    {"id":"299678216","title":"特朗普的加密货币和 Robinhood 的救助计划？SEC 关于代币化股票规则的变更解释","source_name":"MSN","time":"2026-09-21T19:52:56Z"},
+    {"id":"299666127","title":"Coinbase 因加密货币法规上涨","source_name":"MSN","time":"2026-09-21T16:34:56Z"}
+  ],
+  "dedupe_note": "The latest SEC crypto results were already represented in earlier collection manifests; no genuinely new SEC-crypto article was added in this run.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

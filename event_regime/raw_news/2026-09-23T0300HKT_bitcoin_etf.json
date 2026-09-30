@@ -1,0 +1,44 @@
+{
+  "first_seen_at_hkt": "2026-09-23T03:00:00+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "299796984",
+      "title": "Fundstrat称“加密寒冬已结束”：为何比特币、以太坊和Solana ETF此刻至关重要",
+      "excerpt": "000美元，周一美国现货比特币ETF净流入达9.989亿美元。贝",
+      "source_name": "benzinga_article",
+      "time": "2026-09-22T17:05:07Z",
+      "url": "https://longbridge.com/news/299796984.md"
+    },
+    {
+      "id": "299795264",
+      "title": "独家：“机构正在买入比特币”——散户则在交易其他一切",
+      "excerpt": "机构正将加密资产敞口集中在比特币ETF上，管理资产规模升至1020",
+      "source_name": "benzinga_article",
+      "time": "2026-09-22T16:27:47Z",
+      "url": "https://longbridge.com/news/299795264.md"
+    },
+    {
+      "id": "299793023",
+      "title": "每周ETF资金流向：11个板块中有8个录得资金流出；黄金领涨资金流入",
+      "excerpt": "比特币ETF（IBIT）却遭遇资金流出。SPY ETF也出现了226",
+      "source_name": "MSN",
+      "time": "2026-09-22T16:14:56Z",
+      "url": "https://longbridge.com/news/299793023.md"
+    },
+    {
+      "id": "299788015",
+      "title": "比特币ETF单日吸金近10亿美元，持有者重返盈利",
+      "excerpt": "9月21日，美国现货比特币ETF录得9.9895亿美元的创纪",
+      "source_name": "Crypto Briefing",
+      "time": "2026-09-22T15:13:32Z",
+      "url": "https://longbridge.com/news/299788015.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence. Article 299795264 also matched Bitcoin and is deduplicated in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

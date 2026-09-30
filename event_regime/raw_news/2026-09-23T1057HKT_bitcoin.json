@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-23T10:57:12+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299826672","title":"比特币和“精选山寨币”将上涨——Arthur Hayes 解释原因","excerpt":"BitMEX 联合创始人 Arthur Hayes 认为，潜在的人工智能债务危机可能对比特币构成利好。他指出，人工智能发展放缓可能会给科技公司的财务状况带来压力...","source_name":"Amb Crypto","time":"2026-09-23T01:04:56Z","url":"https://longbridge.com/news/299826672.md"},
+    {"id":"299823346","title":"比特币价格反弹使10万美元目标更具可能性","excerpt":"9月21日至22日，受美国现货ETF流入9.9895亿美元及6.48亿美元空头平仓的推动，比特币飙升至87,395美元。此次反弹使得年底达到10万美元的目标更具...","source_name":"Crypto Briefing","time":"2026-09-23T00:09:21Z","url":"https://longbridge.com/news/299823346.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

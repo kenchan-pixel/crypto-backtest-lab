@@ -1,0 +1,35 @@
+{
+  "first_seen_at_hkt": "2026-09-23T10:57:12+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-23T07:00:43+08:00",
+    "searched_queries": [
+      {"query":"Bitcoin","new_search_hits":2},
+      {"query":"Ethereum","new_search_hits":1},
+      {"query":"Bitcoin ETF","new_search_hits":1},
+      {"query":"SEC crypto","new_search_hits":2}
+    ],
+    "dedupe_result_unique_articles": 5,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source content identity",
+    "cross_query_duplicate_ids": ["299823346"],
+    "content_identity_duplicates_removed": [],
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable and never used for chronology; none of the 5 newly saved articles used a placeholder timestamp.",
+    "first_seen_policy": "2026-09-23T10:57:12+08:00 is a conservative observation timestamp for this collection. published_at is provider metadata and is never used to backdate first_seen_at_hkt.",
+    "detail_capture_note": "news_detail was retrieved successfully for all 5 unique articles. Stable id, title, description, URL, author/source and published_at were retained as provenance in the companion structured detail evidence file; full article bodies are not archived.",
+    "historical_news_completeness_claimed": false,
+    "trading_actions": "none"
+  },
+  "quality_notes": [],
+  "new_articles": [
+    {"id":"299830992","matched_queries":["SEC crypto"],"first_seen_at_hkt":"2026-09-23T10:57:12+08:00","published_at_utc":"2026-09-23T01:48:56Z","source":"MSN","timestamp_quality":"verified_detail"},
+    {"id":"299826672","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-23T10:57:12+08:00","published_at_utc":"2026-09-23T01:04:56Z","source":"Amb Crypto","timestamp_quality":"verified_detail"},
+    {"id":"299824416","matched_queries":["SEC crypto"],"first_seen_at_hkt":"2026-09-23T10:57:12+08:00","published_at_utc":"2026-09-23T00:30:56Z","source":"MSN","timestamp_quality":"verified_detail"},
+    {"id":"299823346","matched_queries":["Bitcoin","Bitcoin ETF"],"first_seen_at_hkt":"2026-09-23T10:57:12+08:00","published_at_utc":"2026-09-23T00:09:21Z","source":"Crypto Briefing","timestamp_quality":"verified_detail"},
+    {"id":"299820239","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-23T10:57:12+08:00","published_at_utc":"2026-09-22T23:11:36Z","source":"Amb Crypto","timestamp_quality":"verified_detail"}
+  ],
+  "detail_evidence_file": "event_regime/raw_news/2026-09-23T1057HKT_detail_raw.json"
+}

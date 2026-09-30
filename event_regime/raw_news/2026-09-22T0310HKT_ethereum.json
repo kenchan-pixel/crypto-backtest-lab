@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-22T03:10:00+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "historical_news_completeness_claimed": false,
+  "timestamp_policy": "Search timestamps are provider metadata; 1970/equivalent placeholders are unusable. first_seen_at_hkt is never backdated from published_at.",
+  "new_search_hits": [
+    {"id":"299668639","title":"以太坊：机密 USDT（cUSDT）上线，支持加密余额 -2026年9月21日","excerpt":"机密 USDT（cUSDT）是 Tether 稳定币的隐私版本，现已在以太坊上推出。","source_name":"CoinMarketCal","time":"2026-09-21T17:00:58Z","url":"https://longbridge.com/news/299668639.md"},
+    {"id":"299668645","title":"Nillion：加密契约在以太坊主网上线 -2026年9月28日","excerpt":"Nillion 在以太坊主网上推出了 Covenants。","source_name":"CoinMarketCal","time":"2026-09-21T17:00:14Z","url":"https://longbridge.com/news/299668645.md"},
+    {"id":"299661057","title":"BitMine Immersion Tech盘中急涨 现涨超5%","excerpt":"BMNR.US盘中涨5.46%至27.41美元。公司以太坊持仓达598万枚，接近5%供应目标。","source_name":"美股行情速递","time":"2026-09-21T15:36:51Z","url":"https://longbridge.com/news/299661057.md"},
+    {"id":"299658274","title":"比特币、以太坊和 XRP 价格飙升，因 4 亿美元的空头头寸被清算","excerpt":"比特币突破85,000美元触发空头挤压，美国现货比特币ETF资金回流；以太坊和XRP也上涨。","source_name":"benzinga_article","time":"2026-09-21T14:48:43Z","url":"https://longbridge.com/news/299658274.md","note":"Provider published_at predates the prior 23:00 HKT collection, but this stable ID was absent from the prior 23:00 detail manifest; first_seen remains current collection time, never backdated."}
+  ]
+}

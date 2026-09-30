@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-22T07:05:47+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "search_limit": 50,
+  "historical_news_completeness_claimed": false,
+  "timestamp_policy": "Search timestamps are provider metadata; 1970/equivalent placeholders are unusable. first_seen_at_hkt is never backdated from published_at.",
+  "new_search_hits": [
+    {"id":"299681978","title":"比特币重新站上 87,000 美元，因为空头头寸被清除","excerpt":"亿美元的 ETF 资金流入，推动价格超过了平均 ETF 成本基","source_name":"Crypto Briefing","time":"2026-09-21T20:41:41Z","url":"https://longbridge.com/news/299681978.md"},
+    {"id":"299681038","title":"3iQ 公司新增 Anchorage Digital 为其数字资产 ETF 的副托管人","excerpt":"Digital 已被添加为其数字资产 ETF（包括比特币和以太坊质押基金）的额外子保管人。这一举措扩展了与","source_name":"PR Newswire","time":"2026-09-21T20:30:00Z","url":"https://longbridge.com/news/299681038.md"},
+    {"id":"299677544","title":"比特币价格达到 86,000 美元，狗狗币领涨；以太坊和 XRP 的上涨推动清算金额接近 10 亿美元","excerpt":"美元的八个月高点，主要受到机构资金流入和现货 ETF 购买的推动。以太坊、XRP","source_name":"benzinga_article","time":"2026-09-21T19:07:54Z","url":"https://longbridge.com/news/299677544.md"}
+  ]
+}

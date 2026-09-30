@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-22T10:58:06+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299697341","title":"比特币（BTCUSD）在 9 月 22 日下跌 1.27%：原因分析","excerpt":"的解除。影响因素包括机构 ETF 资金流入的暂停、美国国债收","source_name":"TradingKey","time":"2026-09-22T01:11:09Z","url":"https://longbridge.com/news/299697341.md"},
+    {"id":"299691696","title":"Strive 新增 1,355 个比特币，公司财务储备总量达到 26,355 个 BTC","excerpt":"自己的资产负债表上，与第三方客户资产或 ETF 持有的比特币区分开来，使该公司成为活跃的上市公司比特币积累者之一","source_name":"NewsBTC","time":"2026-09-21T23:30:00Z","url":"https://longbridge.com/news/299691696.md"}
+  ],
+  "dedupe_note": "299697341 is a cross-query duplicate of the Bitcoin search and is counted once overall. 299691696 was absent from the prior 07:05 HKT detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

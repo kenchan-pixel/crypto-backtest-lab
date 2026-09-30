@@ -1,0 +1,47 @@
+{
+  "first_seen_at_hkt": "2026-09-24T07:06:08+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-24T03:05:39+08:00",
+    "searched_queries": [
+      {"query":"Bitcoin","new_search_hits":2},
+      {"query":"Ethereum","new_search_hits":2},
+      {"query":"Bitcoin ETF","new_search_hits":3},
+      {"query":"SEC crypto","new_search_hits":3}
+    ],
+    "new_stable_ids_before_secondary_dedupe": 10,
+    "dedupe_result_unique_articles": 9,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source/body content identity across current and prior evidence",
+    "cross_query_duplicate_ids": [],
+    "content_identity_duplicates_removed": [
+      {"id":"299937176","duplicate_of":"299795264","reason":"MSN item is a one-sentence syndication/condensation of the earlier Benzinga article: it repeats the same institutional Bitcoin-ETF versus retail meme/AI/tokenized-stock split, and its title matches the earlier article's '加密市场一分为二' section. Raw evidence is retained but it is not counted as a new logical article."}
+    ],
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable and never used for chronology; none of the 10 retrieved detail records used a placeholder timestamp.",
+    "first_seen_policy": "2026-09-24T07:06:08+08:00 is a conservative observation timestamp recorded after search/detail retrieval in this collection. published_at is provider metadata and is never used to backdate first_seen_at_hkt.",
+    "detail_capture_note": "news_detail was retrieved successfully for all 10 stable IDs surfaced as new search evidence before secondary content-identity deduplication. Stable id, title, description, URL, author/source and published_at are retained in the companion structured detail evidence file; full article bodies are not archived.",
+    "historical_news_completeness_claimed": false,
+    "trading_actions": "none"
+  },
+  "quality_notes": [
+    {"id":"299934938","type":"late_search_or_indexing_visibility","note":"Provider published_at is 2026-09-23T18:36:53Z (2026-09-24 02:36:53 HKT), earlier than the prior 03:05:39 HKT collection. It was not present in that collection's new-evidence snapshot; first_seen remains 07:06:08 HKT and is not backdated."},
+    {"id":"299935183","type":"late_search_or_indexing_visibility","note":"Provider published_at is 2026-09-23T18:47:28Z (2026-09-24 02:47:28 HKT), earlier than the prior 03:05:39 HKT collection. It was not present in that collection's new-evidence snapshot; first_seen remains 07:06:08 HKT and is not backdated."},
+    {"id":"299934065","type":"late_search_or_indexing_visibility","note":"Provider published_at is 2026-09-23T18:54:56Z (2026-09-24 02:54:56 HKT), earlier than the prior 03:05:39 HKT collection. It was not present in that collection's new-evidence snapshot; first_seen remains 07:06:08 HKT and is not backdated."},
+    {"id":"299937176","type":"content_identity_duplicate_syndication","note":"MSN item is a condensed syndication of prior Benzinga 299795264. Raw search/detail evidence is retained, but the stable ID is excluded from the logical new-article count."}
+  ],
+  "new_articles": [
+    {"id":"299939790","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-24T07:06:08+08:00","published_at_utc":"2026-09-23T20:20:56Z","source":"MSN","timestamp_quality":"verified_detail"},
+    {"id":"299934938","matched_queries":["Bitcoin"],"first_seen_at_hkt":"2026-09-24T07:06:08+08:00","published_at_utc":"2026-09-23T18:36:53Z","source":"Benzinga","timestamp_quality":"verified_detail_late_seen"},
+    {"id":"299940943","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-24T07:06:08+08:00","published_at_utc":"2026-09-23T20:31:22Z","source":"Seeking Alpha","timestamp_quality":"verified_detail"},
+    {"id":"299935183","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-24T07:06:08+08:00","published_at_utc":"2026-09-23T18:47:28Z","source":"Benzinga","timestamp_quality":"verified_detail_late_seen"},
+    {"id":"299950021","matched_queries":["Bitcoin ETF"],"first_seen_at_hkt":"2026-09-24T07:06:08+08:00","published_at_utc":"2026-09-23T22:39:02Z","source":"Investinglive","timestamp_quality":"verified_detail"},
+    {"id":"299946649","matched_queries":["Bitcoin ETF"],"first_seen_at_hkt":"2026-09-24T07:06:08+08:00","published_at_utc":"2026-09-23T21:40:56Z","source":"MSN","timestamp_quality":"verified_detail"},
+    {"id":"299948768","matched_queries":["SEC crypto"],"first_seen_at_hkt":"2026-09-24T07:06:08+08:00","published_at_utc":"2026-09-23T21:57:13Z","source":"Unusual Whales","timestamp_quality":"verified_detail"},
+    {"id":"299947276","matched_queries":["SEC crypto"],"first_seen_at_hkt":"2026-09-24T07:06:08+08:00","published_at_utc":"2026-09-23T21:47:52Z","source":"Cointelegraph","timestamp_quality":"verified_detail"},
+    {"id":"299934065","matched_queries":["SEC crypto"],"first_seen_at_hkt":"2026-09-24T07:06:08+08:00","published_at_utc":"2026-09-23T18:54:56Z","source":"金色财经","timestamp_quality":"verified_detail_late_seen"}
+  ],
+  "detail_evidence_file": "event_regime/raw_news/2026-09-24T0706HKT_detail_raw.json"
+}

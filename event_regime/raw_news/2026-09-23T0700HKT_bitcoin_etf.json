@@ -1,0 +1,28 @@
+{
+  "first_seen_at_hkt": "2026-09-23T07:00:43+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "299812042",
+      "title": "今日比特币价格：在9.99亿美元比特币ETF资金流入抵消美联储加息和《CLARITY法案》失败的影响后，BTC/USD如何触及86,000美元？",
+      "excerpt": "此次上涨得益于美国比特币ETF获得9.99亿美元的资金流入",
+      "source_name": "economictimes",
+      "time": "2026-09-22T20:51:56Z",
+      "url": "https://longbridge.com/news/299812042.md"
+    },
+    {
+      "id": "299806834",
+      "title": "比特币、以太坊持平，XRP、狗狗币因10亿美元ETF资金流入上涨：“真实资本正在回归”",
+      "excerpt": "随着美国现货比特币ETF吸引近10亿美元净流入，彰显机构需求复苏，比特币坚守86,000美元上方。以太坊也录得显著资金流入",
+      "source_name": "benzinga_article",
+      "time": "2026-09-22T19:27:25Z",
+      "url": "https://longbridge.com/news/299806834.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

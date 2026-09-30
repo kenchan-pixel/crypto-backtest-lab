@@ -1,0 +1,117 @@
+{
+  "first_seen_hkt": "2026-09-21T11:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T11:00:00+08:00",
+  "query": "__detail_manifest__",
+  "raw": {"text": "[]"},
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-21T07:00:00+08:00",
+    "searched_queries": [
+      {"query": "Bitcoin", "new_unique_articles": 1},
+      {"query": "Ethereum", "new_unique_articles": 3},
+      {"query": "Bitcoin ETF", "new_unique_articles": 0},
+      {"query": "SEC crypto", "new_unique_articles": 0}
+    ],
+    "dedupe_result_unique_articles": 4,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source SHA256",
+    "content_identity_sha256_algorithm": "sha256(casefold(collapse_whitespace(title)) + '\n' + casefold(collapse_whitespace(description)) + '\n' + casefold(collapse_whitespace(source)))",
+    "search_timestamp_policy": "Longbridge search time=1970-01-01T00:00:00Z treated as invalid placeholder and never used for chronology",
+    "first_seen_policy": "conservative forward-rounding to 2026-09-21T11:00:00+08:00; never backdated",
+    "detail_fields_preserved": ["id", "title", "description", "url", "author.member_id", "author.name", "published_at"],
+    "note": "All four articles have valid provider detail published_at timestamps after the prior 07:00 HKT collection boundary, so they are genuinely new to this forward collection. Bitcoin ETF and SEC crypto were searched and yielded no genuinely new IDs. Article 299571418 contains a detail-body clock reference of 9月21日20:15 Eastern that is inconsistent with the provider published_at and this collection time; the anomaly is recorded, but chronology uses only first_seen_at_hkt and the provider published_at field. No claim of historical news completeness."
+  },
+  "new_articles": [
+    {
+      "id": "299579724",
+      "dedupe_key": "longbridge-news-id:299579724",
+      "content_identity_sha256": "8e5db27ad13518422af951f10e03d584791f5978ae4fb634d9b79ebd1bfb3cda",
+      "matched_queries": ["Bitcoin"],
+      "first_seen_at_hkt": "2026-09-21T11:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T01:52:07Z",
+      "timestamp_quality": "verified_detail",
+      "source": "CoinLive",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299579724",
+        "title": "比特币（BTC）跌破 81,000 USDT，24 小时内下跌 0.08%",
+        "description": "根据币安市场数据，截至 2026 年 9 月 21 日 01:52（UTC），比特币已跌破 81,000 USDT，目前交易价格为 80,998.710938 USDT，24 小时内下降幅度缩小至 0.08%",
+        "url": "https://longbridge.com/news/299579724",
+        "author": {"member_id": "5999", "name": "CoinLive"},
+        "published_at": "2026-09-21T01:52:07Z"
+      }
+    },
+    {
+      "id": "299578742",
+      "dedupe_key": "longbridge-news-id:299578742",
+      "content_identity_sha256": "e7e9b19095d4d0252467a1a6d3744473187688fe43c5c0be99916f2051c83f02",
+      "matched_queries": ["Ethereum"],
+      "first_seen_at_hkt": "2026-09-21T11:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T01:34:10Z",
+      "timestamp_quality": "verified_detail",
+      "source": "CoinLive",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299578742",
+        "title": "AI 趋势 | 以太坊基金会的 AMA 揭示了抗量子计算的迁移路线图",
+        "description": "以太坊基金会在一次问答中表示，它已经制定了量子抗性迁移的路线图，目标是在 2029 年前使 Layer 1 具备量子抗性。根据 PANews 的报道，基金会还表示，零知识证明和账户抽象正在推动以太坊的扩展和隐私工作",
+        "url": "https://longbridge.com/news/299578742",
+        "author": {"member_id": "5999", "name": "CoinLive"},
+        "published_at": "2026-09-21T01:34:10Z"
+      }
+    },
+    {
+      "id": "299574187",
+      "dedupe_key": "longbridge-news-id:299574187",
+      "content_identity_sha256": "2d57544bca3eb64fbb024a1afd8eb478dc548cced5f8b1c609ba69436b4720f0",
+      "matched_queries": ["Ethereum"],
+      "first_seen_at_hkt": "2026-09-21T11:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T00:47:07Z",
+      "timestamp_quality": "verified_detail",
+      "source": "CoinLive",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299574187",
+        "title": "以太坊（ETH）在 24 小时内上涨 2.83%，价格突破 2700 USDT",
+        "description": "根据币安市场数据，截至 2026 年 9 月 21 日 00:47（UTC），以太坊已突破 2,700 USDT 的基准，目前交易价格为 2,702.120117 USDT，24 小时内上涨幅度缩小至 2.83%",
+        "url": "https://longbridge.com/news/299574187",
+        "author": {"member_id": "5999", "name": "CoinLive"},
+        "published_at": "2026-09-21T00:47:07Z"
+      }
+    },
+    {
+      "id": "299571418",
+      "dedupe_key": "longbridge-news-id:299571418",
+      "content_identity_sha256": "7c6c07274ddacba6a6ae6b6dcb7081a894a0a70bb7f27b4f9f4a94d93b9b8678",
+      "matched_queries": ["Ethereum"],
+      "first_seen_at_hkt": "2026-09-21T11:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T00:17:09Z",
+      "timestamp_quality": "verified_detail_provider_metadata_with_body_clock_inconsistency",
+      "source": "TradingKey",
+      "detail_body_time_reference": "9 月 21 日 20:15（东部时间）",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299571418",
+        "title": "以太坊（ETHUSD）在 9 月 21 日上涨 1.70%：链上数据和市场情绪揭示了什么？",
+        "description": "以太坊在 9 月 21 日上涨 1.70%，达到$2,676.81，主要受到重新流入现货 ETF 和由于低交易所余额和高质押率导致的结构性供应紧缩的推动。技术指标显示出混合信号，MACD 发出买入信号，但 Williams %R 则显示超买。风险包括在$2.63K-$2.70K 的阻力位、如果支撑位被突破可能出现的清算、监管延迟以及宏观波动",
+        "url": "https://longbridge.com/news/299571418",
+        "author": {"member_id": "6041", "name": "TradingKey"},
+        "published_at": "2026-09-21T00:17:09Z"
+      }
+    }
+  ]
+}

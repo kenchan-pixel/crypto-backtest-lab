@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-24T15:01:33+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299982587","title":"比特币日内下跌3%，勉强守住84,000美元关口：跌势会持续吗？","excerpt":"比特币日内下跌3%，短暂跌破84,000美元至低点83,777美元后反弹。此次回调受美国强劲采购经理人指数（PMI）数据驱动，引发市场对美联储推迟降息的担忧，从...","source_name":"TradingKey","time":"2026-09-24T06:13:09Z","url":"https://longbridge.com/news/299982587.md"},
+    {"id":"299971588","title":"Circle National Trust 通过托管服务增强比特币可编程性","excerpt":"Circle National Trust 通过托管服务增强比特币可编程性","source_name":"Crypto Briefing","time":"2026-09-24T03:39:11Z","url":"https://longbridge.com/news/299971588.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

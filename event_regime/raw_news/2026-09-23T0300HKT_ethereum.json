@@ -1,0 +1,20 @@
+{
+  "first_seen_at_hkt": "2026-09-23T03:00:00+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "299795644",
+      "title": "Zcash 在美国 ETF 之后推出首款欧盟 ETP；21shares 在泛欧交易所巴黎及阿姆斯特丹分部上市 ZEC 和 ETHFI",
+      "excerpt": "21shares 已在泛欧交易所巴黎和阿姆斯特丹分部推出了实物支持的 Zcash (ZEC) 和以太坊 (ETH) 金融工具 (FI)。此举标志着发行商将其产品范围扩展至主流加密货币之外",
+      "source_name": "Unusual Whales",
+      "time": "2026-09-22T16:29:22Z",
+      "url": "https://longbridge.com/news/299795644.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

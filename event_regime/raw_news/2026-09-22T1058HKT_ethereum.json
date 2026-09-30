@@ -1,0 +1,13 @@
+{
+  "first_seen_at_hkt": "2026-09-22T10:58:06+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299697120","title":"以太坊（ETHUSD）在 9 月 22 日下跌 1.53%：有哪些风险因素？","excerpt":"以太坊（ETHUSD）在 9 月 22 日下跌 1.53%，至$2,739.37，原因是经过一轮反弹后出现获利了结、高杠杆平仓，以及现货 ETF 流出超过 1....","source_name":"TradingKey","time":"2026-09-22T01:07:09Z","url":"https://longbridge.com/news/299697120.md"}
+  ],
+  "dedupe_note": "ID 299697120 was absent from the prior 2026-09-22T07:05:47+08:00 detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

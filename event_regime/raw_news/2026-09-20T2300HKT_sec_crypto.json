@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-20T23:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-20T23:00:00+08:00",
+  "query": "SEC crypto",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit": 30,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across prior raw_news snapshots; content identity checked for same-id duplicates",
+    "note": "raw.text contains only genuinely newly seen search hits for this query from this collection run; field values are preserved from the search result."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299559716\",\"title\":\"加密货币监管的推动因行业内部斗争削弱了支持而告终\",\"excerpt\":\"折，但在有关代币化股票的 SEC 消息后，Coinbase 的股价反弹\",\"source_name\":\"businessinsider\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299559716.md\"},{\"id\":\"299543364\",\"title\":\"彼得·希夫表示，尽管比特币正在上涨，但 SEC 关于代币化股票的公告对比特币来说是利空的\",\"excerpt\":\"比特币批评者彼得·希夫认为，证券交易委员会（SEC）对代币化股票交易的新豁免对比特币是看空的，而不是看涨的。他认为，提供股息和投票权的代币化股票，结合全天候交易...\",\"source_name\":\"Crypto Briefing\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299543364.md\"}]"
+  }
+}

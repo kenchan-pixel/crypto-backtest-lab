@@ -1,0 +1,45 @@
+{
+  "first_seen_at_hkt": "2026-09-23T15:00:27+08:00",
+  "query": "__detail_manifest__",
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-23T10:57:12+08:00",
+    "searched_queries": [
+      {"query":"Bitcoin","new_search_hits":1},
+      {"query":"Ethereum","new_search_hits":1},
+      {"query":"Bitcoin ETF","new_search_hits":2},
+      {"query":"SEC crypto","new_search_hits":1}
+    ],
+    "dedupe_result_unique_articles": 4,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source content identity",
+    "cross_query_duplicate_ids": ["299844504"],
+    "content_identity_duplicates_removed": [],
+    "invalid_placeholder_timestamp_policy": "1970 or equivalent placeholder timestamps are unusable and never used for chronology; none of the 4 newly saved articles used a placeholder timestamp.",
+    "first_seen_policy": "2026-09-23T15:00:27+08:00 is a conservative observation timestamp taken after retrieval in this collection. published_at is provider metadata and is never used to backdate first_seen_at_hkt.",
+    "detail_capture_note": "news_detail was retrieved successfully for all 4 unique articles. Stable id, title, description, URL, author/source and published_at were retained as provenance in the companion structured detail evidence file; full article bodies are not archived.",
+    "historical_news_completeness_claimed": false,
+    "trading_actions": "none"
+  },
+  "quality_notes": [
+    {
+      "id": "299823564",
+      "type": "late_search_or_indexing_visibility",
+      "note": "Provider published_at is 2026-09-23T00:08:49Z (2026-09-23 08:08:49 HKT), earlier than the prior 10:57:12 HKT collection, but the article was absent from that prior detail manifest. It is treated as newly seen at 15:00:27 HKT and first_seen is not backdated."
+    },
+    {
+      "id": "299820218",
+      "type": "late_search_or_indexing_visibility",
+      "note": "Provider published_at is 2026-09-22T23:10:56Z (2026-09-23 07:10:56 HKT), earlier than the prior 10:57:12 HKT collection, but the article was absent from that prior detail manifest. It is treated as newly seen at 15:00:27 HKT and first_seen is not backdated."
+    }
+  ],
+  "new_articles": [
+    {"id":"299844504","matched_queries":["Bitcoin","Bitcoin ETF"],"first_seen_at_hkt":"2026-09-23T15:00:27+08:00","published_at_utc":"2026-09-23T04:40:25Z","source":"Investinglive","timestamp_quality":"verified_detail"},
+    {"id":"299840540","matched_queries":["Ethereum"],"first_seen_at_hkt":"2026-09-23T15:00:27+08:00","published_at_utc":"2026-09-23T03:49:09Z","source":"TradingKey","timestamp_quality":"verified_detail"},
+    {"id":"299823564","matched_queries":["SEC crypto"],"first_seen_at_hkt":"2026-09-23T15:00:27+08:00","published_at_utc":"2026-09-23T00:08:49Z","source":"智通财经","timestamp_quality":"verified_detail_late_seen"},
+    {"id":"299820218","matched_queries":["Bitcoin ETF"],"first_seen_at_hkt":"2026-09-23T15:00:27+08:00","published_at_utc":"2026-09-22T23:10:56Z","source":"MSN","timestamp_quality":"verified_detail_late_seen"}
+  ],
+  "detail_evidence_file": "event_regime/raw_news/2026-09-23T1500HKT_detail_raw.json"
+}

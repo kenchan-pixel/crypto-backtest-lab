@@ -1,0 +1,17 @@
+{
+  "first_seen_at_hkt": "2026-09-22T23:00:00+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299765633","title":"在十亿美元ETF资金流入后，比特币突破走势令10.8万美元关口近在眼前","excerpt":"昨日加密货币价格飙升，美国现货比特币ETF的表现同样令人瞩目，周一净流","source_name":"ZeroHedge","time":"2026-09-22T12:19:57Z","url":"https://longbridge.com/news/299765633.md"},
+    {"id":"299765505","title":"关键事实：BTCUSD ETF 流入资金近 10 亿美元；期货未平仓合约达 1600 亿美元","excerpt":"000 美元，受美国现货 ETF 创纪录的流入资金（近 10","source_name":"TradingView","time":"2026-09-22T12:15:15Z","url":"https://longbridge.com/news/299765505.md"},
+    {"id":"299763571","title":"比特币ETF单日净流入9.99亿美元，创2025年10月以来最佳表现：究竟发生了什么？","excerpt":"美国现货比特币ETF录得9.99亿美元的净流入，为11个月来的最大规模，推动比特币价格突破87","source_name":"benzinga_article","time":"2026-09-22T12:03:44Z","url":"https://longbridge.com/news/299763571.md"},
+    {"id":"299761196","title":"ETF资金流入提振加密货币，比特币突破8.7万美元","excerpt":"360美元。美国比特币现货ETF净流入跃升至9.99亿美元，而以太坊ETF净流入增至2","source_name":"rttnews","time":"2026-09-22T11:51:47Z","url":"https://longbridge.com/news/299761196.md"},
+    {"id":"299759005","title":"比特币迎来史上第二佳第三季度：BTC ETF 投资者在亏损8个月后重获盈利","excerpt":"美国现货比特币 ETF 投资者已重返盈利状态，标志着在经历八","source_name":"Amb Crypto","time":"2026-09-22T11:34:56Z","url":"https://longbridge.com/news/299759005.md"}
+  ],
+  "dedupe_note": "These stable Longbridge article IDs were absent from the immediately prior 2026-09-22T19:00:00+08:00 detail manifest. Cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

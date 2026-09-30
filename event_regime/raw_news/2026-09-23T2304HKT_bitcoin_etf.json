@@ -1,0 +1,16 @@
+{
+  "first_seen_at_hkt": "2026-09-23T23:04:16+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299912244","title":"独家：比特币ETF资金流入重现，但在断言牛市到来前需关注这一信号","excerpt":"XYO联合创始人Markus Levin指出，比特币ETF资金流入的广度，而非10亿美","source_name":"Benzinga","time":"2026-09-23T14:11:38Z","url":"https://longbridge.com/news/299912244.md"},
+    {"id":"299901952","title":"比特币跌破86,000美元，但在中东和平希望支撑下仍持于一月高位——第二次更新","excerpt":"528美元，但在中东和平希望以及比特币ETF净流入10亿美元的支撑下，仍","source_name":"MorningStar","time":"2026-09-23T13:09:05Z","url":"https://longbridge.com/news/299901952.md"},
+    {"id":"299892593","title":"2x Bitcoin Strategy ETF 宣布每月派发 0.0212 美元","excerpt":"要点：2x Bitcoin Strategy ETF - 0.0212","source_name":"Seeking Alpha","time":"2026-09-23T12:00:32Z","url":"https://longbridge.com/news/299892593.md"},
+    {"id":"299904973","title":"分析师称，本轮周期比特币可能带来“3-5倍而非另一个10倍”的回报","excerpt":"的先例相似，但分析师指出，ETF等结构性变化和宏观逆风使得重演不太可能","source_name":"Benzinga","time":"2026-09-23T13:29:11Z","url":"https://longbridge.com/news/299904973.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

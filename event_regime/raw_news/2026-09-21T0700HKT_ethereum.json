@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-21T07:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T07:00:00+08:00",
+  "query": "Ethereum",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit_requested": 20,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across prior event_regime/raw_news snapshots; normalized title + description + source content identity as secondary check",
+    "note": "raw.text contains only genuinely newly seen search hits from this collection. Search timestamps from Longbridge were invalid 1970 placeholders. first_seen_at_hkt is conservatively rounded forward to 07:00 HKT and is never backdated."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299565424\",\"title\":\"以太坊国库股票 SharpLink 和 BitMine 关注进一步上涨，因为 ETH 目标反弹至 3,000 美元\",\"excerpt\":\"以太坊的财政股票 SharpLink 和 BitMine Immersion 正在上涨，因为以太坊目标反弹至 3,000 美元。BitMine (BMNR) 暴...\",\"source_name\":\"benzinga_article\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299565424.md\"}]"
+  }
+}

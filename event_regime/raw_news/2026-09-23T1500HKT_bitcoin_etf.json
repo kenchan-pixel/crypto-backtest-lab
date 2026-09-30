@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-23T15:00:27+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299844504","title":"比特币多头再获ETF资金流入助力","excerpt":"9月21日，美国现货比特币ETF迎来近10亿美元的资金流入，","source_name":"Investinglive","time":"2026-09-23T04:40:25Z","url":"https://longbridge.com/news/299844504.md"},
+    {"id":"299820218","title":"在《CLARITY 法案》搁浅且美联储加息一周后，比特币突破 85,000 美元。它能涨到多高？","excerpt":"资金流入，美国现货比特币 ETF 录得单日 9.99 亿美元","source_name":"MSN","time":"2026-09-22T23:10:56Z","url":"https://longbridge.com/news/299820218.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query duplicates are reconciled in the detail manifest. Article 299820218 is newly visible despite a provider publication timestamp before the prior collection; first_seen is not backdated.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

@@ -1,0 +1,41 @@
+{
+  "first_seen_at_hkt": "2026-09-23T15:00:27+08:00",
+  "provider": "Longbridge",
+  "tool": "news_detail",
+  "capture_mode": "structured_detail_fields",
+  "note": "Provider-returned stable id, title, description, URL, author/source and published_at are preserved as retrieved. Full article bodies are not archived here; no chronology is inferred from published_at.",
+  "articles": [
+    {
+      "id": "299844504",
+      "title": "比特币多头再获ETF资金流入助力",
+      "description": "9 月 21 日，美国现货比特币 ETF 迎来近 10 亿美元的资金流入，加上 Strategy 公司重启企业购买计划，为比特币多头注入强劲动力，这表明投资者参与范围已超越单纯的空头回补。此外，加拿大各大银行正在测试代币化存款系统，尽管尚未确定具体时间表，但这表明机构基础设施的建设仍在持续推进",
+      "url": "https://longbridge.com/news/299844504",
+      "author": {"member_id":"6060","name":"Investinglive"},
+      "published_at": "2026-09-23T04:40:25Z"
+    },
+    {
+      "id": "299840540",
+      "title": "以太坊 (ETHUSD) 9月23日上涨1.15%：需关注的关键驱动因素",
+      "description": "受机构 ETF 资金流入和巨鲸积累推动，以太坊在 9 月 23 日上涨 1.15% 至 2,780.62 美元。然而，2,800 美元的阻力位引发了获利了结。风险包括近期的 ETF 资金流出、集中在易被清算的杠杆多头头寸，以及因《CLARITY 法案》未能通过而带来的监管不确定性。技术指标显示信号不一，RSI 表明市场处于超买状态",
+      "url": "https://longbridge.com/news/299840540",
+      "author": {"member_id":"6041","name":"TradingKey"},
+      "published_at": "2026-09-23T03:49:09Z"
+    },
+    {
+      "id": "299823564",
+      "title": "美国加密监管争相填补真空：《清晰法案》参院搁浅，SEC、CFTC 火速补位",
+      "description": "《清晰法案》在参议院搁浅后，美国 SEC 与 CFTC 加速填补加密监管真空。SEC 发布命令为代币化股票交易创建临时通道，CFTC 向白宫提交加密规则提案。行业领袖呼吁监管机构提供确定性以推动传统金融融入，联邦机构正积极行动制定面向未来的监管框架。",
+      "url": "https://longbridge.com/news/299823564",
+      "author": {"member_id":"5466","name":"智通财经"},
+      "published_at": "2026-09-23T00:08:49Z"
+    },
+    {
+      "id": "299820218",
+      "title": "在《CLARITY 法案》搁浅且美联储加息一周后，比特币突破 85,000 美元。它能涨到多高？",
+      "description": "比特币飙升突破 85,000 美元，无视参议院对《CLARITY 法案》的反对票以及联邦储备系统的加息举措。该加密货币近一年来首次收于其 50 周移动平均线上方，达到 86,291 美元。分析师将此次反弹归因于预期事件和强劲的机构资金流入，美国现货比特币 ETF 录得单日 9.99 亿美元的资金净流入。专家预测将进一步上涨，随着关键阻力位被突破，目标价位指向 95,000 至 100,000 美元区间",
+      "url": "https://longbridge.com/news/299820218",
+      "author": {"member_id":"5922","name":"MSN"},
+      "published_at": "2026-09-22T23:10:56Z"
+    }
+  ]
+}

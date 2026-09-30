@@ -1,0 +1,24 @@
+{
+  "first_seen_at_hkt": "2026-09-21T23:00:00+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "raw_new_hits": [
+    {"id":"299657145","title":"Bitmine 购买了 27,562 个 ETH，Tom Lee 表示加密货币的牛市已经开始","excerpt":"Bitmine Immersion Technologies 购买了 27,562 个以太坊，使其持有量达到 598,000 个以太坊，几乎达到了其 5% 的供...","source_name":"benzinga_article","time":"2026-09-21T14:33:08Z","url":"https://longbridge.com/news/299657145.md"},
+    {"id":"299653535","title":"在比特币主导的空头挤压导致 7 亿美元被抹去后，以太坊上涨 6%，达到 2,719 美元","excerpt":"以太坊在 9 月 21 日上涨了 6%，达到了$2,719，突破了一个关键的斐波那契阻力位。这一反弹是由于比特币上涨至$85,000，导致了一场大规模的空头挤压...","source_name":"Crypto Briefing","time":"2026-09-21T14:05:00Z","url":"https://longbridge.com/news/299653535.md"},
+    {"id":"299652047","title":"Kyle Samani 预测 SOL 将在本周期内的市值超过 ETH；他表示目前没有人真正使用以太坊","excerpt":"Multicoin Capital 的联合创始人 Samani 预测，在本轮市场周期中，SOL 的市值将超过以太坊（Ether）。他表示，目前以太坊的使用并不广...","source_name":"Unusual Whales","time":"2026-09-21T13:38:16Z","url":"https://longbridge.com/news/299652047.md"},
+    {"id":"299649862","title":"BitMine Immersion Tech盘中急涨 现涨超6%","excerpt":"BitMine Immersion Tech(BMNR.US)盘中急涨，现报27.58美元，涨幅6.12%。公司披露以太坊持仓近600万枚，总资产达171亿美元...","source_name":"美股行情速递","time":"2026-09-21T13:36:40Z","url":"https://longbridge.com/news/299649862.md"},
+    {"id":"299648358","title":"BitMine 强调以太坊库存和质押的增长创下纪录","excerpt":"BitMine Immersion Technologies 报告称其加密货币库藏达到了 171 亿美元，主要由近 600 万个以太坊（占供应量的 4.9%）支...","source_name":"Tip Ranks","time":"2026-09-21T13:19:18Z","url":"https://longbridge.com/news/299648358.md"},
+    {"id":"299639055","title":"以太坊的下一步走势：如果多头能够坚守，目标价位为 2,760 美元；如果无法坚守，目标价位为 2,600 美元","excerpt":"以太坊（ETH）最近突破了 2700 美元，主要受到鲸鱼积累和空头平仓的推动。一只主要钱包购买了 7567 个 ETH，价值 1990 万美元，显示出强劲的现货...","source_name":"Amb Crypto","time":"2026-09-21T12:04:56Z","url":"https://longbridge.com/news/299639055.md"},
+    {"id":"299635062","title":"Kevin O'Leary 确信以太坊不会成为各行业的 “标准”——这位 “鲨鱼” 表示这些加密货币可能会受到关注","excerpt":"投资者凯文·奥利里对以太坊能否成为行业标准表示怀疑，原因是其交易速度较慢，并指出索拉纳和雪崩是更有前景的替代方案。他强调了这些平台更快的处理能力以及雪崩的多链子...","source_name":"benzinga_article","time":"2026-09-21T11:11:03Z","url":"https://longbridge.com/news/299635062.md"},
+    {"id":"299632290","title":"以太坊的第二层代币在一天内最高上涨了 26%。为什么以太坊本身仅上涨了 7%","excerpt":"在2026年9月18日，以太坊上涨了 6.8%，而第二层代币 Arbitrum (ARB) 和 Starknet (STRK) 分别飙升了 17% 和 18%。...","source_name":"MSN","time":"2026-09-21T11:10:56Z","url":"https://longbridge.com/news/299632290.md"}
+  ],
+  "provenance": {
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-21T19:01:00+08:00",
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description/excerpt + source identity",
+    "timestamp_policy": "provider timestamps are evidence only; first_seen_at_hkt is conservative and never backdated",
+    "historical_completeness_claimed": false
+  }
+}

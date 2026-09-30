@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-23T10:57:12+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299830992","title":"MSTR 股价隔夜上涨：分析师认为较当前水平有 16.5% 的上涨空间","excerpt":"B. Riley 将 Strategy (MSTR) 的目标价从 175 美元上调至 195 美元，维持“买入”评级，上行空间约为 16.5%。该公司指出，加密...","source_name":"MSN","time":"2026-09-23T01:48:56Z","url":"https://longbridge.com/news/299830992.md"},
+    {"id":"299824416","title":"加密货币市场突破3万亿美元。是什么推动了这一里程碑，又是什么能使其保持在这一水平？","excerpt":"在美国国债回购引导投资者资金、美国证券交易委员会批准区块链上的代币化股票以及9.2亿美元的强制空头平仓的推动下，加密货币市场自1月以来首次突破3万亿美元大关。尽...","source_name":"MSN","time":"2026-09-23T00:30:56Z","url":"https://longbridge.com/news/299824416.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

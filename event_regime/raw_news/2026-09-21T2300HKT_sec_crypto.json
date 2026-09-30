@@ -1,0 +1,20 @@
+{
+  "first_seen_at_hkt": "2026-09-21T23:00:00+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "raw_new_hits": [
+    {"id":"299649580","title":"Circle盘中急涨 现涨近8% 受比特币突破85000美元带动加密货币概念股走强","excerpt":"Circle(CRCL.US)盘中涨近8%，现报99.06美元。比特币突破85000美元带动加密货币概念股集体走强。","source_name":"美股行情速递","time":"2026-09-21T13:33:58Z","url":"https://longbridge.com/news/299649580.md"},
+    {"id":"299648684","title":"Robinhood 股票上涨 5%，因为比特币的反弹与 SEC 规则的变更相一致","excerpt":"美元以及美国证券交易委员会（SEC）推出的新 “创新豁免”，允","source_name":"benzinga_article","time":"2026-09-21T13:12:14Z","url":"https://longbridge.com/news/299648684.md"},
+    {"id":"299647359","title":"由于比特币突破 85,000 美元，Coinbase 的股票在周一有所上涨","excerpt":"情绪的推动，CFTC 和 SEC 联合提出建立加密监管框架的提案，使","source_name":"benzinga_article","time":"2026-09-21T13:08:35Z","url":"https://longbridge.com/news/299647359.md"},
+    {"id":"299631934","title":"由于积极的监管进展和 ETF 资金流入，Solana 的表现优于大市值加密货币","excerpt":"10% 至 13%。推动因素是 SEC 的代币化框架和 CFTC","source_name":"Investinglive","time":"2026-09-21T11:05:29Z","url":"https://longbridge.com/news/299631934.md"}
+  ],
+  "provenance": {
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-21T19:01:00+08:00",
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description/excerpt + source identity",
+    "timestamp_policy": "provider timestamps are evidence only; first_seen_at_hkt is conservative and never backdated",
+    "historical_completeness_claimed": false
+  }
+}

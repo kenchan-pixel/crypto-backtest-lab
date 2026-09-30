@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-21T03:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T03:00:00+08:00",
+  "query": "Bitcoin ETF",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit_requested": 20,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across all prior event_regime/raw_news snapshots; content identity secondary check",
+    "note": "raw.text contains only genuinely newly seen search hits from this run; field values are preserved from Longbridge search output. first_seen_at_hkt is conservatively rounded forward to 03:00 HKT and is never backdated."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299564564\",\"title\":\"随着 ETF 资金流入激增，比特币价格稳定在 80,000 美元以上，并形成了看涨的趋势\",\"excerpt\":\"比特币在 ETF 资金涌入和看涨技术形态的推动下稳定在 80\",\"source_name\":\"benzinga_article\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299564564.md\"},{\"id\":\"299561265\",\"title\":\"Solana 的十月布局：创纪录的活动、ETF 资金流入和潜在的突破\",\"excerpt\":\"4756.2 万美元的现货 ETF 流入得以体现。网络活动在八月份创下\",\"source_name\":\"Amb Crypto\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299561265.md\"}]"
+  }
+}

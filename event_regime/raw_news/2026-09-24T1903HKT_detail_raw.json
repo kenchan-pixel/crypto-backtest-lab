@@ -1,0 +1,22 @@
+{
+  "first_seen_at_hkt": "2026-09-24T19:03:36+08:00",
+  "provider": "Longbridge",
+  "tool": "news_detail",
+  "capture_mode": "structured_detail_fields",
+  "note": "Provider-returned stable id, title, description, URL, author/source and published_at are preserved as retrieved. Search source_name is also retained where useful for provenance. Full article bodies are not archived here; no chronology is inferred from published_at.",
+  "articles": [
+    {"id":"300016655","title":"特朗普买入 Strategy 股票并出售比特币矿企股份","description":"联邦文件显示，特朗普总统的账户于 2026 年 7 月 27 日购买了价值高达 10 万美元的 Strategy (MSTR) 股票，并于两天后出售了比特币矿企 MARA Holdings 和 CleanSpark 的股份。政府道德办公室在 7 月份披露的 1,156 笔交易中公布了这些交易。尽管白宫将这些交易归因于第三方指数跟踪模型，但此举信号表明对比特币的情绪复杂：一方面支持主要持仓者，另一方面剥离面临运营成本上升压力的矿工股","url":"https://longbridge.com/news/300016655","author":{"member_id":"600038","name":"唐纳德·特朗普"},"search_source_name":"MSN","published_at":"2026-09-24T10:44:56Z"},
+    {"id":"300010186","title":"比特币与上升的债券收益率呈现近乎零相关性，与黄金走势显著分化","description":"截至 2026 年 9 月，比特币与美国国债收益率上升的相关性接近于零（-0.17），这与黄金较强的负相关性（-0.41）形成对比。尽管债券收益率超过 5% 且联邦债务突破 40 万亿美元，比特币仍在 63,000 美元至 86,000 美元之间保持韧性。这种脱钩表明比特币正在摆脱对利率的敏感性，可能为持有黄金的投资组合提供分散化收益，尽管相关性仍不稳定","url":"https://longbridge.com/news/300010186","author":{"member_id":"5998","name":"Crypto Briefing"},"search_source_name":"Crypto Briefing","published_at":"2026-09-24T09:53:29Z"},
+    {"id":"300009542","title":"比特币从近期8.7万美元高点回落至8.4万美元以下，比特币ETF新增资金3.47亿美元。美国ETF流入放缓，五日累计达26.5亿美元","description":"在美国，随着比特币价格跌破 8.4 万美元，现货比特币 ETF 周三的流入额降至 3.47 亿美元。过去五天，总流入额达到 26.5 亿美元","url":"https://longbridge.com/news/300009542","author":{"member_id":"5899","name":"Unusual Whales"},"search_source_name":"Unusual Whales","published_at":"2026-09-24T09:37:55Z"},
+    {"id":"299999767","title":"交易员关注160亿美元比特币期权到期以寻找反弹线索","description":"9 月 25 日，Deribit 平台上约有 160 亿美元的比特币期权和 21 亿美元的以太坊期权到期，标志着今年规模最大的季度结算之一。此次到期是对比特币当前涨势的一次压力测试，市场持仓偏向乐观（看跌/看涨期权比率介于 0.69 至 0.76 之间），且大量实值看涨期权推动了做市商的对冲资金流。结算完成后，这种机械性买盘支撑的消失可能引发波动率上升及潜在的价格重置，而同期发布的美国经济数据和芝加哥商品交易所（CME）期货到期将进一步放大这一影响","url":"https://longbridge.com/news/299999767","author":{"member_id":"5998","name":"Crypto Briefing"},"search_source_name":"Crypto Briefing","published_at":"2026-09-24T08:35:49Z"},
+    {"id":"299995338","title":"比特币5.7万美元底部——加密货币市场是否过早断言见底？","description":"比特币可能已在 5.7 万美元见底的观点引发争议。尽管交易员情绪看涨，第三季度投资回报率已达 40%，且大额持有者正在积累筹码，但 Glassnode 的数据表明，与历史周期相比，当前的回调幅度较浅，暗示更深的底部可能还需 90 天才会出现。宏观波动性与链上数据的背离增加了不确定性，不过积累迹象暗示市场可能在第四季度中期见底，随后迎来年末反弹","url":"https://longbridge.com/news/299995338","author":{"member_id":"5917","name":"Amb Crypto"},"search_source_name":"Amb Crypto","published_at":"2026-09-24T08:04:56Z"},
+    {"id":"300011360","title":"Ondo Stocks 现在可直接由 Alpaca 托管的股份铸造，获批机构无需经过现金环节","description":"Ondo 允许获批机构将托管在 Alpaca 的股份转换为以太坊和 BNB Chain 上的 Ondo Stocks，跳过需要资金支持的铸造步骤","url":"https://longbridge.com/news/300011360","author":{"member_id":"5922","name":"MSN"},"search_source_name":"MSN","published_at":"2026-09-24T10:06:56Z"},
+    {"id":"299994139","title":"以太坊 (ETHUSD) 9月24日突然上涨1.05%：你需要关注什么","description":"9 月 24 日，受宏观流动性改善、ETF 资金流入为正以及 Layer-2 基本面强劲推动，以太坊上涨 1.05% 至 2,696.93 美元。技术指标显示买入信号，但 2,786–2,800 美元附近的阻力位引发获利了结。风险包括链上活动停滞、高未平仓合约的脆弱性以及监管不确定性下的近期 ETF 资金流出","url":"https://longbridge.com/news/299994139","author":{"member_id":"6041","name":"TradingKey"},"search_source_name":"TradingKey","published_at":"2026-09-24T07:57:09Z"}
+  ],
+  "quality_notes": [
+    {"id":"299999767","type":"content_identity_duplicate_update","note":"Same Crypto Briefing Deribit 25 Sep quarterly-expiry story as previously retained 299934263: same ~$15.9B BTC + ~$2.1B ETH expiry, same Deribit timing and same max-pain/positioning context. Raw evidence is retained but it is excluded from the logical new-article set."},
+    {"id":"300016655","type":"source_metadata_conflict","note":"Longbridge search source_name is MSN, while news_detail author.name is 唐纳德·特朗普. Both provider-returned values are preserved; no unsupported source reconciliation is inferred."}
+  ],
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

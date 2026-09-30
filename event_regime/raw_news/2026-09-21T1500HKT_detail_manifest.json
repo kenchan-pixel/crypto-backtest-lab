@@ -1,0 +1,274 @@
+{
+  "first_seen_hkt": "2026-09-21T15:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+  "query": "__detail_manifest__",
+  "raw": {
+    "text": "[]"
+  },
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": [
+      "news_search",
+      "news_detail"
+    ],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-21T11:00:00+08:00",
+    "searched_queries": [
+      {
+        "query": "Bitcoin",
+        "new_unique_articles": 6
+      },
+      {
+        "query": "Ethereum",
+        "new_unique_articles": 2
+      },
+      {
+        "query": "Bitcoin ETF",
+        "new_unique_articles": 2
+      },
+      {
+        "query": "SEC crypto",
+        "new_unique_articles": 3
+      }
+    ],
+    "dedupe_result_unique_articles": 8,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source SHA256",
+    "content_identity_sha256_algorithm": "sha256(casefold(collapse_whitespace(title)) + '\\n' + casefold(collapse_whitespace(description)) + '\\n' + casefold(collapse_whitespace(source)))",
+    "search_timestamp_policy": "Longbridge search time=1970-01-01T00:00:00Z treated as invalid placeholder and never used for chronology",
+    "first_seen_policy": "conservative forward-rounding to 2026-09-21T15:00:00+08:00; never backdated",
+    "detail_fields_preserved": [
+      "id",
+      "title",
+      "description",
+      "url",
+      "author.member_id",
+      "author.name",
+      "published_at"
+    ],
+    "note": "Eight stable article IDs were absent from the prior saved manifests/snapshots checked for this dataset. Article 299590414 has provider published_at 2026-09-21T02:02:54Z (10:02 HKT), earlier than the prior 11:00 HKT collection boundary, indicating provider indexing/search surfacing lag; first_seen_at_hkt remains 15:00 HKT and is not inferred backward. All search-list 1970 timestamps are invalid placeholders. No claim of historical news completeness."
+  },
+  "new_articles": [
+    {
+      "id": "299602032",
+      "dedupe_key": "longbridge-news-id:299602032",
+      "content_identity_sha256": "2324626af5090b5b6c4d346d62e6f2505752d8aecd456b7c4c6c3407303d7e91",
+      "matched_queries": [
+        "Bitcoin",
+        "Bitcoin ETF",
+        "SEC crypto"
+      ],
+      "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T06:45:11Z",
+      "timestamp_quality": "verified_detail",
+      "source": "Money Control",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299602032",
+        "title": "由于比特币代币的价格保持在超过 81,000 美元的高位，比特币 ETF 转为正面",
+        "description": "美国现货比特币 ETF 在周四和周五录得 5.93 亿美元的资金流入，扭转了之前的资金流出，并推动比特币价格超过 81,000 美元。这一激增是在美国证券交易委员会（SEC）批准数字证券交易后出现的，抵消了因美国加密货币法案失败和美联储加息而带来的困难一周。尽管比特币价格达到了 82,078 美元，但由于高油价和高企的国债收益率等宏观经济逆风，交易者仍然保持谨慎",
+        "url": "https://longbridge.com/news/299602032",
+        "author": {
+          "member_id": "5761",
+          "name": "Money Control"
+        },
+        "published_at": "2026-09-21T06:45:11Z"
+      }
+    },
+    {
+      "id": "299597562",
+      "dedupe_key": "longbridge-news-id:299597562",
+      "content_identity_sha256": "c74f9e94971371ed4ef289b4b159d868e120e9375c02528e9665156162858f97",
+      "matched_queries": [
+        "Bitcoin"
+      ],
+      "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T06:03:06Z",
+      "timestamp_quality": "verified_detail",
+      "source": "Simplywall",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299597562",
+        "title": "Strategy (MSTR) 随着比特币上涨 16%，它是否仍然被高估 23%？",
+        "description": "Strategy (MSTR) 的股票在比特币反弹和华盛顿有利的监管发展后上涨了 16%。尽管近期势头强劲，但该股票年初至今仍下跌 2.1%，一年内下跌 55.4%。分析师认为 MSTR 的估值过高 23%，将其公允价值定为 125 美元，而当前价格为 153.92 美元。这个估值依赖于其以比特币为中心的信用引擎的可持续性，特别是数字信用是否能够保持流动性并在市场周期中支持稳定的分红",
+        "url": "https://longbridge.com/news/299597562",
+        "author": {
+          "member_id": "5973",
+          "name": "Simplywall"
+        },
+        "published_at": "2026-09-21T06:03:06Z"
+      }
+    },
+    {
+      "id": "299601303",
+      "dedupe_key": "longbridge-news-id:299601303",
+      "content_identity_sha256": "4d0abfe8238a3ec23020997a24e904e67f641aa2f1e1a6cf37f19afc4cbfb867",
+      "matched_queries": [
+        "Bitcoin"
+      ],
+      "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T05:52:19Z",
+      "timestamp_quality": "verified_detail",
+      "source": "benzinga_article",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299601303",
+        "title": "Michael Saylor 表示，‘再多一点橙色’：Strategy 在暂停三周后是否会报告 BTC 的购买情况？",
+        "description": "Strategy Inc. 的董事长迈克尔·塞勒暗示在暂停三周后可能会进行新的比特币购买，他在 X 上发布了 “再来一点橙色”。该公司从 6 月底到 8 月初暂停了购买，但在 8 月底恢复了对 BTC 的收购。Strategy 目前持有超过 845,000 个 BTC。这一猜测是在比特币近期价格上涨和积极的监管进展之后出现的",
+        "url": "https://longbridge.com/news/299601303",
+        "author": {
+          "member_id": "36",
+          "name": "benzinga_article"
+        },
+        "published_at": "2026-09-21T05:52:19Z"
+      }
+    },
+    {
+      "id": "299588791",
+      "dedupe_key": "longbridge-news-id:299588791",
+      "content_identity_sha256": "9f0b8f4dd33aad17bcea36697a9019abf5fae074f2fe8a22d235f287f4f8f936",
+      "matched_queries": [
+        "Bitcoin"
+      ],
+      "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T04:04:56Z",
+      "timestamp_quality": "verified_detail",
+      "source": "Amb Crypto",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299588791",
+        "title": "比特币仍然维持在接近 8 万美元的水平，随着获利回吐的增加，多头能否继续坚守？",
+        "description": "比特币交易价格接近 80,400 美元，买家正在吸收卖压，提高支撑水平。虽然 71% 的供应处于盈利状态，限制了立即的大规模清算，但韩国溢价指数已转为负值，表明国内需求减弱。这种强劲价格底部与区域需求疲软之间的分歧对上涨势头构成了风险",
+        "url": "https://longbridge.com/news/299588791",
+        "author": {
+          "member_id": "5917",
+          "name": "Amb Crypto"
+        },
+        "published_at": "2026-09-21T04:04:56Z"
+      }
+    },
+    {
+      "id": "299588776",
+      "dedupe_key": "longbridge-news-id:299588776",
+      "content_identity_sha256": "d21ce86dcfc825ee1bf985725167dcf774303f6956d8e04e0e97a6f55b782dc6",
+      "matched_queries": [
+        "Bitcoin",
+        "Bitcoin ETF"
+      ],
+      "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T03:45:11Z",
+      "timestamp_quality": "verified_detail",
+      "source": "CoinLive",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299588776",
+        "title": "在 9 月 14 日至 18 日这一周，比特币现货 ETF 录得 621 万美元的净流入",
+        "description": "比特币现货 ETF 在 9 月 14 日至 18 日的一周内录得净流入 621 万美元。贝莱德的 IBIT 以 1.21 亿美元的周流入额领先，而 ARK 与 21 Shares 的 ARKB 则出现了 1.42 亿美元的最大流出。比特币现货 ETF 的总净资产达到了 1025.3 亿美元，占比特币总市值的 6.29%",
+        "url": "https://longbridge.com/news/299588776",
+        "author": {
+          "member_id": "5999",
+          "name": "CoinLive"
+        },
+        "published_at": "2026-09-21T03:45:11Z"
+      }
+    },
+    {
+      "id": "299590414",
+      "dedupe_key": "longbridge-news-id:299590414",
+      "content_identity_sha256": "c9d2c5a453cebcff8881bed242b3773c18d8a4cfb9251216b63b7e7ee405eb5d",
+      "matched_queries": [
+        "Bitcoin",
+        "Ethereum",
+        "SEC crypto"
+      ],
+      "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T02:02:54Z",
+      "timestamp_quality": "verified_detail",
+      "source": "benzinga_article",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299590414",
+        "title": "比特币触及 82,000 美元，以太坊、XRP 和狗狗币也在 SEC 推动代币化的背景下上涨：分析师确认这一主要加密货币的'突破'",
+        "description": "加密货币在 9 月 20 日反弹，比特币触及 82,000 美元，以太坊超过 2,700 美元，这得益于美国证券交易委员会（SEC）对代币化股票的倡议。全球加密市场市值上涨 1.12%，达到 2.81 万亿美元。分析师确认比特币和以太坊的突破，目标价格更高，同时由于风险偏好改善，股票期货也有所上涨",
+        "url": "https://longbridge.com/news/299590414",
+        "author": {
+          "member_id": "36",
+          "name": "benzinga_article"
+        },
+        "published_at": "2026-09-21T02:02:54Z"
+      }
+    },
+    {
+      "id": "299599920",
+      "dedupe_key": "longbridge-news-id:299599920",
+      "content_identity_sha256": "832ed6b16c27429eabd293353041c97f43974a29c43f1703645ed6975c808327",
+      "matched_queries": [
+        "Ethereum"
+      ],
+      "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T06:33:09Z",
+      "timestamp_quality": "verified_detail",
+      "source": "TradingKey",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299599920",
+        "title": "以太坊价格预测：ETH 在六天的上涨中突破了 2700 美元，它能否在九月份重新达到 3000 美元？",
+        "description": "以太坊上涨至 2700 美元，标志着连续六天的反弹，并且是自一月份以来的最高水平。这一恢复得益于缓解的宏观经济通胀担忧、上升的风险偏好以及强劲的链上基本面，包括 Layer 2 活动的增加和 DeFi 需求。尽管比特币在 82000 美元附近整理，但以太坊正在迎头赶上。价格在 2800 美元处面临阻力，但如果能够保持在当前水平之上，目标是重新夺回 3000 美元的心理关口",
+        "url": "https://longbridge.com/news/299599920",
+        "author": {
+          "member_id": "6041",
+          "name": "TradingKey"
+        },
+        "published_at": "2026-09-21T06:33:09Z"
+      }
+    },
+    {
+      "id": "299586922",
+      "dedupe_key": "longbridge-news-id:299586922",
+      "content_identity_sha256": "3eb8f09612b9d8236d209b5dacc9be5378696caee90281a54b22e39949fd22bc",
+      "matched_queries": [
+        "SEC crypto"
+      ],
+      "first_seen_at_hkt": "2026-09-21T15:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-21T03:34:56Z",
+      "timestamp_quality": "verified_detail",
+      "source": "MSN",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299586922",
+        "title": "随着美联储加息，本周热门股票受到关注，同时呼吁放缓人工智能模型开发的声音越来越多",
+        "description": "华尔街收盘表现不一，因美联储加息以及人工智能安全问题影响科技股。纳斯达克上涨 0.7%，而道琼斯指数下跌 1.7%。主要动态包括沃伦·巴菲特辞去伯克希尔哈撒韦董事长职务，奈飞被富国银行下调评级，Generac 因与亚马逊达成 80 亿美元交易而上涨，以及在美国证券交易委员会批准代币化股票交易后，加密货币股票上涨",
+        "url": "https://longbridge.com/news/299586922",
+        "author": {
+          "member_id": "5922",
+          "name": "MSN"
+        },
+        "published_at": "2026-09-21T03:34:56Z"
+      }
+    }
+  ]
+}

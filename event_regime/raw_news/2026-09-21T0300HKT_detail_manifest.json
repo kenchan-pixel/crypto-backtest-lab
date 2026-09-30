@@ -1,0 +1,140 @@
+{
+  "first_seen_hkt": "2026-09-21T03:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-21T03:00:00+08:00",
+  "query": "__detail_manifest__",
+  "raw": {
+    "text": "[]"
+  },
+  "provenance": {
+    "provider": "Longbridge",
+    "search_tools": ["news_search", "news_detail"],
+    "branch": "research/event-regime-v1-20260920",
+    "prior_collection_first_seen_at_hkt": "2026-09-20T23:00:00+08:00",
+    "searched_queries": [
+      {"query": "Bitcoin", "new_unique_articles": 0},
+      {"query": "Ethereum", "new_unique_articles": 3},
+      {"query": "Bitcoin ETF", "new_unique_articles": 2},
+      {"query": "SEC crypto", "new_unique_articles": 0}
+    ],
+    "dedupe_result_unique_articles": 5,
+    "dedupe_primary": "stable Longbridge article id",
+    "dedupe_secondary": "normalized title + description + source SHA256",
+    "content_identity_sha256_algorithm": "sha256(casefold(collapse_whitespace(title)) + '\n' + casefold(collapse_whitespace(description)) + '\n' + casefold(collapse_whitespace(source)))",
+    "search_timestamp_policy": "Longbridge search time=1970-01-01T00:00:00Z treated as invalid placeholder and never used for chronology",
+    "first_seen_policy": "conservative forward-rounding to 2026-09-21T03:00:00+08:00; never backdated",
+    "detail_fields_preserved": ["id", "title", "description", "url", "author.member_id", "author.name", "published_at"],
+    "note": "All five detail published_at values are later than the previous collection's conservative 23:00 HKT first_seen boundary. Search/detail retrieval succeeded. No claim of historical news completeness."
+  },
+  "new_articles": [
+    {
+      "id": "299564000",
+      "dedupe_key": "longbridge-news-id:299564000",
+      "content_identity_sha256": "26696c4e0ad87a43233ae588af1a9ecf0220b53b3b9df8a265ac867ba2040de9",
+      "matched_queries": ["Ethereum"],
+      "first_seen_at_hkt": "2026-09-21T03:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-20T18:00:56Z",
+      "timestamp_quality": "verified_detail",
+      "source": "MSN",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299564000",
+        "title": "这款加密货币是否仍然能够造就百万富翁？",
+        "description": "以太坊的疯狂上涨波动日子可能不会再回来了，但这不应该阻止任何人购买它",
+        "url": "https://longbridge.com/news/299564000",
+        "author": {"member_id": "5922", "name": "MSN"},
+        "published_at": "2026-09-20T18:00:56Z"
+      }
+    },
+    {
+      "id": "299563334",
+      "dedupe_key": "longbridge-news-id:299563334",
+      "content_identity_sha256": "7d44246e166d2ad0f0c26ee056618d3a51d0672a2d4350f41f775bdb70721e08",
+      "matched_queries": ["Ethereum"],
+      "first_seen_at_hkt": "2026-09-21T03:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-20T17:04:56Z",
+      "timestamp_quality": "verified_detail",
+      "source": "Amb Crypto",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299563334",
+        "title": "以太坊供应紧缩，ETH 价格重回 2500 美元——接下来会发生什么？",
+        "description": "以太坊在供应收紧的情况下重新回到了 2500 美元，原因是交易所余额减少、质押量增加（上升至 35.56%）以及总计 167 亿美元的显著 ETF 流入。这些因素减少了可用于交易的流动代币，使得价格对现货需求的敏感性大大增加。尽管通过像贝莱德的 ETHA 这样的 ETF，机构投资者的兴趣正在增长，但每日流入仍然波动，表明在当前水平附近的需求活跃但不稳定",
+        "url": "https://longbridge.com/news/299563334",
+        "author": {"member_id": "5917", "name": "Amb Crypto"},
+        "published_at": "2026-09-20T17:04:56Z"
+      }
+    },
+    {
+      "id": "299561422",
+      "dedupe_key": "longbridge-news-id:299561422",
+      "content_identity_sha256": "59fb08c798d8d61152c17b76609ca31bc0ee54c8f6fd8252923843f53f100b6d",
+      "matched_queries": ["Ethereum"],
+      "first_seen_at_hkt": "2026-09-21T03:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-20T15:04:07Z",
+      "timestamp_quality": "verified_detail",
+      "source": "CoinLive",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299561422",
+        "title": "以太坊（ETH）超过 2600 USDT，24 小时内跌幅缩小至 1.59%",
+        "description": "根据币安市场数据，截至 2026 年 9 月 20 日 15:04（UTC），以太坊已突破 2,600 USDT 的基准，目前交易价格为 2,600.070068 USDT，24 小时内下降幅度缩小至 1.59%",
+        "url": "https://longbridge.com/news/299561422",
+        "author": {"member_id": "5999", "name": "CoinLive"},
+        "published_at": "2026-09-20T15:04:07Z"
+      }
+    },
+    {
+      "id": "299564564",
+      "dedupe_key": "longbridge-news-id:299564564",
+      "content_identity_sha256": "5083f6f9e2f82aa76accea64722caca8db78ae0a977288ede081b47484a9a11b",
+      "matched_queries": ["Bitcoin ETF"],
+      "first_seen_at_hkt": "2026-09-21T03:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-20T16:45:18Z",
+      "timestamp_quality": "verified_detail",
+      "source": "benzinga_article",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299564564",
+        "title": "随着 ETF 资金流入激增，比特币价格稳定在 80,000 美元以上，并形成了看涨的趋势",
+        "description": "比特币在 ETF 资金涌入和看涨技术形态的推动下稳定在 80,000 美元以上。现货比特币 ETF 在周五录得超过 4.33 亿美元的资金流入，累计净流入达到 551 亿美元。尽管美联储加息和立法障碍，投资者情绪依然强劲，反映在加密货币恐惧与贪婪指数达到 71。技术分析显示，如果突破 82,135 美元的阻力位，反弹至 85,000 美元的潜力存在",
+        "url": "https://longbridge.com/news/299564564",
+        "author": {"member_id": "36", "name": "benzinga_article"},
+        "published_at": "2026-09-20T16:45:18Z"
+      }
+    },
+    {
+      "id": "299561265",
+      "dedupe_key": "longbridge-news-id:299561265",
+      "content_identity_sha256": "c593d3b3ef7cd775ab900629caa29ec13ac33fe7d3bbdaff665c321d4cc68b92",
+      "matched_queries": ["Bitcoin ETF"],
+      "first_seen_at_hkt": "2026-09-21T03:00:00+08:00",
+      "search_timestamp_raw": "1970-01-01T00:00:00Z",
+      "search_timestamp_usable": false,
+      "published_at_utc": "2026-09-20T15:08:16Z",
+      "timestamp_quality": "verified_detail",
+      "source": "Amb Crypto",
+      "detail_evidence": {
+        "provider": "Longbridge",
+        "tool": "news_detail",
+        "id": "299561265",
+        "title": "Solana 的十月布局：创纪录的活动、ETF 资金流入和潜在的突破",
+        "description": "Solana (SOL) 在十月份展现出强劲的动能，周涨幅达到 9%，并突破了关键阻力位。机构需求明显，通过 4756.2 万美元的现货 ETF 流入得以体现。网络活动在八月份创下 52 亿笔交易的历史新高，主要受到迷因币交易量的推动。技术指标显示，SOL 相对于比特币和以太坊吸引了相对需求，可能会推动更广泛的山寨币市场在十月份走高",
+        "url": "https://longbridge.com/news/299561265",
+        "author": {"member_id": "5917", "name": "Amb Crypto"},
+        "published_at": "2026-09-20T15:08:16Z"
+      }
+    }
+  ]
+}

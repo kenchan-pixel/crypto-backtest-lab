@@ -1,0 +1,15 @@
+{
+  "first_seen_at_hkt": "2026-09-24T07:06:08+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299948768","title":"前美国证券交易委员会代理主席透露，为避免法庭信誉问题，该机构在2025年初驳回了大量加密货币案件。委员宇田确认了这一决定","excerpt":"2025年初，美国证券交易委员会（SEC）委员马克·宇田披露，该机构","source_name":"Unusual Whales","time":"2026-09-23T21:57:13Z","url":"https://longbridge.com/news/299948768.md"},
+    {"id":"299947276","title":"前美国证券交易委员会代理主席：为避免可信度问题，该机构撤销了加密货币案件","excerpt":"前美国证券交易委员会（SEC）代理主席马克·乌耶达（Mark","source_name":"Cointelegraph","time":"2026-09-23T21:47:52Z","url":"https://longbridge.com/news/299947276.md"},
+    {"id":"299934065","title":"白宫加密顾问否认特朗普加密利益致 Clarity Act 受阻","excerpt":"案搁置。目前工作重心转向 SEC 等监管机构。","source_name":"金色财经","time":"2026-09-23T18:54:56Z","url":"https://longbridge.com/news/299934065.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

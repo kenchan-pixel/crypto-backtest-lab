@@ -1,0 +1,20 @@
+{
+  "first_seen_at_hkt": "2026-09-22T15:04:34+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time recorded after search/detail retrieval and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "299713513",
+      "title": "Anthony Pompiano 重申比特币没有 ‘上限’，因为美元没有 ‘下限’，并押注比特币将会 ‘大幅上涨’",
+      "excerpt": "安东尼·庞普利亚诺重申，由于美元持续贬值和货币供应量上升，比特币 ‘没有顶部’，预计 BTC 可能达到 100 万美元。他将比特币的增长与全球流动性联系在一起，而不是像 CLARITY 法案这样的监管措施。",
+      "source_name": "benzinga_article",
+      "time": "2026-09-22T03:17:26Z",
+      "url": "https://longbridge.com/news/299713513.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article id 299713513 was absent from the immediately prior 2026-09-22T10:58:06+08:00 manifest. Its verified detail published_at is later than that prior collection, so it is treated as genuinely new. No content-identity duplicate was identified among this run's new articles.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

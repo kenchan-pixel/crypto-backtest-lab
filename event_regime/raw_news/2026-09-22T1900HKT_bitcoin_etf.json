@@ -1,0 +1,17 @@
+{
+  "first_seen_at_hkt": "2026-09-22T19:00:00+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299751042","title":"BUZZ：随着比特币从八个月高点回落，加密货币相关股票下滑","excerpt":"7%）以及挖矿设备制造商嘉楠科技和亿邦国际。比特币ETF也出现亏损","source_name":"LSEG","time":"2026-09-22T10:37:42Z","url":"https://longbridge.com/news/299751042.md"},
+    {"id":"299735034","title":"REX 推出追踪比特币国库公司 Strive 的 2 倍杠杆 ETF","excerpt":"Daily Target ETF（股票代码 ASSX），旨在实现","source_name":"NewsBTC","time":"2026-09-22T08:30:00Z","url":"https://longbridge.com/news/299735034.md"},
+    {"id":"299732286","title":"比特币 ETF 接近 10 亿美元的资金流入，达到 2026 年的峰值。美国现货 ETF 在周一迎来了 10 亿美元的资金流入，这是自 2025 年 10 月以来的最大流入，因为比特币价格达到了 87,000 美元","excerpt":"在周一，美国现货比特币 ETF 经历了近 10 亿美元的显著资金流入，创下自","source_name":"Unusual Whales","time":"2026-09-22T07:46:28Z","url":"https://longbridge.com/news/299732286.md"},
+    {"id":"299729771","title":"比特币 ETF 的资金流入达到 2026 年的高点，规模接近 10 亿美元","excerpt":"美国现货比特币 ETF 在周一录得创纪录的 9.989 亿美元净流入，标志着","source_name":"Cointelegraph","time":"2026-09-22T07:33:37Z","url":"https://longbridge.com/news/299729771.md"},
+    {"id":"299723465","title":"比特币价格预测：BTC 已突破 87,000 美元，今年是否会继续上涨？","excerpt":"风险偏好。美国现货比特币 ETF 录得创纪录的 10 亿美元资金流入。分析师指出","source_name":"TradingKey","time":"2026-09-22T06:37:09Z","url":"https://longbridge.com/news/299723465.md"}
+  ],
+  "dedupe_note": "299751042, 299735034, 299732286 and 299729771 also appeared in the Bitcoin query and are deduplicated by stable article ID. Article 299723465 was not present in the prior 15:04 HKT manifest even though its provider published_at predates that collection; it is treated as newly seen now and first_seen is not backdated.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

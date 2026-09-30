@@ -1,0 +1,65 @@
+{
+  "first_seen_at_hkt": "2026-09-22T23:00:00+08:00",
+  "provider": "Longbridge",
+  "tool": "news_detail",
+  "capture_mode": "structured_detail_fields",
+  "note": "Provider-returned stable id, title, description, URL, author/source and published_at are preserved as retrieved. Full article bodies are not archived here; no chronology is inferred from published_at.",
+  "articles": [
+    {
+      "id": "299778886",
+      "title": "忘掉狗狗币：PEPE 涨幅超越比特币和 XRP——FLOKI 会是下一个吗？",
+      "description": "PEPE 以 20% 的涨幅领跑加密货币市场，表现优于比特币和 XRP，交易员基于反向头肩形态将目标价定为 0.00001 美元。与此同时，FLOKI 正在测试其 200 日指数移动平均线（EMA）处的关键阻力位（0.0000293 美元）。分析师表示，突破可能引发反弹，尽管当前的催化剂并未直接推动这一走势，但 FLOKI 在游戏领域的实用性和受监管的市场敞口提供了支撑",
+      "url": "https://longbridge.com/news/299778886",
+      "author": {"member_id":"36","name":"benzinga_article"},
+      "published_at": "2026-09-22T13:40:49Z"
+    },
+    {
+      "id": "299765633",
+      "title": "在十亿美元ETF资金流入后，比特币突破走势令10.8万美元关口近在眼前",
+      "description": "昨日加密货币价格飙升，美国现货比特币 ETF 的表现同样令人瞩目，周一净流入近 10 亿美元，创下 2026 年以来的最大单日流入规模",
+      "url": "https://longbridge.com/news/299765633",
+      "author": {"member_id":"5518","name":"ZeroHedge"},
+      "published_at": "2026-09-22T12:19:57Z"
+    },
+    {
+      "id": "299765505",
+      "title": "关键事实：BTCUSD ETF 流入资金近 10 亿美元；期货未平仓合约达 1600 亿美元",
+      "description": "比特币突破 86,000 美元，受美国现货 ETF 创纪录的流入资金（近 10 亿美元）以及期货未平仓合约触及 1600 亿美元的推动。随着价格上涨，约 9.2 亿美元的空头头寸被清算。Strategy 和 Strive 等企业实体增加了比特币持仓。分析师将目标价定在 98,000 至 99,500 美元之间，阻力位位于 88,000 至 92,000 美元。监管动态与这一涨势同步，而恐惧与贪婪指数达到 78 的 “极度贪婪” 水平",
+      "url": "https://longbridge.com/news/299765505",
+      "author": {"member_id":"5987","name":"TradingView"},
+      "published_at": "2026-09-22T12:15:15Z"
+    },
+    {
+      "id": "299763571",
+      "title": "比特币ETF单日净流入9.99亿美元，创2025年10月以来最佳表现：究竟发生了什么？",
+      "description": "美国现货比特币 ETF 录得 9.99 亿美元的净流入，为 11 个月来的最大规模，推动比特币价格突破 87,000 美元。贝莱德以 3.814 亿美元的流入额领跑。此次飙升由新需求、空头回补以及阻力薄弱共同推动。分析师指出，随着比特币重新站上关键移动平均线，熊市可能即将结束，但由于现货需求降温，市场仍需保持谨慎",
+      "url": "https://longbridge.com/news/299763571",
+      "author": {"member_id":"36","name":"benzinga_article"},
+      "published_at": "2026-09-22T12:03:44Z"
+    },
+    {
+      "id": "299761196",
+      "title": "ETF资金流入提振加密货币，比特币突破8.7万美元",
+      "description": "在巨额 ETF 资金流入和空头头寸清算的推动下，比特币飙升至 24 小时高点 87,360 美元。美国比特币现货 ETF 净流入跃升至 9.99 亿美元，而以太坊 ETF 净流入增至 2.7 亿美元。加密货币总市值达到 2.91 万亿美元，交易量上涨 28%。积极催化剂包括 Strategy Inc.购买比特币、美国证券交易委员会对代币化股票提供救济以及油价下跌。以太坊、BNB 和 XRP 等其他主要加密货币也录得涨幅",
+      "url": "https://longbridge.com/news/299761196",
+      "author": {"member_id":"5749","name":"rttnews"},
+      "published_at": "2026-09-22T11:51:47Z"
+    },
+    {
+      "id": "299759005",
+      "title": "比特币迎来史上第二佳第三季度：BTC ETF 投资者在亏损8个月后重获盈利",
+      "description": "美国现货比特币 ETF 投资者已重返盈利状态，标志着在经历八个月的亏损后，自 1 月以来首次实现正回报。随着比特币价格飙升近 7% 至 8.7 万美元，平均持仓成本线（约 8.2 万美元）得以收复，产生约 30 亿美元的未实现收益。此次反弹伴随着近 10 亿美元的创纪录单日净流入，并使第三季度成为历史上投资者回报第二好的季度。分析师认为，该资产已重新进入牛市周期，9.5 万美元被确定为下一个潜在目标位",
+      "url": "https://longbridge.com/news/299759005",
+      "author": {"member_id":"5917","name":"Amb Crypto"},
+      "published_at": "2026-09-22T11:34:56Z"
+    },
+    {
+      "id": "299755151",
+      "title": "卡拉莫斯投资公司首席执行官：人工智能和比特币将长期存在",
+      "description": "卡拉莫斯投资公司（Calamos Investments）首席执行官约翰·库杜尼斯（John Koudounis）探讨了人工智能投资、石油、美联储政策以及比特币，他表示，多元化投资组合既能捕捉上行收益，又能提供下行保护",
+      "url": "https://longbridge.com/news/299755151",
+      "author": {"member_id":"5922","name":"MSN"},
+      "published_at": "2026-09-22T11:08:56Z"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "first_seen_at_hkt": "2026-09-23T07:00:43+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "299814010",
+      "title": "CFTC主席塞利格表示市场必须为“大规模代币化”做好准备",
+      "excerpt": "美国商品期货交易委员会（CFTC）主席迈克尔·塞利格表示，金融市场必须为由区块链和人工智能驱动的“大规模代币化”做好准备。他强调，特朗普政府致力于通过创新、竞争和适度监管来维持美国市场的领导地位。尽管参议院的加密货币立法陷入停滞，CFTC正在探索全天候交易和稳定币的采用，而美国证券交易委员会（SEC）则发布了针对链上股票交易的创新豁免",
+      "source_name": "The Block",
+      "time": "2026-09-22T21:08:20Z",
+      "url": "https://longbridge.com/news/299814010.md"
+    },
+    {
+      "id": "299810205",
+      "title": "《清晰法案》在参议院陷入僵局后，美国监管机构加紧制定加密货币规则手册",
+      "excerpt": "随着《清晰法案》在参议院陷入僵局，美国联邦监管机构正加速制定加密货币规则，以填补监管空白。美国证券交易委员会（SEC）扩大了其代币化股票框架，而商品期货交易委员会（CFTC）则提交了一项提案供白宫审查。行业领袖和官员强调，需要明确的指导方针来促进投资并与传统金融融合，与此同时，各州也反对联邦政府对其反欺诈权力的优先适用",
+      "source_name": "CNBC",
+      "time": "2026-09-22T20:30:56Z",
+      "url": "https://longbridge.com/news/299810205.md"
+    },
+    {
+      "id": "299809915",
+      "title": "美 SEC 正在推进加密资产托管规则，相关提案已提交白宫管理和预算办公室审查",
+      "excerpt": "美国 SEC 加密工作组首席法律顾问 Taylor Lindman 表示，SEC 正推进加密资产托管规则，相关提案已提交白宫管理和预算办公室审查。该规则旨在明确经纪自营商持有非证券类加密资产及投资顾问存放客户资产的要求。此前 SEC 曾尝试制定托管规则但被放弃，现任领导层支持加密发展，并已通过员工声明提供过渡性指导。",
+      "source_name": "金色财经",
+      "time": "2026-09-22T20:28:56Z",
+      "url": "https://longbridge.com/news/299809915.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

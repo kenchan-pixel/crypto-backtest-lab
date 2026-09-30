@@ -1,0 +1,17 @@
+{
+  "first_seen_at_hkt": "2026-09-24T19:03:36+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"300016655","title":"特朗普买入 Strategy 股票并出售比特币矿企股份","excerpt":"联邦文件显示，特朗普总统的账户于 2026 年 7 月 27 日购买了价值高达 10 万美元的 Strategy (MSTR) 股票，并于两天后出售了比特币矿企...","source_name":"MSN","time":"2026-09-24T10:44:56Z","url":"https://longbridge.com/news/300016655.md"},
+    {"id":"300010186","title":"比特币与上升的债券收益率呈现近乎零相关性，与黄金走势显著分化","excerpt":"截至2026年9月，比特币与美国国债收益率上升的相关性接近于零（-0.17），这与黄金较强的负相关性（-0.41）形成对比。尽管债券收益率超过5%且联邦债务突破...","source_name":"Crypto Briefing","time":"2026-09-24T09:53:29Z","url":"https://longbridge.com/news/300010186.md"},
+    {"id":"300009542","title":"比特币从近期8.7万美元高点回落至8.4万美元以下，比特币ETF新增资金3.47亿美元。美国ETF流入放缓，五日累计达26.5亿美元","excerpt":"在美国，随着比特币价格跌破8.4万美元，现货比特币ETF周三的流入额降至3.47亿美元。过去五天，总流入额达到26.5亿美元","source_name":"Unusual Whales","time":"2026-09-24T09:37:55Z","url":"https://longbridge.com/news/300009542.md"},
+    {"id":"299999767","title":"交易员关注160亿美元比特币期权到期以寻找反弹线索","excerpt":"9月25日，Deribit平台上约有160亿美元的比特币期权和21亿美元的以太坊期权到期，标志着今年规模最大的季度结算之一。此次到期是对比特币当前涨势的一次压力...","source_name":"Crypto Briefing","time":"2026-09-24T08:35:49Z","url":"https://longbridge.com/news/299999767.md"},
+    {"id":"299995338","title":"比特币5.7万美元底部——加密货币市场是否过早断言见底？","excerpt":"比特币可能已在5.7万美元见底的观点引发争议。尽管交易员情绪看涨，第三季度投资回报率已达40%，且大额持有者正在积累筹码，但Glassnode的数据表明，与历史...","source_name":"Amb Crypto","time":"2026-09-24T08:04:56Z","url":"https://longbridge.com/news/299995338.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

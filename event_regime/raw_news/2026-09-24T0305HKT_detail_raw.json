@@ -1,0 +1,17 @@
+{
+  "first_seen_at_hkt": "2026-09-24T03:05:39+08:00",
+  "provider": "Longbridge",
+  "tool": "news_detail",
+  "capture_mode": "structured_detail_fields",
+  "note": "Provider-returned stable id, title, description, URL, author/source and published_at are preserved as retrieved. Full article bodies are not archived here; no chronology is inferred from published_at. Detail evidence for cross-query duplicates is retained once by stable article ID.",
+  "articles": [
+    {"id":"299934263","title":"Deribit 周五将有价值 160 亿美元的比特币期权到期","description":"本周五，Deribit 交易所将有近 160 亿美元的比特币期权到期，这是一次重大的季度结算。期权持仓结构偏向看涨，看跌/看涨比率约为 0.7，表明交易员情绪乐观。比特币当前交易价格接近 85,500 至 86,300 美元，远高于 75,000 美元的最大痛点水平。此次期权到期恰逢美国耐用品订单数据发布以及芝商所（CME）期货结算","url":"https://longbridge.com/news/299934263","author":{"member_id":"5998","name":"Crypto Briefing"},"published_at":"2026-09-23T18:52:43Z"},
+    {"id":"299932527","title":"美债收益率飙升，比特币价格跌破85,000美元","description":"9 月 22 日，随着美国国债收益率飙升至 19 年来的高点 5.12%，比特币价格跌破 85,000 美元。债券收益率的飙升引发了广泛的市场抛售，促使投资者将资金从加密货币等风险资产转向更安全的债券。因此，比特币下跌 3%，回吐了近期的月度涨幅，而以太坊和狗狗币等其他加密货币也出现下跌","url":"https://longbridge.com/news/299932527","author":{"member_id":"5898","name":"Tip Ranks"},"published_at":"2026-09-23T18:17:49Z"},
+    {"id":"299929679","title":"美债收益率飙升，比特币出现回撤。买方仍掌控局面吗？","description":"自 9 月 16 日在 75,000 美元附近触底以来，比特币一直表现强劲。价格突破了 81,517 美元至 82,833 美元之间的震荡区间，随后突破了从 2025 年 10 月近 126,272 美元高点下跌的 38.2% 斐波那契回撤位。该回撤位位于 83,916 美元。动能推动比特币昨日和今日再次向 87,300 美元迈进","url":"https://longbridge.com/news/299929679","author":{"member_id":"6060","name":"Investinglive"},"published_at":"2026-09-23T17:41:34Z"},
+    {"id":"299931055","title":"比特币、以太坊和XRP随180亿美元期权到期临近而下滑：发生了什么？","description":"随着交易员为周五 2026 年规模最大的 180 亿美元期权到期做准备，比特币、以太坊和 XRP 出现回落。Deribit 数据显示，市场看涨头寸沉重，75,000 美元构成 “软磁吸” 价位。尽管比特币在结算后可能面临波动，但以太坊表现优异，大量资金正流入冷钱包进行积累","url":"https://longbridge.com/news/299931055","author":{"member_id":"36","name":"Benzinga"},"published_at":"2026-09-23T17:41:29Z"},
+    {"id":"299921786","title":"YieldMax Bitcoin Option Income Strategy ETF 宣布派发 0.1924 美元周股息","description":"YieldMax Bitcoin Option Income Strategy ETF 宣布派发 0.1924 美元周股息","url":"https://longbridge.com/news/299921786","author":{"member_id":"5847","name":"businessinsider"},"published_at":"2026-09-23T16:00:11Z"},
+    {"id":"299923268","title":"比特币价值回落，但分叉币飙升，得益于芝加哥商品交易所期货和 Grayscale ETF——主流币种触及七个月高点","description":"芝加哥商品交易所期货的上市以及新的 Grayscale ETF 的提交，推高了比特币两大主要分叉币的价值，而主导币种本身则从七个月高点回落","url":"https://longbridge.com/news/299923268","author":{"member_id":"5899","name":"Unusual Whales"},"published_at":"2026-09-23T15:57:25Z"},
+    {"id":"299926631","title":"狗狗币一周上涨18%，ETF资金流入回归——接下来会发生什么？","description":"在比特币反弹以及 9 月 22 日美国现货 ETF 净流入总额达 117 万美元的推动下，狗狗币在一周内飙升 18%。分析师指出，狗狗币已从熊市阻力位实现看涨突破，目标价位指向 0.107 至 0.118 美元。交易员援引月度看涨旗形和周线底部结构等技术形态，预计狗狗币在进一步上涨之前，可能会重新测试 0.08 至 0.09 美元的支撑区间","url":"https://longbridge.com/news/299926631","author":{"member_id":"36","name":"Benzinga"},"published_at":"2026-09-23T16:36:23Z"},
+    {"id":"299927681","title":"美 SEC 委员 Uyeda：放弃部分加密诉讼以避免损害监管机构信誉","description":"美国 SEC 委员 Mark Uyeda 表示，为避免损害监管机构信誉，SEC 已放弃数起遗留的加密货币诉讼案件。他指出，在准备推翻此前法律解释的情况下，继续为旧立场辩护将削弱 SEC 公信力。此外，Uyeda 将 SEC 推出的代币化证券「创新豁免」称为试点计划，认为其可能为新进入者及传统金融机构创造大量潜在机会。","url":"https://longbridge.com/news/299927681","author":{"member_id":"5770","name":"钜亨网"},"published_at":"2026-09-23T17:00:38Z"}
+  ]
+}

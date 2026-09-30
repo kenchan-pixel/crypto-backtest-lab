@@ -1,0 +1,14 @@
+{
+  "first_seen_at_hkt": "2026-09-24T07:06:08+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299940943","title":"美国商业活动数据强劲，比特币回落至 8.4 万美元","excerpt":"在美国 PMI 数据强劲提振加息预期后，比特币跌至 8.4 万美元，推动国债收益率上升，使得债券比加密货币更具吸引力。以太坊和 XRP 也随之下跌，Strate...","source_name":"Seeking Alpha","time":"2026-09-23T20:31:22Z","url":"https://longbridge.com/news/299940943.md"},
+    {"id":"299935183","title":"为何 BitMine 股价周三下跌？","excerpt":"BitMine (NYSE: BMNR) 股价周三下跌超过 4%，跟随以太坊跌势及更广泛市场的疲软。作为一家以太坊储备公司，BitMine 对加密货币波动较为敏...","source_name":"Benzinga","time":"2026-09-23T18:47:28Z","url":"https://longbridge.com/news/299935183.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

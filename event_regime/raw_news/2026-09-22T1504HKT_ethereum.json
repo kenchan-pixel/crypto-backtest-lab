@@ -1,0 +1,28 @@
+{
+  "first_seen_at_hkt": "2026-09-22T15:04:34+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time recorded after search/detail retrieval and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "299713603",
+      "title": "Trueo 预测市场因燃气费较低而从 Base 切换到以太坊；以太坊主网提供更好的集成潜力",
+      "excerpt": "Trueo 表示，由于以太坊的高燃气费用，Base 在其推出时是最佳选择，并强调现在主网提供了更好的集成可能性",
+      "source_name": "Unusual Whales",
+      "time": "2026-09-22T04:10:57Z",
+      "url": "https://longbridge.com/news/299713603.md"
+    },
+    {
+      "id": "299707370",
+      "title": "以太坊刚刚经历了自 2016 年以来表现最佳的第三季度——‘ETH 准备迎来大幅上涨！’",
+      "excerpt": "以太坊在第三季度表现强劲，自 2016 年以来最强，价格上涨 67.57%，交易价为 2,716 美元，突破了 2,500 美元的阻力位。尽管创纪录的验证者退出队列暗示潜在的卖压，但下降的交易所储备表明短期内抛售风险降低。",
+      "source_name": "Amb Crypto",
+      "time": "2026-09-22T03:04:56Z",
+      "url": "https://longbridge.com/news/299707370.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge ids 299713603 and 299707370 were absent from the immediately prior 2026-09-22T10:58:06+08:00 manifest. Their verified detail published_at values are later than that prior collection. No content-identity duplicate was identified among this run's new articles.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

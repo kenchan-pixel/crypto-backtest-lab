@@ -1,0 +1,17 @@
+{
+  "first_seen_hkt": "2026-09-20T23:00:00+08:00",
+  "first_seen_at_hkt": "2026-09-20T23:00:00+08:00",
+  "query": "Ethereum",
+  "provenance": {
+    "provider": "Longbridge",
+    "tool": "news_search",
+    "search_limit": 30,
+    "search_placeholder_timestamp": "1970-01-01T00:00:00Z",
+    "placeholder_timestamp_usable": false,
+    "dedupe_scope": "stable Longbridge article id across prior raw_news snapshots; content identity checked for same-id duplicates",
+    "note": "raw.text contains only genuinely newly seen search hits for this query from this collection run; field values are preserved from the search result."
+  },
+  "raw": {
+    "text": "[{\"id\":\"299559327\",\"title\":\"Gravity（由 Galxe 提供）：快速提现功能上线，适用于$G 桥接转账到以太坊 -2026年9月20日\",\"excerpt\":\"Gravity（由 Galxe 推出）在其官方桥接上推出了 “快速提现” 功能，将$G 转账结算时间从七天缩短至大约十分钟。此功能仅适用于从 Gravity A...\",\"source_name\":\"CoinMarketCal\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299559327.md\"},{\"id\":\"299551178\",\"title\":\"在 SingularityNET 漏洞发生后，黑客在以太坊上铸造了 2.6 亿 AGIX 和 5383.8 万 WMTX\",\"excerpt\":\"一名曾对 Fetch.ai 和 NuNet 发起攻击的黑客利用 SingularityNET 的漏洞，在以太坊网络上未经授权铸造了 2.6 亿 AGIX 和 5...\",\"source_name\":\"CoinLive\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299551178.md\"},{\"id\":\"299548758\",\"title\":\"ETH 价格目前停留在$2,574，未显示出任何动能。它会突破至$2,705 还是很快跌至$2,498？请继续关注我们的更新\",\"excerpt\":\"目前，加密货币以太坊正处于一个关键的转折点，其 MACD 动能已完全耗尽，价格接近布林带的上方阻力。预计在接下来的 7 到 14 天内，以太坊将突破$2,639...\",\"source_name\":\"Unusual Whales\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299548758.md\"},{\"id\":\"299544913\",\"title\":\"重力链称 G 代币在各交易所的价格差距超过 40%\",\"excerpt\":\"Gravity Chain 表示，G 代币在各个交易所的价格存在显著差异，一些交易场所的价差在数小时内保持在 30% 以上，最高超过 40%。根据 Foresi...\",\"source_name\":\"CoinLive\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299544913.md\"},{\"id\":\"299541603\",\"title\":\"Vitalik Buterin 表示他将继续把隐私放在首位\",\"excerpt\":\"以太坊联合创始人维塔利克·布特林表示，隐私只有在人们放弃它时才真正消亡，并补充说他不会放弃隐私，而是会加大努力。根据 ChainCatcher 的报道，他是在回...\",\"source_name\":\"CoinLive\",\"time\":\"1970-01-01T00:00:00Z\",\"url\":\"https://longbridge.com/news/299541603.md\"}]"
+  }
+}

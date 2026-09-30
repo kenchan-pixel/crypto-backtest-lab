@@ -1,0 +1,16 @@
+{
+  "first_seen_at_hkt": "2026-09-24T23:02:29+08:00",
+  "query": "Ethereum",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"300042756","title":"解析以太坊第三季度70%的涨幅：ETH能否守住突破成果？","excerpt":"在300亿美元未平仓合约和主导性多头头寸的推动下，预计以太坊将在2026年第三季度实现历史性的70%涨幅。尽管近期出现短期回调，但关键指标显示出强劲的多头信心：...","source_name":"Amb Crypto","time":"2026-09-24T14:04:56Z","url":"https://longbridge.com/news/300042756.md"},
+    {"id":"300042639","title":"Ondo：智能投资组合在以太坊和BNB链上线，搭载贝莱德模型策略 - 2026年9月24日","excerpt":"Ondo在以太坊和BNB链上推出了“智能投资组合”，包含三种贝莱德模型策略代币（BLKHIon、BLKDIGon、BLKGRWon）。这些单一可转让代币封装了多...","source_name":"CoinMarketCal","time":"2026-09-24T14:02:26Z","url":"https://longbridge.com/news/300042639.md"},
+    {"id":"300027048","title":"以太坊下一步走向：在大户抛售1.11亿美元后，ETH能否收复2,700美元？","excerpt":"以太坊遭遇抛售，在1.14亿美元清算量的冲击下跌至2,635美元。一名大户抛售了价值1.1189亿美元的ETH，显示出大型持有者之间潜在的恐惧情绪和派发迹象。交...","source_name":"Amb Crypto","time":"2026-09-24T12:04:56Z","url":"https://longbridge.com/news/300027048.md"},
+    {"id":"300020351","title":"Uniswap能否在10月19日之前保持对以太坊的领先优势？","excerpt":"2026年，Uniswap (UNI) 上涨67%，大幅跑赢下跌9%的以太坊 (ETH)。这一分化走势紧随美国证券交易委员会（SEC）对代币化股票豁免监管以及宣...","source_name":"MSN","time":"2026-09-24T11:12:56Z","url":"https://longbridge.com/news/300020351.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

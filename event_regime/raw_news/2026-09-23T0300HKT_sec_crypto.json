@@ -1,0 +1,20 @@
+{
+  "first_seen_at_hkt": "2026-09-23T03:00:00+08:00",
+  "query": "SEC crypto",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {
+      "id": "299789924",
+      "title": "为何加密货币可能迎来监管",
+      "excerpt": "律以及美国证券交易委员会（SEC）和商品期货交易委员会（CF",
+      "source_name": "American Banker",
+      "time": "2026-09-22T15:37:23Z",
+      "url": "https://longbridge.com/news/299789924.md"
+    }
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}

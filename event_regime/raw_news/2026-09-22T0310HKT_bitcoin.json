@@ -1,0 +1,17 @@
+{
+  "first_seen_at_hkt": "2026-09-22T03:10:00+08:00",
+  "query": "Bitcoin",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "historical_news_completeness_claimed": false,
+  "timestamp_policy": "Search timestamps are provider metadata; 1970/equivalent placeholders are unusable. first_seen_at_hkt is never backdated from published_at.",
+  "new_search_hits": [
+    {"id":"299674374","title":"为什么比特币今天会上涨？","excerpt":"宏观力量正在推动比特币上涨","source_name":"MSN","time":"2026-09-21T18:38:56Z","url":"https://longbridge.com/news/299674374.md"},
+    {"id":"299672359","title":"Circle盘中急涨","excerpt":"Circle(CRCL.US)盘中涨1.82%至93.45美元，加密货币板块走强，比特币突破8.5万美元，Arc主网上线获超百家机构验证。","source_name":"美股行情速递","time":"2026-09-21T18:04:41Z","url":"https://longbridge.com/news/299672359.md"},
+    {"id":"299671339","title":"Strategy盘中急涨 现涨近8%","excerpt":"Strategy(MSTR.US)盘中急涨，现报165.80美元，当日涨7.72%。受比特币突破85000美元推动，加密概念股集体走强。","source_name":"美股行情速递","time":"2026-09-21T17:49:20Z","url":"https://longbridge.com/news/299671339.md"},
+    {"id":"299668727","title":"随着 BTC 价格突破 86,000 美元，比特币和加密货币的清算金额达到 930,040,000 美元","excerpt":"比特币突破 86,000 美元，导致 24 小时内近 9.3 亿美元的加密货币被强制平仓。","source_name":"The Daily Hodl","time":"2026-09-21T17:05:10Z","url":"https://longbridge.com/news/299668727.md"},
+    {"id":"299667952","title":"Arc 在其稳定币生态系统中通过 cirBTC 实现比特币流动性","excerpt":"Circle 在 Arc 网络上推出了 cirBTC，这是一种以比特币为支持的稳定币。","source_name":"Crypto Briefing","time":"2026-09-21T16:50:50Z","url":"https://longbridge.com/news/299667952.md"},
+    {"id":"299661681","title":"Coinbase盘中急涨 现涨超5%","excerpt":"Coinbase(COIN.US)盘中急涨，现报204.01美元，日内涨超5.02%。比特币突破8.5万美元，公司同步开放IPO配售予散户。","source_name":"美股行情速递","time":"2026-09-21T15:49:04Z","url":"https://longbridge.com/news/299661681.md"},
+    {"id":"299661060","title":"Strategy盘中急涨 现涨超8%","excerpt":"Strategy(MSTR.US)盘中涨8.01%报166.245美元。公司近日购入950枚比特币，获SEC交易豁免。","source_name":"美股行情速递","time":"2026-09-21T15:36:53Z","url":"https://longbridge.com/news/299661060.md"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "first_seen_at_hkt": "2026-09-24T10:58:12+08:00",
+  "query": "Bitcoin ETF",
+  "provider": "Longbridge",
+  "tool": "news_search",
+  "timestamp_policy": "Search-result timestamps are provider metadata only; first_seen_at_hkt is this collection observation time and is never backdated from publish time. 1970/equivalent placeholders are unusable.",
+  "new_search_hits": [
+    {"id":"299961156","title":"贝莱德 IBIT 吸引 10 亿美元资金，比特币从 8.7 万美元回落","excerpt":"贝莱德的现货比特币 ETF（IBIT）在连续四个交易日吸引了约","source_name":"Amb Crypto","time":"2026-09-24T01:35:10Z","url":"https://longbridge.com/news/299961156.md"}
+  ],
+  "dedupe_note": "Stable Longbridge article IDs were checked against prior collection evidence; cross-query and content-identity duplicates are reconciled in the detail manifest.",
+  "historical_news_completeness_claimed": false,
+  "trading_actions": "none"
+}
