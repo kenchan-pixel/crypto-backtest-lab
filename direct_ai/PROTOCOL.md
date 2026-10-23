@@ -1,3 +1,5 @@
+> INACTIVE / SUPERSEDED 2026-10-23: Ken clarified and approved wallet copy-paper trading instead. This direct-AI draft was never implemented, funded, scheduled or started. Current implementation work: feat/copy-paper-20261023, copy_paper/. The original frozen ETH study is unchanged.
+
 # Direct AI live-price paper account v1
 Authorization: Ken requested "直接好似佢咁做實時模擬交易" on 2026-10-23. This is a separate prospective AI-discretionary paper account within the existing project, NOT the frozen ETH three-arm experiment and not proof of its gates. Keep old accounts, results and paused automation unchanged.
 Virtual initial cash 10000 USDT. Spot long-only BTCUSDT/ETHUSDT/SOLUSDT; public Binance market data only. No order/account/wallet APIs, keys, leverage, paid services or real money.
