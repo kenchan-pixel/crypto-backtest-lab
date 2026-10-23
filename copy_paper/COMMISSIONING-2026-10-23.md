@@ -1,5 +1,15 @@
 # Live commissioning — 2026-10-23
 
+## Diagnosis and repair — 2026-10-24 02:02 HKT
+
+Deployed `7d325fdca7ff42bda4bef69d64968874`; original book and Scharo allowlist preserved. Historical authenticated audit shows all 10 post-switch buys through 23:15 were received in 1.3–2.6 seconds but rejected by the combined mint gate. The 23:16 transaction was a SELL. Inspected UFO mint `DANapFZeiBShVoHVw3BPE8dW9hjT8JjR1NC5qFjRpump`: Token-2022, revoked mint/freeze authorities, only immutable metadataPointer/tokenMetadata extensions. The prior classic-SPL-only compatibility rule rejected it. Added narrowly scoped Token-2022 support for these metadata-only extensions; unknown/economic extensions and live authorities remain rejected. Reference: https://solana.com/docs/tokens/extensions/metadata . No lag, price chase, ticket size or liquidity thresholds changed.
+
+Later the 100-signature reconciliation window overflowed and latched entryBlocked. Increased recovery fetch and overflow detection together to 1000 (still bounded and fail-closed at overflow). Added authenticated POST /resume-flat, allowed only with enabled empty-position book and empty pending queue; operator recovery preserves an audit record, original balances and all historical skips. After backlog drained, recovery returned resumed=true at 1792778535382. It does not backfill past trades or claim historical gap completeness.
+
+Added authenticated paginated GET /audit (200 scanned records/page; MARK filtered, follow next cursor even for empty result), sanitized GET /connection, and GET /inspect?mint=...; /status now retains last 20 trading events separately from minute marks, for new events after this deployment. Older evidence remains available via /audit. Diagnostics report explicit mint gate checks for future rejected buys.
+
+Validation: 21 tests passed before final recovery guard adjustment; all 4 affected authentication/recovery/overflow/Token-2022 tests passed after it. Exact worker/test readbacks match GitHub. First qualifying natural-event paper fill still requires forward verification; no completed fill claimed at repair time. API success alone does not prove a natural webhook delivery, although observed chain-to-receipt delays were short.
+
 ## Current wallet update — 2026-10-23 22:56 HKT
 
 Ken explicitly approved switching the paper monitor to Scharo, `4sAUSQFdvWRBxR8UoLBYbw8CcXuwXWxnN8pXa4mtm5nU`. Deployment `fb9141612390426084254a41d77ceb16` uses unchanged worker/core code, preserves secrets and the same Durable Object ledger. Runtime WALLETS readback contains only Scharo; ENABLED=true. Helius webhook `d38aa202-bf3f-4269-bd0d-c8e1f3490b02` update returned success. Prior BWP selection below is historical, superseded.
