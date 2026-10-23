@@ -1,4 +1,8 @@
 import {USDC,SOL,SPL,POLICY,initial,integer,normalize,plan,fill,checkQuote,keyOf} from './core.mjs';
+const SCHARO='4sAUSQFdvWRBxR8UoLBYbw8CcXuwXWxnN8pXa4mtm5nU',MATT='3bzaJd5yZG73EVDz8xosQb7gfZm2LN5auFGh6wnP1n1f';
+export const LABS=[{id:'scharo-standard',binding:'SCHARO_STANDARD',wallet:SCHARO,chaseBps:'1500'},{id:'scharo-tight',binding:'SCHARO_TIGHT',wallet:SCHARO,chaseBps:'500'},{id:'matt-standard',binding:'MATT_STANDARD',wallet:MATT,chaseBps:'1500'},{id:'matt-tight',binding:'MATT_TIGHT',wallet:MATT,chaseBps:'500'}];
+const labStub=(env,l)=>env[l.binding].get(env[l.binding].idFromName('forward-v1'));
+const watchWallets=env=>[...new Set([...wallets(env),...(env.LABS_ENABLED==='true'?LABS.map(l=>l.wallet):[])])];
 const json=(v,status=200)=>Response.json(v,{status,headers:{'Cache-Control':'no-store'}});
 const address=x=>typeof x==='string'&&/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(x);
 export function wallets(env) {
@@ -24,6 +28,7 @@ export async function rpc(env,method,params) {
   if(r.error)throw Error('RPC error '+Number(r.error.code));if(r.result===null)throw Error('RPC result null');return r.result;
 }
 export async function quote(env,p) {
+  if(env.QUOTE_GATE){const r=await env.QUOTE_GATE.get(env.QUOTE_GATE.idFromName("global")).fetch("https://internal/quote",{method:"POST",body:JSON.stringify(p)});if(!r.ok)throw Error("quote unavailable");return r.json();}
   // Single serialized book; leave headroom below the free-key 1 request/second limit.
   await new Promise(resolve=>setTimeout(resolve,1100));
   const u=new URL('https://api.jup.ag/swap/v2/order');
@@ -44,6 +49,12 @@ function stub(env){return env.BOOK.get(env.BOOK.idFromName('copy-paper-v1'));}
 export default {
   async fetch(request,env) {
     const path=new URL(request.url).pathname;
+    if(path==='/lab'||path==='/history'){
+      if(request.method!=='GET'||!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      if(path==='/history')return stub(env).fetch('https://internal/history');
+      const books=[];for(const l of LABS){const s=await labStub(env,l).fetch('https://internal/status').then(r=>r.json());const h=await labStub(env,l).fetch('https://internal/history').then(r=>r.json());books.push({...l,...s,history:h.points});}
+      return json({paperOnly:true,experimental:true,observedAt:Date.now(),books});
+    }
     if(path==='/health'&&request.method==='GET')return json({paperOnly:true,configured:Boolean(configured(env))});
     if(path==='/resume-flat'&&request.method==='POST') {
       if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
@@ -69,9 +80,9 @@ export default {
         const endpoint=`https://api-mainnet.helius-rpc.com/v0/webhooks?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`;
         const webhookURL='https://ken-copy-paper.kenchan-528.workers.dev/webhook';
         const existing=await remote(endpoint),match=existing.find(x=>x.webhookURL===webhookURL);
-        if(match&&JSON.stringify(match.accountAddresses)===JSON.stringify(wallets(env)))return json({webhookID:match.webhookID,webhookURL,existing:true});
+        if(match&&JSON.stringify(match.accountAddresses)===JSON.stringify(watchWallets(env)))return json({webhookID:match.webhookID,webhookURL,existing:true});
         const target=match?`https://api-mainnet.helius-rpc.com/v0/webhooks/${encodeURIComponent(match.webhookID)}?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`:endpoint;
-        const r=await remote(target,{method:match?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({webhookURL,transactionTypes:['SWAP'],accountAddresses:wallets(env),webhookType:'enhanced',authHeader:`Bearer ${env.WEBHOOK_SECRET}`})});
+        const r=await remote(target,{method:match?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({webhookURL,transactionTypes:['SWAP'],accountAddresses:watchWallets(env),webhookType:'enhanced',authHeader:`Bearer ${env.WEBHOOK_SECRET}`})});
         return json({webhookID:r.webhookID||match?.webhookID,webhookURL,created:!match,updated:Boolean(match)});
       }catch(e){return json({error:e.message.startsWith('upstream')?e.message:'webhook setup unavailable'},502);}
     }
@@ -126,7 +137,10 @@ export default {
     if(!Array.isArray(events)||events.length>100)return json({error:'invalid batch'},400);
     const signatures=[...new Set(events.map(x=>x.signature))];
     if(signatures.some(x=>typeof x!=='string'||!/^[1-9A-HJ-NP-Za-km-z]{64,88}$/.test(x)))return json({error:'invalid signature'},400);
-    return stub(env).fetch('https://internal/enqueue',{method:'POST',body:JSON.stringify({signatures,receivedAt:Date.now()})});
+    const body=JSON.stringify({signatures,receivedAt:Date.now()});
+    const result=await stub(env).fetch('https://internal/enqueue',{method:'POST',body});
+    if(env.LABS_ENABLED==='true')for(const l of LABS)await labStub(env,l).fetch('https://internal/enqueue',{method:'POST',body});
+    return result;
   },
   async scheduled(_event,env,ctx) {
     if(!configured(env))return;
@@ -138,14 +152,21 @@ export default {
         await stub(env).fetch('https://internal/reconcile',{method:'POST',body:JSON.stringify({wallet:w,rows,receivedAt:Date.now()})});
       }
       await stub(env).fetch('https://internal/sweep',{method:'POST'});
+      if(env.LABS_ENABLED==='true'){
+        for(const wallet of [...new Set(LABS.map(l=>l.wallet))]){
+          const rows=await rpc(env,'getSignaturesForAddress',[wallet,{limit:1000,commitment:'confirmed'}]);
+          for(const l of LABS.filter(l=>l.wallet===wallet)){await labStub(env,l).fetch('https://internal/reconcile',{method:'POST',body:JSON.stringify({wallet,rows,receivedAt:Date.now()})});await labStub(env,l).fetch('https://internal/sweep',{method:'POST'});}
+        }
+      }
     })());
   }
 };
 export class PaperBook {
-  constructor(ctx,env){this.ctx=ctx;this.env=env;}
+  constructor(ctx,env){this.ctx=ctx;this.env=env;this.policy=POLICY;this.experimental=false;}
   async fetch(request) {
     return this.ctx.blockConcurrencyWhile(async()=>{
       const path=new URL(request.url).pathname, db=this.ctx.storage;
+      if(path==='/history'){const points=[...(await db.list({prefix:'nav:',reverse:true,limit:2016})).values()].reverse();return json({points,scope:'5-minute observed marks, up to 7 days; no backfill'});}
       if(path==='/resume-flat') {
         const s=await db.get('state'),h=await db.get('health');
         if(!configured(this.env)||!s||Object.keys(s.positions).length||(await db.list({prefix:'pending:',limit:1})).size)return json({error:'requires enabled flat book and empty queue'},409);
@@ -185,7 +206,7 @@ export class PaperBook {
             await db.put(`pending:${id}`,{id,signature:sig,wallet,receivedAt:data.receivedAt,attempts:0,nextAt:0});
         }
       } else if(path==='/sweep') {
-        for(const [k,p] of Object.entries(s.positions))if(p.exitPending||Date.now()-p.openedAt>=POLICY.maxHoldMs){
+        for(const [k,p] of Object.entries(s.positions))if(p.exitPending||Date.now()-p.openedAt>=this.policy.maxHoldMs){
           const id=`expiry:${k}:${p.openedAt}`;
           if(!await db.get(`pending:${id}`))await db.put(`pending:${id}`,{id,expiry:true,wallet:p.wallet,mint:p.mint,receivedAt:Date.now(),attempts:0,nextAt:0});
         }
@@ -232,13 +253,16 @@ export class PaperBook {
       if(index<positions.length){
         const [key,p]=positions[index];
         try{const spec={inputMint:p.mint,outputMint:USDC,amount:p.qty},at=Date.now(),q=await quote(env,spec);
-          job.values[key]={net:String(checkQuote(q,spec,at,Date.now())-POLICY.fee),at:q.receivedAt};
+          job.values[key]={net:String(checkQuote(q,spec,at,Date.now(),this.policy)-this.policy.fee),at:q.receivedAt};
         }catch{job.values[key]={net:null,at:Date.now(),error:'no usable liquidation quote'};}
         job.index=index+1;await db.put('pending:mark',job);return;
       }
       const complete=Object.keys(job.values).length===positions.length&&positions.every(([k])=>job.values[k]?.net!==null);
       const nav=complete?String(integer(state.cash)+Object.values(job.values).reduce((v,x)=>v+BigInt(x.net),0n)):null;
       await db.put('marks',{at:Date.now(),cash:state.cash,positions:job.values,nav,complete,nonSimultaneous:true});
+      const at=Date.now(),bucket=Math.floor(at/300000)*300000;
+      await db.put('nav:'+bucket,{at,nav,cash:state.cash,realized:state.realized,fills:state.fills,complete});
+      const old=await db.list({prefix:'nav:',end:'nav:'+String(at-7*86400000),limit:100});if(old.size)await db.delete([...old.keys()]);
       await this.finish(job,{status:'MARK',nav,complete});return;
     }
     let s=job.signal;
@@ -251,16 +275,13 @@ export class PaperBook {
       }else{
         let verified=await db.get(`verified:${job.signature}`);
         if(!verified){
-          await new Promise(resolve=>setTimeout(resolve,550)); // Helius free Enhanced API rate.
-          const enhanced=await remote(`https://api-mainnet.helius-rpc.com/v0/transactions?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`,
-            {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({transactions:[job.signature]})});
-          if(enhanced[0]?.signature!==job.signature)throw Error('transaction not available');
-          verified={type:enhanced[0].type,observedAt:Date.now()};
-          if(verified.type==='SWAP')verified.tx=await rpc(env,'getTransaction',[job.signature,{encoding:'jsonParsed',commitment:'confirmed',maxSupportedTransactionVersion:1}]);
+          if(env.QUOTE_GATE){const r=await env.QUOTE_GATE.get(env.QUOTE_GATE.idFromName('source')).fetch('https://internal/source',{method:'POST',body:JSON.stringify({signature:job.signature})});if(!r.ok)throw Error('source unavailable');verified=await r.json();}
+          else verified=await verifySource(env,job.signature);
           await db.put(`verified:${job.signature}`,verified);
         }
         if(verified.type!=='SWAP'){await this.finish(job,{status:'SKIP',reason:'not a supported swap'});return;}
         const tx=verified.tx;
+        if(this.experimental&&tx.transaction.message.accountKeys[0]?.pubkey!==job.wallet){await this.finish(job,{status:'SKIP',reason:'wallet not fee payer'});return;}
         try{s=normalize(tx,job.wallet,job.signature,job.receivedAt);}catch(e){await this.finish(job,{status:'SKIP',reason:e.message});return;}
         await db.put(`source:${job.id}`,tx);
       }
@@ -272,7 +293,7 @@ export class PaperBook {
       if(s.side==='BUY'&&[...(await db.list({prefix:'pending:',limit:1000})).values()].some(j=>j.id!==job.id&&j.attempts>0&&!j.mark))throw Error('unresolved prior event');
       const last=await db.get(`last:${keyOf(s)}`);
       if(!s.expiry&&last&&s.slot<last.slot)throw Error('out-of-order leader event');
-      p=plan(state,s,Date.now());
+      p=plan(state,s,Date.now(),this.policy);
     }catch(e){await this.finish(job,{status:'SKIP',reason:e.message,signal:s});return;}
     if(s.side==='BUY'){
       const mint=await rpc(env,'getAccountInfo',[s.mint,{encoding:'jsonParsed',commitment:'confirmed'}]);
@@ -289,21 +310,21 @@ export class PaperBook {
         if(s.baseMint===USDC)leaderUsdc=integer(s.baseQty);
         else {
           const fp={inputMint:SOL,outputMint:USDC,amount:s.baseQty},fx=await quote(env,fp);
-          checkQuote(fx,fp,decisionAt,Date.now());leaderUsdc=integer(fx.outAmount);
+          checkQuote(fx,fp,decisionAt,Date.now(),this.policy);leaderUsdc=integer(fx.outAmount);
           await db.put(`fx:${job.id}:${job.attempts}`,fx);
         }
       }
       // A reverse route is required before buying. This is not a guarantee of future liquidity.
       if(s.side==='BUY'){
-        const preview=await quote(env,p),previewOut=checkQuote(preview,p,decisionAt,Date.now());
+        const preview=await quote(env,p),previewOut=checkQuote(preview,p,decisionAt,Date.now(),this.policy);
         const reverse={inputMint:s.mint,outputMint:USDC,amount:String(previewOut)},rq=await quote(env,reverse);
-        const net=checkQuote(rq,reverse,decisionAt,Date.now());
-        if(net*100n<POLICY.ticket*90n)throw Error('roundtrip loss gate');
+        const net=checkQuote(rq,reverse,decisionAt,Date.now(),this.policy);
+        if(net*100n<this.policy.ticket*90n)throw Error('roundtrip loss gate');
         await db.put(`reverse:${job.id}`,rq);
       }
       // Use a NEW quote after all gates; never choose an older fill using newer information.
       q=await quote(env,p);
-      const result=fill(state,s,p,q,decisionAt,Date.now(),leaderUsdc);
+      const result=fill(state,s,p,q,decisionAt,Date.now(),leaderUsdc,this.policy);
       if(!s.expiry)await db.put(`last:${keyOf(s)}`,{slot:s.slot});
       await this.finish(job,{status:'FILLED',signal:s,plan:p,quote:q,receipt:result.receipt},result.state);
     }catch(e){
@@ -311,4 +332,32 @@ export class PaperBook {
       const pos=state.positions[keyOf(s)];if(pos){pos.exitPending=true;await db.put('state',state);}throw e;
     }
   }
+}
+
+// Independent experimental books. No state copy, replay fills, or shared cash.
+class ExperimentalBook extends PaperBook {
+ constructor(ctx,env,wallet,chaseBps){super(ctx,{...env,WALLETS:JSON.stringify([wallet]),ENABLED:env.LABS_ENABLED});this.experimental=true;this.policy={...POLICY,chaseBps};}
+}
+export class ScharoStandard extends ExperimentalBook{constructor(c,e){super(c,e,SCHARO,1500n);}}
+export class ScharoTight extends ExperimentalBook{constructor(c,e){super(c,e,SCHARO,500n);}}
+export class MattStandard extends ExperimentalBook{constructor(c,e){super(c,e,MATT,1500n);}}
+export class MattTight extends ExperimentalBook{constructor(c,e){super(c,e,MATT,500n);}}
+async function verifySource(env,signature){
+ await new Promise(resolve=>setTimeout(resolve,550));
+ const enhanced=await remote(`https://api-mainnet.helius-rpc.com/v0/transactions?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({transactions:[signature]})});
+ if(enhanced[0]?.signature!==signature)throw Error('transaction not available');
+ const verified={type:enhanced[0].type,observedAt:Date.now()};
+ if(verified.type==='SWAP')verified.tx=await rpc(env,'getTransaction',[signature,{encoding:'jsonParsed',commitment:'confirmed',maxSupportedTransactionVersion:1}]);
+ return verified;
+}
+export class QuoteGate {
+ constructor(ctx,env){this.ctx=ctx;this.env=env;}
+ async fetch(request){return this.ctx.blockConcurrencyWhile(async()=>{try{
+  const p=await request.json();
+  if(new URL(request.url).pathname==='/source'){
+   const k='tx:'+p.signature,old=await this.ctx.storage.get(k);if(old)return json(old);
+   const v=await verifySource(this.env,p.signature);await this.ctx.storage.put(k,v);return json(v);
+  }
+  const q=await quote({...this.env,QUOTE_GATE:null},p);return json(q);
+ }catch{return json({error:'provider unavailable'},502);}});}
 }

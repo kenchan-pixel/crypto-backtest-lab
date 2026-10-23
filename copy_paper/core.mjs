@@ -49,7 +49,7 @@ export function normalize(tx,wallet,signature,receivedAt) {
     qty:String(qty),leaderPre:String(a.pre),baseMint:base[0],baseQty:String(base[1].delta<0n?-base[1].delta:base[1].delta),
     chainAt,receivedAt,slot:tx.slot};
 }
-export function plan(state,s,now) {
+export function plan(state,s,now,policy=POLICY) {
   if(now<state.startedAt || s.chainAt<state.startedAt) throw Error('pre-start event');
   const p=state.positions[keyOf(s)];
   if(s.side==='SELL') {
@@ -58,45 +58,45 @@ export function plan(state,s,now) {
     if(amount<=0n)throw Error('dust sell');
     return {side:'SELL',amount:String(amount),inputMint:s.mint,outputMint:USDC};
   }
-  if(now-s.chainAt>POLICY.maxLagMs)throw Error('late entry');
+  if(now-s.chainAt>policy.maxLagMs)throw Error('late entry');
   if(Object.values(state.positions).some(p=>p.exitPending))throw Error('unresolved exit');
   const total=Object.values(state.positions).reduce((n,p)=>n+integer(p.cost),0n);
   const wallet=Object.values(state.positions).filter(p=>p.wallet===s.wallet).reduce((n,p)=>n+integer(p.cost),0n);
-  if(integer(state.cash)<POLICY.ticket+POLICY.fee||total+POLICY.ticket+POLICY.fee>POLICY.totalCap||wallet+POLICY.ticket+POLICY.fee>POLICY.walletCap)throw Error('capital cap');
+  if(integer(state.cash)<policy.ticket+policy.fee||total+policy.ticket+policy.fee>policy.totalCap||wallet+policy.ticket+policy.fee>policy.walletCap)throw Error('capital cap');
   if(p)throw Error('no averaging into copied position');
-  return {side:'BUY',amount:String(POLICY.ticket),inputMint:USDC,outputMint:s.mint};
+  return {side:'BUY',amount:String(policy.ticket),inputMint:USDC,outputMint:s.mint};
 }
-export function checkQuote(q,p,decisionAt,now) {
+export function checkQuote(q,p,decisionAt,now,policy=POLICY) {
   if(!q||q.inputMint!==p.inputMint||q.outputMint!==p.outputMint||q.swapMode!=='ExactIn'||integer(q.inAmount)!==integer(p.amount))throw Error('quote mismatch');
-  if(q.requestedAt<decisionAt||q.receivedAt<q.requestedAt||now<q.receivedAt||now-q.requestedAt>POLICY.maxQuoteMs)throw Error('stale quote');
+  if(q.requestedAt<decisionAt||q.receivedAt<q.requestedAt||now<q.receivedAt||now-q.requestedAt>policy.maxQuoteMs)throw Error('stale quote');
   if(!q.routePlan?.length||q.error||q.errorCode||integer(q.outAmount)<=0n)throw Error('no route');
   // No taker is supplied: this endpoint must return a quote only, never a signable transaction.
   if(q.transaction)throw Error('unexpected transaction');
-  return integer(q.outAmount)*(10000n-POLICY.slippageBps)/10000n;
+  return integer(q.outAmount)*(10000n-policy.slippageBps)/10000n;
 }
-export function fill(state,s,p,q,decisionAt,now,leaderUsdc) {
-  const st=structuredClone(state), out=checkQuote(q,p,decisionAt,now), k=keyOf(s);
+export function fill(state,s,p,q,decisionAt,now,leaderUsdc,policy=POLICY) {
+  const st=structuredClone(state), out=checkQuote(q,p,decisionAt,now,policy), k=keyOf(s);
   // Revalidate balances/caps at commit, not only before network calls.
-  const current=plan(st,s,now);
+  const current=plan(st,s,now,policy);
   if(current.amount!==p.amount||current.side!==p.side)throw Error('state changed');
   let pnl=0n;
   if(p.side==='BUY') {
     const reference=integer(leaderUsdc);
-    if(reference===0n||POLICY.ticket*integer(s.qty)*10000n>reference*out*(10000n+POLICY.chaseBps))throw Error('chase limit');
-    st.cash=String(integer(st.cash)-POLICY.ticket-POLICY.fee);
-    st.positions[k]={wallet:s.wallet,mint:s.mint,qty:String(out),cost:String(POLICY.ticket+POLICY.fee),openedAt:now,decimals:s.decimals,exitPending:false};
+    if(reference===0n||policy.ticket*integer(s.qty)*10000n>reference*out*(10000n+policy.chaseBps))throw Error('chase limit');
+    st.cash=String(integer(st.cash)-policy.ticket-policy.fee);
+    st.positions[k]={wallet:s.wallet,mint:s.mint,qty:String(out),cost:String(policy.ticket+policy.fee),openedAt:now,decimals:s.decimals,exitPending:false};
   } else {
     const pos=st.positions[k], qty=integer(pos.qty), sold=integer(p.amount);
-    if(sold>qty||out<POLICY.fee)throw Error('invalid sell proceeds');
+    if(sold>qty||out<policy.fee)throw Error('invalid sell proceeds');
     const cost=integer(pos.cost)*sold/qty;
-    pnl=out-POLICY.fee-cost;
-    st.cash=String(integer(st.cash)+out-POLICY.fee);
+    pnl=out-policy.fee-cost;
+    st.cash=String(integer(st.cash)+out-policy.fee);
     st.realized=String(signed(st.realized)+pnl);
     if(sold===qty)delete st.positions[k];
     else {pos.qty=String(qty-sold);pos.cost=String(integer(pos.cost)-cost);pos.exitPending=false;}
   }
-  st.fees=String(integer(st.fees)+POLICY.fee);st.fills++;st.lastAt=now;
+  st.fees=String(integer(st.fees)+policy.fee);st.fills++;st.lastAt=now;
   return {state:st,receipt:{eventId:s.id,side:p.side,at:now,input:p.amount,output:String(out),
-    fee:String(POLICY.fee),realized:String(pnl),latencyMs:now-s.chainAt,quoteRequestedAt:q.requestedAt,
+    fee:String(policy.fee),realized:String(pnl),latencyMs:now-s.chainAt,quoteRequestedAt:q.requestedAt,
     quoteReceivedAt:q.receivedAt,leaderUsdc:String(leaderUsdc??0),simulation:true}};
 }

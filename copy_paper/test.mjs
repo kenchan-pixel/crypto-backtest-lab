@@ -174,3 +174,27 @@ test('metadata-only Token-2022 accepted; economic extensions and authorities rej
  const x=structuredClone(v);x.data.parsed.info.extensions[0].state.authority='active';assert.equal(supportedMint(x,6),false);
  assert.equal(supportedMint(v,9),false);assert.equal(supportedMint(null,6),false);
 });
+
+test('tight chase rejects a price accepted by standard without changing baseline accounting',()=>{
+ const st=initial(T-1),s=signal(),p=plan(st,s,T+100),q=qt(p,{outAmount:'930000000'});
+ assert.equal(fill(st,s,p,q,T+150,T+400,200000000n).state.fills,1);
+ assert.throws(()=>fill(st,s,p,q,T+150,T+400,200000000n,{...POLICY,chaseBps:500n}),/chase/);
+ assert.equal(st.fills,0);assert.equal(st.cash,'10000000000');
+});
+test('four experiments initialize independent books and preserve data after restart',async()=>{
+ const {ScharoStandard,ScharoTight,MattStandard,MattTight}=await import('./worker.mjs');
+ const env={ENABLED:'true',LABS_ENABLED:'true',HELIUS_API_KEY:'fixture',JUPITER_API_KEY:'fixture'};
+ const stores=[];for(const C of [ScharoStandard,ScharoTight,MattStandard,MattTight]){const storage=new Store();stores.push(storage);const ctx={storage,blockConcurrencyWhile:fn=>fn()};const b=new C(ctx,env);await b.fetch(new Request('https://i/sweep',{method:'POST'}));await b.process({id:'mark',mark:true});const r=await new C(ctx,env).fetch(new Request('https://i/history')).then(r=>r.json());assert.equal(r.points.length,1);assert.equal(r.points[0].nav,'10000000000');}
+ const changed=await stores[0].get('state');changed.cash='1';await stores[0].put('state',changed);
+ for(const s of stores.slice(1))assert.equal((await s.get('state')).cash,'10000000000');
+});
+test('experiment refuses swap not paid by watched wallet',async()=>{
+ const {MattStandard,LABS}=await import('./worker.mjs');const wallet=LABS.find(l=>l.id==='matt-standard').wallet;
+ const storage=new Store(),ctx={storage,blockConcurrencyWhile:fn=>fn()},b=new MattStandard(ctx,{LABS_ENABLED:'true',HELIUS_API_KEY:'f',JUPITER_API_KEY:'f'});
+ await storage.put('state',initial(Date.now()-10000));await storage.put('verified:'+SIG,{type:'SWAP',tx:transaction()});
+ await b.process({id:SIG+':'+wallet,signature:SIG,wallet,receivedAt:Date.now()});
+ assert.equal((await storage.get('state')).fills,0);const rows=[...(await storage.list({prefix:'event:'})).values()];assert.equal(rows[0].reason,'wallet not fee payer');
+});
+test('history and comparison endpoints reject anonymous access',async()=>{
+ for(const p of ['/history','/lab'])assert.equal((await worker.fetch(new Request('https://i'+p),{})).status,401);
+});
