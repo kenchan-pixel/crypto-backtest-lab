@@ -1,0 +1,11 @@
+{
+  "name": "ken-copy-paper",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "vars": {"ENABLED":"false", "WALLETS":"[]"},
+  "durable_objects": {"bindings":[{"name":"BOOK","class_name":"PaperBook"}]},
+  "migrations": [{"tag":"copy-paper-v1","new_sqlite_classes":["PaperBook"]}],
+  "triggers": {"crons":["* * * * *"]},
+  "observability": {"enabled":true}
+}
