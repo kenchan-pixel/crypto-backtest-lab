@@ -38,6 +38,17 @@ export default {
   async fetch(request,env) {
     const path=new URL(request.url).pathname;
     if(path==='/health'&&request.method==='GET')return json({paperOnly:true,configured:Boolean(configured(env))});
+    if(path==='/preflight'&&request.method==='POST') {
+      if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      const checks={};
+      try { const r=await rpc(env,'getAccountInfo',[USDC,{encoding:'jsonParsed',commitment:'confirmed'}]);
+        checks.helius={ok:r.value?.data?.parsed?.info?.decimals===6,slot:r.context?.slot};
+      }catch {checks.helius={ok:false,error:'RPC authentication or availability failed'};}
+      try { const at=Date.now(),p={inputMint:USDC,outputMint:SOL,amount:'200000000'},q=await quote(env,p);
+        checkQuote(q,p,at,Date.now());checks.jupiter={ok:true,inputMint:q.inputMint,outputMint:q.outputMint,inAmount:q.inAmount,outAmount:q.outAmount,requestedAt:q.requestedAt,receivedAt:q.receivedAt};
+      }catch(e) {checks.jupiter={ok:false,error:e.message.startsWith('upstream')?e.message:'quote schema or route validation failed'};}
+      return json({paperOnly:true,checkedAt:Date.now(),checks});
+    }
     if(path==='/status'&&request.method==='GET') {
       if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
       return stub(env).fetch('https://internal/status');
