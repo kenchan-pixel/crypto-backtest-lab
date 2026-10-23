@@ -1,6 +1,14 @@
 # Live commissioning — 2026-10-23
 
-## Actual state
+## Current wallet update — 2026-10-23 22:56 HKT
+
+Ken explicitly approved switching the paper monitor to Scharo, `4sAUSQFdvWRBxR8UoLBYbw8CcXuwXWxnN8pXa4mtm5nU`. Deployment `fb9141612390426084254a41d77ceb16` uses unchanged worker/core code, preserves secrets and the same Durable Object ledger. Runtime WALLETS readback contains only Scharo; ENABLED=true. Helius webhook `d38aa202-bf3f-4269-bd0d-c8e1f3490b02` update returned success. Prior BWP selection below is historical, superseded.
+
+Screened at 22:46 HKT: latest 100 enhanced records span 100 minutes, 42 own SWAP records, 22 within the preceding hour. Four canonical samples parsed as 3 BUY and 1 SELL. This is an activity/compatibility test, not a profitability recommendation. Discovery: https://kolscan.io/account/4sAUSQFdvWRBxR8UoLBYbw8CcXuwXWxnN8pXa4mtm5nU .
+
+Manual recovery tick queued 14 records; subsequent readback queue=0, health=null. Receipts include late-entry skips, unsupported swaps and no-copied-position sells. Cash remains 10,000 USDC, positions=0, fills=0; original startedAt preserved. No historical event counted as a forward fill. First qualifying new-event fill remains unverified.
+
+## Original commissioning state
 
 Worker `ken-copy-paper` is enabled with one experimental wallet, authenticated Helius SWAP webhook and minute recovery/mark cron. Book initialized 2026-10-23T20:39:30.161000+08:00, 10,000 virtual USDC. At final readback: zero fills, no positions, zero fees, zero queue, no health error. This is **not proof of a profitable strategy or a live natural-event fill**. No private trading key, transaction signing or on-chain submission exists.
 
