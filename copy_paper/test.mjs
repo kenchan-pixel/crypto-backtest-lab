@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {USDC,SOL,SPL,POLICY,initial,normalize,plan,fill,checkQuote} from './core.mjs';
-import worker,{PaperBook,wallets} from './worker.mjs';
+import worker,{PaperBook,wallets,supportedMint} from './worker.mjs';
 const W='11111111111111111111111111111111', M='22222222222222222222222222222222', SIG='3'.repeat(88);
 const T=1792756800000;
 function signal(over={}){return {id:SIG+':'+W,signature:SIG,wallet:W,mint:M,side:'BUY',qty:'1000000000',leaderPre:'0',baseMint:USDC,baseQty:'200000000',chainAt:T,receivedAt:T+100,slot:100,decimals:6,...over};}
@@ -162,4 +162,15 @@ test('100 row burst no longer falsely overflows the 1000 row recovery window',as
  const run=n=>book.fetch(new Request('https://i/reconcile',{method:'POST',body:JSON.stringify({wallet:W,receivedAt:T+1000,rows:Array.from({length:n},(_,i)=>({signature:'s'+i,blockTime:T/1000,err:null}))})}));
  await run(100);assert.equal(await db.get('health'),undefined);
  await db.put('cursor:'+W,'old');await run(1000);assert.equal((await db.get('health')).entryBlocked,true);
+});
+
+test('metadata-only Token-2022 accepted; economic extensions and authorities rejected',()=>{
+ const v={owner:'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb',data:{parsed:{info:{mintAuthority:null,freezeAuthority:null,decimals:6,extensions:[{extension:'metadataPointer',state:{authority:null}},{extension:'tokenMetadata',state:{updateAuthority:null}}]}}}};
+ assert.equal(supportedMint(v,6),true);
+ for(const name of ['transferFeeConfig','transferHook','permanentDelegate','defaultAccountState','pausable','unknown']){
+  const x=structuredClone(v);x.data.parsed.info.extensions.push({extension:name});assert.equal(supportedMint(x,6),false);
+ }
+ for(const key of ['mintAuthority','freezeAuthority']){const x=structuredClone(v);x.data.parsed.info[key]='active';assert.equal(supportedMint(x,6),false);}
+ const x=structuredClone(v);x.data.parsed.info.extensions[0].state.authority='active';assert.equal(supportedMint(x,6),false);
+ assert.equal(supportedMint(v,9),false);assert.equal(supportedMint(null,6),false);
 });
