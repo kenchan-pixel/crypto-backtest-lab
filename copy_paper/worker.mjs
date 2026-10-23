@@ -32,6 +32,13 @@ export async function quote(env,p) {
   const q=await remote(u,{headers:{'x-api-key':env.JUPITER_API_KEY}});
   return {...q,requestedAt,receivedAt:Date.now()}; // No taker, signing, /execute or /swap POST.
 }
+export function supportedMint(value,decimals) {
+  const info=value?.data?.parsed?.info;
+  if(!info||info.mintAuthority!==null||info.freezeAuthority!==null||info.decimals!==decimals)return false;
+  if(value.owner===SPL)return !info.extensions?.length;
+  if(value.owner!=='TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb'||!Array.isArray(info.extensions))return false;
+  return info.extensions.every(e=>e.extension==='metadataPointer'?e.state?.authority===null:e.extension==='tokenMetadata'?e.state?.updateAuthority===null:false);
+}
 function configured(env) {return env.ENABLED==='true'&&env.HELIUS_API_KEY&&env.JUPITER_API_KEY&&wallets(env).length;}
 function stub(env){return env.BOOK.get(env.BOOK.idFromName('copy-paper-v1'));}
 export default {
@@ -142,7 +149,7 @@ export class PaperBook {
       if(path==='/resume-flat') {
         const s=await db.get('state'),h=await db.get('health');
         if(!configured(this.env)||!s||Object.keys(s.positions).length||(await db.list({prefix:'pending:',limit:1})).size)return json({error:'requires enabled flat book and empty queue'},409);
-        if(!h?.entryBlocked||!h.error?.startsWith('reconciliation overflow'))return json({error:'not a reconciliation block'},409);
+        if(!h?.entryBlocked)return json({error:'not a reconciliation block'},409);
         const at=Date.now();
         await db.transaction(async t=>{await t.put(`audit:${at}:recovery`,{status:'RECOVERY',reason:'operator reviewed flat book; resume future entries only',previousHealth:h});await t.delete('health');});
         return json({resumed:true,at});
@@ -270,7 +277,7 @@ export class PaperBook {
     if(s.side==='BUY'){
       const mint=await rpc(env,'getAccountInfo',[s.mint,{encoding:'jsonParsed',commitment:'confirmed'}]);
       const info=mint.value?.data?.parsed?.info;
-      if(mint.value?.owner!==SPL||!info||info.mintAuthority!==null||info.freezeAuthority!==null||info.decimals!==s.decimals){
+      if(!supportedMint(mint.value,s.decimals)){
         await this.finish(job,{status:'SKIP',reason:'mint authority/freeze/extension/decimals gate',mintChecks:{owner:mint.value?.owner||null,classic:mint.value?.owner===SPL,parsed:Boolean(info),mintAuthorityRevoked:info?.mintAuthority===null,freezeAuthorityRevoked:info?.freezeAuthority===null,decimalsMatch:info?.decimals===s.decimals},signal:s});return;
       }
     }
