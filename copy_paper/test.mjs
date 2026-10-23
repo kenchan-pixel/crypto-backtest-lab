@@ -114,3 +114,20 @@ test('duplicate webhook delivery and process restart produce one fill',async()=>
     assert.equal((await store.get('state')).cash,'9799000000');
   }finally{globalThis.fetch=oldFetch;}
 });
+
+test('commissioning endpoints deny unauthenticated calls before any upstream work',async()=>{
+  const oldFetch=globalThis.fetch;globalThis.fetch=async()=>{throw Error('must not call upstream');};
+  try{for(const [path,method]of [['preflight','POST'],['inspect?wallet='+W,'GET'],['connect','POST'],['tick','POST']]){
+    const r=await worker.fetch(new Request('https://test/'+path,{method}),{ADMIN_TOKEN:'a'.repeat(64)});
+    assert.equal(r.status,401);
+  }}finally{globalThis.fetch=oldFetch;}
+});
+test('preflight validates provider data without initializing or funding a book',async()=>{
+  const oldFetch=globalThis.fetch;globalThis.fetch=async(url)=>{
+    const u=new URL(url);if(u.hostname==='mainnet.helius-rpc.com')return Response.json({result:{context:{slot:123},value:{data:{parsed:{info:{decimals:6}}}}}});
+    return Response.json({inputMint:USDC,outputMint:SOL,inAmount:'200000000',outAmount:'1000000000',swapMode:'ExactIn',routePlan:[{}]});
+  };
+  try{const r=await worker.fetch(new Request('https://test/preflight',{method:'POST',headers:{Authorization:'Bearer '+'a'.repeat(64)}}),{ADMIN_TOKEN:'a'.repeat(64),HELIUS_API_KEY:'test',JUPITER_API_KEY:'test'});
+    const body=await r.json();assert.equal(body.checks.helius.ok,true);assert.equal(body.checks.jupiter.ok,true);
+  }finally{globalThis.fetch=oldFetch;}
+});
