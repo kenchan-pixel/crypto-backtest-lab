@@ -145,3 +145,21 @@ test('real Solana v1 fixture decodes exact sold balance and uses v1 RPC opt-in',
    assert.equal((await r.json()).signal.side,'SELL');
  }finally{globalThis.fetch=oldFetch;}
 });
+test('diagnostic and recovery endpoints require admin authentication',async()=>{
+ for(const [path,method] of [['audit','GET'],['connection','GET'],['resume-flat','POST']])assert.equal((await worker.fetch(new Request('https://x/'+path,{method}),{})).status,401);
+});
+test('recovery only clears overflow on a flat idle book and preserves balances',async()=>{
+ const db=new Store(),env={ENABLED:'true',WALLETS:JSON.stringify([W]),HELIUS_API_KEY:'x',JUPITER_API_KEY:'y'},book=new PaperBook({storage:db,blockConcurrencyWhile:fn=>fn()},env);
+ const state=initial(T);await db.put('state',state);await db.put('health',{entryBlocked:true,error:'reconciliation overflow: feed gap; new buys blocked'});
+ const req=()=>new Request('https://internal/resume-flat',{method:'POST'});
+ await db.put('pending:x',{});assert.equal((await book.fetch(req())).status,409);await db.delete('pending:x');
+ state.positions.x={qty:'1'};await db.put('state',state);assert.equal((await book.fetch(req())).status,409);
+ state.positions={};await db.put('state',state);assert.equal((await book.fetch(req())).status,200);assert.deepEqual(await db.get('state'),state);assert.equal(await db.get('health'),undefined);assert.equal((await db.list({prefix:'audit:'})).size,1);
+});
+test('100 row burst no longer falsely overflows the 1000 row recovery window',async()=>{
+ const db=new Store(),env={ENABLED:'true',WALLETS:JSON.stringify([W]),HELIUS_API_KEY:'x',JUPITER_API_KEY:'y'},book=new PaperBook({storage:db,blockConcurrencyWhile:fn=>fn()},env);
+ await db.put('state',initial(T));await db.put('cursor:'+W,'old');
+ const run=n=>book.fetch(new Request('https://i/reconcile',{method:'POST',body:JSON.stringify({wallet:W,receivedAt:T+1000,rows:Array.from({length:n},(_,i)=>({signature:'s'+i,blockTime:T/1000,err:null}))})}));
+ await run(100);assert.equal(await db.get('health'),undefined);
+ await db.put('cursor:'+W,'old');await run(1000);assert.equal((await db.get('health')).entryBlocked,true);
+});
