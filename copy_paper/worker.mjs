@@ -38,13 +38,48 @@ export default {
   async fetch(request,env) {
     const path=new URL(request.url).pathname;
     if(path==='/health'&&request.method==='GET')return json({paperOnly:true,configured:Boolean(configured(env))});
+    if(path==='/connect'&&request.method==='POST') {
+      if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      if(!configured(env)||!env.WEBHOOK_SECRET)return json({error:'not configured'},503);
+      try {
+        const endpoint=`https://api-mainnet.helius-rpc.com/v0/webhooks?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`;
+        const webhookURL='https://ken-copy-paper.kenchan-528.workers.dev/webhook';
+        const existing=await remote(endpoint),match=existing.find(x=>x.webhookURL===webhookURL);
+        if(match){if(JSON.stringify(match.accountAddresses)!==JSON.stringify(wallets(env)))return json({error:'existing webhook allowlist differs'},409);
+          return json({webhookID:match.webhookID,webhookURL,existing:true});}
+        const r=await remote(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({webhookURL,transactionTypes:['SWAP'],accountAddresses:wallets(env),webhookType:'enhanced',authHeader:`Bearer ${env.WEBHOOK_SECRET}`})});
+        return json({webhookID:r.webhookID,webhookURL,created:true});
+      }catch(e){return json({error:e.message.startsWith('upstream')?e.message:'webhook setup unavailable'},502);}
+    }
+    if(path==='/tick'&&request.method==='POST') {
+      if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      if(!configured(env))return json({error:'not configured'},503);
+      const work=[];await this.scheduled({},env,{waitUntil:p=>work.push(p)});await Promise.all(work);
+      return stub(env).fetch('https://internal/status');
+    }
+    if(path==='/inspect'&&request.method==='GET') {
+      if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      const u=new URL(request.url),wallet=u.searchParams.get('wallet'),sig=u.searchParams.get('signature'),before=u.searchParams.get('before');
+      if(!address(wallet)||[sig,before].some(x=>x&&!/^[1-9A-HJ-NP-Za-km-z]{64,88}$/.test(x)))return json({error:'invalid query'},400);
+      try {
+        if(sig){const tx=await rpc(env,'getTransaction',[sig,{encoding:'jsonParsed',commitment:'confirmed',maxSupportedTransactionVersion:0}]);
+          let signal;try{signal=normalize(tx,wallet,sig,Date.now());}catch(e){signal={unsupported:e.message};}
+          return json({signal,tx});}
+        const endpoint=new URL(`https://api-mainnet.helius-rpc.com/v0/addresses/${wallet}/transactions`);
+        endpoint.searchParams.set('api-key',env.HELIUS_API_KEY);endpoint.searchParams.set('limit','100');
+        if(before)endpoint.searchParams.set('before',before);
+        return json({wallet,observedAt:Date.now(),rows:await remote(endpoint)});
+      }catch{return json({error:'source unavailable'},502);}
+    }
     if(path==='/preflight'&&request.method==='POST') {
       if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      const target=new URL(request.url).searchParams.get('mint')||SOL;
+      if(!address(target))return json({error:'invalid mint'},400);
       const checks={};
       try { const r=await rpc(env,'getAccountInfo',[USDC,{encoding:'jsonParsed',commitment:'confirmed'}]);
         checks.helius={ok:r.value?.data?.parsed?.info?.decimals===6,slot:r.context?.slot};
       }catch {checks.helius={ok:false,error:'RPC authentication or availability failed'};}
-      try { const at=Date.now(),p={inputMint:USDC,outputMint:SOL,amount:'200000000'},q=await quote(env,p);
+      try { const at=Date.now(),p={inputMint:USDC,outputMint:target,amount:'200000000'},q=await quote(env,p);
         checkQuote(q,p,at,Date.now());checks.jupiter={ok:true,inputMint:q.inputMint,outputMint:q.outputMint,inAmount:q.inAmount,outAmount:q.outAmount,requestedAt:q.requestedAt,receivedAt:q.receivedAt};
       }catch(e) {checks.jupiter={ok:false,error:e.message.startsWith('upstream')?e.message:'quote schema or route validation failed'};}
       return json({paperOnly:true,checkedAt:Date.now(),checks});
