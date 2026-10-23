@@ -131,3 +131,17 @@ test('preflight validates provider data without initializing or funding a book',
     const body=await r.json();assert.equal(body.checks.helius.ok,true);assert.equal(body.checks.jupiter.ok,true);
   }finally{globalThis.fetch=oldFetch;}
 });
+
+test('real Solana v1 fixture decodes exact sold balance and uses v1 RPC opt-in',async()=>{
+ const {readFile}=await import('node:fs/promises');
+ const f=JSON.parse(await readFile(new URL('./fixtures/solana-v1-sell.json',import.meta.url),'utf8'));
+ assert.equal(f.tx.version,1);
+ const parsed=normalize(f.tx,f.signal.wallet,f.signal.signature,f.signal.receivedAt);
+ assert.equal(parsed.side,'SELL');assert.equal(parsed.qty,'23390914675952');assert.equal(parsed.baseQty,'3023224962');
+ const oldFetch=globalThis.fetch;globalThis.fetch=async(_url,opts)=>{
+   const req=JSON.parse(opts.body);assert.equal(req.params[1].maxSupportedTransactionVersion,1);return Response.json({result:f.tx});
+ };
+ try{const r=await worker.fetch(new Request('https://test/inspect?wallet='+f.signal.wallet+'&signature='+f.signal.signature,{headers:{Authorization:'Bearer '+'a'.repeat(64)}}),{ADMIN_TOKEN:'a'.repeat(64),HELIUS_API_KEY:'test'});
+   assert.equal((await r.json()).signal.side,'SELL');
+ }finally{globalThis.fetch=oldFetch;}
+});
