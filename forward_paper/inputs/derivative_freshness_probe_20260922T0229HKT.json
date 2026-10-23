@@ -1,0 +1,46 @@
+{
+  "schema": "eth-forward-derivative-freshness-probe-v1",
+  "symbol": "ETHUSDT",
+  "observed_at_utc": "2026-09-21T18:29:46.211241+00:00",
+  "observed_clock_source": "Automation runtime UTC clock immediately after connected Binance read-only collection",
+  "raw_sample_sha256": "222879cf3262f96378d0adb53c96f20c330eb4acff4e3fd4cb9345126b83494c",
+  "open_interest": [
+    {"symbol":"ETHUSDT","sumOpenInterest":"2374079.28100000","sumOpenInterestValue":"6526842500.11801000","CMCCirculatingSupply":"122064744.06907414","timestamp":1790014500000},
+    {"symbol":"ETHUSDT","sumOpenInterest":"2380167.22600000","sumOpenInterestValue":"6545176963.70483900","CMCCirculatingSupply":"122064744.06907414","timestamp":1790014800000},
+    {"symbol":"ETHUSDT","sumOpenInterest":"2379742.80100000","sumOpenInterestValue":"6536986892.35093000","CMCCirculatingSupply":"122064744.06907414","timestamp":1790015100000}
+  ],
+  "top_accounts": [
+    {"symbol":"ETHUSDT","longAccount":"0.5514","longShortRatio":"1.2292","shortAccount":"0.4486","timestamp":1790014500000},
+    {"symbol":"ETHUSDT","longAccount":"0.5517","longShortRatio":"1.2306","shortAccount":"0.4483","timestamp":1790014800000},
+    {"symbol":"ETHUSDT","longAccount":"0.5515","longShortRatio":"1.2297","shortAccount":"0.4485","timestamp":1790015100000}
+  ],
+  "top_positions": [
+    {"symbol":"ETHUSDT","longAccount":"0.5997","longShortRatio":"1.4983","shortAccount":"0.4003","timestamp":1790014500000},
+    {"symbol":"ETHUSDT","longAccount":"0.5982","longShortRatio":"1.4885","shortAccount":"0.4018","timestamp":1790014800000},
+    {"symbol":"ETHUSDT","longAccount":"0.5982","longShortRatio":"1.4891","shortAccount":"0.4018","timestamp":1790015100000}
+  ],
+  "all_accounts": [
+    {"symbol":"ETHUSDT","longAccount":"0.6938","longShortRatio":"2.2658","shortAccount":"0.3062","timestamp":1790014500000},
+    {"symbol":"ETHUSDT","longAccount":"0.6941","longShortRatio":"2.2690","shortAccount":"0.3059","timestamp":1790014800000},
+    {"symbol":"ETHUSDT","longAccount":"0.6938","longShortRatio":"2.2658","shortAccount":"0.3062","timestamp":1790015100000}
+  ],
+  "taker": [
+    {"buySellRatio":"2.0017","sellVol":"4448.6460","buyVol":"8904.6740","timestamp":1790014200000},
+    {"buySellRatio":"1.8918","sellVol":"6856.9960","buyVol":"12971.8920","timestamp":1790014500000},
+    {"buySellRatio":"0.7237","sellVol":"5268.7280","buyVol":"3813.2000","timestamp":1790014800000}
+  ],
+  "funding": [
+    {"symbol":"ETHUSDT","fundingTime":1789948800007,"fundingRate":"0.00008166","markPrice":"2643.82038760","rateType":"Regular"},
+    {"symbol":"ETHUSDT","fundingTime":1789977600004,"fundingRate":"0.00008660","markPrice":"2660.81116279","rateType":"Regular"},
+    {"symbol":"ETHUSDT","fundingTime":1790006400002,"fundingRate":"0.00008935","markPrice":"2754.00000000","rateType":"Regular"}
+  ],
+  "provenance": {
+    "open_interest": "Connected Binance USD-M Open Interest Statistics, period=5m, limit=3",
+    "top_accounts": "Connected Binance USD-M Top Trader Long/Short Ratio Accounts, period=5m, limit=3",
+    "top_positions": "Connected Binance USD-M Top Trader Long/Short Ratio Positions, period=5m, limit=3",
+    "all_accounts": "Connected Binance USD-M Long/Short Ratio, period=5m, limit=3",
+    "taker": "Connected Binance USD-M Taker Buy/Sell Volume, period=5m, limit=3",
+    "funding": "Connected Binance USD-M Funding Rate History, limit=3"
+  },
+  "scope": "Second independent public read-only derivative freshness collection. No order/account/wallet endpoint invoked. Commissioning evidence only; not a trade signal or performance result."
+}

@@ -1,0 +1,54 @@
+{
+  "schema": "eth-forward-derivative-freshness-repeat-receipt-v1",
+  "verified_at_utc": "2026-09-21T18:31:43.779535+00:00",
+  "github_actions_run_id": 35638909662,
+  "tested_commit": "bb46b867ecd051a0d58dd9e1aaaee2162f0acad5",
+  "tests": {
+    "files": ["forward_paper/test_live_sources.py", "forward_paper/test_freshness.py"],
+    "passed": 20,
+    "failed": 0,
+    "warnings": 33,
+    "warning_scope": "pandas/NumPy timedelta deprecation warnings only; no test failure"
+  },
+  "derivative_freshness_probe": {
+    "path": "forward_paper/inputs/derivative_freshness_probe_20260922T0229HKT.json",
+    "file_sha256": "8d4a6eddaecdee9a56b8e737b3d396bd346fc55fcd81b1b7b1f6f17f930a6bcd",
+    "raw_sample_sha256": "222879cf3262f96378d0adb53c96f20c330eb4acff4e3fd4cb9345126b83494c",
+    "latest_common_metric_utc": "2026-09-21T18:20:00+00:00",
+    "common_metric_age_minutes": 9.77018735,
+    "metric_max_age_minutes": 15.0,
+    "latest_funding_utc": "2026-09-21T16:00:00.002000+00:00",
+    "funding_age_minutes": 149.77015401666668,
+    "funding_freshness_limit_minutes": 569.9999666666668,
+    "fresh": true
+  },
+  "independent_repeat": {
+    "verified": true,
+    "prior_probe": "forward_paper/inputs/derivative_freshness_probe_20260922T0117HKT.json",
+    "probe_count": 2,
+    "gap_minutes": 71.93278735,
+    "raw_samples_differ": true
+  },
+  "spot_pair_same_run": {
+    "completed_aligned_hours": 999,
+    "latest_complete_utc": "2026-09-21T18:00:00+00:00",
+    "latest_complete_age_minutes": 31.72965,
+    "partial_rows_excluded_each": 1,
+    "eth_30d_return_observation": 0.13062580368624088,
+    "used_for_weekly_decision": false
+  },
+  "artifact": {
+    "id": 10657053792,
+    "zip_sha256": "6aa79d3ba8f223408844f1419e7ca91ac00b1aca15f014195a29ae173abf0e3d"
+  },
+  "forward_execution_ready": false,
+  "source_freshness_gate_promoted": false,
+  "live_feature_parity_gate_promoted": false,
+  "performance_started_at": null,
+  "paper_trades_executed": 0,
+  "remaining_before_source_freshness_gate": [
+    "Macro first-seen capture with actual observation timestamps",
+    "Complete parent-opportunity stream parity including no-signal, cooldown and simultaneous-catalyst cases"
+  ],
+  "scope": "Second independent commissioning freshness observation only. No order, account, wallet, margin, transfer or testnet endpoint was invoked. Old failed historical paper gates remain unchanged."
+}

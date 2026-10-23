@@ -1,0 +1,47 @@
+{
+  "schema": "eth-forward-derivative-freshness-receipt-v1",
+  "verified_at_utc": "2026-09-21T17:21:01Z",
+  "github_actions_run_id": 35631404279,
+  "tested_commit": "b4cbefbb8ac147b6aa865de88b6568b16a3751cf",
+  "tests": {
+    "files": ["forward_paper/test_live_sources.py", "forward_paper/test_freshness.py"],
+    "passed": 20,
+    "failed": 0,
+    "warnings": 33,
+    "warning_scope": "pandas/NumPy timedelta deprecation warnings only; no test failure"
+  },
+  "derivative_freshness_probe": {
+    "path": "forward_paper/inputs/derivative_freshness_probe_20260922T0117HKT.json",
+    "file_sha256": "d766e51b17804f929e75417e6a70f72a93a9544af5a8a0baf19bdf4dddeab729",
+    "latest_common_metric_utc": "2026-09-21T17:10:00+00:00",
+    "common_metric_age_minutes": 7.8374,
+    "metric_max_age_minutes": 15.0,
+    "latest_funding_utc": "2026-09-21T16:00:00.002000+00:00",
+    "funding_age_minutes": 77.83736666666667,
+    "latest_funding_interval_hours": 7.999999444444445,
+    "fresh": true
+  },
+  "spot_pair_same_run": {
+    "completed_aligned_hours": 999,
+    "latest_complete_utc": "2026-09-21T17:00:00+00:00",
+    "latest_complete_age_minutes": 21.007566666666666,
+    "partial_rows_excluded_each": 1,
+    "eth_30d_return_observation": 0.1370494049854909,
+    "used_for_weekly_decision": false
+  },
+  "artifact": {
+    "id": 10654144806,
+    "zip_sha256": "8ff5478c66cf6db8f3b970ba99bf491d297f0f2ed2413d65565e03af10a1b72b"
+  },
+  "forward_execution_ready": false,
+  "source_freshness_gate_promoted": false,
+  "live_feature_parity_gate_promoted": false,
+  "performance_started_at": null,
+  "paper_trades_executed": 0,
+  "remaining_before_source_freshness_gate": [
+    "Repeat derivative freshness on a later independent collection",
+    "Macro first-seen capture with actual observation timestamps",
+    "Complete parent-opportunity stream parity including no-signal, cooldown and simultaneous-catalyst cases"
+  ],
+  "scope": "Commissioning evidence only. No order, account, wallet, margin, transfer or testnet endpoint was invoked. Old failed historical paper gates remain unchanged."
+}

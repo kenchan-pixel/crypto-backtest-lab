@@ -1,0 +1,58 @@
+name: ETH forward live pipeline commissioning
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths:
+      - '.github/workflows/eth-forward-live-pipeline.yml'
+      - 'forward_paper/live_pipeline.py'
+      - 'forward_paper/test_live_pipeline.py'
+permissions:
+  contents: read
+concurrency:
+  group: eth-forward-live-pipeline
+  cancel-in-progress: false
+jobs:
+  live-pipeline:
+    if: github.repository == 'kenchan-pixel/crypto-backtest-lab' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install pinned research dependencies
+        run: python -m pip install -r forward_paper/requirements.txt
+      - name: Run focused commissioning tests
+        run: |
+          set -euo pipefail
+          python -m pytest -q forward_paper/test_live_pipeline.py forward_paper/test_live_sources.py forward_paper/test_freshness.py forward_paper/test_macro_first_seen.py
+      - name: Build one current causal live snapshot
+        run: |
+          set -euo pipefail
+          python -m forward_paper.live_pipeline \
+            --macro-capture forward_paper/inputs/macro_first_seen_20260922T031843HKT.json \
+            --out live_pipeline_receipt.json
+      - name: Enforce commissioning boundary
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('live_pipeline_receipt.json'))
+          assert r['passed'] is True
+          assert r['historical_outcome_columns_used'] is False
+          assert r['order_account_endpoints_used'] is False
+          assert r['paper_trades_created']==0 and r['performance_started'] is False
+          assert r['model_sha256']=='08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe'
+          assert r['derivative_freshness']['fresh'] is True
+          assert all(r['derivative_feature_non_null_at_cut'].values())
+          print('Commissioning-only boundary verified')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eth-forward-live-pipeline
+          path: live_pipeline_receipt.json
+          retention-days: 14

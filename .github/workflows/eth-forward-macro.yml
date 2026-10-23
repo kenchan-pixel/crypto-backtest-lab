@@ -1,0 +1,72 @@
+name: ETH forward macro first-seen commissioning
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths:
+      - '.github/workflows/eth-forward-macro.yml'
+      - 'forward_paper/macro_first_seen.py'
+      - 'forward_paper/test_macro_first_seen.py'
+      - 'forward_paper/inputs/macro_first_seen_*.json'
+permissions:
+  contents: read
+concurrency:
+  group: eth-forward-macro-first-seen
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.repository == 'kenchan-pixel/crypto-backtest-lab'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install pytest==9.0.2
+      - name: Test causal first-seen rules
+        run: |
+          set -euo pipefail
+          mkdir -p forward_validation
+          python -m pytest -q forward_paper/test_macro_first_seen.py | tee forward_validation/macro_tests.txt
+      - name: Normalize preserved connected-tool capture
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,datetime
+          from forward_paper.macro_first_seen import digest,merge_ledger,normalize_capture
+          src=Path('forward_paper/inputs/macro_first_seen_20260922T031843HKT.json')
+          raw=src.read_bytes();capture=json.loads(raw)
+          normalized=normalize_capture(capture)
+          ledger=merge_ledger(None,normalized)
+          receipt={
+            'schema':'macro-first-seen-receipt-v1',
+            'capture_path':str(src),
+            'capture_sha256':hashlib.sha256(raw).hexdigest(),
+            'capture_first_seen_at_utc':normalized['capture_first_seen_at_utc'],
+            'frozen_indicator_set_checked':normalized['source_set_checked'],
+            'published_rows_seen':len(normalized['events']),
+            'empty_indicators':normalized['empty_indicators'],
+            'forward_eligible_event_count':normalized['forward_eligible_event_count'],
+            'late_bootstrap_event_count':normalized['late_bootstrap_event_count'],
+            'normalized_sha256':digest(normalized),
+            'ledger_sha256':digest(ledger),
+            'paper_execution_started':False,
+            'performance_started_at':None,
+            'run_id':__import__('os').environ['GITHUB_RUN_ID'],
+            'validated_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            'scope':'Macro first-seen causal evidence only; no parent opportunity or paper trade is created by this workflow.'
+          }
+          Path('forward_validation/macro_first_seen_normalized.json').write_text(json.dumps(normalized,indent=2))
+          Path('forward_validation/macro_first_seen_ledger_candidate.json').write_text(json.dumps(ledger,indent=2))
+          Path('forward_validation/macro_first_seen_receipt.json').write_text(json.dumps(receipt,indent=2))
+          print(json.dumps(receipt,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eth-forward-macro-first-seen
+          path: forward_validation/
+          retention-days: 14

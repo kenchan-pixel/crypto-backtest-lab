@@ -1,0 +1,172 @@
+name: ETH forward runtime commissioning
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths:
+      - '.github/workflows/eth-forward-runtime-store.yml'
+      - 'forward_paper/runtime_store.py'
+      - 'forward_paper/test_runtime_store.py'
+      - 'forward_paper/runtime_cycle.py'
+      - 'forward_paper/test_runtime_cycle.py'
+      - 'forward_paper/runtime_gaps.py'
+      - 'forward_paper/test_runtime_gaps.py'
+      - 'forward_paper/runtime_costs.py'
+      - 'forward_paper/test_runtime_costs.py'
+      - 'forward_paper/runtime_integration.py'
+      - 'forward_paper/test_runtime_integration.py'
+      - 'forward_paper/weekly_decision_packet.py'
+      - 'forward_paper/test_weekly_decision_packet.py'
+      - 'forward_paper/inputs/connected_eth_quote_pair_20260923T034451HKT.json'
+      - 'forward_paper/inputs/connected_gap_commissioning_evidence_20260923T0437HKT.json'
+      - 'forward_paper/inputs/connected_cost_commissioning_evidence_20260923T053748HKT.json'
+      - 'forward_paper/inputs/connected_runtime_integration_evidence_20260923T061715HKT.json'
+      - 'forward_paper/inputs/connected_weekly_packet_preview_20260923T071024HKT.json'
+permissions:
+  contents: read
+concurrency:
+  group: eth-forward-runtime-commissioning
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.repository == 'kenchan-pixel/crypto-backtest-lab' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r forward_paper/requirements.txt
+      - name: Run complete forward-paper tests
+        run: |
+          set -euo pipefail
+          mkdir -p forward_validation
+          python -m pytest -q forward_paper | tee forward_validation/tests.txt
+      - name: Exercise CAS and restart semantics on isolated current-state copy
+        run: |
+          set -euo pipefail
+          python -m forward_paper.runtime_store \
+            --state forward_paper/runtime/state.json \
+            --work-dir forward_validation/runtime_store_probe \
+            --out forward_validation/runtime_store_receipt.json | tee forward_validation/runtime_store.log
+      - name: Exercise exits-first and actual-later-quote ordering on isolated copy
+        run: |
+          set -euo pipefail
+          python -m forward_paper.runtime_cycle \
+            --state forward_paper/runtime/state.json \
+            --quote-pair forward_paper/inputs/connected_eth_quote_pair_20260923T034451HKT.json \
+            --work-dir forward_validation/runtime_cycle_probe \
+            --out forward_validation/runtime_cycle_receipt.json | tee forward_validation/runtime_cycle.log
+      - name: Exercise append-only missing fill and data-gap persistence on isolated copy
+        run: |
+          set -euo pipefail
+          python -m forward_paper.runtime_gaps \
+            --state forward_paper/runtime/state.json \
+            --public-evidence forward_paper/inputs/connected_gap_commissioning_evidence_20260923T0437HKT.json \
+            --work-dir forward_validation/runtime_gap_probe \
+            --out forward_validation/runtime_gap_receipt.json | tee forward_validation/runtime_gap.log
+      - name: Exercise BASE/STRESS and AI operating-budget sidecars on isolated copy
+        run: |
+          set -euo pipefail
+          python -m forward_paper.runtime_costs \
+            --state forward_paper/runtime/state.json \
+            --public-evidence forward_paper/inputs/connected_cost_commissioning_evidence_20260923T053748HKT.json \
+            --work-dir forward_validation/runtime_cost_probe \
+            --out forward_validation/runtime_cost_receipt.json | tee forward_validation/runtime_cost.log
+      - name: Exercise atomic runtime sidecar wiring on isolated copies
+        run: |
+          set -euo pipefail
+          python -m forward_paper.runtime_integration \
+            --state forward_paper/runtime/state.json \
+            --public-evidence forward_paper/inputs/connected_runtime_integration_evidence_20260923T061715HKT.json \
+            --work-dir forward_validation/runtime_integration_probe \
+            --out forward_validation/runtime_integration_receipt.json | tee forward_validation/runtime_integration.log
+      - name: Validate connected weekly packet and guard genuine commit window
+        run: |
+          set -euo pipefail
+          python -m forward_paper.weekly_decision_packet \
+            --state forward_paper/runtime/state.json \
+            --public-evidence forward_paper/inputs/connected_weekly_packet_preview_20260923T071024HKT.json \
+            --out forward_validation/weekly_decision_packet_receipt.json | tee forward_validation/weekly_decision_packet.log
+      - name: Enforce commissioning boundary
+        run: |
+          python - <<'PY'
+          import json
+          cas=json.load(open('forward_validation/runtime_store_receipt.json'))
+          cyc=json.load(open('forward_validation/runtime_cycle_receipt.json'))
+          gap=json.load(open('forward_validation/runtime_gap_receipt.json'))
+          cost=json.load(open('forward_validation/runtime_cost_receipt.json'))
+          integ=json.load(open('forward_validation/runtime_integration_receipt.json'))
+          weekly=json.load(open('forward_validation/weekly_decision_packet_receipt.json'))
+          assert cas['passed'] is True and all(cas['checks'].values())
+          assert cas['actual_runtime_state_mutated'] is False
+          assert cas['paper_trades_created']==0 and cas['real_orders_created']==0
+          assert cas['order_account_endpoints_used'] is False
+          assert cas['source_status']=='COMMISSIONING'
+          assert cas['source_execution_ready'] is False
+          assert cas['source_performance_started_at'] is None
+          assert cas['source_paper_closed_trades']==0
+          assert cyc['passed'] is True and all(cyc['checks'].values())
+          assert cyc['actual_runtime_state_mutated'] is False
+          assert cyc['actual_runtime_paper_trades_created']==0
+          assert cyc['real_orders_created']==0
+          assert cyc['order_account_endpoints_used'] is False
+          assert cyc['engineering_fixture']['forward_opportunity_claimed'] is False
+          assert cyc['engineering_fixture']['forward_trade_claimed'] is False
+          assert cyc['gate_effect'].startswith('none;')
+          assert gap['passed'] is True and all(gap['checks'].values())
+          assert gap['actual_runtime_state_mutated'] is False
+          assert gap['actual_runtime_paper_trades_created']==0
+          assert gap['real_orders_created']==0
+          assert gap['order_account_endpoints_used'] is False
+          assert gap['engineering_fixture']['forward_opportunity_claimed'] is False
+          assert gap['engineering_fixture']['forward_trade_claimed'] is False
+          assert gap['gate_effect'].startswith('none;')
+          assert cost['passed'] is True and all(cost['checks'].values())
+          assert cost['actual_runtime_state_mutated'] is False
+          assert cost['actual_runtime_paper_trades_created']==0
+          assert cost['real_orders_created']==0
+          assert cost['order_account_endpoints_used'] is False
+          assert cost['engineering_fixture']['forward_opportunity_claimed'] is False
+          assert cost['engineering_fixture']['forward_trade_claimed'] is False
+          assert cost['cost_contract']['BASE']=={'fee_per_side':0.001,'slippage_per_side':0.0005}
+          assert cost['cost_contract']['STRESS']=={'fee_per_side':0.0015,'slippage_per_side':0.0015}
+          assert cost['ai_budget_contract']['assumed_usdt_per_review_at_10000_start']=={'0pct':0.0,'0.01pct':1.0,'0.05pct':5.0}
+          assert cost['gate_effect'].startswith('none;')
+          assert integ['passed'] is True and all(integ['checks'].values())
+          assert integ['actual_runtime_state_mutated'] is False
+          assert integ['actual_runtime_paper_trades_created']==0
+          assert integ['real_orders_created']==0
+          assert integ['order_account_endpoints_used'] is False
+          assert integ['engineering_fixture']['forward_opportunity_claimed'] is False
+          assert integ['engineering_fixture']['forward_trade_claimed'] is False
+          assert integ['engineering_fixture']['genuine_weekly_decision_claimed'] is False
+          assert integ['source_runtime']['status']=='COMMISSIONING'
+          assert integ['source_runtime']['execution_ready'] is False
+          assert integ['source_runtime']['performance_started_at'] is None
+          assert integ['gate_effect'].startswith('none;')
+          assert weekly['passed'] is True and all(weekly['checks'].values())
+          assert weekly['packet']['frozen_model_sha256']=='08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe'
+          assert weekly['packet']['simple_control']['weight'] in (0.5,1.0)
+          assert weekly['packet']['ai_control']['weight'] is None
+          assert weekly['packet']['eligibility']['eligible'] is False
+          assert weekly['genuine_weekly_decision_committed'] is False
+          assert weekly['actual_runtime_state_mutated'] is False
+          assert weekly['actual_runtime_paper_trades_created']==0
+          assert weekly['real_orders_created']==0
+          assert weekly['order_account_endpoints_used'] is False
+          assert weekly['gate_effect'].startswith('none;')
+          print('Runtime and weekly decision packet paths commissioned on connected/isolated evidence; real runtime remains idle and unarmed.')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eth-forward-runtime-commissioning
+          path: forward_validation/
+          retention-days: 14

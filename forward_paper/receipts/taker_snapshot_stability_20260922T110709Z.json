@@ -1,0 +1,57 @@
+{
+  "schema": "eth-forward-taker-snapshot-stability-receipt-v1",
+  "validated_at_utc": "2026-09-22T11:07:09Z",
+  "scope": "Bounded public taker historical requery stability and checksum-archive comparison only; no fills, model/strategy changes, gate promotion or account/order endpoint.",
+  "source_observed_at_utc": "2026-09-22T11:01:41Z",
+  "old_immutable_path": "forward_paper/inputs/connected_binance_full_20260922T072853HKT/taker.json",
+  "old_immutable_sha256": "f82b99061a41b6ff05733e27060f9602ec0396483ba494c84fd762837791b62c",
+  "requery_path": "forward_paper/inputs/connected_taker_requery_20260922T190141HKT.json",
+  "requery_sha256": "a0022d78b6b880b20f0490a14098debbe44075feabac5092ef75966b1e0fa005",
+  "endpoint_snapshot_stability": {
+    "rows": 10,
+    "cells": 30,
+    "exact_match_cells": 30,
+    "mismatch_cells": 0,
+    "stable": true
+  },
+  "archive_comparison": {
+    "rows": 10,
+    "archive_sha256_by_day": {
+      "2026-09-20": "54c07ed33c80ad47618d0e79faab937fa0e018a24c6c1e9eb1dff852bf5ad0d6",
+      "2026-09-21": "84e76323a33e78f2d00d648fb67c2b1be726385e4cb36f59192e5e30a98c9fa0"
+    },
+    "archive_vs_display": {
+      "max_abs_delta": "0.00071000",
+      "median_abs_delta": "0.00022100"
+    },
+    "archive_vs_endpoint_buy_sell_volume_ratio": {
+      "max_abs_delta": "0.000737856527202627317260887",
+      "median_abs_delta": "0.0002241282087363161253423802",
+      "within_rounding_interval_rows": 0,
+      "all_within_rounding_interval": false
+    }
+  },
+  "conclusion": "The sampled historical public taker endpoint rows were exactly stable across the original immutable capture and the later connected read-only requery (30/30 exposed value cells). Therefore later endpoint mutation does not explain the archive/API mismatch for this sample. None of the 10 checksum-archive ratios fell inside the mathematically derived rounding interval implied by the endpoint buyVol/sellVol display precision, so displayed-volume rounding does not explain the mismatch either. The remaining source contract is still unresolved and must remain fail-closed.",
+  "actions_evidence": {
+    "workflow": ".github/workflows/eth-forward-taker-snapshot-stability.yml",
+    "valid_run_id": 35719631599,
+    "valid_head_sha": "f3e0ae7a024d97c84a6567219a89e3372a68b8d3",
+    "valid_conclusion": "success",
+    "forward_paper_tests_passed": 69,
+    "artifact_id": 10690866674,
+    "artifact_sha256": "58bfcc8473622e58672a5b2030ee50f87d30a5a028085a0f28daf55a0dc9cda8",
+    "superseded_run": {
+      "run_id": 35719440395,
+      "head_sha": "2b968482348cc3ec7cd280dadbdee14a12a342cc",
+      "conclusion": "failure",
+      "reason": "A newly added unit-test bound was too tight for the mechanically derived precision interval; diagnostic step was skipped. No semantic evidence from this failed run is accepted."
+    }
+  },
+  "source_contract_resolved": false,
+  "execution_ready": false,
+  "paper_trades_created": 0,
+  "gate_promotion": false,
+  "performance_started": false,
+  "orders_or_account_data_requested": false,
+  "next_safe_step": "Keep commissioning blocked. Use bounded evidence to test whether Data Vision taker values represent a distinct snapshot/cut-off aggregation rather than the stable public taker endpoint; do not rerun the full current signal pipeline or promote any gate yet."
+}

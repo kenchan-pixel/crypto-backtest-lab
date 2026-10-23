@@ -1,0 +1,55 @@
+{
+  "schema": "eth-connected-binance-snapshot-v1",
+  "scope": "commissioning route/provenance validation only; insufficient by itself for live feature/source gate or paper trading",
+  "observed_after_reads_utc": "2026-09-21T22:19:35.205372+00:00",
+  "source": "Connected Binance public read-only market-data tools",
+  "symbol": "ETHUSDT",
+  "period": "5m",
+  "queries": {
+    "open_interest": {"limit": 3},
+    "top_accounts": {"limit": 3},
+    "top_positions": {"limit": 3},
+    "all_accounts": {"limit": 3},
+    "taker": {"limit": 3},
+    "funding": {"limit": 5}
+  },
+  "open_interest": [
+    {"symbol":"ETHUSDT","sumOpenInterest":"2319425.87900000","sumOpenInterestValue":"6439236513.79738000","CMCCirculatingSupply":"122064744.06907414","timestamp":1790028300000},
+    {"symbol":"ETHUSDT","sumOpenInterest":"2320360.47400000","sumOpenInterestValue":"6431969623.11378000","CMCCirculatingSupply":"122064744.06907414","timestamp":1790028600000},
+    {"symbol":"ETHUSDT","sumOpenInterest":"2320319.04500000","sumOpenInterestValue":"6441307673.02241400","CMCCirculatingSupply":"122064744.06907414","timestamp":1790028900000}
+  ],
+  "top_accounts": [
+    {"symbol":"ETHUSDT","longAccount":"0.5536","longShortRatio":"1.2401","shortAccount":"0.4464","timestamp":1790028300000},
+    {"symbol":"ETHUSDT","longAccount":"0.5536","longShortRatio":"1.2401","shortAccount":"0.4464","timestamp":1790028600000},
+    {"symbol":"ETHUSDT","longAccount":"0.5536","longShortRatio":"1.2401","shortAccount":"0.4464","timestamp":1790028900000}
+  ],
+  "top_positions": [
+    {"symbol":"ETHUSDT","longAccount":"0.6121","longShortRatio":"1.5783","shortAccount":"0.3879","timestamp":1790028300000},
+    {"symbol":"ETHUSDT","longAccount":"0.6122","longShortRatio":"1.5789","shortAccount":"0.3878","timestamp":1790028600000},
+    {"symbol":"ETHUSDT","longAccount":"0.6123","longShortRatio":"1.5793","shortAccount":"0.3877","timestamp":1790028900000}
+  ],
+  "all_accounts": [
+    {"symbol":"ETHUSDT","longAccount":"0.7015","longShortRatio":"2.3501","shortAccount":"0.2985","timestamp":1790028300000},
+    {"symbol":"ETHUSDT","longAccount":"0.7013","longShortRatio":"2.3478","shortAccount":"0.2987","timestamp":1790028600000},
+    {"symbol":"ETHUSDT","longAccount":"0.7013","longShortRatio":"2.3478","shortAccount":"0.2987","timestamp":1790028900000}
+  ],
+  "taker": [
+    {"buySellRatio":"1.0788","sellVol":"4050.9950","buyVol":"4370.0480","timestamp":1790028000000},
+    {"buySellRatio":"1.1510","sellVol":"2628.7600","buyVol":"3025.7500","timestamp":1790028300000},
+    {"buySellRatio":"0.9891","sellVol":"3212.8320","buyVol":"3177.7980","timestamp":1790028600000}
+  ],
+  "funding": [
+    {"symbol":"ETHUSDT","fundingTime":1789891200000,"fundingRate":"0.00004128","markPrice":"2575.53000000","rateType":"Regular"},
+    {"symbol":"ETHUSDT","fundingTime":1789920000000,"fundingRate":"0.00003468","markPrice":"2612.06340310","rateType":"Regular"},
+    {"symbol":"ETHUSDT","fundingTime":1789948800007,"fundingRate":"0.00008166","markPrice":"2643.82038760","rateType":"Regular"},
+    {"symbol":"ETHUSDT","fundingTime":1789977600004,"fundingRate":"0.00008660","markPrice":"2660.81116279","rateType":"Regular"},
+    {"symbol":"ETHUSDT","fundingTime":1790006400002,"fundingRate":"0.00008935","markPrice":"2754.00000000","rateType":"Regular"}
+  ],
+  "latest_common_metric_utc": "2026-09-21T22:10:00+00:00",
+  "latest_common_metric_age_minutes_at_observation": 9.5867562,
+  "latest_funding_utc": "2026-09-21T16:00:00.002000+00:00",
+  "latest_funding_age_minutes_at_observation": 379.58672286666666,
+  "order_or_account_endpoints_used": false,
+  "paper_trades_created": 0,
+  "performance_started": false
+}

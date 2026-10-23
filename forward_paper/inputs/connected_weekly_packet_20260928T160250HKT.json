@@ -1,0 +1,43 @@
+{
+  "schema": "eth-weekly-connected-evidence-v1",
+  "observed_at": "2026-09-28T08:02:50.487413+00:00",
+  "source": "Binance connected public read-only market-data tool",
+  "tool_operation": "get_spot_kline_candlestick_data",
+  "read_only": true,
+  "orders_or_account_data_requested": false,
+  "query_contract": {
+    "symbol": "ETHUSDT",
+    "interval": "1d",
+    "time_zone": "UTC"
+  },
+  "bars": {
+    "start_30d": {
+      "open_time_ms": 1787875200000,
+      "close_time_ms": 1787961599999,
+      "close": 2442.8
+    },
+    "end_latest_completed": {
+      "open_time_ms": 1790467200000,
+      "close_time_ms": 1790553599999,
+      "close": 2688.65
+    }
+  },
+  "end_bar_close_at": "2026-09-27T23:59:59.999000+00:00",
+  "ai_context": {
+    "spot_price": {
+      "symbol": "ETHUSDT",
+      "price": 2649.51,
+      "observed_after_read_at": "2026-09-28T08:02:50.487413+00:00",
+      "source_operation": "get_spot_symbol_price_ticker"
+    },
+    "futures_mark": {
+      "symbol": "ETHUSDT",
+      "mark_price": 2647.97555039,
+      "index_price": 2649.24325581,
+      "last_funding_rate": -0.00003105,
+      "exchange_time_ms": 1790582559003,
+      "source_operation": "get_futures_usds_mark_price"
+    },
+    "note": "Macro evidence was not fetched for this weekly allocation; absence is not treated as a neutral macro signal."
+  }
+}

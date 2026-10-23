@@ -1,0 +1,70 @@
+name: ETH forward model commissioning
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths:
+      - '.github/workflows/eth-forward-model.yml'
+      - 'forward_paper/core.py'
+      - 'forward_paper/model.py'
+      - 'forward_paper/bootstrap.py'
+      - 'forward_paper/test_core.py'
+permissions:
+  contents: read
+concurrency:
+  group: eth-forward-model-commissioning
+  cancel-in-progress: false
+jobs:
+  commission:
+    if: github.repository == 'kenchan-pixel/crypto-backtest-lab' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      actions: read
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r forward_paper/requirements.txt
+      - name: Test paper-only state and arithmetic
+        run: |
+          set -euo pipefail
+          mkdir -p forward_validation
+          python -m pytest -q forward_paper/test_core.py | tee forward_validation/unit_tests.txt
+      - name: Preserve model once, verify rather than refit on later runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [ -f forward_paper/model.json ]; then
+            python -c "from forward_paper.model import load; load('forward_paper/model.json'); print('Existing frozen model hash verified; no retraining')"
+          else
+            python -m forward_paper.bootstrap | tee forward_validation/model_checks.txt
+          fi
+      - name: Explicit readiness boundary
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,datetime
+          p=Path('forward_paper/model_receipt.json')
+          assert p.exists() and json.loads(p.read_text())['reconstruction_passed']
+          result={'model_identity_verified':True,'account_tests_completed':True,'forward_execution_ready':False,'paper_trades_executed_by_this_workflow':0,'pending':['live feature/opportunity bridge parity','initial fresh weekly decisions','runtime persistence and fill integration'],'run_id':__import__('os').environ['GITHUB_RUN_ID'],'observed_at':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          Path('forward_validation/commissioning.json').write_text(json.dumps(result,indent=2))
+          print(json.dumps(result,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eth-forward-commissioning
+          path: |
+            forward_validation/
+            forward_paper/model.json
+            forward_paper/model_receipt.json
+          retention-days: 14

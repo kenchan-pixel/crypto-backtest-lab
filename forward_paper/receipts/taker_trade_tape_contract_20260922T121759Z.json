@@ -1,0 +1,64 @@
+{
+  "schema": "eth-forward-taker-trade-tape-contract-receipt-v1",
+  "validated_at_utc": "2026-09-22T12:17:59Z",
+  "scope": "Bounded checksum-verified Binance Data Vision taker metric vs USD-M aggregate-trade tape cut-off diagnostic only; no fills, gate promotion, model/strategy change, or account/order endpoint.",
+  "day_utc": "2026-09-21",
+  "sources": {
+    "metrics_archive_sha256": "84e76323a33e78f2d00d648fb67c2b1be726385e4cb36f59192e5e30a98c9fa0",
+    "aggtrades_archive_sha256": "bc885dfc5b8528464a2152300101905ed8af689970dedf93ed27eb9c9ccfb64f",
+    "aggtrade_rows": 2561259,
+    "connected_taker_path": "forward_paper/inputs/connected_binance_full_20260922T072853HKT/taker.json",
+    "connected_taker_sha256": "f82b99061a41b6ff05733e27060f9602ec0396483ba494c84fd762837791b62c"
+  },
+  "window_definition": "For offset s, metric timestamp t is compared with checksum-verified aggregate trades in [t+s, t+s+5m); buyer-is-maker=false is taker buy, true is taker sell.",
+  "tested_offsets_seconds": [-60, -30, -15, -5, 0, 5, 15, 30, 60],
+  "best_offset_seconds": 0,
+  "best_zero_offset_score": {
+    "rows": 288,
+    "median_abs_delta": 0.0004309184535356281,
+    "p95_abs_delta": 0.010045576299081864,
+    "p99_abs_delta": 0.02523091607960056,
+    "max_abs_delta": 0.233704614860351,
+    "exact_1e_10_rows": 0
+  },
+  "nearest_offset_scores": {
+    "minus_5_seconds": {
+      "rows": 288,
+      "median_abs_delta": 0.010876322992361132,
+      "p99_abs_delta": 0.17875209746270035,
+      "max_abs_delta": 0.22444703064110316
+    },
+    "plus_5_seconds": {
+      "rows": 288,
+      "median_abs_delta": 0.017782003551712278,
+      "p99_abs_delta": 0.22819125515474942,
+      "max_abs_delta": 0.3309602439670307
+    }
+  },
+  "archive_vs_connected_endpoint": {
+    "rows": 280,
+    "median_abs_delta": 0.00011250000000001537,
+    "p99_abs_delta": 0.0013249199999999708,
+    "max_abs_delta": 0.0019460000000000033
+  },
+  "interpretation": {
+    "simple_cutoff_offset_hypothesis": "rejected for tested offsets; nominal same-period boundary is clearly best but does not reproduce archive values exactly",
+    "raw_trade_tape_equivalence": "rejected; 0 of 288 same-period rows matched within 1e-10",
+    "archive_endpoint_relation": "archive remains materially closer to the connected taker endpoint than to exact aggregate-trade reconstruction, consistent with a distinct internal taker metric aggregation/value contract rather than a simple boundary shift",
+    "source_contract_resolved": false
+  },
+  "actions": {
+    "successful_run_id": 35726290100,
+    "tests_passed": 72,
+    "artifact_id": 10692978086,
+    "artifact_zip_sha256": "cdda106bb232353c07a2eb666e6550a9c2c61524e464d0d8dddec0f5a3a07a60",
+    "superseded_draft_run_id": 35726151230,
+    "superseded_reason": "unit-test synthetic edge window had 249 overlaps against a 250-overlap fail-closed minimum; diagnostic was skipped; test fixture was corrected without weakening production validation"
+  },
+  "conclusion": "No tested +/-60 second cut-off reconstructs the Data Vision taker metric exactly from the checksum-verified aggregate-trade tape. Keep the taker source contract unresolved and fail closed. The next bounded validation should prove whether this unresolved taker field can affect any frozen model state, catalyst, score, threshold decision, or parent opportunity before deciding how to treat it in live source parity.",
+  "raw_values_rewritten": false,
+  "paper_trades_created": 0,
+  "gate_promotion": false,
+  "performance_started": false,
+  "order_or_account_endpoints_used": false
+}

@@ -1,0 +1,79 @@
+{
+  "schema": "macro-first-seen-capture-v1",
+  "source": "Connected Longbridge macrodata read tool",
+  "query_window": {
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-22",
+    "limit": 100
+  },
+  "batch_first_seen_at_utc": "2026-09-21T19:18:43.656843+00:00",
+  "timestamp_policy": "Timestamp recorded only after all seven tool reads completed; deliberately later than retrieval, never backdated to release_at.",
+  "indicators": [
+    {
+      "indicator": "cpi_yoy",
+      "indicator_code": "30771871",
+      "name": "United States, CPI - All Urban Samples: All Items, Chg Y/Y",
+      "periodicity": "month",
+      "count": 1,
+      "latest": {"period": "2026-08-01", "release_at": "2026-09-11T12:30:00Z", "actual_value": "3.4", "previous_value": "3.4", "forecast_value": "3.4", "unit": "Percent"}
+    },
+    {
+      "indicator": "core_cpi_mom",
+      "indicator_code": "30771844",
+      "name": "United States, CPI, All items less food and energy, Chg P/P",
+      "periodicity": "month",
+      "count": 1,
+      "latest": {"period": "2026-08-01", "release_at": "2026-09-11T12:30:00Z", "actual_value": "0.3", "previous_value": "0.2", "forecast_value": "0.2", "unit": "Percent"}
+    },
+    {
+      "indicator": "nfp",
+      "indicator_code": "30771890",
+      "name": "United States, Employment, Nonfarm payroll, total, Absolute change",
+      "periodicity": "month",
+      "count": 1,
+      "latest": {"period": "2026-08-01", "release_at": "2026-09-04T12:30:00Z", "actual_value": "162", "previous_value": "-23", "forecast_value": "56", "unit": "Person"}
+    },
+    {
+      "indicator": "unemployment",
+      "indicator_code": "30771865",
+      "name": "United States, Unemployment, Rate",
+      "periodicity": "month",
+      "count": 1,
+      "latest": {"period": "2026-08-01", "release_at": "2026-09-04T12:30:00Z", "actual_value": "4.1", "previous_value": "4.1", "forecast_value": "4.1", "unit": "Percent"}
+    },
+    {
+      "indicator": "core_pce_yoy",
+      "indicator_code": "30771724",
+      "name": "United States, Personal Consumption Expenditure, Personal consumption expenditures less food and energy, Chg Y/Y",
+      "periodicity": "month",
+      "count": 0,
+      "latest": null
+    },
+    {
+      "indicator": "ppi_yoy",
+      "indicator_code": "30771924",
+      "name": "United States, Producer Prices, Final demand, Chg Y/Y",
+      "periodicity": "month",
+      "count": 1,
+      "latest": {"period": "2026-08-01", "release_at": "2026-09-10T12:30:00Z", "actual_value": "5.4", "previous_value": "4.7", "forecast_value": "5.3", "unit": "Percent"}
+    },
+    {
+      "indicator": "fed_funds_target",
+      "indicator_code": "30771885",
+      "name": "United States, Policy Rates, Fed Funds Target Rate",
+      "periodicity": "day",
+      "count": 1,
+      "latest": {"period": "2026-09-17", "release_at": "2026-09-16T18:00:00Z", "actual_value": "3.875", "previous_value": "3.625", "forecast_value": "3.875", "unit": "Percent"}
+    }
+  ],
+  "supplementary_calendar_check": {
+    "source": "Connected Longbridge finance calendar",
+    "window": "2026-09-22 through 2026-09-30 US",
+    "observation": "Core-PCE-related releases are listed for 2026-09-30T12:30:00Z; therefore the zero-count core_pce_yoy response in the 2026-09-01..2026-09-22 history window is not treated as proof of a broken source or as a no-event signal."
+  },
+  "limitations": [
+    "This capture is the first auditable forward first-seen observation in this experiment; older release_at values are not treated as first-seen.",
+    "A zero-count indicator is missing in this query window, not evidence that no macro event exists.",
+    "Rows first observed long after release are bootstrap/backfill evidence only and must not become forward catalysts."
+  ]
+}

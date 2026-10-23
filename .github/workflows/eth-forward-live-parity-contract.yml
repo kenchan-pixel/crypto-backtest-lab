@@ -1,0 +1,113 @@
+name: ETH forward live parity contract
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths:
+      - '.github/workflows/eth-forward-live-parity-contract.yml'
+      - 'forward_paper/live_parity_contract.py'
+      - 'forward_paper/test_live_parity_contract.py'
+permissions:
+  contents: read
+concurrency:
+  group: eth-forward-live-parity-contract
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.repository == 'kenchan-pixel/crypto-backtest-lab' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r forward_paper/requirements.txt
+      - name: Run complete forward-paper tests
+        run: |
+          set -euo pipefail
+          mkdir -p forward_validation
+          python -m pytest -q forward_paper | tee forward_validation/tests.txt
+      - name: Validate contract against connected snapshot and checksum archives
+        run: |
+          set -euo pipefail
+          python - <<'PY' | tee forward_validation/contract.log
+          import hashlib, json, os
+          from pathlib import Path
+          import pandas as pd
+          from forward_paper.live_pipeline import fetch_archive_day
+          from forward_paper.live_sources import normalize_metric_bundle
+          from forward_paper.persisted_pipeline import load_snapshot
+          from forward_paper.live_parity_contract import merge_archive_connected_metrics
+
+          base='forward_paper/inputs/connected_binance_full_20260922T072853HKT'
+          manifest, first_seen, raw, blob_checks = load_snapshot(base)
+          live = normalize_metric_bundle(
+              symbol='ETHUSDT', period='5m',
+              open_interest=raw['open_interest'], top_accounts=raw['top_accounts'],
+              top_positions=raw['top_positions'], all_accounts=raw['all_accounts'], taker=raw['taker'])
+          parts=[]; archive_hashes={}
+          for day in ('2026-09-20','2026-09-21'):
+              _, frame, digest = fetch_archive_day(day)
+              parts.append(frame); archive_hashes[day]=digest
+          archive=pd.concat(parts).sort_index()
+          merged, max_gap, overlap = merge_archive_connected_metrics(archive, live)
+          contract=merged.attrs['live_parity_contract']
+          receipt={
+            'schema':'eth-forward-live-parity-contract-validation-v1',
+            'scope':'Bounded commissioning validation of the fail-closed archive/live parity contract against immutable connected Binance public read-only evidence and checksum-verified public archives. No fill, performance start, strategy/model change, or gate promotion.',
+            'workflow':{'run_id':int(os.environ['GITHUB_RUN_ID']),'head_sha':os.environ['GITHUB_SHA']},
+            'connected_evidence':{
+              'manifest':base+'/manifest.json',
+              'manifest_sha256':hashlib.sha256(Path(base+'/manifest.json').read_bytes()).hexdigest(),
+              'first_seen_at_utc':first_seen.isoformat(),
+              'blob_checks':blob_checks,
+              'rows':len(live),
+              'full_taker_rows_present':len(raw['taker'])
+            },
+            'archive_evidence':{'days':list(archive_hashes),'checksum_verified':True,'sha256':archive_hashes},
+            'contract':contract,
+            'merged_max_gap_minutes':max_gap,
+            'archive_live_overlap_rows':overlap,
+            'raw_values_rewritten':False,
+            'paper_trades_created':0,
+            'gate_promotion':False,
+            'performance_started':False,
+            'order_or_account_endpoints_used':False,
+            'readiness_effect':{
+              'execution_ready':False,'source_freshness':False,'live_feature_parity':False,
+              'initial_decisions':False,'performance_started_at':None
+            },
+            'old_historical_paper_gate':'remains failed and unchanged',
+            'next_safe_step':'Integrate this validated contract into the persisted current causal pipeline, collect a genuinely fresh connected extension, and produce the next source-to-feature-to-opportunity receipt without promoting readiness until the independent repeated live receipt passes.'
+          }
+          Path('forward_validation/live_parity_contract_receipt.json').write_text(json.dumps(receipt,indent=2,allow_nan=False))
+          print(json.dumps(receipt,indent=2,allow_nan=False))
+          PY
+      - name: Enforce commissioning boundary
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('forward_validation/live_parity_contract_receipt.json'))
+          c=r['contract']
+          assert c['frozen_model_sha256']=='08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe'
+          assert c['archive_create_time_to_connected_period_end_offset_minutes']==5
+          assert c['decision_exact_mismatches']=={'sum_open_interest':0,'sum_open_interest_value':0}
+          assert c['taker_value_semantics_resolved'] is False
+          assert c['taker_live_values_quarantined_from_decision_matrix'] is True
+          assert c['full_taker_stream_required_upstream'] is True
+          assert r['paper_trades_created']==0 and r['performance_started'] is False
+          assert r['gate_promotion'] is False and r['order_or_account_endpoints_used'] is False
+          print('Fail-closed live parity contract validated; commissioning gates remain closed.')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eth-forward-live-parity-contract
+          path: forward_validation/
+          retention-days: 14

@@ -1,0 +1,56 @@
+{
+  "schema": "eth-paper-runtime-store-receipt-v1",
+  "recorded_at": "2026-09-23T02:13:55+08:00",
+  "branch": "research/payoff-aware-20260920",
+  "tested_head_commit": "8478a519710c7e5dc7f42d9d3798a1aae7c0844c",
+  "bounded_step": "durable CAS state store plus restart/idempotency validation only",
+  "workflow": {
+    "name": "ETH forward runtime CAS commissioning",
+    "run_id": 35765737780,
+    "job_id": 106874677153,
+    "conclusion": "success",
+    "tests_passed": 86,
+    "artifact_id": 10711652759,
+    "artifact_sha256": "553692276c0c8e435ab349b23cd2250df59e0e36b0d809099c2aace5334d75d6"
+  },
+  "source_files": {
+    "forward_paper/runtime_store.py_git_blob_sha": "86fcb18d794bb999096a691317fcd4483de1553c",
+    "forward_paper/test_runtime_store.py_git_blob_sha": "c3123172931c9e10cdcbf08123f478c6c97385db",
+    ".github/workflows/eth-forward-runtime-store.yml_git_blob_sha": "ec42a487755899a17d50b31af1c36f6bc9a09f8b"
+  },
+  "runtime_source_evidence": {
+    "path": "forward_paper/runtime/state.json",
+    "content_sha256": "82a629c4dd9d89c05d4606e928fcc0a51381cfe61761ea937f974a48007d2105",
+    "semantic_sha256": "1526cf9c420b35bb15b3999ce247a746be6da9f43e405565e786f4aebd69103c",
+    "status": "COMMISSIONING",
+    "execution_ready": false,
+    "performance_started_at": null,
+    "closed_paper_trades": 0
+  },
+  "verified_checks": {
+    "atomic_cas_write_on_isolated_copy": true,
+    "stale_writer_rejected": true,
+    "restart_replay_idempotent": true,
+    "winning_event_preserved": true,
+    "losing_stale_event_absent": true,
+    "runtime_safety_fields_preserved": true,
+    "source_runtime_bytes_unchanged": true,
+    "frozen_model_change_fails_closed": true
+  },
+  "safety": {
+    "actual_runtime_state_mutated": false,
+    "paper_trades_created": 0,
+    "real_orders_created": 0,
+    "order_account_endpoints_used": false,
+    "crypto_news_collector_modified": false,
+    "auto_merge": false
+  },
+  "gate_effect": "none; source_freshness/live_feature_parity remain previously verified, but runtime/fill readiness is incomplete, initial_decisions remains false, execution_ready remains false, performance_started_at remains null",
+  "historical_gate_effect": "none; the old failed historical paper gate remains failed and is not evidence for this new forward experiment",
+  "remaining_commissioning_work": [
+    "integrate exits-first orchestration and actual later quote/fill evidence",
+    "persist explicit late/missing fill and data-gap events without backfill",
+    "maintain base and stress cost states on identical parent opportunities",
+    "commit genuine initial AI/simple weekly decisions at the first eligible Monday review"
+  ]
+}

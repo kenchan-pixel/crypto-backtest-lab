@@ -1,0 +1,137 @@
+import pytest
+from forward_paper.live_sources import (
+ normalize_metric_bundle, normalize_funding_history, normalize_spot_klines, normalize_spot_pair
+)
+
+SYMBOL='ETHUSDT'
+OI=[
+ {'symbol':SYMBOL,'sumOpenInterest':'2386398.57000000','sumOpenInterestValue':'6541291244.52971500','timestamp':1790004000000},
+ {'symbol':SYMBOL,'sumOpenInterest':'2384197.57200000','sumOpenInterestValue':'6514128448.19412000','timestamp':1790004300000},
+ {'symbol':SYMBOL,'sumOpenInterest':'2383523.83000000','sumOpenInterestValue':'6511906279.75150000','timestamp':1790004600000},
+]
+TP=[
+ {'symbol':SYMBOL,'longShortRatio':'1.5781','timestamp':1790004000000},
+ {'symbol':SYMBOL,'longShortRatio':'1.5786','timestamp':1790004300000},
+ {'symbol':SYMBOL,'longShortRatio':'1.5856','timestamp':1790004600000},
+]
+TA=[
+ {'symbol':SYMBOL,'longShortRatio':'1.2707','timestamp':1790004000000},
+ {'symbol':SYMBOL,'longShortRatio':'1.2732','timestamp':1790004300000},
+ {'symbol':SYMBOL,'longShortRatio':'1.2707','timestamp':1790004600000},
+]
+AA=[
+ {'symbol':SYMBOL,'longShortRatio':'2.3256','timestamp':1790004000000},
+ {'symbol':SYMBOL,'longShortRatio':'2.3300','timestamp':1790004300000},
+ {'symbol':SYMBOL,'longShortRatio':'2.3234','timestamp':1790004600000},
+]
+# Binance taker-volume response does not include symbol; symbol is fixed by request context.
+TK=[
+ {'buySellRatio':'0.8327','sellVol':'10425.1030','buyVol':'8681.3340','timestamp':1790003700000},
+ {'buySellRatio':'0.5631','sellVol':'19233.7360','buyVol':'10829.8560','timestamp':1790004000000},
+ {'buySellRatio':'0.6106','sellVol':'16869.0590','buyVol':'10299.6010','timestamp':1790004300000},
+]
+FUND=[
+ {'symbol':SYMBOL,'fundingTime':1789920000000,'fundingRate':'0.00003468'},
+ {'symbol':SYMBOL,'fundingTime':1789948800007,'fundingRate':'0.00008166'},
+ {'symbol':SYMBOL,'fundingTime':1789977600004,'fundingRate':'0.00008660'},
+]
+
+def bundle(**overrides):
+ args=dict(symbol=SYMBOL,period='5m',open_interest=OI,top_accounts=TA,top_positions=TP,all_accounts=AA,taker=TK)
+ args.update(overrides);return normalize_metric_bundle(**args)
+
+def kline(open_ms, close='100', *, high='101', low='99', symbol_scale=1.):
+ # Binance spot kline shape. Fields not used by the forward contract stay realistic placeholders.
+ o=100*symbol_scale;c=float(close)*symbol_scale;h=float(high)*symbol_scale;l=float(low)*symbol_scale
+ return [open_ms,str(o),str(h),str(l),str(c),'10',open_ms+3_600_000-1,'1000',123,'5','500','0']
+
+def spot_rows(scale=1.):
+ base=1_790_000_000_000 - (1_790_000_000_000 % 3_600_000)
+ return [kline(base+i*3_600_000,symbol_scale=scale) for i in range(4)]
+
+def test_current_public_samples_map_to_archive_contract():
+ f=bundle()
+ # Taker sample ends one interval earlier; exact intersection must be kept, not forward-filled.
+ assert len(f)==2
+ assert list(f.columns)==['symbol','sum_open_interest','sum_open_interest_value','count_toptrader_long_short_ratio','sum_toptrader_long_short_ratio','count_long_short_ratio','sum_taker_long_short_vol_ratio']
+ assert f.iloc[-1].sum_open_interest==pytest.approx(2384197.572)
+ assert f.iloc[-1].sum_toptrader_long_short_ratio==pytest.approx(1.5786)
+ assert f.iloc[-1].count_toptrader_long_short_ratio==pytest.approx(1.2732)
+ assert f.iloc[-1].count_long_short_ratio==pytest.approx(2.3300)
+ assert f.iloc[-1].sum_taker_long_short_vol_ratio==pytest.approx(.6106)
+
+def test_one_hour_endpoint_cannot_silently_replace_archive_5m_metrics():
+ with pytest.raises(ValueError,match='5m'):
+  bundle(period='1h')
+
+def test_missing_family_is_not_imputed():
+ with pytest.raises(ValueError,match='No exact common'):
+  bundle(taker=[{'buySellRatio':'1','timestamp':1790004900000}])
+
+def test_non_aligned_metric_timestamp_is_rejected():
+ bad=[dict(OI[0],timestamp=1790004000001)]
+ with pytest.raises(ValueError,match='5m aligned'):
+  bundle(open_interest=bad)
+
+def test_symbol_conflict_is_rejected():
+ bad=[dict(x,symbol='BTCUSDT') for x in TA]
+ with pytest.raises(ValueError,match='Symbol mismatch'):
+  bundle(top_accounts=bad)
+
+def test_taker_explicit_wrong_symbol_is_rejected_if_present():
+ bad=[dict(TK[1],symbol='BTCUSDT')]
+ with pytest.raises(ValueError,match='Symbol mismatch'):
+  bundle(taker=bad)
+
+def test_duplicate_or_out_of_order_source_is_rejected():
+ bad=[OI[1],OI[0]]
+ with pytest.raises(ValueError,match='unique and increasing'):
+  bundle(open_interest=bad)
+
+def test_funding_keeps_actual_settlement_jitter_and_infers_interval():
+ f=normalize_funding_history(SYMBOL,FUND)
+ assert len(f)==3
+ assert f.iloc[1].funding_interval_hours==pytest.approx(8.000001944444444)
+ assert f.iloc[2].funding_interval_hours==pytest.approx(7.999999166666667)
+ assert f.iloc[-1].last_funding_rate==pytest.approx(.00008660)
+
+def test_funding_negative_rate_is_valid():
+ f=normalize_funding_history(SYMBOL,[{'symbol':SYMBOL,'fundingTime':1789977600004,'fundingRate':'-0.00001'}])
+ assert f.iloc[0].last_funding_rate<0
+
+def test_spot_current_hour_is_excluded_and_indexed_at_completed_hour_end():
+ rows=spot_rows(); third_end=rows[2][6]+1
+ # Observe 30 minutes into fourth bar: first three are complete; fourth remains partial.
+ obs=third_end+30*60*1000
+ f=normalize_spot_klines('ETHUSDT',rows,pd_ms(obs),min_completed_hours=3)
+ assert len(f)==3
+ assert int(f.index[-1].value//1_000_000)==third_end
+ assert f.attrs['partial_rows_excluded']==1
+ assert 'execution_open' not in f.columns
+
+def test_spot_stale_latest_completed_hour_fails_closed():
+ rows=spot_rows(); observed=rows[-1][6]+1+3*3_600_000
+ with pytest.raises(ValueError,match='stale'):
+  normalize_spot_klines('ETHUSDT',rows,pd_ms(observed),min_completed_hours=4)
+
+def test_spot_missing_hour_is_not_filled():
+ rows=spot_rows();del rows[1]
+ with pytest.raises(ValueError,match='Missing completed'):
+  normalize_spot_klines('ETHUSDT',rows,pd_ms(rows[-1][6]+1+10_000),max_age_minutes=90,min_completed_hours=3)
+
+def test_spot_bad_ohlc_is_rejected_even_if_partial():
+ rows=spot_rows();rows[-1]=kline(rows[-1][0],high='98',low='99')
+ with pytest.raises(ValueError,match='OHLC'):
+  normalize_spot_klines('ETHUSDT',rows,pd_ms(rows[-2][6]+1+30*60*1000),min_completed_hours=3)
+
+def test_eth_btc_pair_requires_exact_same_completed_hours():
+ eth=spot_rows();btc=spot_rows(500.)
+ observed=eth[2][6]+1+30*60*1000
+ e,b=normalize_spot_pair(eth,btc,pd_ms(observed),min_completed_hours=3)
+ assert e.index.equals(b.index) and len(e)==3
+ btc[1][0]+=3_600_000;btc[1][6]+=3_600_000
+ with pytest.raises(ValueError):normalize_spot_pair(eth,btc,pd_ms(observed),min_completed_hours=3)
+
+def pd_ms(ms):
+ import pandas as pd
+ return pd.to_datetime(ms,unit='ms',utc=True).isoformat()

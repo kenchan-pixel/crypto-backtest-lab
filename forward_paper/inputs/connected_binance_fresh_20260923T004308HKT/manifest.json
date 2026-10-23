@@ -1,0 +1,27 @@
+{
+  "schema":"connected-binance-native-tail-v1",
+  "symbol":"ETHUSDT",
+  "capture_purpose":"genuinely fresh FULL connected Binance read-only extension for the first qualifying current causal receipt; no trade, fill, account, order or gate promotion by capture alone",
+  "capture_mode":"fresh_incremental_extension",
+  "base_snapshot_dir":"forward_paper/inputs/connected_binance_fresh_20260923T003050HKT",
+  "conservative_first_seen_at_utc":"2026-09-22T16:43:08Z",
+  "first_seen_rule":"Timestamp recorded immediately after all six connected Binance public read-only market-data calls completed; never backdated to source timestamps.",
+  "read_only_public_market_data_only":true,
+  "order_or_account_endpoints_used":false,
+  "native_metric_period":"5m",
+  "freshness_at_capture":{"common_latest_ms":1790094900000,"common_latest_utc":"2026-09-22T16:35:00Z","common_latest_age_minutes":8.1333,"open_interest_latest_ms":1790095200000,"top_accounts_latest_ms":1790095200000,"top_positions_latest_ms":1790095200000,"global_accounts_latest_ms":1790095200000,"taker_latest_ms":1790094900000,"funding_latest_ms":1790092800000,"funding_latest_utc":"2026-09-22T16:00:00Z"},
+  "sources":{
+    "open_interest":{"file":"open_interest.json","function":"get_futures_usds_open_interest_statistics","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790089200000,"endTime":1790095200000,"limit":30},"rows_observed":21,"first_source_timestamp_ms":1790089200000,"last_source_timestamp_ms":1790095200000,"git_blob_sha1":"760e36b6599efca26b6ceea655c534e26e613c25"},
+    "top_accounts":{"file":"top_accounts.json","function":"get_futures_usds_top_trader_long_short_ratio_accounts","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790089200000,"endTime":1790095200000,"limit":30},"rows_observed":21,"first_source_timestamp_ms":1790089200000,"last_source_timestamp_ms":1790095200000,"git_blob_sha1":"a3f3bb2cc19950511a246d77a4fbc3a5bf16dc96"},
+    "top_positions":{"file":"top_positions.json","function":"get_futures_usds_top_trader_long_short_ratio_positions","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790089200000,"endTime":1790095200000,"limit":30},"rows_observed":21,"first_source_timestamp_ms":1790089200000,"last_source_timestamp_ms":1790095200000,"git_blob_sha1":"81a6ba9b01101952ef03db31b01ec173a6b7f00b"},
+    "global_accounts":{"file":"global_accounts.json","function":"get_futures_usds_long_short_ratio","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790089200000,"endTime":1790095200000,"limit":30},"rows_observed":21,"first_source_timestamp_ms":1790089200000,"last_source_timestamp_ms":1790095200000,"git_blob_sha1":"c91078fbe93b046e114dc1dc076bc5c3f09d0171"},
+    "taker":{"file":"taker.json","function":"get_futures_usds_taker_buy_sell_volume","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790089200000,"endTime":1790095200000,"limit":30},"endpoint_window_note":"Connector returned one immediately preceding 5m bucket; raw response preserved without rewriting. Latest common completed taker bucket was 16:35Z.","rows_observed":21,"first_source_timestamp_ms":1790088900000,"last_source_timestamp_ms":1790094900000,"git_blob_sha1":"d26428aa08524c18680814f9fd0ea1c466ee87ab"},
+    "funding":{"file":"funding.json","function":"get_futures_usds_funding_rate_history","request":{"symbol":"ETHUSDT","startTime":1790006400000,"limit":10},"rows_observed":4,"first_funding_time_ms":1790006400002,"last_funding_time_ms":1790092800000,"last_funding_rate":"0.00005735","git_blob_sha1":"51d1e99e8fcfccff9ca8e481c505d8510fd60d87"}
+  },
+  "base_extension_overlap_expected":{"minimum_common_5m_rows":16,"first_overlap_ms":1790089200000,"last_overlap_ms":1790094000000,"common_overlap_rows_expected":17,"minimum_funding_overlap_rows":3,"exact_value_match_required":true},
+  "archive_overlap_expected":{"date":"2026-09-21","timestamps_utc":["2026-09-21T21:35:00Z","2026-09-21T21:40:00Z","2026-09-21T21:45:00Z"],"minimum_rows":3},
+  "gate_promotion":false,
+  "paper_trades_executed":0,
+  "performance_started":false,
+  "next_bounded_step":"Run the dedicated persisted fresh-extension workflow against this immutable fresh snapshot with --qualifying-current. Passing can count only as Receipt 1 of 2; live_feature_parity/source_freshness and execution_ready must remain false."
+}

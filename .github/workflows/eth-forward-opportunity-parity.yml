@@ -1,0 +1,60 @@
+name: ETH forward opportunity parity
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths:
+      - '.github/workflows/eth-forward-opportunity-parity.yml'
+      - 'forward_paper/opportunity_parity.py'
+      - 'forward_paper/test_opportunity_parity.py'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: eth-forward-opportunity-parity
+  cancel-in-progress: false
+jobs:
+  parity:
+    if: github.repository == 'kenchan-pixel/crypto-backtest-lab' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r forward_paper/requirements.txt
+      - name: Unit tests for complete-stream semantics
+        run: python -m pytest -q forward_paper/test_opportunity_parity.py forward_paper/test_core.py
+      - name: Download immutable historical evidence artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p forward_validation
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/10603752542/zip" -o forward_validation/sequence.zip
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/10604261305/zip" -o forward_validation/payoff.zip
+          curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/10626042180/zip" -o forward_validation/event.zip
+          echo "e1208b70c78cd60137d62a40db0c1a0f2d1c46fec0a9c8bfeeda742d370d5736  forward_validation/sequence.zip" | sha256sum -c -
+          echo "12aaeaa9699645db26036a8433e2c5437c3d4dd233507182452b783434b9314c  forward_validation/payoff.zip" | sha256sum -c -
+          echo "65975a2ede42b7234270032cf7c04fa8a4790f266caba9b714b5e8f77a996c4f  forward_validation/event.zip" | sha256sum -c -
+      - name: Reconstruct every historical ETH parent opportunity without outcome columns
+        run: |
+          set -euo pipefail
+          python -m forward_paper.opportunity_parity \
+            --event forward_validation/event.zip \
+            --sequence forward_validation/sequence.zip \
+            --payoff forward_validation/payoff.zip \
+            --model forward_paper/model.json \
+            --out forward_validation/opportunity_parity.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eth-forward-opportunity-parity
+          path: forward_validation/opportunity_parity.json
+          retention-days: 14

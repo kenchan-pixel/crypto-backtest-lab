@@ -1,0 +1,77 @@
+name: ETH fresh connected extension pipeline
+on:
+  workflow_dispatch:
+  push:
+    branches: ['research/payoff-aware-20260920']
+    paths:
+      - '.github/workflows/eth-forward-fresh-extension-pipeline.yml'
+      - 'forward_paper/persisted_extension_pipeline.py'
+      - 'forward_paper/test_persisted_extension_pipeline.py'
+      - 'forward_paper/receipt2_pipeline.py'
+      - 'forward_paper/test_receipt2_pipeline.py'
+      - 'forward_paper/live_parity_contract.py'
+      - 'forward_paper/test_live_parity_contract.py'
+permissions:
+  contents: read
+concurrency:
+  group: eth-forward-fresh-extension-pipeline
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.repository == 'kenchan-pixel/crypto-backtest-lab' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r forward_paper/requirements.txt
+      - name: Run complete forward-paper tests
+        run: |
+          set -euo pipefail
+          mkdir -p forward_validation
+          python -m pytest -q forward_paper | tee forward_validation/tests.txt
+      - name: Run independently timed qualifying current Receipt 2
+        run: |
+          set -euo pipefail
+          python -m forward_paper.receipt2_pipeline \
+            --base-dir forward_paper/inputs/connected_binance_fresh_20260923T003050HKT \
+            --fresh-dir forward_paper/inputs/connected_binance_fresh_20260923T013124HKT \
+            --macro-capture forward_paper/inputs/macro_first_seen_20260922T031843HKT.json \
+            --out forward_validation/fresh_extension_receipt.json | tee forward_validation/pipeline.log
+      - name: Enforce qualifying Receipt 2 commissioning boundary
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('forward_validation/fresh_extension_receipt.json'))
+          c=r['live_parity_contract']
+          assert r['passed'] is True and r['qualifying_current_receipt'] is True
+          assert r['qualifying_current_receipt_number']==2
+          assert r['paper_trades_created']==0 and r['performance_started'] is False
+          assert r['order_account_endpoints_used'] is False and r['raw_source_values_rewritten'] is False
+          assert r['gate_effect'].startswith('Receipt 2 of 2')
+          assert r['fresh_snapshot_manifest'].endswith('connected_binance_fresh_20260923T013124HKT/manifest.json')
+          assert r['derivative_freshness']['fresh'] is True
+          assert all(r['derivative_feature_non_null_at_cut'].values())
+          assert all(v>=16 for k,v in r['base_fresh_exact_overlap_rows'].items() if k!='funding')
+          assert r['base_fresh_exact_overlap_rows']['funding']>=3
+          assert c['frozen_model_sha256']=='08f2ba34b48d2aa5925af90c13452a34efbb0dc0f88d4694caa330bdf832c3fe'
+          assert c['archive_create_time_to_connected_period_end_offset_minutes']==5
+          assert c['decision_exact_mismatches']=={'sum_open_interest':0,'sum_open_interest_value':0}
+          assert c['taker_value_semantics_resolved'] is False
+          assert c['taker_live_values_quarantined_from_decision_matrix'] is True
+          assert c['raw_values_rewritten'] is False
+          print('Qualifying current Receipt 2 validated; only source_freshness/live_feature_parity may now be promoted. No paper performance starts.')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eth-forward-fresh-extension-qualifying-receipt-2
+          path: forward_validation/
+          retention-days: 14

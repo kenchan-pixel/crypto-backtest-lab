@@ -1,0 +1,29 @@
+{
+  "schema":"connected-binance-native-tail-v1",
+  "symbol":"ETHUSDT",
+  "capture_purpose":"staging bridge only for a later genuinely fresh qualifying extension; not a trade signal, fill, gate promotion, or forward-performance result",
+  "capture_mode":"staging_bridge_extension",
+  "upstream_base_snapshot_dir":"forward_paper/inputs/connected_binance_full_20260922T072853HKT",
+  "conservative_first_seen_at_utc":"2026-09-22T16:40:43Z",
+  "first_seen_rule":"Conservative timestamp recorded only after all connected Binance public read-only market-data calls had completed. This staging bridge was already older than the <=15 minute qualifying freshness target at that boundary, so it cannot itself count as a qualifying current receipt.",
+  "read_only_public_market_data_only":true,
+  "order_or_account_endpoints_used":false,
+  "native_metric_period":"5m",
+  "intended_bridge_range":{"start_ms":1790026200000,"start_utc":"2026-09-21T21:30:00Z","common_latest_ms":1790094000000,"common_latest_utc":"2026-09-22T16:20:00Z","common_latest_age_minutes_at_first_seen":20.7167,"funding_latest_ms":1790092800000,"funding_latest_utc":"2026-09-22T16:00:00Z","funding_latest_age_minutes_at_first_seen":40.7167},
+  "sources":{
+    "open_interest":{"file":"open_interest.json","function":"get_futures_usds_open_interest_statistics","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790026200000,"endTime":1790094300000,"limit":240},"rows_observed":228,"first_source_timestamp_ms":1790026200000,"last_source_timestamp_ms":1790094300000,"git_blob_sha1":"6319aaece550d642505b575f07700dd659c7a4b7"},
+    "top_accounts":{"file":"top_accounts.json","function":"get_futures_usds_top_trader_long_short_ratio_accounts","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790026200000,"endTime":1790094300000,"limit":240},"rows_observed":228,"first_source_timestamp_ms":1790026200000,"last_source_timestamp_ms":1790094300000,"git_blob_sha1":"78246d7da6584d514d529fcdc9215fb1d2d700bd"},
+    "top_positions":{"file":"top_positions.json","function":"get_futures_usds_top_trader_long_short_ratio_positions","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790026200000,"endTime":1790094300000,"limit":240},"rows_observed":228,"first_source_timestamp_ms":1790026200000,"last_source_timestamp_ms":1790094300000,"git_blob_sha1":"5378e2d6e1242b0e9ed0633a206e5be5b7075838"},
+    "global_accounts":{"file":"global_accounts.json","function":"get_futures_usds_long_short_ratio","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790026200000,"endTime":1790094300000,"limit":240},"rows_observed":228,"first_source_timestamp_ms":1790026200000,"last_source_timestamp_ms":1790094300000,"git_blob_sha1":"566486995c35596b3d9d37e89c8a4d5f7b40876d"},
+    "taker":{"file":"taker.json","function":"get_futures_usds_taker_buy_sell_volume","request":{"symbol":"ETHUSDT","period":"5m","startTime":1790026200000,"endTime":1790094300000,"limit":240},"endpoint_window_note":"Connector returned the immediately preceding 5m bucket and the latest common completed taker bucket was 2026-09-22T16:20:00Z; raw response preserved without rewriting.","rows_observed":228,"first_source_timestamp_ms":1790025900000,"last_source_timestamp_ms":1790094000000,"git_blob_sha1":"208963104c74274e01eb1b3113673f52a3e08bda"},
+    "funding":{"file":"funding.json","function":"get_futures_usds_funding_rate_history","request":{"symbol":"ETHUSDT","startTime":1789776000000,"limit":20},"rows_observed":12,"first_funding_time_ms":1789776000000,"last_funding_time_ms":1790092800000,"last_funding_rate":"0.00005735","git_blob_sha1":"8edc1136eb5b1cb3e5d806a3d1b80adaeed9de2d"}
+  },
+  "base_extension_overlap_expected":{"minimum_common_5m_rows":16,"first_overlap_ms":1790026200000,"last_overlap_ms":1790032500000,"exact_value_match_required":true},
+  "archive_overlap_expected":{"date":"2026-09-21","timestamps_utc":["2026-09-21T21:35:00Z","2026-09-21T21:40:00Z","2026-09-21T21:45:00Z"],"minimum_rows":3},
+  "gate_promotion":false,
+  "source_freshness_gate":false,
+  "live_feature_parity_gate":false,
+  "paper_trades_executed":0,
+  "performance_started":false,
+  "next_bounded_step":"Use this immutable staging bridge only as the base for a short independently timed genuinely fresh connected Binance FULL extension; require >=16 exact overlapping 5m rows plus >=3 exact funding rows, then run the persisted extension pipeline with --qualifying-current."
+}

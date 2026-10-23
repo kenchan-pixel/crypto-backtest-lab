@@ -1,0 +1,66 @@
+{
+  "schema": "eth-paper-runtime-cycle-receipt-v1",
+  "recorded_at": "2026-09-23T03:48:21+08:00",
+  "branch": "research/payoff-aware-20260920",
+  "tested_head_commit": "7f05fc03111e08571970b4d414f7fe7349df4626",
+  "bounded_step": "exits-first orchestration plus signal-before-actual-later-quote ordering only",
+  "workflow": {
+    "name": "ETH forward runtime commissioning",
+    "run_id": 35776049347,
+    "job_id": 106909404927,
+    "conclusion": "success",
+    "tests_passed": 91,
+    "artifact_id": 10716661008,
+    "artifact_sha256": "c068b2a30ea0046383642254a5f0e32e65618a837cefc947e525792e1746ce7f"
+  },
+  "source_files": {
+    "forward_paper/runtime_cycle.py_git_blob_sha": "43465c7cfc5a2361c9e39e43bd4831ee9129379a",
+    "forward_paper/test_runtime_cycle.py_git_blob_sha": "87da7c602a4b71b4938e39b5cca9b1b96862d263",
+    ".github/workflows/eth-forward-runtime-store.yml_git_blob_sha": "5025115556f88a2ec3f55128e341eaf536c58e1b",
+    "forward_paper/inputs/connected_eth_quote_pair_20260923T034451HKT.json_git_blob_sha": "52715812c33d6c29c2e845d8801d6dbe7b0c575d",
+    "connected_quote_pair_content_sha256": "525814c630845063779c6de99d945618d2fa6c9329edfb99254b1655553b10b5"
+  },
+  "connected_public_quote_evidence": {
+    "source": "Binance USD-M public read-only symbol price ticker",
+    "tool_operation": "get_futures_usds_symbol_price_ticker",
+    "symbol": "ETHUSDT",
+    "first_exchange_time_ms": 1790106277241,
+    "first_price": "2752.17",
+    "second_exchange_time_ms": 1790106291246,
+    "second_price": "2752.90",
+    "elapsed_seconds": 14.005,
+    "orders_or_account_data_requested": false
+  },
+  "verified_checks": {
+    "connected_quote_pair_strictly_ordered": true,
+    "signal_event_persisted_before_entry_event": true,
+    "actual_second_connected_quote_after_signal_record": true,
+    "restart_replay_idempotent": true,
+    "due_exit_preempts_competing_new_entry": true,
+    "source_runtime_bytes_unchanged": true
+  },
+  "engineering_fixture_scope": {
+    "synthetic_threshold_passing_signal": true,
+    "synthetic_armed_state": true,
+    "synthetic_due_exit_quote": true,
+    "isolated_entry_events": 1,
+    "isolated_exit_events": 1,
+    "forward_opportunity_claimed": false,
+    "forward_trade_claimed": false
+  },
+  "safety": {
+    "actual_runtime_state_mutated": false,
+    "actual_runtime_paper_trades_created": 0,
+    "real_orders_created": 0,
+    "order_account_endpoints_used": false,
+    "crypto_news_collector_modified": false,
+    "auto_merge": false
+  },
+  "gate_effect": "none; source_freshness/live_feature_parity stay previously verified, but runtime/fill readiness is still incomplete because explicit late/missing fill and data-gap persistence plus base/stress cost sidecars are not yet commissioned; initial_decisions remains false, execution_ready remains false, performance_started_at remains null",
+  "historical_gate_effect": "none; the old failed historical paper gate remains failed and is not evidence for this new forward experiment",
+  "remaining_commissioning_work": [
+    "persist explicit late/missing fill and data-gap events without backfill",
+    "maintain base and stress cost states on identical parent opportunities",
+    "commit genuine initial AI/simple weekly decisions at the first eligible Monday review"
+  ]
+}

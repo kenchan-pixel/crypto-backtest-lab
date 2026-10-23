@@ -1,0 +1,71 @@
+{
+  "schema": "eth-forward-taker-semantic-contract-receipt-v1",
+  "observed_at_utc": "2026-09-22T10:50:30Z",
+  "scope": "Bounded commissioning validation of the remaining taker source semantic contract. No paper fills, model/strategy change, gate promotion, account/order endpoint, or raw-value rewrite.",
+  "branch": "research/payoff-aware-20260920",
+  "official_usds_endpoint_contract": {
+    "endpoint": "/futures/data/takerlongshortRatio",
+    "period": "5m",
+    "timestamp_semantics": "start time of the period",
+    "fields": ["buySellRatio", "buyVol", "sellVol"]
+  },
+  "connected_evidence": {
+    "path": "forward_paper/inputs/connected_binance_full_20260922T072853HKT/taker.json",
+    "sha256": "f82b99061a41b6ff05733e27060f9602ec0396483ba494c84fd762837791b62c",
+    "archive_overlap_rows": 283,
+    "archive_same_timestamp_max_abs_delta": 0.0019460000000000033,
+    "archive_same_timestamp_median_abs_delta": 0.00011300000000002974
+  },
+  "checksum_verified_public_archives": {
+    "2026-09-20": {
+      "metrics_sha256": "54c07ed33c80ad47618d0e79faab937fa0e018a24c6c1e9eb1dff852bf5ad0d6",
+      "kline_5m_sha256": "b32fc8b1224610d88abdff6e7d1e90f7b155b61c4c896ccc735062c481ef135f"
+    },
+    "2026-09-21": {
+      "metrics_sha256": "84e76323a33e78f2d00d648fb67c2b1be726385e4cb36f59192e5e30a98c9fa0",
+      "kline_5m_sha256": "3e5e02632031242a953c297bd6979cffaecfe3e3885077ad3cda50fdda1f03de"
+    }
+  },
+  "workflow": {
+    "valid_run_id": 35718132422,
+    "head_sha": "6787a21603a343c6ba5ea040536f9ce311153369",
+    "conclusion": "success",
+    "complete_forward_paper_tests_passed": 66,
+    "artifact_id": 10689942577,
+    "artifact_sha256": "c08ce00b642729350f19ab042a3a78f48ce5581bf8852367ede948d25d9b427d",
+    "artifact_created_at_utc": "2026-09-22T10:50:30Z",
+    "superseded_run_id": 35717994362,
+    "superseded_reason": "The first diagnostic constructed pandas frames with index-aligned Series, producing zero overlap while the workflow itself stayed green. The implementation was corrected to positional arrays and now fails closed on insufficient archive/kline or archive/connected overlap. No gate evidence from the superseded run is accepted."
+  },
+  "tested_archive_kline_contracts": {
+    "quote_ratio_same_period": {
+      "rows": 576,
+      "median_abs_delta": 0.00013526010042264058,
+      "p99_abs_delta": 0.03794572827786563,
+      "max_abs_delta": 0.2337766205714864
+    },
+    "base_ratio_same_period": {
+      "rows": 576,
+      "median_abs_delta": 0.00030839450811548375,
+      "p99_abs_delta": 0.03786234513766862,
+      "max_abs_delta": 0.23369650742187353
+    },
+    "plus_or_minus_5m_candidates": "rejected; median absolute deltas approximately 0.376 to 0.379 and maxima above 2.22"
+  },
+  "conclusion": "The hypothesis that Data Vision sum_taker_long_short_vol_ratio is simply the final 5m UM kline taker-buy/taker-sell ratio is rejected for both base and quote volume. Same-period alignment is clearly correct relative to +/-5m, but the value semantic remains unresolved. The checksum archive is much closer to the public taker endpoint at the same timestamp than to final kline-derived ratios, yet the remaining endpoint/archive deltas are too large to explain by the endpoint ratio's displayed 4-decimal rounding alone.",
+  "resolved": false,
+  "raw_values_rewritten": false,
+  "paper_trades_created": 0,
+  "gate_promotion": false,
+  "performance_started": false,
+  "order_or_account_endpoints_used": false,
+  "readiness_effect": {
+    "execution_ready": false,
+    "source_freshness": false,
+    "live_feature_parity": false,
+    "initial_decisions": false,
+    "performance_started_at": null,
+    "paper_trades_created": 0
+  },
+  "next_safe_step": "Boundedly test taker metric snapshot/bucket semantics against the same immutable connected endpoint rows and checksum archives, preserving same-period alignment. Capture mismatch examples and test whether archive values correspond to a deterministic endpoint sampling cut or another documented aggregation. Do not coerce archive values to final kline ratios and do not retry the full current signal pipeline until the taker contract is evidence-backed."
+}

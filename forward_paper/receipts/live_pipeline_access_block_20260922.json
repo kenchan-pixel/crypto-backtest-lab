@@ -1,0 +1,50 @@
+{
+  "schema": "eth-forward-live-pipeline-access-v1",
+  "date_hkt": "2026-09-22",
+  "status": "BLOCKED_IN_GITHUB_ACTIONS_DIRECT_FAPI",
+  "scope": "Commissioning evidence only; no paper fill, no performance start, no account/order endpoint.",
+  "workflow_run_id": 35658458936,
+  "workflow_head_sha": "140de8bc0778dcb92b43d9b4f013b4e8323bb2dd",
+  "focused_tests": {
+    "attempt_1_passed": 33,
+    "attempt_2_passed": 33
+  },
+  "attempts": [
+    {
+      "job_id": 106527747244,
+      "azure_region": "eastus",
+      "result": "HTTP 451 from https://fapi.binance.com/futures/data/openInterestHist",
+      "snapshot_written": false
+    },
+    {
+      "job_id": 106529334867,
+      "azure_region": "centralus",
+      "result": "HTTP 451 from https://fapi.binance.com/futures/data/openInterestHist",
+      "snapshot_written": false
+    }
+  ],
+  "interpretation": "Direct Binance USD-M futures REST from GitHub-hosted runners is region-dependent and cannot be treated as a reliable runtime source. No proxy or restriction bypass is authorized.",
+  "connected_binance_read_probe": {
+    "observed_after_reads_utc": "2026-09-21T21:47:11.845447+00:00",
+    "read_only": true,
+    "native_5m_families_read": [
+      "open_interest",
+      "top_trader_accounts",
+      "top_trader_positions",
+      "global_accounts",
+      "taker_buy_sell"
+    ],
+    "funding_rows_read": 100,
+    "latest_open_interest_utc": "2026-09-21T21:40:00+00:00",
+    "latest_top_positions_utc": "2026-09-21T21:40:00+00:00",
+    "latest_taker_utc": "2026-09-21T21:35:00+00:00",
+    "latest_funding_utc": "2026-09-21T16:00:00.002000+00:00",
+    "runtime_snapshot_persisted": false,
+    "orders_or_account_data_requested": false
+  },
+  "safe_next_route": "Use the connected Binance read-only connector to capture an immutable, timestamped source snapshot into GitHub, then let deterministic repository code validate/normalize that snapshot and build the live source-to-feature-to-opportunity receipt. Require an independent second snapshot before promoting live_feature_parity/source_freshness.",
+  "gates_promoted": [],
+  "execution_ready": false,
+  "performance_started": false,
+  "paper_trades_created": 0
+}

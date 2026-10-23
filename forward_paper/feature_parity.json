@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "rows": 1869,
+  "all_original_categories_and_numerics_matched": true,
+  "no_future_execution_or_target_used": true,
+  "max_prediction_error": 0.0,
+  "feature_source_sha256": "722c3740c88f7d8abecd650c2659a720792b55a0c3e7856d521db5e0eb910b38",
+  "execution_location": "ChatGPT computation container",
+  "scope": "Existing 1,869 historical sequence feature values and model predictions only; live data adapter and complete opportunity reconstruction remain pending. This is not a paper performance result."
+}

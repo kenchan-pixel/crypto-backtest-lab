@@ -1,0 +1,28 @@
+{
+  "schema": "macro-first-seen-durable-receipt-v1",
+  "workflow_run_id": 35644401900,
+  "workflow_conclusion": "success",
+  "tests_passed": 9,
+  "capture_path": "forward_paper/inputs/macro_first_seen_20260922T031843HKT.json",
+  "capture_sha256": "fbabc3aac1a0ff899d72e29c769bbd8119b9512ee8d591fdfa73ba2b32cf48bb",
+  "capture_first_seen_at_utc": "2026-09-21T19:18:43.656843+00:00",
+  "frozen_indicator_set_checked": true,
+  "published_rows_seen": 6,
+  "empty_indicators": ["core_pce_yoy"],
+  "empty_indicator_interpretation": "unknown_not_no_event",
+  "forward_eligible_event_count": 0,
+  "late_bootstrap_event_count": 6,
+  "normalized_sha256": "e61098ebd5b725df57eed240e72cf38b59f1c2dfd3772e6973d010e78c4f2308",
+  "ledger_sha256": "f8346f31905d7f0688142f110872d8f6b7aa6f331c18ef4683ac53ba956afa1b",
+  "artifact_id": 10659591115,
+  "artifact_zip_sha256": "ff13925f518770380306606dcf908b8f0738b776d206600c1ed93818ac4285bf",
+  "paper_execution_started": false,
+  "performance_started_at": null,
+  "source_freshness_gate_passed": false,
+  "live_feature_parity_gate_passed": false,
+  "notes": [
+    "All six returned historical rows were first observed too late to become forward catalysts; no backdated macro catalyst was created.",
+    "Core PCE YoY returned no row in the requested 2026-09-01 through 2026-09-22 window. A supplementary Longbridge calendar check showed core-PCE-related releases scheduled for 2026-09-30, so this zero count is not interpreted as no event.",
+    "This receipt validates causal first-seen handling only. Complete parent-opportunity replay parity and persistent runtime integration remain commissioning work."
+  ]
+}

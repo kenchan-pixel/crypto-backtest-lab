@@ -1,0 +1,67 @@
+{
+  "schema": "eth-weekly-connected-evidence-v1",
+  "observed_at": "2026-09-28T03:17:25+00:00",
+  "end_bar_close_at": "2026-09-27T23:59:59.999000+00:00",
+  "source": "Binance connected public read-only market-data tool",
+  "tool_operation": "get_spot_kline_candlestick_data",
+  "read_only": true,
+  "orders_or_account_data_requested": false,
+  "query_contract": {
+    "symbol": "ETHUSDT",
+    "interval": "1d",
+    "time_zone": "UTC"
+  },
+  "bars": {
+    "start_30d": {
+      "open_time_ms": 1787875200000,
+      "close_time_ms": 1787961599999,
+      "close": "2442.80000000"
+    },
+    "end_latest_completed": {
+      "open_time_ms": 1790467200000,
+      "close_time_ms": 1790553599999,
+      "close": "2688.65000000"
+    }
+  },
+  "supplemental_public_context": {
+    "spot_price": {
+      "symbol": "ETHUSDT",
+      "price": "2654.37000000"
+    },
+    "futures_mark": {
+      "symbol": "ETHUSDT",
+      "markPrice": "2653.05882518",
+      "indexPrice": "2654.89953488",
+      "lastFundingRate": "-0.00000240",
+      "time": 1790565311000
+    },
+    "futures_open_interest": {
+      "symbol": "ETHUSDT",
+      "openInterest": "2299407.670",
+      "time": 1790565307309
+    },
+    "funding_history": [
+      {
+        "fundingTime": 1790496000001,
+        "fundingRate": "0.00010000",
+        "markPrice": "2717.05000000"
+      },
+      {
+        "fundingTime": 1790524800000,
+        "fundingRate": "0.00005390",
+        "markPrice": "2688.83000000"
+      },
+      {
+        "fundingTime": 1790553600000,
+        "fundingRate": "0.00003121",
+        "markPrice": "2687.36000000"
+      }
+    ],
+    "provenance": [
+      "get_spot_symbol_price_ticker",
+      "get_futures_usds_mark_price",
+      "get_futures_usds_open_interest",
+      "get_futures_usds_funding_rate_history"
+    ]
+  }
+}
