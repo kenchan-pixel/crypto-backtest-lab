@@ -21,7 +21,7 @@ export async function rpc(env,method,params) {
   if(!['getTransaction','getAccountInfo','getSignaturesForAddress'].includes(method))throw Error('RPC method forbidden');
   const r=await remote(`https://mainnet.helius-rpc.com/?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`,
     {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params})});
-  if(r.error||r.result===null)throw Error('RPC unavailable');return r.result;
+  if(r.error)throw Error('RPC error '+Number(r.error.code));if(r.result===null)throw Error('RPC result null');return r.result;
 }
 export async function quote(env,p) {
   // Single serialized book; leave headroom below the free-key 1 request/second limit.
@@ -45,10 +45,10 @@ export default {
         const endpoint=`https://api-mainnet.helius-rpc.com/v0/webhooks?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`;
         const webhookURL='https://ken-copy-paper.kenchan-528.workers.dev/webhook';
         const existing=await remote(endpoint),match=existing.find(x=>x.webhookURL===webhookURL);
-        if(match){if(JSON.stringify(match.accountAddresses)!==JSON.stringify(wallets(env)))return json({error:'existing webhook allowlist differs'},409);
-          return json({webhookID:match.webhookID,webhookURL,existing:true});}
-        const r=await remote(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({webhookURL,transactionTypes:['SWAP'],accountAddresses:wallets(env),webhookType:'enhanced',authHeader:`Bearer ${env.WEBHOOK_SECRET}`})});
-        return json({webhookID:r.webhookID,webhookURL,created:true});
+        if(match&&JSON.stringify(match.accountAddresses)===JSON.stringify(wallets(env)))return json({webhookID:match.webhookID,webhookURL,existing:true});
+        const target=match?`https://api-mainnet.helius-rpc.com/v0/webhooks/${encodeURIComponent(match.webhookID)}?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`:endpoint;
+        const r=await remote(target,{method:match?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({webhookURL,transactionTypes:['SWAP'],accountAddresses:wallets(env),webhookType:'enhanced',authHeader:`Bearer ${env.WEBHOOK_SECRET}`})});
+        return json({webhookID:r.webhookID||match?.webhookID,webhookURL,created:!match,updated:Boolean(match)});
       }catch(e){return json({error:e.message.startsWith('upstream')?e.message:'webhook setup unavailable'},502);}
     }
     if(path==='/tick'&&request.method==='POST') {
@@ -62,14 +62,14 @@ export default {
       const u=new URL(request.url),wallet=u.searchParams.get('wallet'),sig=u.searchParams.get('signature'),before=u.searchParams.get('before');
       if(!address(wallet)||[sig,before].some(x=>x&&!/^[1-9A-HJ-NP-Za-km-z]{64,88}$/.test(x)))return json({error:'invalid query'},400);
       try {
-        if(sig){const tx=await rpc(env,'getTransaction',[sig,{encoding:'jsonParsed',commitment:'confirmed',maxSupportedTransactionVersion:0}]);
+        if(sig){const tx=await rpc(env,'getTransaction',[sig,{encoding:'jsonParsed',commitment:'confirmed',maxSupportedTransactionVersion:1}]);
           let signal;try{signal=normalize(tx,wallet,sig,Date.now());}catch(e){signal={unsupported:e.message};}
           return json({signal,tx});}
         const endpoint=new URL(`https://api-mainnet.helius-rpc.com/v0/addresses/${wallet}/transactions`);
         endpoint.searchParams.set('api-key',env.HELIUS_API_KEY);endpoint.searchParams.set('limit','100');
         if(before)endpoint.searchParams.set('before',before);
         return json({wallet,observedAt:Date.now(),rows:await remote(endpoint)});
-      }catch{return json({error:'source unavailable'},502);}
+      }catch(e){return json({error:/^(RPC error -?[0-9]+|RPC result null|upstream HTTP [0-9]+)$/.test(e.message)?e.message:'source unavailable'},502);}
     }
     if(path==='/preflight'&&request.method==='POST') {
       if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
@@ -216,7 +216,7 @@ export class PaperBook {
             {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({transactions:[job.signature]})});
           if(enhanced[0]?.signature!==job.signature)throw Error('transaction not available');
           verified={type:enhanced[0].type,observedAt:Date.now()};
-          if(verified.type==='SWAP')verified.tx=await rpc(env,'getTransaction',[job.signature,{encoding:'jsonParsed',commitment:'confirmed',maxSupportedTransactionVersion:0}]);
+          if(verified.type==='SWAP')verified.tx=await rpc(env,'getTransaction',[job.signature,{encoding:'jsonParsed',commitment:'confirmed',maxSupportedTransactionVersion:1}]);
           await db.put(`verified:${job.signature}`,verified);
         }
         if(verified.type!=='SWAP'){await this.finish(job,{status:'SKIP',reason:'not a supported swap'});return;}
