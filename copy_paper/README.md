@@ -4,7 +4,7 @@ Ken approved this direction on 2026-10-23: follow public wallets using actual ne
 
 ## Status and acceptance
 
-Implementation + local fixture tests are available. **Not live, no wallets selected, no real-source integration validated, no forward performance.** Helius account creation alone does not connect its API key. Deployment starts disabled with an empty allowlist. Do not declare started until a canonical chain event is received, independently read, queued durably, and either a genuine quote-based fill or a documented skip is read back after restart.
+Live commissioning on 2026-10-23: provider keys verified against Helius RPC and Jupiter quote-only routes; one candidate selected for an **engineering paper pilot**, not as a verified profitable trader. See `COMMISSIONING-2026-10-23.md` and `screening-2026-10-23.json` for actual deployment and evidence. Source wallet's recent results include losses and fast exits. Forward performance must come from genuinely new fills; historical commissioning replay is never performance.
 
 Stack: Cloudflare Worker + one SQLite Durable Object; Helius enhanced SWAP webhook as notification, canonical read-only Solana RPC for balances; Jupiter Swap V2 `/order` without `taker` for quotes only. No signing code, wallet secret, `/execute`, transfer or transaction-send method exists. Source: https://www.helius.dev/docs/webhooks ; https://developers.jup.ag/docs/api-reference/swap/order ; https://developers.cloudflare.com/durable-objects/api/state/
 
@@ -38,8 +38,10 @@ Stack: Cloudflare Worker + one SQLite Durable Object; Helius enhanced SWAP webho
 - Disabling `ENABLED` also stops exits: use only as an emergency full pause, disclose open positions. Never remove tracked wallets with open positions without an exit plan.
 - For a persistent `health.entryBlocked` gap: audit source records and pending exits; use a reviewed migration to clear that field only, retaining all balances and history. No public reset/unblock endpoint is exposed.
 - Endpoint authentication, bounded bodies, exact signatures, persisted queue, retry backoff and fail-closed source validation reduce accidental corruption. Secret leakage/compromised provider and prolonged outages remain risks.
-- No frontend dashboard or scheduled ChatGPT review is claimed. `/status` is an authenticated machine-readable pilot status endpoint. Wallet discovery, real-source validation, account quotas and activation are pending keys; no need to restart architecture work when keys arrive.
+- No frontend dashboard or scheduled ChatGPT review is claimed. `/status` is an authenticated machine-readable pilot status endpoint. Keys and real-source checks are complete. Config file intentionally retains disabled defaults; deployed bindings and the commissioning receipt are the runtime source of truth. Provider/account-wide quota usage still needs operational observation.
 
 ## Next execution session
 
-Read this file, `core.mjs`, `worker.mjs`, current branch and any deployment receipt. Obtain secrets through provider secret storage, not git. Finish the real-source commissioning and wallet selection, then activate the same Worker. Report actual transaction signature, observation/quote times, fill/skip reason and persisted account totals. If blocked, name the missing key/access rather than repeating unrelated backtests.
+Read this file, `core.mjs`, `worker.mjs`, current branch and any deployment receipt. Use existing provider secrets in the Worker; never export them. Check the active deployment and authenticated status before making changes. Report actual transaction signature, observation/quote times, fill/skip reason and persisted account totals. If blocked, name the missing key/access rather than repeating unrelated backtests.
+
+Authenticated operations: `POST /preflight` (optional mint query), `GET /inspect?wallet=...` (bounded 100 history rows; optional before or signature), `POST /connect` (only this Worker webhook), `POST /tick`. All require ADMIN_TOKEN. Solana reads opt into transaction version 1; new versions must be reviewed before accepting.
