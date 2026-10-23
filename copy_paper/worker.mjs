@@ -38,6 +38,23 @@ export default {
   async fetch(request,env) {
     const path=new URL(request.url).pathname;
     if(path==='/health'&&request.method==='GET')return json({paperOnly:true,configured:Boolean(configured(env))});
+    if(path==='/resume-flat'&&request.method==='POST') {
+      if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      return stub(env).fetch('https://internal/resume-flat',{method:'POST'});
+    }
+    if(path==='/audit'&&request.method==='GET') {
+      if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      const before=new URL(request.url).searchParams.get('before');
+      if(before&&!/^audit:[0-9]{13}:[A-Za-z0-9:_-]+$/.test(before))return json({error:'invalid cursor'},400);
+      return stub(env).fetch('https://internal/audit'+(before?'?before='+encodeURIComponent(before):''));
+    }
+    if(path==='/connection'&&request.method==='GET') {
+      if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      try {
+        const all=await remote(`https://api-mainnet.helius-rpc.com/v0/webhooks?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`);
+        return json({wallets:wallets(env),webhooks:all.filter(x=>x.webhookURL==='https://ken-copy-paper.kenchan-528.workers.dev/webhook').map(x=>({id:x.webhookID,accounts:x.accountAddresses,type:x.webhookType,transactions:x.transactionTypes,authMatches:x.authHeader===`Bearer ${env.WEBHOOK_SECRET}`}))});
+      }catch{return json({error:'webhook inspection unavailable'},502);}
+    }
     if(path==='/connect'&&request.method==='POST') {
       if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
       if(!configured(env)||!env.WEBHOOK_SECRET)return json({error:'not configured'},503);
@@ -59,7 +76,10 @@ export default {
     }
     if(path==='/inspect'&&request.method==='GET') {
       if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
-      const u=new URL(request.url),wallet=u.searchParams.get('wallet'),sig=u.searchParams.get('signature'),before=u.searchParams.get('before');
+      const u=new URL(request.url);
+      const mint=u.searchParams.get('mint');
+      if(mint){if(!address(mint))return json({error:'invalid mint'},400);return json(await rpc(env,'getAccountInfo',[mint,{encoding:'jsonParsed',commitment:'confirmed'}]));}
+      const wallet=u.searchParams.get('wallet'),sig=u.searchParams.get('signature'),before=u.searchParams.get('before');
       if(!address(wallet)||[sig,before].some(x=>x&&!/^[1-9A-HJ-NP-Za-km-z]{64,88}$/.test(x)))return json({error:'invalid query'},400);
       try {
         if(sig){const tx=await rpc(env,'getTransaction',[sig,{encoding:'jsonParsed',commitment:'confirmed',maxSupportedTransactionVersion:1}]);
@@ -107,7 +127,7 @@ export default {
       // Recovery feed: recent confirmed signatures, deduplicated by the ledger.
       // Overflow is surfaced; historical gaps are not silently filled at old prices.
       for(const w of wallets(env)){
-        const rows=await rpc(env,'getSignaturesForAddress',[w,{limit:100,commitment:'confirmed'}]);
+        const rows=await rpc(env,'getSignaturesForAddress',[w,{limit:1000,commitment:'confirmed'}]);
         await stub(env).fetch('https://internal/reconcile',{method:'POST',body:JSON.stringify({wallet:w,rows,receivedAt:Date.now()})});
       }
       await stub(env).fetch('https://internal/sweep',{method:'POST'});
@@ -119,12 +139,25 @@ export class PaperBook {
   async fetch(request) {
     return this.ctx.blockConcurrencyWhile(async()=>{
       const path=new URL(request.url).pathname, db=this.ctx.storage;
+      if(path==='/resume-flat') {
+        const s=await db.get('state'),h=await db.get('health');
+        if(!configured(this.env)||!s||Object.keys(s.positions).length||(await db.list({prefix:'pending:',limit:1})).size)return json({error:'requires enabled flat book and empty queue'},409);
+        if(!h?.entryBlocked||!h.error?.startsWith('reconciliation overflow'))return json({error:'not a reconciliation block'},409);
+        const at=Date.now();
+        await db.transaction(async t=>{await t.put(`audit:${at}:recovery`,{status:'RECOVERY',reason:'operator reviewed flat book; resume future entries only',previousHealth:h});await t.delete('health');});
+        return json({resumed:true,at});
+      }
+      if(path==='/audit') {
+        const before=new URL(request.url).searchParams.get('before');
+        const page=await db.list({prefix:'audit:',reverse:true,limit:200,...(before?{end:before}:{})});
+        return json({rows:[...page].filter(([,v])=>v.status!=='MARK').map(([id,v])=>({id,...v})),next:page.size===200?[...page.keys()].at(-1):null});
+      }
       if(path==='/status') {
         const s=await db.get('state');
         return json({paperOnly:true,configured:Boolean(configured(this.env)),state:s||null,
           marks:await db.get('marks')||null,health:await db.get('health')||null,
           queued:(await db.list({prefix:'pending:',limit:1000})).size,
-          recent:[...(await db.list({prefix:'audit:',reverse:true,limit:20})).values()]});
+          recent:[...(await db.list({prefix:'event:',reverse:true,limit:20})).values()]});
       }
       if(!configured(this.env))return json({error:'not configured'},503);
       let s=await db.get('state');if(!s){s=initial(Date.now());await db.put('state',s);}
@@ -134,8 +167,8 @@ export class PaperBook {
         if(path==='/reconcile'){
           if(!ws.includes(data.wallet)||!Array.isArray(data.rows))return json({error:'invalid reconciliation'},400);
           const cursor=await db.get(`cursor:${data.wallet}`);
-          if(cursor&&!data.rows.some(x=>x.signature===cursor)&&data.rows.length===100)
-            await db.put('health',{at:Date.now(),error:'reconciliation overflow: feed gap; new buys blocked',entryBlocked:true});
+          if(cursor&&!data.rows.some(x=>x.signature===cursor)&&data.rows.length>=1000)
+            await db.put('health',{at:Date.now(),error:'reconciliation overflow: feed gap; new buys blocked',entryBlocked:true,wallet:data.wallet,previousCursor:cursor});
           signatures=data.rows.filter(x=>!x.err&&x.blockTime*1000>=s.startedAt).map(x=>x.signature).reverse();
           if(data.rows[0])await db.put(`cursor:${data.wallet}`,data.rows[0].signature);
         }
@@ -177,7 +210,7 @@ export class PaperBook {
     await db.transaction(async t=>{
       if(state)await t.put('state',state);
       await t.put(`audit:${String(now).padStart(13,'0')}:${job.id}`,result);
-      if(!job.mark)await t.put(`done:${job.id}`,{at:now,status:result.status});
+      if(!job.mark){await t.put(`done:${job.id}`,{at:now,status:result.status});await t.put(`event:${String(now).padStart(13,'0')}:${job.id}`,{at:now,...result});}
       await t.delete(`pending:${job.id}`);
     });
   }
@@ -238,7 +271,7 @@ export class PaperBook {
       const mint=await rpc(env,'getAccountInfo',[s.mint,{encoding:'jsonParsed',commitment:'confirmed'}]);
       const info=mint.value?.data?.parsed?.info;
       if(mint.value?.owner!==SPL||!info||info.mintAuthority!==null||info.freezeAuthority!==null||info.decimals!==s.decimals){
-        await this.finish(job,{status:'SKIP',reason:'mint authority/freeze/extension/decimals gate',signal:s});return;
+        await this.finish(job,{status:'SKIP',reason:'mint authority/freeze/extension/decimals gate',mintChecks:{owner:mint.value?.owner||null,classic:mint.value?.owner===SPL,parsed:Boolean(info),mintAuthorityRevoked:info?.mintAuthority===null,freezeAuthorityRevoked:info?.freezeAuthority===null,decimalsMatch:info?.decimals===s.decimals},signal:s});return;
       }
     }
     const decisionAt=Date.now();
