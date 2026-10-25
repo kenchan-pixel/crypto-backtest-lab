@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-23",
+  "worker": "ken-copy-paper",
+  "deploymentId": "11795ddae64b41ae9ffdb7b6266c2a96",
+  "mode": "paper-only engineering pilot; live feed enabled, zero forward fills at readback",
+  "wallet": "BwPFmWgirMuf7RDyxxBg8eBHwFuqSTupSdtgG3DRNpDd",
+  "webhookId": "d38aa202-bf3f-4269-bd0d-c8e1f3490b02",
+  "cron": "* * * * *",
+  "verifiedStateAfterRedeploy": {
+    "paperOnly": true,
+    "configured": true,
+    "state": {
+      "version": "copy-paper-v1",
+      "startedAt": 1792759170161,
+      "cash": "10000000000",
+      "positions": {},
+      "realized": "0",
+      "fees": "0",
+      "fills": 0,
+      "lastAt": 1792759170161
+    },
+    "marks": {
+      "at": 1792759334015,
+      "cash": "10000000000",
+      "positions": {},
+      "nav": "10000000000",
+      "complete": true,
+      "nonSimultaneous": true
+    },
+    "health": null,
+    "queued": 0,
+    "recent": [
+      {
+        "status": "SKIP",
+        "reason": "pre-start event",
+        "signal": {
+          "id": "5nd4uBSMYohstaWHKojLkpKUBQz6snyfLq5FUZ2BaXLs5zj1mgtjAYm3GPazaAUo53WVfuL6LpUHHSwwe9BFax7h:BwPFmWgirMuf7RDyxxBg8eBHwFuqSTupSdtgG3DRNpDd",
+          "signature": "5nd4uBSMYohstaWHKojLkpKUBQz6snyfLq5FUZ2BaXLs5zj1mgtjAYm3GPazaAUo53WVfuL6LpUHHSwwe9BFax7h",
+          "wallet": "BwPFmWgirMuf7RDyxxBg8eBHwFuqSTupSdtgG3DRNpDd",
+          "mint": "9Tm6XuQUjpCD4SaKWKJVV91NcycvAq8TdEEBF92vpump",
+          "side": "SELL",
+          "decimals": 6,
+          "qty": "23390914675952",
+          "leaderPre": "23390914675952",
+          "baseMint": "So11111111111111111111111111111111111111112",
+          "baseQty": "3023224962",
+          "chainAt": 1792733242000,
+          "receivedAt": 1792759337153,
+          "slot": 460323634
+        }
+      },
+      {
+        "status": "MARK",
+        "nav": "10000000000",
+        "complete": true
+      },
+      {
+        "status": "MARK",
+        "nav": "10000000000",
+        "complete": true
+      }
+    ]
+  },
+  "statePreserved": true,
+  "localTestsPassed": 17
+}

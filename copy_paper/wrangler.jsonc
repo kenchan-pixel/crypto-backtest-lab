@@ -1,0 +1,75 @@
+{
+  "name": "ken-copy-paper",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "vars": {
+    "ENABLED": "true",
+    "LABS_ENABLED": "true",
+    "WALLETS": "[\"4sAUSQFdvWRBxR8UoLBYbw8CcXuwXWxnN8pXa4mtm5nU\"]"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "BOOK",
+        "class_name": "PaperBook"
+      },
+      {
+        "name": "SCHARO_STANDARD",
+        "class_name": "ScharoStandard"
+      },
+      {
+        "name": "SCHARO_TIGHT",
+        "class_name": "ScharoTight"
+      },
+      {
+        "name": "MATT_STANDARD",
+        "class_name": "MattStandard"
+      },
+      {
+        "name": "MATT_TIGHT",
+        "class_name": "MattTight"
+      },
+      {
+        "name": "QUOTE_GATE",
+        "class_name": "QuoteGate"
+      },
+      {
+        "name": "THREE_GJ_STANDARD",
+        "class_name": "ThreeGjStandard"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "copy-paper-v1",
+      "new_sqlite_classes": [
+        "PaperBook"
+      ]
+    },
+    {
+      "tag": "paper-lab-v2",
+      "new_sqlite_classes": [
+        "ScharoStandard",
+        "ScharoTight",
+        "MattStandard",
+        "MattTight",
+        "QuoteGate"
+      ]
+    },
+    {
+      "tag": "paper-3egj-v3",
+      "new_sqlite_classes": [
+        "ThreeGjStandard"
+      ]
+    }
+  ],
+  "triggers": {
+    "crons": [
+      "* * * * *"
+    ]
+  },
+  "observability": {
+    "enabled": true
+  }
+}
