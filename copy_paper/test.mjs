@@ -10,7 +10,7 @@ function transaction({sell=false,native=false,failed=false}={}){
   const preTokenBalances=[{accountIndex:1,mint:M,owner:W,uiTokenAmount:{amount:sell?'1000000000':'0',decimals:6}}];
   const postTokenBalances=[{accountIndex:1,mint:M,owner:W,uiTokenAmount:{amount:sell?'500000000':'1000000000',decimals:6}}];
   if(!native){preTokenBalances.push({accountIndex:2,mint:USDC,owner:W,uiTokenAmount:{amount:'500000000',decimals:6}});postTokenBalances.push({accountIndex:2,mint:USDC,owner:W,uiTokenAmount:{amount:sell?'600000000':'300000000',decimals:6}});}
-  return {slot:100,blockTime:T/1000,transaction:{signatures:[SIG],message:{accountKeys:[{pubkey:W,signer:true},{pubkey:M,signer:false},{pubkey:USDC,signer:false}]}},meta:{err:failed?{}:null,fee:5000,preBalances:[10000000000,2039280,2039280],postBalances:[native?8999995000:9999995000,2039280,2039280],preTokenBalances,postTokenBalances}};
+  return {slot:100,blockTime:T/1000,transaction:{signatures:[SIG],message:{accountKeys:[{pubkey:W,signer:true},{pubkey:M,signer:false},{pubkey:USDC,signer:false}]}},meta:{logMessages:['Program pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA invoke [1]','Program log: Instruction: Swap','Program pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA success'],err:failed?{}:null,fee:5000,preBalances:[10000000000,2039280,2039280],postBalances:[native?8999995000:9999995000,2039280,2039280],preTokenBalances,postTokenBalances}};
 }
 test('USDC buy and partial sell decode from exact token balances',()=>{
   assert.equal(normalize(transaction(),W,SIG,T+100).side,'BUY');
@@ -181,17 +181,17 @@ test('tight chase rejects a price accepted by standard without changing baseline
  assert.throws(()=>fill(st,s,p,q,T+150,T+400,200000000n,{...POLICY,chaseBps:500n}),/chase/);
  assert.equal(st.fills,0);assert.equal(st.cash,'10000000000');
 });
-test('four experiments initialize independent books and preserve data after restart',async()=>{
- const {ScharoStandard,ScharoTight,MattStandard,MattTight}=await import('./worker.mjs');
+test('five experiments initialize independent books and preserve data after restart',async()=>{
+ const {ScharoStandard,ScharoTight,MattStandard,MattTight,ThreeGjStandard}=await import('./worker.mjs');
  const env={ENABLED:'true',LABS_ENABLED:'true',HELIUS_API_KEY:'fixture',JUPITER_API_KEY:'fixture'};
- const stores=[];for(const C of [ScharoStandard,ScharoTight,MattStandard,MattTight]){const storage=new Store();stores.push(storage);const ctx={storage,blockConcurrencyWhile:fn=>fn()};const b=new C(ctx,env);await b.fetch(new Request('https://i/sweep',{method:'POST'}));await b.process({id:'mark',mark:true});const r=await new C(ctx,env).fetch(new Request('https://i/history')).then(r=>r.json());assert.equal(r.points.length,1);assert.equal(r.points[0].nav,'10000000000');}
+ const stores=[];for(const C of [ScharoStandard,ScharoTight,MattStandard,MattTight,ThreeGjStandard]){const storage=new Store();stores.push(storage);const ctx={storage,blockConcurrencyWhile:fn=>fn()};const b=new C(ctx,env);await b.fetch(new Request('https://i/sweep',{method:'POST'}));await b.process({id:'mark',mark:true});const r=await new C(ctx,env).fetch(new Request('https://i/history')).then(r=>r.json());assert.equal(r.points.length,1);assert.equal(r.points[0].nav,'10000000000');}
  const changed=await stores[0].get('state');changed.cash='1';await stores[0].put('state',changed);
  for(const s of stores.slice(1))assert.equal((await s.get('state')).cash,'10000000000');
 });
 test('experiment refuses swap not paid by watched wallet',async()=>{
  const {MattStandard,LABS}=await import('./worker.mjs');const wallet=LABS.find(l=>l.id==='matt-standard').wallet;
  const storage=new Store(),ctx={storage,blockConcurrencyWhile:fn=>fn()},b=new MattStandard(ctx,{LABS_ENABLED:'true',HELIUS_API_KEY:'f',JUPITER_API_KEY:'f'});
- await storage.put('state',initial(Date.now()-10000));await storage.put('verified:'+SIG,{type:'SWAP',tx:transaction()});
+ await storage.put('state',initial(Date.now()-10000));await storage.put('verified-v2:'+SIG,{type:'SWAP',tx:transaction()});
  await b.process({id:SIG+':'+wallet,signature:SIG,wallet,receivedAt:Date.now()});
  assert.equal((await storage.get('state')).fills,0);const rows=[...(await storage.list({prefix:'event:'})).values()];assert.equal(rows[0].reason,'wallet not fee payer');
 });

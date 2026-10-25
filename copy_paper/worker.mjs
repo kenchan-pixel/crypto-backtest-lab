@@ -1,6 +1,7 @@
 import {USDC,SOL,SPL,POLICY,initial,integer,normalize,plan,fill,checkQuote,keyOf} from './core.mjs';
+const THREE_GJ='3eGj9qx6D4CADVzunDN8MLcGsP3BXQabZ8xReEdgML6a';
 const SCHARO='4sAUSQFdvWRBxR8UoLBYbw8CcXuwXWxnN8pXa4mtm5nU',MATT='3bzaJd5yZG73EVDz8xosQb7gfZm2LN5auFGh6wnP1n1f';
-export const LABS=[{id:'scharo-standard',binding:'SCHARO_STANDARD',wallet:SCHARO,chaseBps:'1500'},{id:'scharo-tight',binding:'SCHARO_TIGHT',wallet:SCHARO,chaseBps:'500'},{id:'matt-standard',binding:'MATT_STANDARD',wallet:MATT,chaseBps:'1500'},{id:'matt-tight',binding:'MATT_TIGHT',wallet:MATT,chaseBps:'500'}];
+export const LABS=[{id:'3egj-standard',binding:'THREE_GJ_STANDARD',wallet:THREE_GJ,chaseBps:'1500'},{id:'scharo-standard',binding:'SCHARO_STANDARD',wallet:SCHARO,chaseBps:'1500'},{id:'scharo-tight',binding:'SCHARO_TIGHT',wallet:SCHARO,chaseBps:'500'},{id:'matt-standard',binding:'MATT_STANDARD',wallet:MATT,chaseBps:'1500'},{id:'matt-tight',binding:'MATT_TIGHT',wallet:MATT,chaseBps:'500'}];
 const labStub=(env,l)=>env[l.binding].get(env[l.binding].idFromName('forward-v1'));
 const watchWallets=env=>[...new Set([...wallets(env),...(env.LABS_ENABLED==='true'?LABS.map(l=>l.wallet):[])])];
 const json=(v,status=200)=>Response.json(v,{status,headers:{'Cache-Control':'no-store'}});
@@ -80,9 +81,9 @@ export default {
         const endpoint=`https://api-mainnet.helius-rpc.com/v0/webhooks?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`;
         const webhookURL='https://ken-copy-paper.kenchan-528.workers.dev/webhook';
         const existing=await remote(endpoint),match=existing.find(x=>x.webhookURL===webhookURL);
-        if(match&&JSON.stringify(match.accountAddresses)===JSON.stringify(watchWallets(env)))return json({webhookID:match.webhookID,webhookURL,existing:true});
+        if(match&&JSON.stringify(match.accountAddresses)===JSON.stringify(watchWallets(env))&&JSON.stringify(match.transactionTypes)===JSON.stringify(['ANY']))return json({webhookID:match.webhookID,webhookURL,existing:true});
         const target=match?`https://api-mainnet.helius-rpc.com/v0/webhooks/${encodeURIComponent(match.webhookID)}?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`:endpoint;
-        const r=await remote(target,{method:match?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({webhookURL,transactionTypes:['SWAP'],accountAddresses:watchWallets(env),webhookType:'enhanced',authHeader:`Bearer ${env.WEBHOOK_SECRET}`})});
+        const r=await remote(target,{method:match?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({webhookURL,transactionTypes:['ANY'],accountAddresses:watchWallets(env),webhookType:'enhanced',authHeader:`Bearer ${env.WEBHOOK_SECRET}`})});
         return json({webhookID:r.webhookID||match?.webhookID,webhookURL,created:!match,updated:Boolean(match)});
       }catch(e){return json({error:e.message.startsWith('upstream')?e.message:'webhook setup unavailable'},502);}
     }
@@ -137,10 +138,12 @@ export default {
     if(!Array.isArray(events)||events.length>100)return json({error:'invalid batch'},400);
     const signatures=[...new Set(events.map(x=>x.signature))];
     if(signatures.some(x=>typeof x!=='string'||!/^[1-9A-HJ-NP-Za-km-z]{64,88}$/.test(x)))return json({error:'invalid signature'},400);
-    const body=JSON.stringify({signatures,receivedAt:Date.now()});
-    const result=await stub(env).fetch('https://internal/enqueue',{method:'POST',body});
-    if(env.LABS_ENABLED==='true')for(const l of LABS)await labStub(env,l).fetch('https://internal/enqueue',{method:'POST',body});
-    return result;
+    const receivedAt=Date.now();
+    const send=async(target,allowed)=>{const selected=webhookSignatures(events,allowed);if(!selected.length)return;
+      await target.fetch('https://internal/enqueue',{method:'POST',body:JSON.stringify({signatures:selected,receivedAt})});};
+    await send(stub(env),wallets(env));
+    if(env.LABS_ENABLED==='true')for(const l of LABS)await send(labStub(env,l),[l.wallet]);
+    return json({accepted:true});
   },
   async scheduled(_event,env,ctx) {
     if(!configured(env))return;
@@ -221,7 +224,7 @@ export class PaperBook {
       const db=this.ctx.storage;
       if(!configured(this.env))return;
       const pending=await db.list({prefix:'pending:',limit:1000});
-      const ready=[...pending.values()].filter(x=>x.nextAt<=Date.now()).sort((a,b)=>(a.receivedAt||0)-(b.receivedAt||0));
+      const ready=[...pending.values()].filter(x=>x.nextAt<=Date.now()).sort((a,b)=>Number(Boolean(a.mark))-Number(Boolean(b.mark))||(a.receivedAt||0)-(b.receivedAt||0));
       const job=ready[0];
       if(job)try{await this.process(job);}catch{
         job.attempts++;job.nextAt=Date.now()+Math.min(60000,1000*2**Math.min(job.attempts,6));
@@ -273,11 +276,11 @@ export class PaperBook {
         s={id:job.id,wallet:job.wallet,mint:job.mint,side:'SELL',qty:p.qty,leaderPre:p.qty,
           chainAt:state.startedAt,receivedAt:job.receivedAt,expiry:true};
       }else{
-        let verified=await db.get(`verified:${job.signature}`);
+        let verified=await db.get(`verified-v2:${job.signature}`);
         if(!verified){
-          if(env.QUOTE_GATE){const r=await env.QUOTE_GATE.get(env.QUOTE_GATE.idFromName('source')).fetch('https://internal/source',{method:'POST',body:JSON.stringify({signature:job.signature})});if(!r.ok)throw Error('source unavailable');verified=await r.json();}
+          if(env.QUOTE_GATE){const r=await env.QUOTE_GATE.get(env.QUOTE_GATE.idFromName('source-v2:'+job.signature)).fetch('https://internal/source',{method:'POST',body:JSON.stringify({signature:job.signature})});if(!r.ok)throw Error('source unavailable');verified=await r.json();}
           else verified=await verifySource(env,job.signature);
-          await db.put(`verified:${job.signature}`,verified);
+          await db.put(`verified-v2:${job.signature}`,verified);
         }
         if(verified.type!=='SWAP'){await this.finish(job,{status:'SKIP',reason:'not a supported swap'});return;}
         const tx=verified.tx;
@@ -342,13 +345,25 @@ export class ScharoStandard extends ExperimentalBook{constructor(c,e){super(c,e,
 export class ScharoTight extends ExperimentalBook{constructor(c,e){super(c,e,SCHARO,500n);}}
 export class MattStandard extends ExperimentalBook{constructor(c,e){super(c,e,MATT,1500n);}}
 export class MattTight extends ExperimentalBook{constructor(c,e){super(c,e,MATT,500n);}}
-async function verifySource(env,signature){
- await new Promise(resolve=>setTimeout(resolve,550));
- const enhanced=await remote(`https://api-mainnet.helius-rpc.com/v0/transactions?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({transactions:[signature]})});
- if(enhanced[0]?.signature!==signature)throw Error('transaction not available');
- const verified={type:enhanced[0].type,observedAt:Date.now()};
- if(verified.type==='SWAP')verified.tx=await rpc(env,'getTransaction',[signature,{encoding:'jsonParsed',commitment:'confirmed',maxSupportedTransactionVersion:1}]);
- return verified;
+export function webhookSignatures(events,allowed){
+ return [...new Set(events.filter(e=>!e.feePayer||allowed.includes(e.feePayer)).map(e=>e.signature))];
+}
+const DEX_PROGRAMS=new Set(['6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P','pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA','JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4','whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc','675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8','CAMMCzo5YL8w4VFF8KVHrK22GGUsp5VTaW7grrKgrWqK']);
+export function hasSwapInstruction(tx){
+ if(!tx||tx.meta?.err)return false;
+ const stack=[];let found=false;
+ for(const line of tx.meta.logMessages||[]){
+  const invoke=line.match(/^Program ([1-9A-HJ-NP-Za-km-z]+) invoke \[(\d+)\]$/);
+  if(invoke){stack.length=Number(invoke[2])-1;stack.push(invoke[1]);continue;}
+  if(/^Program [1-9A-HJ-NP-Za-km-z]+ (success|failed:)/.test(line)){stack.pop();continue;}
+  if(DEX_PROGRAMS.has(stack.at(-1))&&/^Program log: Instruction: (Buy|Sell|Swap|Route|SharedAccountsRoute)[A-Za-z0-9_]*$/.test(line))found=true;
+ }
+ return found;
+}
+export async function verifySource(env,signature){
+ const tx=await rpc(env,'getTransaction',[signature,{encoding:'jsonParsed',commitment:'confirmed',maxSupportedTransactionVersion:1}]);
+ if(!tx.transaction?.signatures?.includes(signature))throw Error('transaction not available');
+ return {type:hasSwapInstruction(tx)?'SWAP':'NON_SWAP',tx,observedAt:Date.now(),parserVersion:2};
 }
 export class QuoteGate {
  constructor(ctx,env){this.ctx=ctx;this.env=env;}
@@ -361,3 +376,5 @@ export class QuoteGate {
   const q=await quote({...this.env,QUOTE_GATE:null},p);return json(q);
  }catch{return json({error:'provider unavailable'},502);}});}
 }
+
+export class ThreeGjStandard extends ExperimentalBook{constructor(c,e){super(c,e,THREE_GJ,1500n);}}
