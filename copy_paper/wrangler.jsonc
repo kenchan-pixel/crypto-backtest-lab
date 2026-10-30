@@ -37,6 +37,14 @@
       {
         "name": "THREE_GJ_STANDARD",
         "class_name": "ThreeGjStandard"
+      },
+      {
+        "name": "DYNAMIC_BOOK",
+        "class_name": "DynamicPaperBook"
+      },
+      {
+        "name": "DYNAMIC_REGISTRY",
+        "class_name": "DynamicRegistry"
       }
     ]
   },
@@ -61,6 +69,13 @@
       "tag": "paper-3egj-v3",
       "new_sqlite_classes": [
         "ThreeGjStandard"
+      ]
+    },
+    {
+      "tag": "dynamic-paper-v4",
+      "new_sqlite_classes": [
+        "DynamicPaperBook",
+        "DynamicRegistry"
       ]
     }
   ],
