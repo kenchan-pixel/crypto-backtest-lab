@@ -209,9 +209,11 @@ export class PaperBook {
             await db.put(`pending:${id}`,{id,signature:sig,wallet,receivedAt:data.receivedAt,attempts:0,nextAt:0});
         }
       } else if(path==='/sweep') {
-        for(const [k,p] of Object.entries(s.positions))if(p.exitPending||Date.now()-p.openedAt>=this.policy.maxHoldMs){
+        // A failed leader sell keeps its original proportional retry. Only age
+        // can create a full-lot fallback; exitPending is an entry risk gate.
+        for(const [k,p] of Object.entries(s.positions))if(Date.now()-p.openedAt>=this.policy.maxHoldMs){
           const id=`expiry:${k}:${p.openedAt}`;
-          if(!await db.get(`pending:${id}`))await db.put(`pending:${id}`,{id,expiry:true,wallet:p.wallet,mint:p.mint,receivedAt:Date.now(),attempts:0,nextAt:0});
+          if(!await db.get(`pending:${id}`))await db.put(`pending:${id}`,{id,expiry:true,wallet:p.wallet,mint:p.mint,openedAt:p.openedAt,receivedAt:Date.now(),attempts:0,nextAt:0});
         }
         // Marking is a separate alarm item; never invent a price when a route disappears.
         if(!await db.get('pending:mark'))await db.put('pending:mark',{id:'mark',mark:true,nextAt:0,attempts:0});
@@ -268,26 +270,37 @@ export class PaperBook {
       const old=await db.list({prefix:'nav:',end:'nav:'+String(at-7*86400000),limit:100});if(old.size)await db.delete([...old.keys()]);
       await this.finish(job,{status:'MARK',nav,complete});return;
     }
+    // Recheck every expiry attempt, including jobs with a cached signal from
+    // older deployments. The ID retains the lot timestamp for legacy jobs.
+    if(job.expiry){
+      const p=state.positions[`${job.wallet}:${job.mint}`];
+      if(!p){await this.finish(job,{status:'SKIP',reason:'position already closed'});return;}
+      if(job.id!==`expiry:${job.wallet}:${job.mint}:${p.openedAt}`||
+        (job.openedAt!==undefined&&job.openedAt!==p.openedAt)){
+        await this.finish(job,{status:'SKIP',reason:'expiry belongs to an earlier position'});return;
+      }
+      if(!Number.isSafeInteger(p.openedAt)||Date.now()-p.openedAt<this.policy.maxHoldMs){
+        await this.finish(job,{status:'SKIP',reason:'position not due for expiry'});return;
+      }
+      // A valid expiry closes the current remainder of this same lot. Do not
+      // reuse a cached quantity after a proportional leader sell has completed.
+      job.signal={id:job.id,wallet:job.wallet,mint:job.mint,side:'SELL',qty:p.qty,leaderPre:p.qty,
+        chainAt:state.startedAt,receivedAt:job.receivedAt,expiry:true};
+      await db.put(`pending:${job.id}`,job);
+    }
     let s=job.signal;
     if(!s){
-      if(job.expiry){
-        const p=state.positions[`${job.wallet}:${job.mint}`];
-        if(!p){await this.finish(job,{status:'SKIP',reason:'position already closed'});return;}
-        s={id:job.id,wallet:job.wallet,mint:job.mint,side:'SELL',qty:p.qty,leaderPre:p.qty,
-          chainAt:state.startedAt,receivedAt:job.receivedAt,expiry:true};
-      }else{
-        let verified=await db.get(`verified-v2:${job.signature}`);
-        if(!verified){
-          if(env.QUOTE_GATE){const r=await env.QUOTE_GATE.get(env.QUOTE_GATE.idFromName('source-v2:'+job.signature)).fetch('https://internal/source',{method:'POST',body:JSON.stringify({signature:job.signature})});if(!r.ok)throw Error('source unavailable');verified=await r.json();}
-          else verified=await verifySource(env,job.signature);
-          await db.put(`verified-v2:${job.signature}`,verified);
-        }
-        if(verified.type!=='SWAP'){await this.finish(job,{status:'SKIP',reason:'not a supported swap'});return;}
-        const tx=verified.tx;
-        if(this.experimental&&tx.transaction.message.accountKeys[0]?.pubkey!==job.wallet){await this.finish(job,{status:'SKIP',reason:'wallet not fee payer'});return;}
-        try{s=normalize(tx,job.wallet,job.signature,job.receivedAt);}catch(e){await this.finish(job,{status:'SKIP',reason:e.message});return;}
-        await db.put(`source:${job.id}`,tx);
+      let verified=await db.get(`verified-v2:${job.signature}`);
+      if(!verified){
+        if(env.QUOTE_GATE){const r=await env.QUOTE_GATE.get(env.QUOTE_GATE.idFromName('source-v2:'+job.signature)).fetch('https://internal/source',{method:'POST',body:JSON.stringify({signature:job.signature})});if(!r.ok)throw Error('source unavailable');verified=await r.json();}
+        else verified=await verifySource(env,job.signature);
+        await db.put(`verified-v2:${job.signature}`,verified);
       }
+      if(verified.type!=='SWAP'){await this.finish(job,{status:'SKIP',reason:'not a supported swap'});return;}
+      const tx=verified.tx;
+      if(this.experimental&&tx.transaction.message.accountKeys[0]?.pubkey!==job.wallet){await this.finish(job,{status:'SKIP',reason:'wallet not fee payer'});return;}
+      try{s=normalize(tx,job.wallet,job.signature,job.receivedAt);}catch(e){await this.finish(job,{status:'SKIP',reason:e.message});return;}
+      await db.put(`source:${job.id}`,tx);
       job.signal=s;await db.put(`pending:${job.id}`,job);
     }
     let p;

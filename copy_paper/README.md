@@ -16,13 +16,22 @@ Stack: Cloudflare Worker + one SQLite Durable Object; Helius enhanced SWAP webho
 - Entry observed within 60 seconds of block time. Skip if copied unit cost is >15% above leader's reference. SOL leader cost is converted using current observed SOL→USDC route, **not historical leader-time FX**. Skip if the pre-entry reverse-route probe would lose >10%.
 - Save decision before quote. Preview/reverse gates precede the **final fresh** entry quote; do not look ahead then reuse an earlier price. Quote request-to-use <=10 seconds. Apply 1% adverse output haircut plus 1 USDC assumed network/priority budget each side. DEX route fees already reside in quote output; do not add exchange spot fees again. Actual fees/landing success are unknown; this is quote-based paper execution, not a transaction execution simulator.
 - Mirror fraction sold = leader tokens sold / leader pretransaction token holding. Positions tracked separately per wallet/mint. Full fallback exit after 24h, checked via minute cron; no guaranteed stop price. Missing sale quotes leave position open and retry; new buys blocked while a known exit remains pending.
+- A failed partial sale keeps that proportional retry; `exitPending` does not make the position expire early. Each full fallback verifies the current lot's `openedAt` and 24h age on every attempt, including previously queued jobs with cached signals. Premature or old-lot jobs receive an audited skip without changing balances or clearing risk flags; past fills are not rewritten.
 - Duplicate signature+wallet events and crash retries cannot double-fill. Durable event queue; account+receipt+queue removal commit atomically. RPC/network failures retry with backoff. Authenticated webhook ingestion does not trust caller-supplied prices or balances. First-seen and block time retained. No historical backfill fills.
 - Every minute, a 100-signature-per-wallet recovery poll and expiry/mark sweep. Recovery overflow sets a persistent new-entry block, requiring operator gap review. This bounded recovery is not guaranteed complete history. Confirmed-chain observations have residual reorg risk; historical canonical correction is not yet implemented.
 - Status marks are sequential full-position liquidation quotes, not simultaneous marks; missing quotes produce **unknown NAV**, not zero loss or fabricated prices. AI/API operating costs excluded. No automatic claim of outperforming cash, profit or significance.
 
 ## Run tests
 
-`node --test copy_paper/test.mjs` from repository root; Node 22+; no dependencies or credentials. Fixtures test engineering only, never forward trades. Tests include exact balance parsing, fees/rent, partial/full exits, chase/freshness/caps, auth, duplicate delivery, restart and unavailable-exit recovery. The fake Durable Object store does not prove production Cloudflare semantics or upstream schemas; live commissioning remains mandatory.
+Run from the repository root with Node 22+; no dependencies or credentials:
+
+```bash
+node copy_paper/test.mjs
+node copy_paper/regression.mjs
+node copy_paper/expiry_regression.mjs
+```
+
+Fixtures test engineering only, never forward trades. Tests include exact balance parsing, fees/rent, partial/full exits, chase/freshness/caps, auth, duplicate delivery, restart and unavailable-exit recovery. Expiry regressions also cover a partial-sale failure across a cron sweep/restart, legacy premature jobs with cached signals, old-lot jobs against replacement positions, and valid 24h/legacy expiry retries. The fake Durable Object store does not prove production Cloudflare semantics or upstream schemas; live commissioning remains mandatory.
 
 ## Secrets and deployment
 
