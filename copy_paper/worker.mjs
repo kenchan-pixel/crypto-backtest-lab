@@ -3,7 +3,32 @@ const THREE_GJ='3eGj9qx6D4CADVzunDN8MLcGsP3BXQabZ8xReEdgML6a';
 const SCHARO='4sAUSQFdvWRBxR8UoLBYbw8CcXuwXWxnN8pXa4mtm5nU',MATT='3bzaJd5yZG73EVDz8xosQb7gfZm2LN5auFGh6wnP1n1f';
 export const LABS=[{id:'3egj-standard',binding:'THREE_GJ_STANDARD',wallet:THREE_GJ,chaseBps:'1500'},{id:'scharo-standard',binding:'SCHARO_STANDARD',wallet:SCHARO,chaseBps:'1500'},{id:'scharo-tight',binding:'SCHARO_TIGHT',wallet:SCHARO,chaseBps:'500'},{id:'matt-standard',binding:'MATT_STANDARD',wallet:MATT,chaseBps:'1500'},{id:'matt-tight',binding:'MATT_TIGHT',wallet:MATT,chaseBps:'500'}];
 const labStub=(env,l)=>env[l.binding].get(env[l.binding].idFromName('forward-v1'));
-const watchWallets=env=>[...new Set([...wallets(env),...(env.LABS_ENABLED==='true'?LABS.map(l=>l.wallet):[])])];
+const registryStub=env=>env.DYNAMIC_REGISTRY.get(env.DYNAMIC_REGISTRY.idFromName('registry-v1'));
+const dynamicStub=(env,id)=>env.DYNAMIC_BOOK.get(env.DYNAMIC_BOOK.idFromName(id));
+const registryJson=async(env,path,opts={})=>{
+  const r=await registryStub(env).fetch('https://internal'+path,opts);
+  const body=await r.json(); if(!r.ok)throw Object.assign(Error(body.error||'dynamic registry unavailable'),{status:r.status,body});
+  return body;
+};
+const dynamicAccounts=async env=>(await registryJson(env,'/list')).accounts;
+const watchWallets=async env=>[...new Set([...wallets(env),...(env.LABS_ENABLED==='true'?LABS.map(l=>l.wallet):[]),
+  ...(await dynamicAccounts(env)).filter(x=>x.status!=='archived').map(x=>x.wallet)])];
+const accountIdFor=async wallet=>{
+  const bytes=new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(wallet)));
+  return 'dyn-'+[...bytes].slice(0,6).map(x=>x.toString(16).padStart(2,'0')).join('');
+};
+async function ensureWebhook(env){
+  if(!env.WEBHOOK_SECRET)throw Error('webhook secret unavailable');
+  const endpoint=`https://api-mainnet.helius-rpc.com/v0/webhooks?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`;
+  const webhookURL='https://ken-copy-paper.kenchan-528.workers.dev/webhook';
+  const accounts=await watchWallets(env), existing=await remote(endpoint), match=existing.find(x=>x.webhookURL===webhookURL);
+  if(match&&JSON.stringify(match.accountAddresses)===JSON.stringify(accounts)&&JSON.stringify(match.transactionTypes)===JSON.stringify(['ANY']))
+    return {webhookID:match.webhookID,webhookURL,existing:true,accounts};
+  const target=match?`https://api-mainnet.helius-rpc.com/v0/webhooks/${encodeURIComponent(match.webhookID)}?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`:endpoint;
+  const r=await remote(target,{method:match?'PUT':'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({webhookURL,transactionTypes:['ANY'],accountAddresses:accounts,webhookType:'enhanced',authHeader:`Bearer ${env.WEBHOOK_SECRET}`})});
+  return {webhookID:r.webhookID||match?.webhookID,webhookURL,created:!match,updated:Boolean(match),accounts};
+}
 const json=(v,status=200)=>Response.json(v,{status,headers:{'Cache-Control':'no-store'}});
 const address=x=>typeof x==='string'&&/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(x);
 export function wallets(env) {
@@ -54,7 +79,41 @@ export default {
       if(request.method!=='GET'||!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
       if(path==='/history')return stub(env).fetch('https://internal/history');
       const books=[];for(const l of LABS){const s=await labStub(env,l).fetch('https://internal/status').then(r=>r.json());const h=await labStub(env,l).fetch('https://internal/history').then(r=>r.json());books.push({...l,...s,history:h.points});}
-      return json({paperOnly:true,experimental:true,observedAt:Date.now(),books});
+      for(const c of (await dynamicAccounts(env)).filter(x=>x.status!=='archived')){const s=await dynamicStub(env,c.id).fetch('https://internal/status').then(r=>r.json());const h=await dynamicStub(env,c.id).fetch('https://internal/history').then(r=>r.json());books.push({id:c.id,binding:'DYNAMIC_BOOK',wallet:c.wallet,chaseBps:String(c.chaseBps),label:c.label,dynamic:true,status:c.status,...s,history:h.points});}
+      return json({paperOnly:true,experimental:true,dynamicAccounts:true,observedAt:Date.now(),books});
+    }
+    if(path==='/dynamic'&&request.method==='GET'){
+      if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      return json({paperOnly:true,accounts:await dynamicAccounts(env)});
+    }
+    if(path==='/dynamic/create'&&request.method==='POST'){
+      if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      if(!env.HELIUS_API_KEY||!env.JUPITER_API_KEY)return json({error:'not configured'},503);
+      let data;try{data=await request.json();}catch{return json({error:'invalid JSON'},400);}
+      const wallet=data.wallet, chaseBps=data.chaseBps??1500, label=String(data.label||'').trim().slice(0,64);
+      if(!address(wallet)||!Number.isSafeInteger(chaseBps)||chaseBps<0||chaseBps>5000)return json({error:'invalid dynamic account'},400);
+      const id=await accountIdFor(wallet), now=Date.now();
+      const cfg={id,wallet,label:label||wallet.slice(0,6)+'…'+wallet.slice(-4),chaseBps,status:'paused',createdAt:now,startedAt:now};
+      try{
+        const created=await registryJson(env,'/create',{method:'POST',body:JSON.stringify(cfg)});
+        await dynamicStub(env,id).fetch('https://internal/configure',{method:'POST',body:JSON.stringify(created.account)});
+        let hook;try{hook=await ensureWebhook(env);}catch(e){return json({paperOnly:true,account:created.account,activated:false,error:'webhook sync failed; account remains paused'},502);}
+        const active=await registryJson(env,'/update',{method:'POST',body:JSON.stringify({id,status:'active'})});
+        await dynamicStub(env,id).fetch('https://internal/configure',{method:'POST',body:JSON.stringify(active.account)});
+        return json({paperOnly:true,account:active.account,activated:true,webhook:hook},201);
+      }catch(e){return json(e.body||{error:e.message},e.status||409);}
+    }
+    if(path==='/dynamic/status'&&request.method==='GET'){
+      if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      const id=new URL(request.url).searchParams.get('id'); if(!/^dyn-[a-f0-9]{12}$/.test(id||''))return json({error:'invalid id'},400);
+      try{const account=(await registryJson(env,'/get?id='+encodeURIComponent(id))).account;const status=await dynamicStub(env,id).fetch('https://internal/status').then(r=>r.json());const history=await dynamicStub(env,id).fetch('https://internal/history').then(r=>r.json());return json({paperOnly:true,account,status,history:history.points});}
+      catch(e){return json(e.body||{error:e.message},e.status||404);}
+    }
+    if((path==='/dynamic/pause'||path==='/dynamic/resume')&&request.method==='POST'){
+      if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
+      const id=new URL(request.url).searchParams.get('id'); if(!/^dyn-[a-f0-9]{12}$/.test(id||''))return json({error:'invalid id'},400);
+      try{const next=path.endsWith('pause')?'paused':'active';const updated=await registryJson(env,'/update',{method:'POST',body:JSON.stringify({id,status:next})});await dynamicStub(env,id).fetch('https://internal/configure',{method:'POST',body:JSON.stringify(updated.account)});if(next==='active')await ensureWebhook(env);return json({paperOnly:true,account:updated.account});}
+      catch(e){return json(e.body||{error:e.message},e.status||409);}
     }
     if(path==='/health'&&request.method==='GET')return json({paperOnly:true,configured:Boolean(configured(env))});
     if(path==='/resume-flat'&&request.method==='POST') {
@@ -77,15 +136,8 @@ export default {
     if(path==='/connect'&&request.method==='POST') {
       if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
       if(!configured(env)||!env.WEBHOOK_SECRET)return json({error:'not configured'},503);
-      try {
-        const endpoint=`https://api-mainnet.helius-rpc.com/v0/webhooks?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`;
-        const webhookURL='https://ken-copy-paper.kenchan-528.workers.dev/webhook';
-        const existing=await remote(endpoint),match=existing.find(x=>x.webhookURL===webhookURL);
-        if(match&&JSON.stringify(match.accountAddresses)===JSON.stringify(watchWallets(env))&&JSON.stringify(match.transactionTypes)===JSON.stringify(['ANY']))return json({webhookID:match.webhookID,webhookURL,existing:true});
-        const target=match?`https://api-mainnet.helius-rpc.com/v0/webhooks/${encodeURIComponent(match.webhookID)}?api-key=${encodeURIComponent(env.HELIUS_API_KEY)}`:endpoint;
-        const r=await remote(target,{method:match?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({webhookURL,transactionTypes:['ANY'],accountAddresses:watchWallets(env),webhookType:'enhanced',authHeader:`Bearer ${env.WEBHOOK_SECRET}`})});
-        return json({webhookID:r.webhookID||match?.webhookID,webhookURL,created:!match,updated:Boolean(match)});
-      }catch(e){return json({error:e.message.startsWith('upstream')?e.message:'webhook setup unavailable'},502);}
+      try {return json(await ensureWebhook(env));}
+      catch(e){return json({error:e.message.startsWith('upstream')?e.message:'webhook setup unavailable'},502);}
     }
     if(path==='/tick'&&request.method==='POST') {
       if(!await auth(request,env.ADMIN_TOKEN))return json({error:'unauthorized'},401);
@@ -143,6 +195,7 @@ export default {
       await target.fetch('https://internal/enqueue',{method:'POST',body:JSON.stringify({signatures:selected,receivedAt})});};
     await send(stub(env),wallets(env));
     if(env.LABS_ENABLED==='true')for(const l of LABS)await send(labStub(env,l),[l.wallet]);
+    for(const c of (await dynamicAccounts(env)).filter(x=>x.status==='active'))await send(dynamicStub(env,c.id),[c.wallet]);
     return json({accepted:true});
   },
   async scheduled(_event,env,ctx) {
@@ -161,18 +214,25 @@ export default {
           for(const l of LABS.filter(l=>l.wallet===wallet)){await labStub(env,l).fetch('https://internal/reconcile',{method:'POST',body:JSON.stringify({wallet,rows,receivedAt:Date.now()})});await labStub(env,l).fetch('https://internal/sweep',{method:'POST'});}
         }
       }
+      for(const c of (await dynamicAccounts(env)).filter(x=>x.status==='active')){
+        const rows=await rpc(env,'getSignaturesForAddress',[c.wallet,{limit:1000,commitment:'confirmed'}]);
+        await dynamicStub(env,c.id).fetch('https://internal/reconcile',{method:'POST',body:JSON.stringify({wallet:c.wallet,rows,receivedAt:Date.now()})});
+        await dynamicStub(env,c.id).fetch('https://internal/sweep',{method:'POST'});
+      }
     })());
   }
 };
 export class PaperBook {
-  constructor(ctx,env){this.ctx=ctx;this.env=env;this.policy=POLICY;this.experimental=false;}
+  constructor(ctx,env){this.ctx=ctx;this.env=env;this.policy=POLICY;this.experimental=false;this.walletOverride=null;this.enabledOverride=null;}
+  sourceWallets(){return this.walletOverride||wallets(this.env);}
+  isConfigured(){return (this.enabledOverride??(this.env.ENABLED==='true'))&&this.env.HELIUS_API_KEY&&this.env.JUPITER_API_KEY&&this.sourceWallets().length>0;}
   async fetch(request) {
     return this.ctx.blockConcurrencyWhile(async()=>{
       const path=new URL(request.url).pathname, db=this.ctx.storage;
       if(path==='/history'){const points=[...(await db.list({prefix:'nav:',reverse:true,limit:2016})).values()].reverse();return json({points,scope:'5-minute observed marks, up to 7 days; no backfill'});}
       if(path==='/resume-flat') {
         const s=await db.get('state'),h=await db.get('health');
-        if(!configured(this.env)||!s||Object.keys(s.positions).length||(await db.list({prefix:'pending:',limit:1})).size)return json({error:'requires enabled flat book and empty queue'},409);
+        if(!this.isConfigured()||!s||Object.keys(s.positions).length||(await db.list({prefix:'pending:',limit:1})).size)return json({error:'requires enabled flat book and empty queue'},409);
         if(!h?.entryBlocked)return json({error:'not a reconciliation block'},409);
         const at=Date.now();
         await db.transaction(async t=>{await t.put(`audit:${at}:recovery`,{status:'RECOVERY',reason:'operator reviewed flat book; resume future entries only',previousHealth:h});await t.delete('health');});
@@ -185,15 +245,15 @@ export class PaperBook {
       }
       if(path==='/status') {
         const s=await db.get('state');
-        return json({paperOnly:true,configured:Boolean(configured(this.env)),state:s||null,
+        return json({paperOnly:true,configured:Boolean(this.isConfigured()),state:s||null,
           marks:await db.get('marks')||null,health:await db.get('health')||null,
           queued:(await db.list({prefix:'pending:',limit:1000})).size,
           recent:[...(await db.list({prefix:'event:',reverse:true,limit:20})).values()]});
       }
-      if(!configured(this.env))return json({error:'not configured'},503);
+      if(!this.isConfigured())return json({error:'not configured'},503);
       let s=await db.get('state');if(!s){s=initial(Date.now());await db.put('state',s);}
       if(path==='/enqueue'||path==='/reconcile') {
-        const data=await request.json(), ws=wallets(this.env);
+        const data=await request.json(), ws=this.sourceWallets();
         let signatures=data.signatures;
         if(path==='/reconcile'){
           if(!ws.includes(data.wallet)||!Array.isArray(data.rows))return json({error:'invalid reconciliation'},400);
@@ -224,7 +284,7 @@ export class PaperBook {
   async alarm(){
     return this.ctx.blockConcurrencyWhile(async()=>{
       const db=this.ctx.storage;
-      if(!configured(this.env))return;
+      if(!this.isConfigured())return;
       const pending=await db.list({prefix:'pending:',limit:1000});
       const ready=[...pending.values()].filter(x=>x.nextAt<=Date.now()).sort((a,b)=>Number(Boolean(a.mark))-Number(Boolean(b.mark))||(a.receivedAt||0)-(b.receivedAt||0));
       const job=ready[0];
@@ -348,6 +408,51 @@ export class PaperBook {
       const pos=state.positions[keyOf(s)];if(pos){pos.exitPending=true;await db.put('state',state);}throw e;
     }
   }
+}
+
+export class DynamicRegistry {
+  constructor(ctx,env){this.ctx=ctx;this.env=env;}
+  async fetch(request){
+    return this.ctx.blockConcurrencyWhile(async()=>{
+      const db=this.ctx.storage,u=new URL(request.url),path=u.pathname;
+      if(path==='/list'){const rows=[...(await db.list({prefix:'acct:'})).values()].sort((a,b)=>a.createdAt-b.createdAt);return json({accounts:rows});}
+      if(path==='/get'){const id=u.searchParams.get('id'),a=await db.get('acct:'+id);return a?json({account:a}):json({error:'dynamic account not found'},404);}
+      let data;try{data=await request.json();}catch{return json({error:'invalid JSON'},400);}
+      if(path==='/create'){
+        if(!/^dyn-[a-f0-9]{12}$/.test(data.id)||!address(data.wallet)||!Number.isSafeInteger(data.chaseBps)||data.chaseBps<0||data.chaseBps>5000||data.status!=='paused')return json({error:'invalid dynamic account'},400);
+        const byWallet=await db.get('wallet:'+data.wallet),byId=await db.get('acct:'+data.id);
+        if(byWallet||byId)return json({error:'dynamic account already exists',existingId:byWallet||data.id},409);
+        const account={id:data.id,wallet:data.wallet,label:String(data.label||'').slice(0,64),chaseBps:data.chaseBps,status:'paused',createdAt:data.createdAt,startedAt:data.startedAt};
+        await db.transaction(async t=>{await t.put('acct:'+account.id,account);await t.put('wallet:'+account.wallet,account.id);});
+        return json({account},201);
+      }
+      if(path==='/update'){
+        if(!/^dyn-[a-f0-9]{12}$/.test(data.id)||!['active','paused','archived'].includes(data.status))return json({error:'invalid update'},400);
+        const old=await db.get('acct:'+data.id);if(!old)return json({error:'dynamic account not found'},404);
+        const account={...old,status:data.status,updatedAt:Date.now()};await db.put('acct:'+data.id,account);return json({account});
+      }
+      return json({error:'not found'},404);
+    });
+  }
+}
+export class DynamicPaperBook extends PaperBook {
+  async loadConfig(){
+    const c=await this.ctx.storage.get('config');
+    if(c){this.walletOverride=[c.wallet];this.enabledOverride=c.status==='active';this.policy={...POLICY,chaseBps:BigInt(c.chaseBps)};}
+    return c;
+  }
+  async fetch(request){
+    const path=new URL(request.url).pathname;
+    if(path==='/configure'&&request.method==='POST')return this.ctx.blockConcurrencyWhile(async()=>{
+      let c;try{c=await request.json();}catch{return json({error:'invalid JSON'},400);}
+      if(!/^dyn-[a-f0-9]{12}$/.test(c.id)||!address(c.wallet)||!['active','paused','archived'].includes(c.status)||!Number.isSafeInteger(c.chaseBps)||c.chaseBps<0||c.chaseBps>5000)return json({error:'invalid config'},400);
+      const old=await this.ctx.storage.get('config');if(old&&old.wallet!==c.wallet)return json({error:'wallet is immutable'},409);
+      await this.ctx.storage.put('config',c);if(!await this.ctx.storage.get('state'))await this.ctx.storage.put('state',initial(c.startedAt));
+      await this.loadConfig();return json({configured:true,id:c.id,status:c.status,startedAt:c.startedAt});
+    });
+    await this.loadConfig();return super.fetch(request);
+  }
+  async alarm(){await this.loadConfig();return super.alarm();}
 }
 
 // Independent experimental books. No state copy, replay fills, or shared cash.
